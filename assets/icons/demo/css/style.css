@@ -1,0 +1,256 @@
+/*--------------------------------
+
+Fut Web Font
+Generated using nucleoapp.com
+
+-------------------------------- */
+@font-face {
+  font-family: 'Fut';
+  src: url('../../fonts/Fut.eot');
+  src: url('../../fonts/Fut.eot') format('embedded-opentype'), url('../../fonts/Fut.woff2') format('woff2'), url('../../fonts/Fut.woff') format('woff'), url('../../fonts/Fut.ttf') format('truetype'), url('../../fonts/Fut.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  color: #333333;
+  background: white;
+}
+
+a {
+  color: #608CEE;
+  text-decoration: none;
+}
+
+/* --------------------------------
+
+Main components
+
+-------------------------------- */
+header {
+  text-align: center;
+  padding: 80px 0 48px;
+}
+
+header h1 {
+  font-size: 2.8rem;
+}
+
+header p {
+  font-size: 1.4rem;
+  margin-top: 1em;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ul li {
+  border-radius: .25em;
+  transition: background 0.2s;
+  user-select: none;
+  overflow: hidden;
+  text-align: center;
+  padding: 1em;
+}
+
+ul li:hover {
+  background: #f8f8f8;
+}
+
+ul p, ul em, ul input {
+  display: block;
+  font-size: 1.1rem;
+  color: rgba(0,0,0,0.6);
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  max-width: 11rem;
+}
+
+ul p {
+  padding: 10px 0;
+}
+
+ul p::selection, ul em::selection {
+  background: #608CEE;
+  color: #fff;
+}
+
+ul p::-moz-selection, ul em::-moz-selection {
+  background: #608CEE;
+  color: #fff;
+}
+
+ul em {
+  margin-bottom: 8px;
+}
+
+ul em::before {
+  content: '[';
+}
+ul em::after {
+  content: ']';
+}
+
+ul input {
+  text-align: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* --------------------------------
+
+icons
+
+-------------------------------- */
+.icon {
+  display: inline-block;
+  font: normal normal normal 32px/1 'Fut';
+  speak: none;
+  text-transform: none;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*------------------------
+  font icons
+-------------------------*/
+
+.icon-left::before {
+    content: "\ea02";
+}
+
+.icon-tenis::before {
+    content: "\ea03";
+}
+
+.icon-soccer::before {
+    content: "\ea04";
+}
+
+.icon-basket::before {
+    content: "\ea05";
+}
+
+.icon-person::before {
+    content: "\ea06";
+}
+
+.icon-right::before {
+    content: "\ea07";
+}
+
+.icon-search::before {
+    content: "\ea08";
+}
+
+.icon-house::before {
+    content: "\ea09";
+}
+
+.icon-mma::before {
+    content: "\ea0a";
+}
+
+.icon-boxing::before {
+    content: "\ea0b";
+}
+
+.icon-voley::before {
+    content: "\ea0c";
+}
+
+.icon-football-2::before {
+    content: "\ea0d";
+}
+
+.icon-football::before {
+    content: "\ea0e";
+}
+
+.icon-rockey::before {
+    content: "\ea0f";
+}
+
+.icon-tenis-2::before {
+    content: "\ea10";
+}
+
+.icon-edit::before {
+    content: "\ea11";
+}
+
+.icon-card::before {
+    content: "\ea12";
+}
+
+.icon-refresh::before {
+    content: "\ea13";
+}
+
+.icon-refresh-2::before {
+    content: "\ea14";
+}
+
+.icon-list::before {
+    content: "\ea15";
+}
+
+.icon-soccer-2::before {
+    content: "\ea16";
+}
+
+.icon-bilhar::before {
+    content: "\ea17";
+}
+
+.icon-horse::before {
+    content: "\ea18";
+}
+
+.icon-joy::before {
+    content: "\ea19";
+}
+
+.icon-mesa::before {
+    content: "\ea1a";
+}
+
+.icon-car::before {
+    content: "\ea1b";
+}
+
+.icon-dog::before {
+    content: "\ea1c";
+}
+

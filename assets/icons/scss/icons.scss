@@ -1,0 +1,143 @@
+/*------------------------
+	icons
+-------------------------*/
+@function unicode($str) {
+  @return unquote("\"\\#{$str}\"");
+}
+
+$icon-left: unicode(ea02);
+$icon-tenis: unicode(ea03);
+$icon-soccer: unicode(ea04);
+$icon-basket: unicode(ea05);
+$icon-person: unicode(ea06);
+$icon-right: unicode(ea07);
+$icon-search: unicode(ea08);
+$icon-house: unicode(ea09);
+$icon-mma: unicode(ea0a);
+$icon-boxing: unicode(ea0b);
+$icon-voley: unicode(ea0c);
+$icon-football-2: unicode(ea0d);
+$icon-football: unicode(ea0e);
+$icon-rockey: unicode(ea0f);
+$icon-tenis-2: unicode(ea10);
+$icon-edit: unicode(ea11);
+$icon-card: unicode(ea12);
+$icon-refresh: unicode(ea13);
+$icon-refresh-2: unicode(ea14);
+$icon-list: unicode(ea15);
+$icon-soccer-2: unicode(ea16);
+$icon-bilhar: unicode(ea17);
+$icon-horse: unicode(ea18);
+$icon-joy: unicode(ea19);
+$icon-mesa: unicode(ea1a);
+$icon-car: unicode(ea1b);
+$icon-dog: unicode(ea1c);
+
+.icon-left::before {
+  content: $icon-left;
+}
+
+.icon-tenis::before {
+  content: $icon-tenis;
+}
+
+.icon-soccer::before {
+  content: $icon-soccer;
+}
+
+.icon-basket::before {
+  content: $icon-basket;
+}
+
+.icon-person::before {
+  content: $icon-person;
+}
+
+.icon-right::before {
+  content: $icon-right;
+}
+
+.icon-search::before {
+  content: $icon-search;
+}
+
+.icon-house::before {
+  content: $icon-house;
+}
+
+.icon-mma::before {
+  content: $icon-mma;
+}
+
+.icon-boxing::before {
+  content: $icon-boxing;
+}
+
+.icon-voley::before {
+  content: $icon-voley;
+}
+
+.icon-football-2::before {
+  content: $icon-football-2;
+}
+
+.icon-football::before {
+  content: $icon-football;
+}
+
+.icon-rockey::before {
+  content: $icon-rockey;
+}
+
+.icon-tenis-2::before {
+  content: $icon-tenis-2;
+}
+
+.icon-edit::before {
+  content: $icon-edit;
+}
+
+.icon-card::before {
+  content: $icon-card;
+}
+
+.icon-refresh::before {
+  content: $icon-refresh;
+}
+
+.icon-refresh-2::before {
+  content: $icon-refresh-2;
+}
+
+.icon-list::before {
+  content: $icon-list;
+}
+
+.icon-soccer-2::before {
+  content: $icon-soccer-2;
+}
+
+.icon-bilhar::before {
+  content: $icon-bilhar;
+}
+
+.icon-horse::before {
+  content: $icon-horse;
+}
+
+.icon-joy::before {
+  content: $icon-joy;
+}
+
+.icon-mesa::before {
+  content: $icon-mesa;
+}
+
+.icon-car::before {
+  content: $icon-car;
+}
+
+.icon-dog::before {
+  content: $icon-dog;
+}
+

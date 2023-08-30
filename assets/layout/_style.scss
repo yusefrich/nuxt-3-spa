@@ -1,0 +1,80 @@
+.fut-scrollbar{
+    &::-webkit-scrollbar-track {
+        opacity: .3;
+        border-radius: 0.125rem;
+        background-color: lightgray;
+    }
+    &::-webkit-scrollbar {
+        opacity: .3;
+        width: 0.25rem;
+        border-radius: 0.125rem;
+    }
+    &::-webkit-scrollbar-thumb {
+        opacity: .3;
+        border-radius: 0.125rem;
+        background-color: gray;
+    }
+}
+.container-sm{
+    max-width: 900px;
+}
+svg:not(:root).svg-inline--fa {
+    overflow: visible;
+}
+.svg-inline--fa.fa-w-16 {
+    width: 1em;
+}
+.svg-inline--fa {
+    display: inline-block;
+    font-size: inherit;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -.125em;
+}
+.v-toast__item {
+    z-index: 2052 !important;
+}
+@keyframes blinker {
+    10% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0;
+    }
+}
+@keyframes fader {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.fut-spin {
+    animation: futspin 1s infinite linear;
+}
+@keyframes futspin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.goal-flash {
+    animation: blinker 1s linear;
+}
+.goal-flash-2 {
+    animation: blinker 1s linear;
+}
+.flash {
+    animation: blinker 1s linear;
+}
+.flash-2 {
+    animation: blinker 1s linear;
+}

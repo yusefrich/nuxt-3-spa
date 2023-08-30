@@ -1,0 +1,27 @@
+@import "bootstrap/scss/functions";
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&display=swap');
+
+$gray-800:      #343a40;
+$primary:       #ffb810;
+$accordion-bg:       #393e44;
+$accordion-color:       white;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 821px,
+  lg: 1092px,
+  xl: 1200px,
+  xxl: 1400px
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 821px,
+  lg: 1092px,
+  xl: 1140px,
+  xxl: 1320px
+);
+$dark:            $gray-800;
+$font-family-sans-serif: 'Titillium Web', sans-serif;
+
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
