@@ -28,7 +28,7 @@
           :to="localePath('/sports?tab=SkLobby')"
           :class="{ active: currentRoute('/sports') || currentRoute('/sport') }"
         >
-          <span>{{ $tc('i18n_esporte', 2).toUpperCase() }}</span>
+          <span>{{ $t('i18n_esporte', 2).toUpperCase() }}</span>
         </n-link>
       </nav>
     </sk-header>
@@ -144,7 +144,7 @@
       <div v-if="(currentRoute('/sports') || currentRoute('/sport'))" class="sidebar-list">
         <sk-collapsed-list
           name="sport"
-          :title="$tc('i18n_esporte', 2)"
+          :title="$t('i18n_esporte', 2)"
           :closed-sidebar="closedSidebar"
           :title-icon="['fas', 'futbol']"
           @openSidebar="toggleSidebar = true"
@@ -206,7 +206,7 @@
         />
         <sk-collapsed-list
           name="promo"
-          :title="$tc('i18n_promocao', 2)"
+          :title="$t('i18n_promocao', 2)"
           :items="promosList"
           :title-icon="['fas', 'gift']"
           :closed-sidebar="closedSidebar"

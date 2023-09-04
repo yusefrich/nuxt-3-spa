@@ -103,7 +103,7 @@
                 </tr>
                 <tr>
                   <td class="td-left" colspan="2">
-                    <span class="text-white teams ms-1 fut-color-dynamic teams-mobile">{{ $tc('i18n_aposta', 1) }}:</span>
+                    <span class="text-white teams ms-1 fut-color-dynamic teams-mobile">{{ $t('i18n_aposta', 1) }}:</span>
                   </td>
                   <td class="td-right text-end text-md-start" colspan="2">
                     <fb-bet-input

@@ -52,7 +52,7 @@
             :class="{active: currentMenu === 1}"
             @click="currentMenu = 1"
           >
-            <span>{{ $tc('i18n_aposta', 2) }}</span> <span class="odds-number">{{ userBets.pending.length }}</span>
+            <span>{{ $t('i18n_aposta', 2) }}</span> <span class="odds-number">{{ userBets.pending.length }}</span>
           </nsx-fut-button>
         </div>
         <form v-if="currentMenu === 1" class="responsive-tickets transition bg-nsx-gray" :class="{smaller : !open}">
@@ -116,7 +116,7 @@
                     <span class="d-block">{{ fixedValue(+item.value) }}</span>
                   </div>
                   <div v-if="winMaxValue">
-                    <span class="d-block">{{ $tc('i18n_retorno', 1) }}</span>
+                    <span class="d-block">{{ $t('i18n_retorno', 1) }}</span>
                     <span class="d-block">{{ (+item.value * +item.odd.odds) > +winMaxValue ? winMaxValue : fixedValue(+item.value * +item.odd.odds) }}</span>
                   </div>
                   <div />
@@ -126,14 +126,14 @@
                 <div class="d-flex justify-content-between">
                   <span class="title">{{ $t('i18n_aposta_multipla') }}</span>
                 </div>
-                <span class="d-block">{{ previous.tickets.length }} {{ $tc('i18n_multipla', 2) }}</span>
+                <span class="d-block">{{ previous.tickets.length }} {{ $t('i18n_multipla', 2) }}</span>
                 <div class="d-flex justify-content-between">
                   <div>
                     <span class="d-block">{{ $t('i18n_valor') }}</span>
                     <span class="d-block">{{ fixedValue(+previous.multiple.value) }}</span>
                   </div>
                   <div v-if="winMaxValue">
-                    <span class="d-block">{{ $tc('i18n_retorno', 1) }}</span>
+                    <span class="d-block">{{ $t('i18n_retorno', 1) }}</span>
                     <span class="d-block">{{ +previous.multiple.value * totalOdds(previous.tickets) > +winMaxValue ? winMaxValue : fixedValue(+previous.multiple.value * totalOdds(previous.tickets)) }}</span>
                   </div>
                   <div />
@@ -152,7 +152,7 @@
               </div>
               <div v-if="winMaxValue" class="text-start w-100">
                 <p class="mb-0">
-                  {{ $tc('i18n_retorno', 2) }}
+                  {{ $t('i18n_retorno', 2) }}
                 </p>
                 <h4>R$ {{ totalReturn(previous) > +winMaxValue ? winMaxValue : totalReturn(previous) }}</h4>
               </div>
@@ -211,7 +211,7 @@
                         <p
                           class="text-dark mb-1 text-end bet-title"
                         >
-                          <small v-if="winMaxValue">{{ $tc('i18n_retorno', 1) }}: <span class="text-dark">{{ ((currentTicket.value ? currentTicket.value : 0) * currentTicket.odd.odds - (currentTicket.odd.free_bet ? currentTicket.value : 0)) > winMaxValue ? getFormattedValue(winMaxValue) : getFormattedValue(currentTicket.value * currentTicket.odd.odds - (currentTicket.odd.free_bet ? currentTicket.value : 0)) }}</span></small>
+                          <small v-if="winMaxValue">{{ $t('i18n_retorno', 1) }}: <span class="text-dark">{{ ((currentTicket.value ? currentTicket.value : 0) * currentTicket.odd.odds - (currentTicket.odd.free_bet ? currentTicket.value : 0)) > winMaxValue ? getFormattedValue(winMaxValue) : getFormattedValue(currentTicket.value * currentTicket.odd.odds - (currentTicket.odd.free_bet ? currentTicket.value : 0)) }}</span></small>
                         </p>
                       </div>
                     </div>
@@ -257,7 +257,7 @@
                   </p>
                 </div>
                 <p v-if="tickets.length > 1" class="mb-2 bet-title">
-                  {{ tickets.length }} {{ $tc('i18n_multipla', 2) }}
+                  {{ tickets.length }} {{ $t('i18n_multipla', 2) }}
                 </p>
                 <div class="d-flex">
                   <fut-bet-field
@@ -280,7 +280,7 @@
                     />
                   </fut-bet-field>
                   <p v-if="winMaxValue" class="text-dark text-start bet-title">
-                    {{ $tc('i18n_retorno', 2) }}:<br><span class="text-dark">{{ getMultipleTicketReturn > winMaxValue ? getFormattedValue(winMaxValue) : getFormattedValue(getMultipleTicketReturn) }}</span>
+                    {{ $t('i18n_retorno', 2) }}:<br><span class="text-dark">{{ getMultipleTicketReturn > winMaxValue ? getFormattedValue(winMaxValue) : getFormattedValue(getMultipleTicketReturn) }}</span>
                   </p>
                 </div>
                 <div v-if="+freeBetValue > 0 && !selectedFreebet(tickets)">
@@ -382,7 +382,7 @@
                         {{ $t('i18n_fazer_aposta') }}
                       </small>
                       <br>
-                      <small><span style="color: #ff8800">{{ $tc('i18n_retorno', 2) }} {{ getFormattedValue(getPreCashInTotalReturn) }}</span></small>
+                      <small><span style="color: #ff8800">{{ $t('i18n_retorno', 2) }} {{ getFormattedValue(getPreCashInTotalReturn) }}</span></small>
                     </nsx-fut-button>
                   </div>
                 </div>

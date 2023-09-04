@@ -65,7 +65,7 @@
       <div class="d-flex">
         <div v-if="loggedInUser" class="d-md-flex align-items-center d-none">
           <fb-fut-button class="me-5 button-deposit fut-color-dynamic" to="/user/bank/deposito" :class="{'btn-fb-rounded-secondary': currentSettings.font === 'dark'}">
-            {{ $tc('i18n_deposito', 1) }}
+            {{ $t('i18n_deposito', 1) }}
           </fb-fut-button>
           <fb-balance-dropdown
             :balance="loggedInUser.balance"
@@ -221,7 +221,7 @@
                 :target="productConfigPromoUrl.status ? '_blank' : '_self'"
                 :to="productConfigPromoUrl.url"
               >
-                <span class="container fut-color-dynamic">{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $tc('i18n_promocao', 2) }}</span>
+                <span class="container fut-color-dynamic">{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $t('i18n_promocao', 2) }}</span>
               </fb-fut-button>
               <div class="locale-container">
                 <button class="btn d-flex justify-content-between btn-locale" @click="toggleLocaleMobile = !toggleLocaleMobile">
@@ -283,7 +283,7 @@
                 </div>
                 <div class="d-grid">
                   <span class="bal-value" />
-                  <span class="text-white indice-text fut-color-dynamic">{{ $tc('i18n_aposta', 2) }}</span>
+                  <span class="text-white indice-text fut-color-dynamic">{{ $t('i18n_aposta', 2) }}</span>
                 </div>
               </fb-fut-button>
             </div>
@@ -431,7 +431,7 @@
               {{ $t('i18n_bonus') }}
             </fb-fut-button>
             <fb-fut-button class="text-start fut-color-dynamic" to="/user/bank/deposito">
-              {{ $tc('i18n_deposito', 1) }}
+              {{ $t('i18n_deposito', 1) }}
             </fb-fut-button>
             <fb-fut-button class="text-start fut-color-dynamic" to="/user/bank/saque">
               {{ $t('i18n_solicitar_saque') }}
@@ -563,7 +563,7 @@ export default {
 
       if (!this.applicationType('casino') || this.applicationType('sports')) {
         items.push(
-          { link: '/', text: this.$tc('i18n_esporte', 2), icon: '/FbIcons/sports.svg' }
+          { link: '/', text: this.$t('i18n_esporte', 2), icon: '/FbIcons/sports.svg' }
         )
         if (process.env.SPORTS_PROVIDER === 'upgaming') {
           items.push(
@@ -590,7 +590,7 @@ export default {
         target: this.productConfigPromoUrl.status ? '_blank' : '_self',
         text: this.productConfigPromoUrl.status
           ? this.$t('i18n_ranking')
-          : this.$tc('i18n_promocao', 2)
+          : this.$t('i18n_promocao', 2)
       })
 
       if (this.currentSettings.nav_bar && this.currentSettings.nav_bar.length) {
@@ -642,7 +642,7 @@ export default {
       )
       navItemsWithSports.unshift({
         link: '/sports',
-        text: this.$tc('i18n_esporte', 2),
+        text: this.$t('i18n_esporte', 2),
         img: '/FbIcons/sports.svg',
         external: false
       })

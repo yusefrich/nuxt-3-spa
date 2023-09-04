@@ -395,7 +395,7 @@ export default {
       const items = {}
 
       if (!this.applicationType('casino') || this.applicationType('sports')) {
-        items['/'] = { link: '/', text: this.$tc('i18n_esporte', 2) }
+        items['/'] = { link: '/', text: this.$t('i18n_esporte', 2) }
         items['/sport/6046/aovivo'] = { link: '/sport/6046/aovivo', text: this.$t('i18n_ao_vivo') }
         items['/campeonatos/melhores'] = { link: '/campeonatos/melhores', text: this.$t('i18n_melhores_listas') }
         items['/sport/6046/leagues'] = { link: '/sport/6046/leagues', text: this.$t('i18n_so_futebol') }
@@ -403,7 +403,7 @@ export default {
       }
 
       if (this.userBets && this.userBets.all && this.userBets.all.length > 0) {
-        items['/my-bets'] = { link: '/my-bets', text: this.$tc('i18n_aposta', 2) }
+        items['/my-bets'] = { link: '/my-bets', text: this.$t('i18n_aposta', 2) }
       }
 
       items['/promo'] = {
@@ -412,7 +412,7 @@ export default {
         target: this.productConfigPromoUrl.status ? '_blank' : '_self',
         text: this.productConfigPromoUrl.status
           ? this.$t('i18n_ranking')
-          : this.$tc('i18n_promocao', 2)
+          : this.$t('i18n_promocao', 2)
       }
 
       if (!this.applicationType('sports') || this.applicationType('casino')) {

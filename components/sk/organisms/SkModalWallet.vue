@@ -114,10 +114,10 @@ export default {
     componentsList () {
       return {
         SkDeposit: {
-          text: this.$tc('i18n_deposito', 1)
+          text: this.$t('i18n_deposito', 1)
         },
         SkWithdraw: {
-          text: this.$tc('i18n_saque', 1)
+          text: this.$t('i18n_saque', 1)
         }
       }
     },

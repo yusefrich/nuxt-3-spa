@@ -8,7 +8,7 @@
         @click="toggleTickets(!open)"
       >
         <h5 class=" mb-0 pt-1 ps-3 tickets-title">
-          <span> {{ tickets.length }} </span> {{ $tc('i18n_bilhetes', 2) }}
+          <span> {{ tickets.length }} </span> {{ $t('i18n_bilhetes', 2) }}
         </h5>
         <fut-button v-if="open" class="btn close-btn">
           <font-awesome-icon class="text-primary icon" :icon="['fas', 'times']" />
@@ -38,7 +38,7 @@
                 type="button"
                 @click="()=>{betType = 'multiple'}"
               >
-                {{ $tc('i18n_multipla', 1) }}
+                {{ $t('i18n_multipla', 1) }}
               </fut-button>
             </div>
             <div class="bets-content fut-scrollbar">
@@ -121,7 +121,7 @@
                         :key="'return_' + currentTicket.odd.type + '' + currentTicket.value"
                         class="text-primary fw-bold"
                       >
-                        <span class="text-white fut-color-dynamic">{{ $tc('i18n_retorno', 1) }}:</span>
+                        <span class="text-white fut-color-dynamic">{{ $t('i18n_retorno', 1) }}:</span>
                         <span v-if="currentTicket.free_bet" class="fut-color-dynamic">{{ getFormattedValue((currentTicket.value * currentTicket.odd.odds) - currentTicket.value) }}</span>
                         <span v-else class="fut-color-dynamic">{{ getFormattedValue((currentTicket.value * currentTicket.odd.odds) > winMaxValue ? winMaxValue : (currentTicket.value * currentTicket.odd.odds)) }}</span>
                       </small>
@@ -144,7 +144,7 @@
                 <fut-bet-field
                   :validate="errors?errors.errors:{}"
                   name="value_total"
-                  :label="tickets.length > 1 ? `${$tc('i18n_multipla', 2)}:` : `${$t('i18n_valor') }:`"
+                  :label="tickets.length > 1 ? `${$t('i18n_multipla', 2)}:` : `${$t('i18n_valor') }:`"
                   :odds="''+getPreCashInTicketsTotalOdds.toFixed(2)"
                 >
                   <fut-bet-input

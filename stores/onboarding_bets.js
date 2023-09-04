@@ -8,5 +8,5 @@ state: () => ({
   errors: null
 })
 export const mutations = {}
-action: {}
+actions: {}
 getters: {}

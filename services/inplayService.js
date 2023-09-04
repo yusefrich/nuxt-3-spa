@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const inplayService = {
   async get (id) {
     try {
-      const data = await axios.get(process.env.BASE_URL_DEV + `/inplay${id ? '?sport=' + id : ''}`)
+      const data = await $fetch(config.public.BASE_URL + process.env.BASE_URL_DEV + `/inplay${id ? '?sport=' + id : ''}`)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -11,7 +11,7 @@ const inplayService = {
   },
   async show (id) {
     try {
-      const data = await axios.get(process.env.BASE_URL_DEV + '/inplay/' + id)
+      const data = await $fetch(config.public.BASE_URL + process.env.BASE_URL_DEV + '/inplay/' + id)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]

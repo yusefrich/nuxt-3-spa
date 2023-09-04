@@ -3,5 +3,5 @@ state: () => ({
   user_data: null
 })
 export const mutations = {}
-action: {}
+actions: {}
 getters: {}

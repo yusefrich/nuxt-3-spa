@@ -6,7 +6,7 @@ export const usePreMatchMainLeaguesStore = defineStore('preMatchMainLeagues', {
     loading: false,
     leagues: null
   }),
-  action: {
+  actions: {
     fetchPreMatchMainLeagues (payload) {
       this.loading = true
 

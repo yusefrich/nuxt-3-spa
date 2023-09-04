@@ -5,7 +5,7 @@
         <div class="links">
           <div class="block">
             <p class="title">
-              {{ $tc('i18n_esporte', 2) }}
+              {{ $t('i18n_esporte', 2) }}
             </p>
             <ul>
               <li>
@@ -37,7 +37,7 @@
               </li>
               <li>
                 <n-link :to="localePath('/promo')" class="link">
-                  {{ $tc('i18n_promocao', 2) }}
+                  {{ $t('i18n_promocao', 2) }}
                 </n-link>
               </li>
             </ul>

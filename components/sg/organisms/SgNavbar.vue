@@ -108,7 +108,7 @@
           <div class="deposit-content d-flex">
             <n-link :to="localePath('/user/bank/deposito')" class="d-flex mx-3 mb-0 align-items-center">
               <img class="me-2" src="/Sg/wallet.png" alt="">
-              <span>{{ $tc('i18n_deposito', 1).toUpperCase() }}</span>
+              <span>{{ $t('i18n_deposito', 1).toUpperCase() }}</span>
             </n-link>
           </div>
         </div>

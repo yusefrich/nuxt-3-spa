@@ -55,7 +55,7 @@
         />
       </div>
       <div class="total-label">
-        {{ $tc('i18n_aposta', 1) }}
+        {{ $t('i18n_aposta', 1) }}
       </div>
       <div class="total">
         R$ {{ thousandsSeparators(item.value) }}

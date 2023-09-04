@@ -8,7 +8,7 @@
     <div class="m-body">
       <div class="title" @clicl.stop>
         <h6 class="fw-bold mb-0">
-          {{ $tc('i18n_saque', 1) }}
+          {{ $t('i18n_saque', 1) }}
         </h6>
       </div>
 
@@ -66,7 +66,7 @@
             :loading="loading"
             @click="withdraw()"
           >
-            {{ $tc('i18n_saque', 1) }}!
+            {{ $t('i18n_saque', 1) }}!
           </md-button>
 
           <div v-if="withdrawResponse" class="mx-auto mt-4 response-container">

@@ -77,7 +77,7 @@
                   <span class="icon" />
                   <span class="icon" />
                 </div>
-                <span>{{ $tc('i18n_multipla', 1) }}</span>
+                <span>{{ $t('i18n_multipla', 1) }}</span>
               </button>
             </li>
           </ul>

@@ -25,7 +25,7 @@
         {{ $t('i18n_historico_de_depositos') }}
       </p>
       <p v-if="currentRoute('/user/bank/saque') || currentRoute('/user/bank/saque/')" class="text-select-title text-white fut-color-dynamic">
-        {{ $tc('i18n_saque', 1) }}
+        {{ $t('i18n_saque', 1) }}
       </p>
       <p v-if="currentRoute('/user/bank/saque/historico') || currentRoute('/user/bank/saque/historico/')" class="text-select-title text-white fut-color-dynamic">
         {{ $t('i18n_historico_de_saques') }}
@@ -85,7 +85,7 @@
           </li>
           <li class="ps-4 route" :class="{active: currentRoute('/user/bank/saque') || currentRoute('/user/bank/saque/')}">
             <fut-button class="text-decoration-none text-white fut-color-dynamic item-menu" to="/user/bank/saque">
-              {{ $tc('i18n_saque', 1) }}
+              {{ $t('i18n_saque', 1) }}
             </fut-button>
           </li>
           <li class="ps-4 route" :class="{active: currentRoute('/user/bank/saque/historico') || currentRoute('/user/bank/saque/historico/')}">

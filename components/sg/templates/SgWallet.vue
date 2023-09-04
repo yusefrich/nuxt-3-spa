@@ -84,11 +84,11 @@
       <div class="d-flex">
         <button class="btn-wallet py-1 me-2 mt-3 transition" :class="{ active: list === 'depositos' }" @click="list = 'depositos'">
           <img src="/Sg/wallet-svgrepo-com.png" alt="">
-          <span>{{ $tc('i18n_deposito', 2) }}</span>
+          <span>{{ $t('i18n_deposito', 2) }}</span>
         </button>
         <button class="btn-wallet py-1 mt-3 transition" :class="{ active: list === 'saques' }" @click="list = 'saques'">
           <img src="/Sg/wallet-svgrepo-com.png" alt="">
-          <span>{{ $tc('i18n_saque', 2) }}</span>
+          <span>{{ $t('i18n_saque', 2) }}</span>
         </button>
       </div>
       <div v-if="list === 'depositos'">
@@ -192,7 +192,7 @@
     <sg-modal v-model="depositModal" width="md" close class="pt-0">
       <div class="px-3 h-100">
         <h5 class="fw-bold text-white ms-4">
-          {{ $tc('i18n_deposito', 1) }}
+          {{ $t('i18n_deposito', 1) }}
         </h5>
         <div class="content-modal">
           <sg-deposit
@@ -209,7 +209,7 @@
     <sg-modal v-model="withdrawModal" width="md" close class="pt-0">
       <div class="px-3 h-100 overflow-auto">
         <h5 class="fw-bold text-white ms-4">
-          {{ $tc('i18n_saque', 1) }}
+          {{ $t('i18n_saque', 1) }}
         </h5>
         <div class="content-modal">
           <sg-withdraw

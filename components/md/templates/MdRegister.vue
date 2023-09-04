@@ -303,7 +303,7 @@
             </button>
           </div>
           <n-link :to="localePath('/login')" class="d-block mt-2 text-muted">
-            {{ $tc('i18n_ja_tem_conta', 2) }}
+            {{ $t('i18n_ja_tem_conta', 2) }}
           </n-link>
         </form>
       </div>

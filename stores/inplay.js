@@ -7,7 +7,7 @@ export const useInplayStore = defineStore('inplay', {
     events: [],
     loading: false
   }),
-  action: {
+  actions: {
     finishGame (payload) {
       // commit('FINISH_EVENT', payload)
       const events = [...this.events]

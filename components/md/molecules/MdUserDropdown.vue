@@ -46,7 +46,7 @@
             @click="redirect('Deposits')"
           >
             <font-awesome-icon class="me-3" :icon="['fa-solid', 'piggy-bank']" />
-            <span>{{ $tc('i18n_deposito', 1) }}</span>
+            <span>{{ $t('i18n_deposito', 1) }}</span>
           </div>
         </li>
         <li class="dropdown-item transition">
@@ -76,7 +76,7 @@
             @click="redirect('Withdraw')"
           >
             <font-awesome-icon class="me-2 icon-md" :icon="['fas', 'money-bill-wave']" />
-            <span>{{ $tc('i18n_saque', 1) }}</span>
+            <span>{{ $t('i18n_saque', 1) }}</span>
           </div>
         </li>
         <li class="dropdown-item transition">

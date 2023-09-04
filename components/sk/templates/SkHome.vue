@@ -185,7 +185,7 @@ export default {
           slides: this.casinoSlides
         },
         {
-          title: this.$tc('i18n_esporte', 2),
+          title: this.$t('i18n_esporte', 2),
           icon: ['fas', 'basketball-ball'],
           img: '/Sk/sports-banner.avif',
           subtitle: this.$t('i18n_melhores_apostas_esportivas'),

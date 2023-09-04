@@ -47,7 +47,7 @@
             <span v-if="currentSettings">
               {{ $t('i18n_minimo') }}: {{ currentSettings.dp_limit_min }} BRL
               <br>
-              {{ $t('i18n_tempo_de_processamento') }} 5 {{ $tc('i18n_minuto', 2) }}
+              {{ $t('i18n_tempo_de_processamento') }} 5 {{ $t('i18n_minuto', 2) }}
               <br>
             </span>
           </div>

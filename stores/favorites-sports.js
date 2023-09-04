@@ -8,7 +8,7 @@ export const mutations = {
   }
 }
 
-action: {
+actions: {
   changeFavorites (payload) {
     commit('setFavorites', payload)
   }

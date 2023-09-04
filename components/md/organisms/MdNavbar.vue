@@ -136,7 +136,7 @@ export default {
 
       if (!this.applicationType('casino') || this.applicationType('sports')) {
         items.push(
-          { link: '/', text: this.$tc('i18n_esporte', 2), icon: ['fas', 'futbol'] },
+          { link: '/', text: this.$t('i18n_esporte', 2), icon: ['fas', 'futbol'] },
           { link: '/sport/6046/aovivo', text: this.$t('i18n_ao_vivo'), icon: ['fas', 'podcast'] }
         )
       }
@@ -148,7 +148,7 @@ export default {
         )
       }
 
-      items.push({ link: '/promo', text: this.$tc('i18n_promocao', 2), icon: ['fas', 'gamepad'] })
+      items.push({ link: '/promo', text: this.$t('i18n_promocao', 2), icon: ['fas', 'gamepad'] })
 
       if (this.currentSettings.nav_bar && this.currentSettings.nav_bar.length) {
         this.currentSettings.nav_bar.forEach((nav) => {

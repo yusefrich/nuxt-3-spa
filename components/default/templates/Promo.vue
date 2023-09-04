@@ -1,6 +1,6 @@
 <template>
   <fut-html-render>
-    <h3>{{ $tc('i18n_promocao', 2) }}</h3>
+    <h3>{{ $t('i18n_promocao', 2) }}</h3>
     <div class="row">
       <div
         v-for="content in getPromos"
@@ -33,7 +33,7 @@
     <fut-modal
       class="text-center"
       :open="modal.open"
-      :title="$tc('i18n_promocao', 1)"
+      :title="$t('i18n_promocao', 1)"
       @onClose="()=>{ modal.open = false; pushQueryToRoute({})}"
     >
       <img style="object-fit: contain" height="200px" width="100%" :src="modal.img" alt="">

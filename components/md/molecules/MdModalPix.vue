@@ -4,7 +4,7 @@
     close
   >
     <div v-if="modal" class="m-body">
-      <h2>{{ $tc('i18n_deposito', 1) }}</h2>
+      <h2>{{ $t('i18n_deposito', 1) }}</h2>
 
       <div class="d-flex flex-column align-items-center">
         <img class="img-fluid" style="width: 250px;" :src="item.pix_url" alt="QR code">

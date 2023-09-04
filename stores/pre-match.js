@@ -15,7 +15,7 @@ export const usePreMatchStore = defineStore('preMatch', {
       sport: 6046
     }
   }),
-  action: {
+  actions: {
     changeFilter (payload) {
       Object.entries(payload).forEach((item) => {
         const [key, value] = item

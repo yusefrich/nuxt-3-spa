@@ -15,7 +15,7 @@
           </a>
           <a class="ms-4 mt-4 d-flex align-items-center transition" :href="localePath('/sport/6046')">
             <img class="icons-size me-4" src="/Sg/ball-w.png" alt="">
-            <span class="text-white transition">{{ $tc('i18n_esporte', 1) }}</span>
+            <span class="text-white transition">{{ $t('i18n_esporte', 1) }}</span>
           </a>
           <a class="ms-4 mt-4 d-flex align-items-center transition" :href="localePath('/casino/category/mocked-new')">
             <img class="icons-size me-4" style="object-fit: contain" :src="settings.logo_mobile" alt="">

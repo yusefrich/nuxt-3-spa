@@ -73,7 +73,7 @@ export const mutations = {
     state.accounts_payments_bonus = accounts_payments_bonus
   }
 }
-action: {
+actions: {
   fetchLegalRules () {
     return new Promise(async (resolve, reject) => {
       this.loading = true

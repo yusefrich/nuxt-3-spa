@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const withdrawService = {
   async post (payload) {
     try {
-      const data = await axios.post('/withdrawals', payload)
+      const data = await $fetch(config.public.BASE_URL + '/withdrawals', payload)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -25,7 +25,7 @@ const withdrawService = {
     }
 
     try {
-      const data = await axios.get(`/withdrawals${filtersString}`)
+      const data = await $fetch(config.public.BASE_URL + `/withdrawals${filtersString}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -33,7 +33,7 @@ const withdrawService = {
   },
   async exclude (id) {
     try {
-      const data = await axios.delete(`/withdrawals/${id}`)
+      const data = await $fetch(config.public.BASE_URL + `/withdrawals/${id}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]

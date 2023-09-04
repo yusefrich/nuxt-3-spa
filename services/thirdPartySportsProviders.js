@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const thirdPartySportsProviders = {
   // async upgamingAuth () {
   //   try {
-  //     const data = await axios.post('https://gateway.upgator.io/api/Authentication/Authenticate', { Username: process.env.CRED_USERNAME, SecretKey: process.env.CRED_SECRETKEY })
+  //     const data = await $fetch(config.public.BASE_URL + 'https://gateway.upgator.io/api/Authentication/Authenticate', { Username: process.env.CRED_USERNAME, SecretKey: process.env.CRED_SECRETKEY })
   //     return [data.data, null]
   //   } catch (error) {
   //     return [null, error]
@@ -35,9 +35,9 @@ const thirdPartySportsProviders = {
     try {
       /* eslint-disable */
       // const ttoken = typeof window !== 'undefined' ? localStorage.getItem('token') : ''
-      // const data = await axios.get(`https://gateway.upgator.io/api/gameservice/Game/LaunchGame${filtersString}`, { headers: { Authorization: token && token.token ? token.token : '' } })
-      const data = await axios.get(`/gameservice/Game/LaunchGame${filtersString}`)
-      // const data2 = await axios.get('/settings', { headers: { Authorization: ttoken } })
+      // const data = await $fetch(config.public.BASE_URL + `https://gateway.upgator.io/api/gameservice/Game/LaunchGame${filtersString}`, { headers: { Authorization: token && token.token ? token.token : '' } })
+      const data = await $fetch(config.public.BASE_URL + `/gameservice/Game/LaunchGame${filtersString}`)
+      // const data2 = await $fetch(config.public.BASE_URL + '/settings', { headers: { Authorization: ttoken } })
       console.log('testing NEW auth token', data)
       return [data.data, null]
     } catch (error) {

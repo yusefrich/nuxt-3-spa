@@ -182,7 +182,7 @@ export default {
     foundGames () {
       const amount = this.getCasinoSearchGames && this.getCasinoSearchGames[0] ? this.getCasinoSearchGames[0].games.length : 0
 
-      return `${amount} ${amount === 1 ? this.$tc('i18n_jogos_encontrados', 1) : this.$tc('i18n_jogos_encontrados', 2)}`
+      return `${amount} ${amount === 1 ? this.$t('i18n_jogos_encontrados', 1) : this.$t('i18n_jogos_encontrados', 2)}`
     }
   },
   async created () {

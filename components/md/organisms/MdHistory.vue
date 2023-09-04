@@ -47,10 +47,10 @@
               {{ $t('i18n_retorno_potencial') }}: R$ {{ bet.return }}
             </p>
             <p v-else-if="bet.result_br === 'Ganha'" class="fut-color-dynamic">
-              {{ $tc('i18n_retorno', 1) }}: R$ {{ bet.return }}
+              {{ $t('i18n_retorno', 1) }}: R$ {{ bet.return }}
             </p>
             <p v-else class="fut-color-dynamic">
-              {{ $tc('i18n_retorno', 1) }}: R$ 0,00
+              {{ $t('i18n_retorno', 1) }}: R$ 0,00
             </p>
           </div>
           <div v-if="bet.cashout">

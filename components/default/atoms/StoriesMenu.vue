@@ -58,11 +58,11 @@ export default {
   computed: {
     navItems () {
       const items = [
-        { link: '/', text: this.$tc('i18n_esporte', 2), icon: 'sport' },
+        { link: '/', text: this.$t('i18n_esporte', 2), icon: 'sport' },
         { link: '/sport/6046/aovivo', text: this.$t('i18n_esportes_ao_vivo'), icon: 'live' },
         { link: '/casino', text: this.$t('i18n_cassino'), icon: 'casino' },
         { link: '/casino?cat=live', text: this.$t('i18n_cassino_ao_vivo'), icon: 'money' },
-        { link: '/promo', text: this.$tc('i18n_promocao', 1), icon: 'rocket' }
+        { link: '/promo', text: this.$t('i18n_promocao', 1), icon: 'rocket' }
       ]
 
       if (this.dynamicItems && this.dynamicItems.length) {

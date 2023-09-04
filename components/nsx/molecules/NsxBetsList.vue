@@ -10,10 +10,10 @@
             {{ $t('i18n_data_hora') }}
           </th>
           <th scope="col">
-            {{ $tc('i18n_aposta', 1) }}
+            {{ $t('i18n_aposta', 1) }}
           </th>
           <th scope="col">
-            {{ $tc('i18n_retorno', 1) }}
+            {{ $t('i18n_retorno', 1) }}
           </th>
         </tr>
       </thead>
@@ -29,7 +29,7 @@
                 {{ getTypeName(game.odd_br, game) }} @ {{ game.odd }}
               </p>
               <p v-if="bet.games.length > 1" class="mb-0">
-                {{ bet.games.length }} {{ $tc('i18n_multipla', 2) }}
+                {{ bet.games.length }} {{ $t('i18n_multipla', 2) }}
               </p>
               <p v-else class="mb-0">
                 {{ $t('i18n_simples') }}
@@ -82,10 +82,10 @@
                       {{ $t('i18n_data_do_evento') }}
                     </th>
                     <th scope="col">
-                      {{ $tc('i18n_esporte', 1) }}
+                      {{ $t('i18n_esporte', 1) }}
                     </th>
                     <th scope="col">
-                      {{ $tc('i18n_cotacao', 1) }}
+                      {{ $t('i18n_cotacao', 1) }}
                     </th>
                     <th scope="col">
                       {{ $t('i18n_resultado') }}

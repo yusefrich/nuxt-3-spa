@@ -16,7 +16,7 @@ export const mutations = {
     state.countries = countries
   }
 }
-action: {
+actions: {
   fetchMetadataOrderedCountries (payload) {
     return new Promise(async (resolve, reject) => {
       commit('SET_ORDERED_COUNTRIES', [])

@@ -9,7 +9,7 @@ export const useCasinoStore = defineStore('casino', {
     game: null,
     page: 1
   }),
-  action: {
+  actions: {
     fetchCasinoGameIframeUrl (payload) {
       return new Promise(async (resolve, reject) => {
         this.loading = true

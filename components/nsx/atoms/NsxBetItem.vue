@@ -2,13 +2,13 @@
   <div>
     <div class="bet-wrapper d-flex justify-content-between px-2" :class="{'py-1':smaller, 'py-3':!smaller}">
       <p class="text-white fut-color-dynamic mb-0" :class="{smaller}">
-        R$ {{ bet.value }} {{ bet.games.length > 1 ? $tc('i18n_multipla', 2) : $t('i18n_simples') }}
+        R$ {{ bet.value }} {{ bet.games.length > 1 ? $t('i18n_multipla', 2) : $t('i18n_simples') }}
       </p>
       <p v-if="bet.result_br !== 'Ganha'" class="text-white fut-color-dynamic mb-0" :class="{smaller}">
         {{ bet.result_br }}
       </p>
       <p v-else-if="bet.result_br === 'Ganha'" class="text-white fut-color-dynamic mb-0" :class="{smaller}">
-        {{ $tc('i18n_retorno', 1) }}: R$ {{ bet.return }}
+        {{ $t('i18n_retorno', 1) }}: R$ {{ bet.return }}
       </p>
       <p v-else class="text-white fut-color-dynamic mb-0" :class="{smaller}">
         {{ $t('i18n_perdida') }}
@@ -45,7 +45,7 @@
           {{ $t('i18n_valor_da_aposta') }}: <span class="nowrap">R$ {{ bet.value }}</span>
         </p>
         <p class="text-bet-white fut-color-dynamic w-100 mb-0 mt-1" :class="{smaller}">
-          {{ $tc('i18n_retorno', 2) }}: <span class="nowrap">R$ {{ bet.result_br === 'Perdida' ? 0.00 : bet.return }}</span>
+          {{ $t('i18n_retorno', 2) }}: <span class="nowrap">R$ {{ bet.result_br === 'Perdida' ? 0.00 : bet.return }}</span>
         </p>
       </div>
       <div v-if="!smaller" class="w-100 w-md-50">

@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const legalService = {
   async rules () {
     try {
-      const data = await axios.get('/settings/rules')
+      const data = await $fetch(config.public.BASE_URL + '/settings/rules')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -11,7 +11,7 @@ const legalService = {
   },
   async deposits () {
     try {
-      const data = await axios.get('/settings/deposits')
+      const data = await $fetch(config.public.BASE_URL + '/settings/deposits')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -19,7 +19,7 @@ const legalService = {
   },
   async responsible () {
     try {
-      const data = await axios.get('/settings/responsible')
+      const data = await $fetch(config.public.BASE_URL + '/settings/responsible')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -27,7 +27,7 @@ const legalService = {
   },
   async suport () {
     try {
-      const data = await axios.get('/settings/support')
+      const data = await $fetch(config.public.BASE_URL + '/settings/support')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -35,7 +35,7 @@ const legalService = {
   },
   async terms () {
     try {
-      const data = await axios.get('/settings/terms')
+      const data = await $fetch(config.public.BASE_URL + '/settings/terms')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -43,7 +43,7 @@ const legalService = {
   },
   async privacy () {
     try {
-      const data = await axios.get('/settings/privacy')
+      const data = await $fetch(config.public.BASE_URL + '/settings/privacy')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -51,7 +51,7 @@ const legalService = {
   },
   async aml () {
     try {
-      const data = await axios.get('/settings/aml')
+      const data = await $fetch(config.public.BASE_URL + '/settings/aml')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -59,7 +59,7 @@ const legalService = {
   },
   async cookies () {
     try {
-      const data = await axios.get('/settings/cookies')
+      const data = await $fetch(config.public.BASE_URL + '/settings/cookies')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -67,7 +67,7 @@ const legalService = {
   },
   async faq () {
     try {
-      const data = await axios.get('/settings/faq')
+      const data = await $fetch(config.public.BASE_URL + '/settings/faq')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -75,7 +75,7 @@ const legalService = {
   },
   async about () {
     try {
-      const data = await axios.get('/settings/about')
+      const data = await $fetch(config.public.BASE_URL + '/settings/about')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -83,7 +83,7 @@ const legalService = {
   },
   async affiliates () {
     try {
-      const data = await axios.get('/settings/affiliates')
+      const data = await $fetch(config.public.BASE_URL + '/settings/affiliates')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -91,7 +91,7 @@ const legalService = {
   },
   async autoExclusion () {
     try {
-      const data = await axios.get('/settings/auto_exclusion')
+      const data = await $fetch(config.public.BASE_URL + '/settings/auto_exclusion')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -99,7 +99,7 @@ const legalService = {
   },
   async disputsResolution () {
     try {
-      const data = await axios.get('/settings/disputs_resolution')
+      const data = await $fetch(config.public.BASE_URL + '/settings/disputs_resolution')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -107,7 +107,7 @@ const legalService = {
   },
   async methodImpartiality () {
     try {
-      const data = await axios.get('/settings/method_impartiality')
+      const data = await $fetch(config.public.BASE_URL + '/settings/method_impartiality')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -115,7 +115,7 @@ const legalService = {
   },
   async kycPolitcs () {
     try {
-      const data = await axios.get('/settings/kyc_politcs')
+      const data = await $fetch(config.public.BASE_URL + '/settings/kyc_politcs')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -123,7 +123,7 @@ const legalService = {
   },
   async accountsPaymentsBonus () {
     try {
-      const data = await axios.get('/settings/accounts_payments_bonus')
+      const data = await $fetch(config.public.BASE_URL + '/settings/accounts_payments_bonus')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]

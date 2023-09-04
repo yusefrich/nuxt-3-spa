@@ -37,7 +37,7 @@
           :disabled="depositLimitMin ? +getRawPrice(price) < depositLimitMin : +getRawPrice(price) < 1"
           @click="deposit"
         >
-          {{ $tc('i18n_deposito', 1) }}
+          {{ $t('i18n_deposito', 1) }}
         </fb-fut-button>
       </div>
     </div>

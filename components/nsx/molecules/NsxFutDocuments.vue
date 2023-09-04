@@ -430,8 +430,8 @@
           {{ $t('i18n_documentos_sugeridos_para_confirmacao') }}:
         </p>
         <ol>
-          <li>{{ $t('i18n_faturas_domesticas_recenter') }} ({{ $tc('i18n_emitidas_nos_ultimos_seis_meses', 2) }}) {{ $t('i18n_cuja_data_de_emissao_seja_visivel') }}</li>
-          <li>{{ $t('i18n_extrato_bancario') }} ({{ $tc('i18n_emitidas_nos_ultimos_seis_meses', 1) }})</li>
+          <li>{{ $t('i18n_faturas_domesticas_recenter') }} ({{ $t('i18n_emitidas_nos_ultimos_seis_meses', 2) }}) {{ $t('i18n_cuja_data_de_emissao_seja_visivel') }}</li>
+          <li>{{ $t('i18n_extrato_bancario') }} ({{ $t('i18n_emitidas_nos_ultimos_seis_meses', 1) }})</li>
           <li>{{ $t('i18n_autorizacao_de_residencia_valida') }}</li>
           <li>{{ $t('i18n_certificado_de_resistencia_emitido') }}</li>
         </ol>

@@ -6,7 +6,7 @@ export const useCasinoProviderGamesStore = defineStore('casinoProviderGames', {
     loading: false,
     providerGames: null
   }),
-  action: {
+  actions: {
     fetchCasinoGamesByProvider (slug) {
       return new Promise(async (resolve, reject) => {
         this.providerGames = null

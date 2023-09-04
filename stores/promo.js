@@ -18,7 +18,7 @@ export const mutations = {
   }
 }
 
-action: {
+actions: {
   fetchPromos () {
     commit('updateLoading', true)
 

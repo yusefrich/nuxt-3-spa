@@ -5,7 +5,7 @@
   >
     <md-chip class="pt-2">
       <font-awesome-icon :icon="['fas', 'dollar-sign']" />
-      {{ $tc('i18n_saque', 1).toUpperCase() }}
+      {{ $t('i18n_saque', 1).toUpperCase() }}
     </md-chip>
 
     <p class="desc">

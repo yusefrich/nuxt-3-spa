@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="$emit('logUser', data)">
     <p>
-      <small>{{ $tc('i18n_ja_tem_conta', 1) }}</small>
+      <small>{{ $t('i18n_ja_tem_conta', 1) }}</small>
     </p>
     <fut-input
       v-model="data.email"

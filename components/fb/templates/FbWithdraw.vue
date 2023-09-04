@@ -39,7 +39,7 @@
               <br>
               {{ $t('i18n_maximo') }}: {{ currentSettings.wd_limit_max }} BRL
               <br>
-              {{ $t('i18n_tempo_de_processamento') }} 5 {{ $tc('i18n_minuto', 2) }}
+              {{ $t('i18n_tempo_de_processamento') }} 5 {{ $t('i18n_minuto', 2) }}
               <br>
             </span>
           </div>

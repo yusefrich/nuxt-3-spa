@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const authService = {
   async auth () {
     try {
-      const data = await axios.post('/auth/me')
+      const data = await $fetch(config.public.BASE_URL + '/auth/me')
 
       return [data.data, null]
     } catch (error) {
@@ -12,7 +12,7 @@ const authService = {
   },
   async bonusCancelation (payload) {
     try {
-      const data = await axios.post('/bonusCancel', payload)
+      const data = await $fetch(config.public.BASE_URL + '/bonusCancel', payload)
       return [data, null]
     } catch (error) {
       return [null, error]
@@ -20,7 +20,7 @@ const authService = {
   },
   async search (payload) {
     try {
-      const data = await axios.post('/search', payload)
+      const data = await $fetch(config.public.BASE_URL + '/search', payload)
 
       return [data.data, null]
     } catch (error) {
@@ -29,7 +29,7 @@ const authService = {
   },
   async login (payload) {
     try {
-      const data = await axios.post('/auth/login', payload)
+      const data = await $fetch(config.public.BASE_URL + '/auth/login', payload)
 
       return [data.data, null]
     } catch (error) {
@@ -38,7 +38,7 @@ const authService = {
   },
   async register (payload) {
     try {
-      const data = await axios.post('/register', payload)
+      const data = await $fetch(config.public.BASE_URL + '/register', payload)
 
       return [data.data, null]
     } catch (error) {
@@ -47,7 +47,7 @@ const authService = {
   },
   async update (payload) {
     try {
-      const data = await axios.put('/auth/update', payload)
+      const data = await $fetch(config.public.BASE_URL + '/auth/update', payload)
 
       return [data.data, null]
     } catch (error) {
@@ -56,7 +56,7 @@ const authService = {
   },
   async passwordUpdate (payload) {
     try {
-      const data = await axios.put('/auth/password', payload)
+      const data = await $fetch(config.public.BASE_URL + '/auth/password', payload)
 
       return [data.data, null]
     } catch (error) {
@@ -65,7 +65,7 @@ const authService = {
   },
   async forgot (payload) {
     try {
-      const data = await axios.post('/forgot-password', payload)
+      const data = await $fetch(config.public.BASE_URL + '/forgot-password', payload)
 
       return [data.data, null]
     } catch (error) {
@@ -74,7 +74,7 @@ const authService = {
   },
   async reset (payload) {
     try {
-      const data = await axios.post('/reset-password', payload)
+      const data = await $fetch(config.public.BASE_URL + '/reset-password', payload)
 
       return [data.data, null]
     } catch (error) {

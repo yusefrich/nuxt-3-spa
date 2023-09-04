@@ -20,7 +20,7 @@ export const useLayoutStore = defineStore('layout', {
     },
     theme: 'dark'
   }),
-  action: {
+  actions: {
     updatePopupStatus (value) {
       this.popup = value
     },

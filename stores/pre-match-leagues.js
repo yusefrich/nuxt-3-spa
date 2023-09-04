@@ -13,7 +13,7 @@ export const mutations = {
     state.leagues = leagues
   }
 }
-action: {
+actions: {
   fetchPreMatchLeaguesByCountry (payload) {
     commit('UPDATE_LOADING', true)
 

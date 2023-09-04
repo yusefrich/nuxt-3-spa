@@ -49,7 +49,7 @@
             dark
           >
             <span class="d-block text-primary"><font-awesome-icon :icon="['fas', 'chevron-circle-up']" /></span>
-            <span class="d-block">{{ $tc('i18n_cotacao', 2).toUpperCase() }}</span>
+            <span class="d-block">{{ $t('i18n_cotacao', 2).toUpperCase() }}</span>
             <span style="font-size:25px; line-height: 20px" class="d-block fw-bold text-primary">{{ $t('i18n_altas').toUpperCase() }}</span>
           </fb-fut-button>
           <fb-fut-button
@@ -58,7 +58,7 @@
             secondary
           >
             <span class="d-block text-white"><font-awesome-icon :icon="['fas', 'dollar-sign']" /></span>
-            <span class="d-block">{{ $tc('i18n_saque', 1).toUpperCase() }}</span>
+            <span class="d-block">{{ $t('i18n_saque', 1).toUpperCase() }}</span>
             <span style="font-size:25px; line-height: 20px" class="d-block fw-bold text-white">{{ $t('i18n_Rápido').toUpperCase() }}</span>
           </fb-fut-button>
         </template>

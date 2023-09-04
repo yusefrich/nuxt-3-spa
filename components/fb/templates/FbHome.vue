@@ -44,7 +44,7 @@
         />
       </div>
     </template>
-    <fb-sections-heading v-else class="d-md-none" :title="$tc('i18n_esporte', 2)" route="/sports" />
+    <fb-sections-heading v-else class="d-md-none" :title="$t('i18n_esporte', 2)" route="/sports" />
     <div>
       <fb-carrosel
         v-if="currentSlides && !getPreMatchGroupedEvents"

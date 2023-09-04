@@ -8,7 +8,7 @@
         aria-expanded="false"
       >
         <div>
-          <span>{{ $tc('i18n_esporte', 2) }}:</span>
+          <span>{{ $t('i18n_esporte', 2) }}:</span>
           <span class="counter">{{ checkedCounter }}</span>
           <font-awesome-icon class="icon transition" :icon="['fas', 'chevron-down']" />
         </div>

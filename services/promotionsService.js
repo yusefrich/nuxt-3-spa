@@ -1,8 +1,8 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 const promotionsService = {
   async get () {
     try {
-      const data = await axios.get('/promotions')
+      const data = await $fetch(config.public.BASE_URL + '/promotions')
       // console.log('Auth being calleds')
       return [data.data, null]
     } catch (error) {

@@ -8,7 +8,7 @@ export const useInplaySingleEventStore = defineStore('inplaySingleEvent', {
     errors: null,
     loading: false
   }),
-  action: {
+  actions: {
     replaceInplayMarketOdd (payload) {
       if (!payload.message) {
         return

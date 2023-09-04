@@ -52,7 +52,7 @@ export const mutations = {
     state.odds = []
   }
 }
-action: {
+actions: {
   addOdd (odd) {
     commit('addOdd', odd)
   },

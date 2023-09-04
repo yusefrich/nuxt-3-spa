@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const countriesService = {
   async get (sport) {
     try {
-      const data = await axios.get(`/countries${sport ? '?sport=' + sport : ''}`)
+      const data = await $fetch(config.public.BASE_URL + `/countries${sport ? '?sport=' + sport : ''}`)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -11,7 +11,7 @@ const countriesService = {
   },
   async getLeagues (country, sport) {
     try {
-      const data = await axios.get(`/countries/${country}${sport ? '?sport=' + sport : ''}`)
+      const data = await $fetch(config.public.BASE_URL + `/countries/${country}${sport ? '?sport=' + sport : ''}`)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]

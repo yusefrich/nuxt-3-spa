@@ -6,7 +6,7 @@
           {{ $t('i18n_depositar') }}
         </nsx-fut-button>
         <nsx-fut-button class="nsx-button me-2 nowrap" :class="{active: currentMenu === 1}" @click="currentMenu = 1">
-          {{ $tc('i18n_saque', 1) }}
+          {{ $t('i18n_saque', 1) }}
         </nsx-fut-button>
         <nsx-fut-button class="nsx-button me-2 nowrap" :class="{active: currentMenu === 2}" @click="currentMenu = 2">
           {{ $t('i18n_historico_deposito') }}

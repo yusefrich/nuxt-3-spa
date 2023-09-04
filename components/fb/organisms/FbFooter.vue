@@ -122,7 +122,7 @@
             class="a py-md-2 fut-color-dynamic d-block text-md-start"
             to="/sports"
           >
-            <span>{{ $tc('i18n_esporte', 2) }}</span>
+            <span>{{ $t('i18n_esporte', 2) }}</span>
           </fb-fut-button>
           <fb-fut-button
             v-if="!applicationType('casino') || applicationType('sports')"
@@ -151,7 +151,7 @@
             :target="productConfigPromoUrl.status ? '_blank' : '_self'"
             :to="productConfigPromoUrl.url"
           >
-            <span>{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $tc('i18n_promocao', 2) }}</span>
+            <span>{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $t('i18n_promocao', 2) }}</span>
           </fb-fut-button>
         </div>
         <div class="border-green d-md-none" />

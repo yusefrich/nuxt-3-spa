@@ -22,7 +22,7 @@
         padding="10px"
         @click="$emit('openModal')"
       >
-        {{ transactionLimitMax ? $tc('i18n_saque', 1) : $tc('i18n_deposito', 1) }}
+        {{ transactionLimitMax ? $t('i18n_saque', 1) : $t('i18n_deposito', 1) }}
       </md-button>
     </div>
   </div>

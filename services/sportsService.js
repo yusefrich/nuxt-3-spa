@@ -1,4 +1,4 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 const sportsService = {
   getInplaySports () {
     return [[
@@ -45,7 +45,7 @@ const sportsService = {
   },
   async getDynamicInplay () {
     try {
-      const data = await axios.get('/inplay/sports')
+      const data = await $fetch(config.public.BASE_URL + '/inplay/sports')
       return [data.data.data, null]
     } catch (error) {
       console.error(error)
@@ -54,7 +54,7 @@ const sportsService = {
   },
   async getDynamic () {
     try {
-      const data = await axios.get('/sports')/* ${url}/settings */
+      const data = await $fetch(config.public.BASE_URL + '/sports')/* ${url}/settings */
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -62,7 +62,7 @@ const sportsService = {
   },
   async getNewDynamic () {
     try {
-      const { data: { data } } = await axios.get('/all/data')
+      const { data: { data } } = await $fetch(config.public.BASE_URL + '/all/data')
       const sportsArray = data.map(item => item.sport)
       return [sportsArray, null]
     } catch (error) {
@@ -71,7 +71,7 @@ const sportsService = {
   },
   async getOutrightSports () {
     try {
-      const { data: { data } } = await axios.get('/all/outright')
+      const { data: { data } } = await $fetch(config.public.BASE_URL + '/all/outright')
       const sportsArray = data.map(item => item.sport)
       return [sportsArray, null]
     } catch (error) {
@@ -80,7 +80,7 @@ const sportsService = {
   },
   async getOutrightGameOdds (id) {
     try {
-      const data = await axios.get(`/all/outright/${id}`)
+      const data = await $fetch(config.public.BASE_URL + `/all/outright/${id}`)
       return [data, null]
     } catch (error) {
       return [null, error]

@@ -27,7 +27,7 @@
           </div>
           <div class="d-flex justify-content-start">
             <p class="mb-0 fw-bold">
-              {{ $tc('i18n_aposta', 1) }}: {{ getTypeName(game.odd_br, game) }}
+              {{ $t('i18n_aposta', 1) }}: {{ getTypeName(game.odd_br, game) }}
             </p>
             <p class="mb-0 ms-2">
               <small>({{ game.odd }})</small>

@@ -5,7 +5,7 @@ export const useCookiesStore = defineStore('cookies', {
   state: () => ({
     acceptedCookies: ''
   }),
-  action: {
+  actions: {
     confirmCookies (payload) {
       Cookies.set('accepted_cookies', payload, { expires: 7 })
       this.acceptedCookies = payload

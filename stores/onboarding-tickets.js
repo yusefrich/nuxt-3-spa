@@ -13,7 +13,7 @@ export const mutations = {
     state.errors = errors
   }
 }
-action: {
+actions: {
   commitCashOut (payload) {
     return new Promise(async (resolve, reject) => {
       commit('UPDATE_LOADING', true)

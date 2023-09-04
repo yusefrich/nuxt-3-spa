@@ -7,7 +7,7 @@ export const useCasinoFeaturedStore = defineStore('casinoFeatured', {
     mostPlayed: null,
     newGames: null
   }),
-  action: {
+  actions: {
     fetchCasinoMostPlayedGames () {
       return new Promise(async (resolve, reject) => {
         this.mostPlayed = null

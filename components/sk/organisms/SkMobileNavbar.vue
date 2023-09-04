@@ -18,7 +18,7 @@
     <button class="nav-btn" @click="$router.push(localePath('/sports?tab=SkLobby')), $emit('redirect')">
       <div v-if="!mobileSidebar && !mobileTicket && (currentRoute('/sports') || currentRoute('/sport'))" class="selected-bar" />
       <font-awesome-icon class="icon" :icon="['fas', 'basketball-ball']" />
-      <span>{{ $tc('i18n_esporte', 2) }}</span>
+      <span>{{ $t('i18n_esporte', 2) }}</span>
     </button>
   </div>
 </template>

@@ -65,7 +65,7 @@
                     v-else
                     class="fw-bold"
                   >
-                    {{ $tc('i18n_seleções', 2) }}
+                    {{ $t('i18n_seleções', 2) }}
                   </span>
                   <span
                     v-if="tickets.length > 1"
@@ -206,7 +206,7 @@
                 :class="{ active: tab === 'ticketTab' }"
                 @click="tab = 'ticketTab'"
               >
-                {{ $tc('i18n_bilhetes', 1) }}
+                {{ $t('i18n_bilhetes', 1) }}
               </button>
               <button
                 class="d-flex"

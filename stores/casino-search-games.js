@@ -7,7 +7,7 @@ export const useCasinoSearchGamesStore = defineStore('casinoSearchGames', {
     searchGames: null,
     search: ''
   }),
-  action: {
+  actions: {
     searchCasinoGames (term) {
       if (!term) {
         this.search = term

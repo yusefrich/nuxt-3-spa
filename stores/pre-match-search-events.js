@@ -12,7 +12,7 @@ export const mutations = {
     state.events = events
   }
 }
-action: {
+actions: {
   fetchPreMatchSearchEvents (payload) {
     commit('UPDATE_LOADING', true)
 

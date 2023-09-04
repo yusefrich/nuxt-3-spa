@@ -21,7 +21,7 @@
         name="btnradio"
         autocomplete="off"
       >
-      <label class="btn btn-outline-primary" for="24h">{{ $tc('i18n_ultima', 2) }} 24h</label>
+      <label class="btn btn-outline-primary" for="24h">{{ $t('i18n_ultima', 2) }} 24h</label>
 
       <input
         id="48h"
@@ -32,7 +32,7 @@
         name="btnradio"
         autocomplete="off"
       >
-      <label class="btn btn-outline-primary" for="48h">{{ $tc('i18n_ultima', 2) }} 48h</label>
+      <label class="btn btn-outline-primary" for="48h">{{ $t('i18n_ultima', 2) }} 48h</label>
 
       <input
         id="1w"
@@ -43,7 +43,7 @@
         name="btnradio"
         autocomplete="off"
       >
-      <label class="btn btn-outline-primary" for="1w">{{ `${$tc('i18n_ultima', 1)} ${$t('i18n_semana')}` }}</label>
+      <label class="btn btn-outline-primary" for="1w">{{ `${$t('i18n_ultima', 1)} ${$t('i18n_semana')}` }}</label>
 
       <input
         id="custom"

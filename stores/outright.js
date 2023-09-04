@@ -12,7 +12,7 @@ export const mutations = {
     state.loading = status
   }
 }
-action: {
+actions: {
   fetchOutrightEvents () {
     commit('updateLoading', true)
 

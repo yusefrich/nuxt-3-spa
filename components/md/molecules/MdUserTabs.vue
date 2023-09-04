@@ -36,7 +36,7 @@
             @click="currentTab = 'Deposits'"
           >
             <font-awesome-icon class="mx-1" :icon="['fa-solid', 'piggy-bank']" />
-            <span>{{ $tc('i18n_deposito', 1) }}</span>
+            <span>{{ $t('i18n_deposito', 1) }}</span>
           </li>
           <li
             :class="{active: currentTab == 'Documents'}"
@@ -50,7 +50,7 @@
             @click="currentTab = 'Withdraw'"
           >
             <font-awesome-icon class="me-2 icon-md" :icon="['fas', 'money-bill-wave']" />
-            <span>{{ $tc('i18n_saque', 1) }}</span>
+            <span>{{ $t('i18n_saque', 1) }}</span>
           </li>
           <li
             :class="{active: currentTab == 'CasinoHistory'}"
@@ -99,7 +99,7 @@
             >
               <div>
                 <font-awesome-icon class="mx-1" :icon="['fa-solid', 'piggy-bank']" />
-                <span>{{ $tc('i18n_deposito', 1) }}</span>
+                <span>{{ $t('i18n_deposito', 1) }}</span>
               </div>
             </li>
             <li
@@ -117,7 +117,7 @@
             >
               <div>
                 <font-awesome-icon class="me-2 icon-md" :icon="['fas', 'money-bill-wave']" />
-                <span>{{ $tc('i18n_saque', 1) }}</span>
+                <span>{{ $t('i18n_saque', 1) }}</span>
               </div>
             </li>
             <li
@@ -169,9 +169,9 @@ export default {
       return {
         History: { text: this.$t('i18n_minhas_apostas'), icon: 'book-open' },
         Account: { text: this.$t('i18n_minha_conta'), icon: 'user' },
-        Deposits: { text: this.$tc('i18n_deposito', 1), icon: 'dollar-sign' },
+        Deposits: { text: this.$t('i18n_deposito', 1), icon: 'dollar-sign' },
         Documents: { text: this.$t('i18n_documentos'), icon: 'folder' },
-        Withdraw: { text: this.$tc('i18n_saque', 1), icon: 'dollar-sign' },
+        Withdraw: { text: this.$t('i18n_saque', 1), icon: 'dollar-sign' },
         CasinoHistory: { text: this.$t('i18n_historico_de_cassino'), icon: 'book-open' }
       }
     },

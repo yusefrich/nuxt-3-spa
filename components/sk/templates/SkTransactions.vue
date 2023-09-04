@@ -79,12 +79,12 @@ export default {
           tab: 'balance'
         },
         {
-          text: this.$tc('i18n_deposito', 2),
+          text: this.$t('i18n_deposito', 2),
           link: '/user/bank/transactions?tab=deposits',
           tab: 'deposits'
         },
         {
-          text: this.$tc('i18n_saque', 2),
+          text: this.$t('i18n_saque', 2),
           link: '/user/bank/transactions?tab=withdrawals',
           tab: 'withdrawals'
         },

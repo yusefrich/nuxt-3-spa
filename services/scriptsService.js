@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const scriptsService = {
   async getHead () {
     try {
-      const data = await axios.get(process.env.BASE_URL_DEV + '/settings/scripts_head')
+      const data = await $fetch(config.public.BASE_URL + process.env.BASE_URL_DEV + '/settings/scripts_head')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -11,7 +11,7 @@ const scriptsService = {
   },
   async getBody () {
     try {
-      const data = await axios.get(process.env.BASE_URL_DEV + '/settings/scripts_body')
+      const data = await $fetch(config.public.BASE_URL + process.env.BASE_URL_DEV + '/settings/scripts_body')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]

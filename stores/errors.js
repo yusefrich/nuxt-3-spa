@@ -4,7 +4,7 @@ export const useErrorsStore = defineStore('errors', {
   state: () => ({
     list: null
   }),
-  action: {
+  actions: {
     clear () {
       this.list = null
     },

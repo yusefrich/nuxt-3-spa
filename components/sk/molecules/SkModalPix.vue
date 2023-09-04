@@ -5,7 +5,7 @@
   >
     <div v-if="open" class="m-body">
       <h2 class="text-center">
-        {{ $tc('i18n_deposito', 1) }}
+        {{ $t('i18n_deposito', 1) }}
       </h2>
 
       <div class="d-flex flex-column align-items-center">

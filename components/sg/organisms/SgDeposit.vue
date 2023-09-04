@@ -18,7 +18,7 @@
         <div class="d-grid">
           <div class="border-b my-3 w-100" />
           <span v-if="settings" class="text-primary mb-2 fs-15 fw-bold">{{ $t('i18n_valor_minimo') }}: <span class="fw-bold fs-15 text-muted">R$ {{ settings.dp_limit_min }}</span></span>
-          <span class="text-primary fs-15 mb-4 fw-bold">{{ $t('i18n_tempo_de_processamento') }}: <span class="fw-bold fs-15 text-muted">5 {{ $tc('i18n_minuto', 2) }}</span></span>
+          <span class="text-primary fs-15 mb-4 fw-bold">{{ $t('i18n_tempo_de_processamento') }}: <span class="fw-bold fs-15 text-muted">5 {{ $t('i18n_minuto', 2) }}</span></span>
         </div>
         <div class="d-flex align-items-center mb-2">
           <img class="me-3" width="32px" height="32px" src="/Sg/Coin-2.png" alt="">

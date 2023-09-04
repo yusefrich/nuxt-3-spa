@@ -15,7 +15,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <span class="transition">{{ currentType === 'sports' ? $tc('i18n_esporte', 2) : $t('i18n_cassino') }}</span>
+              <span class="transition">{{ currentType === 'sports' ? $t('i18n_esporte', 2) : $t('i18n_cassino') }}</span>
               <font-awesome-icon class="icon transition" :icon="['fas', 'chevron-down']" />
             </button>
 
@@ -28,7 +28,7 @@
                   class="dropdown-item list-btn"
                   @click="currentType = 'sports', $emit('cleanSearch'), search = ''"
                 >
-                  <span>{{ $tc('i18n_esporte', 2) }}</span>
+                  <span>{{ $t('i18n_esporte', 2) }}</span>
                 </button>
               </li>
               <li class="list-item transition">

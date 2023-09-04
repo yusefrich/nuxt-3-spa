@@ -1,9 +1,9 @@
-import axios from 'axios'
-
+const config = useRuntimeConfig()
 const settingsService = {
   async getPlanData () {
+    console.log('return of config', config)
     try {
-      const data = await axios.get('/settings')/* ${url}/settings */
+      const data = await $fetch(config.public.BASE_URL + '/settings')/* ${url}/settings */
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -11,7 +11,7 @@ const settingsService = {
   },
   async getSlides () {
     try {
-      const data = await axios.get('/settings/slides')/* ${url}/settings */
+      const data = await $fetch(config.public.BASE_URL + '/settings/slides')/* ${url}/settings */
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -19,7 +19,7 @@ const settingsService = {
   },
   async getAds () {
     try {
-      const data = await axios.get('/settings/ads')/* ${url}/settings */
+      const data = await $fetch(config.public.BASE_URL + '/settings/ads')/* ${url}/settings */
       return [data.data.data, null]
     } catch (error) {
       return [null, error]

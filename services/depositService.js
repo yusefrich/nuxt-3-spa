@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const depositService = {
   async post (payload) {
     try {
-      const data = await axios.post('/deposits', payload)
+      const data = await $fetch(config.public.BASE_URL + '/deposits', payload)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -25,7 +25,7 @@ const depositService = {
     }
 
     try {
-      const data = await axios.get(`/deposits${filtersString}`)
+      const data = await $fetch(config.public.BASE_URL + `/deposits${filtersString}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -46,7 +46,7 @@ const depositService = {
           }
         }
       }
-      const data = await axios.get(`/casino/transactions${filtersString}`)
+      const data = await $fetch(config.public.BASE_URL + `/casino/transactions${filtersString}`)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]

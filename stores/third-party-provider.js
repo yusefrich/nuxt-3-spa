@@ -1,6 +1,6 @@
 import thirdPartySportsProviders from '@/services/thirdPartySportsProviders'
 
-action: {
+actions: {
   fetchThirdPartyUrl (payload) {
     console.log('FETCHINGGGGG')
     return new Promise(async (resolve, reject) => {

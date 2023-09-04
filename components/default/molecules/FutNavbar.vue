@@ -182,7 +182,7 @@
               </li>
               <li class="mobile-btn-select-menu">
                 <fut-responsive-dropdown
-                  v-if="menuToggleVariable || onDesktop"
+                  v-if="currentSettings && (menuToggleVariable || onDesktop)"
                   :filler-width="!onDesktop ? 0 : 1065"
                   :color="currentSettings.font === 'dark' ? '#333333' : null"
                 >
@@ -517,7 +517,7 @@ export default {
 
       if (!this.applicationType('casino') || this.applicationType('sports')) {
         items.push(
-          { link: '/', text: this.$tc('i18n_esporte', 2) }
+          { link: '/', text: this.$t('i18n_esporte', 2) }
         )
         if (process.env.SPORTS_PROVIDER === 'upgaming') {
           items.push(
@@ -531,7 +531,7 @@ export default {
         }
       }
 
-      items.push({ link: '/promo', text: this.$tc('i18n_promocao', 2) })
+      items.push({ link: '/promo', text: this.$t('i18n_promocao', 2) })
 
       if (!this.applicationType('sports') || this.applicationType('casino')) {
         items.push(

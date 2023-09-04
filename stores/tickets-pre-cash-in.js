@@ -33,7 +33,7 @@ export const useTicketsPreCashInStore = defineStore('ticketsPreCashIn', {
     loading: false,
     skOpenTicket: false
   }),
-  action: {
+  actions: {
     editPreCashInTicket (payload) {
       const tickets = [...this.preCashInTickets]
       tickets.splice(payload.index, 1, payload.ticket)

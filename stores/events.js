@@ -8,7 +8,7 @@ export const useEvensStore = defineStore('events', {
     leagues: null,
     livescoreId: null // sem chamada
   }),
-action: {
+actions: {
   // sem chamada
   fetchCurrentEvent (payload) {
     return new Promise(async (resolve, reject) => {

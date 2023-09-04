@@ -8,7 +8,7 @@ export const mutations = {
   }
 }
 
-action: {
+actions: {
   changeTab (payload) {
     commit('setTab', payload)
   }

@@ -1,6 +1,6 @@
 <template>
   <fut-html-render v-if="getPromos">
-    <h3>{{ $tc('i18n_promocao', 2) }}</h3>
+    <h3>{{ $t('i18n_promocao', 2) }}</h3>
     <div class="row">
       <div v-for="content in getPromos" :key="'promo_page_'+content.id" class="col-md-4">
         <div class="fut-card-promo">
@@ -22,7 +22,7 @@
     </div>
     <fut-modal-nsx
       :open="modal.open"
-      :title="$tc('i18n_promocao', 1)"
+      :title="$t('i18n_promocao', 1)"
       class="text-center"
       close
       @onExit="()=>modal.open = false"

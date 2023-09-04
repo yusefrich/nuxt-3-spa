@@ -275,12 +275,12 @@ export default {
 
       if (!this.applicationType('casino') || this.applicationType('sports')) {
         items.push(
-          { link: '/', text: this.$tc('i18n_esporte', 2) },
+          { link: '/', text: this.$t('i18n_esporte', 2) },
           { link: '/sport/6046/aovivo', text: this.$t('i18n_ao_vivo') }
         )
       }
 
-      items.push({ link: '/promo', text: this.$tc('i18n_promocao', 2) })
+      items.push({ link: '/promo', text: this.$t('i18n_promocao', 2) })
 
       if (!this.applicationType('sports') || this.applicationType('casino')) {
         items.push(

@@ -83,7 +83,7 @@
             </n-link>
           </li>
           <li v-if="allSportsData && allSportsData.length > 0" class="title pt-2">
-            <span>{{ $tc('i18n_esporte', 2).toUpperCase() }}</span>
+            <span>{{ $t('i18n_esporte', 2).toUpperCase() }}</span>
           </li>
           <li
             v-for="(sport, sIdx) in allSportsData"

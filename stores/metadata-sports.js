@@ -8,7 +8,7 @@ export const useMetadataSportsStore = defineStore('metadataSports', {
     allSportsData: null,
     inplaySports: null
   }),
-  action: {
+  actions: {
     fetchMetadataSports (id) {
       this.loading = true
 

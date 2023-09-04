@@ -83,7 +83,7 @@
         :current-settings="currentSettings"
       />
     </div>
-    <fut-modal :open="modals.deposit" :title="$tc('i18n_deposito', 1)" @onClose="()=>modals.deposit = false">
+    <fut-modal :open="modals.deposit" :title="$t('i18n_deposito', 1)" @onClose="()=>modals.deposit = false">
       <deposit
         v-if="currentSettings"
         :response="depositResponse"
@@ -290,22 +290,22 @@ export default {
     if (this.getOptions.casino) {
       this.fetchCasinoCategories()
     }
-    this.$root.$on('toggleNav', () => {
-      this.open = !this.open
-    })
-    this.$root.$on('clearBet', () => {
-      this.clearOdds()
-      this.open = false
-    })
+    // this.$root.$on('toggleNav', () => {
+    //   this.open = !this.open
+    // })
+    // this.$root.$on('clearBet', () => {
+    //   this.clearOdds()
+    //   this.open = false
+    // })
     if (process.env.MANUAL_POPUP === 'true' && !sessionStorage.getItem('popupopen')) {
       sessionStorage.setItem('popupopen', true)
       this.modals.popup = true
     }
   },
-  beforeDestroy () {
-    this.$root.$off('toggleNav')
-    this.$root.$off('clearBet')
-  },
+  // beforeDestroy () {
+  //   this.$root.$off('toggleNav')
+  //   this.$root.$off('clearBet')
+  // },
   methods: {
     callCommitCashIn () {
       this.commitCashIn()

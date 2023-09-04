@@ -61,7 +61,7 @@
               </td>
               <td class="text-white fut-color-dynamic pointer" @click="currentBet = bet">
                 <span>
-                  {{ bet.games.length > 1 ? $tc('i18n_multipla', 1) : $t('i18n_simples') }}
+                  {{ bet.games.length > 1 ? $t('i18n_multipla', 1) : $t('i18n_simples') }}
                 </span>
               </td>
               <td class="text-end text-white fut-color-dynamic pointer" @click="currentBet = bet">

@@ -5,7 +5,7 @@
   >
     <md-chip class="pt-2">
       <font-awesome-icon :icon="['fa-solid', 'piggy-bank']" />
-      {{ $tc('i18n_deposito', 1) }}
+      {{ $t('i18n_deposito', 1) }}
     </md-chip>
 
     <p class="desc">

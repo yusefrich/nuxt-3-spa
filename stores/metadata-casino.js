@@ -11,7 +11,7 @@ export const useMetadataCasinoStore = defineStore('metadataCasino', {
     sliders: null,
     providers: null
   }),
-  action: {
+  actions: {
     fetchCasinoSliders () {
       return new Promise(async (resolve, reject) => {
         this.sliders = null

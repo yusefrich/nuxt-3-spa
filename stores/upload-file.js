@@ -6,7 +6,7 @@ export const useUploadFileStore = defineStore('uploadFile', {
     loading: false,
     files: null
   }),
-  action: {
+  actions: {
     fetchFiles () {
       this.loading = true
 

@@ -12,7 +12,7 @@ export const useOnboardingBankStore = defineStore('onboardingBank', {
     withdrawsPage: 1,
     errors: null
   }),
-  action: {
+  actions: {
     clearBankErrors () {
       this.errors = null
       this.loading = false

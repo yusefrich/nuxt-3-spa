@@ -2,23 +2,30 @@ import settingsService from '@/services/settingsService'
 import { defineStore } from 'pinia'
 
 export const useSettingsStore = defineStore('settings', {
-  state: () => ({
-    settings: null,
-    ads: null,
-    slides: null,
-    loading: false,
-    errors: null,
-    scripts: {
-      head: null,
-      body: null
+  state: () => {
+    return {
+      settings: null,
+      ads: null,
+      slides: null,
+      loading: false,
+      errors: null,
+      scripts: {
+        head: null,
+        body: null
+      }
     }
-  }),
-  action: {
+  },
+  actions: {
+    testFetch () {
+      console.log('being called correctly')
+    },
     fetchSettings () {
       return new Promise(async (resolve, reject) => {
         this.loading = true
 
         const [data, err] = await settingsService.getPlanData()
+        console.log('data', data)
+        console.log('err', err)
 
         this.loading = false
 
@@ -31,7 +38,7 @@ export const useSettingsStore = defineStore('settings', {
           return
         }
 
-        this.settings = data.data
+        this.settings = data
         
         resolve(data)
       })

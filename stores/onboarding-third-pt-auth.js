@@ -6,7 +6,7 @@ export const useOnboardingThirdPtAuthStore = defineStore('onboardingThirdPtAuth'
     loading: false,
     errors: null
   }),
-  action: {
+  actions: {
     logUserFromThirdParty (payload) {
       return new Promise(async (resolve, reject) => {
         if (process.env.PRODUCT_REDIRECT_URL && '' + process.env.PRODUCT_REDIRECT_URL === 'dynamic') {

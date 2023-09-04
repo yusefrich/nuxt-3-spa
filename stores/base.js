@@ -14,7 +14,7 @@ export const useBaseStore = defineStore('base', {
     user_bets_loading: false,
     loading: false
   }),
-  action: {
+  actions: {
     setUserBets (userBets) {
       const pending = []
       const done = []

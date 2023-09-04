@@ -1,4 +1,4 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 let cancelToken
 
 const betsService = {
@@ -17,7 +17,7 @@ const betsService = {
       }
     }
     try {
-      const data = await axios.get(`/bets${filtersString}`)
+      const data = await $fetch(config.public.BASE_URL + `/bets${filtersString}`)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -34,11 +34,11 @@ const betsService = {
    */
   async events (filters) {
     // Check if there are any previous pending requests
-    if (typeof cancelToken !== typeof undefined) {
-      cancelToken.cancel('Operation canceled due to new request.')
-    }
+    // if (typeof cancelToken !== typeof undefined) {
+    //   cancelToken.cancel('Operation canceled due to new request.')
+    // }
     // Save the cancel token for the current request
-    cancelToken = axios.CancelToken.source()
+    // cancelToken = this$.apiCancelToken.source()
 
     // search filter string concatenation
     let filtersString = ''
@@ -52,7 +52,8 @@ const betsService = {
       }
     }
     try {
-      const data = await axios.get(`/events${filtersString}`, { cancelToken: cancelToken.token })
+      // const data = await $fetch(config.public.BASE_URL + `/events${filtersString}`, { cancelToken: cancelToken.token })
+      const data = await $fetch(config.public.BASE_URL + `/events${filtersString}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -64,9 +65,10 @@ const betsService = {
       cancelToken.cancel('Operation canceled due to new request.')
     }
     // Save the cancel token for the current request
-    cancelToken = axios.CancelToken.source()
+    // cancelToken = this$.apiCancelToken.source()
     try {
-      const data = await axios.get(`/filter/event?team=${team}`, { cancelToken: cancelToken.token })
+      // const data = await $fetch(config.public.BASE_URL + `/filter/event?team=${team}`, { cancelToken: cancelToken.token })
+      const data = await $fetch(config.public.BASE_URL + `/filter/event?team=${team}`)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -74,7 +76,7 @@ const betsService = {
   },
   async eventsSearchUnprotected (team) {
     try {
-      const data = await axios.get(`/filter/event?team=${team}`)
+      const data = await $fetch(config.public.BASE_URL + `/filter/event?team=${team}`)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -82,7 +84,7 @@ const betsService = {
   },
   async brasilEvents () {
     try {
-      const data = await axios.get('/events/country/br')
+      const data = await $fetch(config.public.BASE_URL + '/events/country/br')
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -90,7 +92,7 @@ const betsService = {
   },
   async blackList () {
     try {
-      const data = await axios.get(`${process.env.BASE_URL_DEV}/inplay/blacklist`, {
+      const data = await $fetch(config.public.BASE_URL + `${process.env.BASE_URL_DEV}/inplay/blacklist`, {
         headers: {
           'x-api-key': '5efa1168b7e6cfdf75e6874b8cc3aa33',
           'x-api-host': 'https://dev.fdsbet.com'
@@ -103,7 +105,7 @@ const betsService = {
   },
   async betsByDay (date) {
     try {
-      const data = await axios.get(`/events?date=${date}`)/* ${url}/events ?date=2021-07-06 */
+      const data = await $fetch(config.public.BASE_URL + `/events?date=${date}`)/* ${url}/events ?date=2021-07-06 */
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -111,7 +113,7 @@ const betsService = {
   },
   async betsByTime (hour) {
     try {
-      const data = await axios.get(`/events?hour=${hour}`)/* ${url}/events ?hour=3 */
+      const data = await $fetch(config.public.BASE_URL + `/events?hour=${hour}`)/* ${url}/events ?hour=3 */
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -119,7 +121,7 @@ const betsService = {
   },
   async event (slug) {
     try {
-      const data = await axios.get(`/event/${slug}`)/* ${url}/events ?date=2021-07-06 */
+      const data = await $fetch(config.public.BASE_URL + `/event/${slug}`)/* ${url}/events ?date=2021-07-06 */
       return [data.data, null]
     } catch (error) {
       /* console.error(error) */
@@ -128,7 +130,7 @@ const betsService = {
   },
   async mainEvents (sport) {
     try {
-      const data = await axios.get(`/leagues/main${sport ? '?sport=' + sport : ''}`)
+      const data = await $fetch(config.public.BASE_URL + `/leagues/main${sport ? '?sport=' + sport : ''}`)
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -136,7 +138,7 @@ const betsService = {
   },
   async allMainLeagues () {
     try {
-      const data = await axios.get('/leagues/main?sport=all')
+      const data = await $fetch(config.public.BASE_URL + '/leagues/main?sport=all')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -144,7 +146,7 @@ const betsService = {
   },
   async allLeagues () {
     try {
-      const data = await axios.get('/leagues?sport=all')
+      const data = await $fetch(config.public.BASE_URL + '/leagues?sport=all')
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -152,7 +154,7 @@ const betsService = {
   },
   async leagues (sport) {
     try {
-      const data = await axios.get(`/leagues${sport ? '?sport=' + sport : ''}`)
+      const data = await $fetch(config.public.BASE_URL + `/leagues${sport ? '?sport=' + sport : ''}`)
       // console.log('this is the return of leagues service', data.data.data)
       return [data.data.data, null]
     } catch (error) {
@@ -162,7 +164,7 @@ const betsService = {
   },
   async league (id) {
     try {
-      const data = await axios.get(`/leagues/${id}`)/* ${url}/events ?date=2021-07-06 */
+      const data = await $fetch(config.public.BASE_URL + `/leagues/${id}`)/* ${url}/events ?date=2021-07-06 */
       return [[data.data.data], null]
     } catch (error) {
       /* console.error(error) */
@@ -171,7 +173,7 @@ const betsService = {
   },
   async cashout (id) {
     try {
-      const data = await axios.put(`/bets/${id}/cashout`)
+      const data = await $fetch(config.public.BASE_URL + `/bets/${id}/cashout`)
       return [data.data, null]
     } catch (error) {
       /* console.error(error) */
@@ -180,7 +182,7 @@ const betsService = {
   },
   async postBet (payload) {
     try {
-      const data = await axios.post('/bets', payload)
+      const data = await $fetch(config.public.BASE_URL + '/bets', payload)
       return [data.data, null]
     } catch (error) {
       /* console.error(error) */
@@ -189,7 +191,7 @@ const betsService = {
   },
   async featuredBets (sportId) {
     try {
-      const data = await axios.get(`/events/main${sportId ? '?sport=' + sportId : ''}`)
+      const data = await $fetch(config.public.BASE_URL + `/events/main${sportId ? '?sport=' + sportId : ''}`)
       return [data.data, null]
     } catch (error) {
       /* console.error(error) */

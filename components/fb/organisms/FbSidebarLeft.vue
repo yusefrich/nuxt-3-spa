@@ -6,7 +6,7 @@
     <div class="header-sidebar-mobile bg-background d-flex d-md-none py-1 justify-content-between container">
       <div>
         <font-awesome-icon class="text-white mr-10" :icon="['fas', 'caret-left']" />
-        <span class="text-white sport-head">{{ $tc('i18n_esporte', 2) }}</span>
+        <span class="text-white sport-head">{{ $t('i18n_esporte', 2) }}</span>
       </div>
       <fb-fut-button class="bg-transparent border-0" @click="showClock()">
         <font-awesome-icon class="text-white" :icon="['fas', 'clock']" />

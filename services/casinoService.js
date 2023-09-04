@@ -1,9 +1,9 @@
-import axios from 'axios'
+const config = useRuntimeConfig()
 
 const casinoService = {
   async get () {
     try {
-      const data = await axios.get('/casino')
+      const data = await $fetch(config.public.BASE_URL + '/casino')
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -11,7 +11,7 @@ const casinoService = {
   },
   async fetchIframeUrl (payload) {
     try {
-      const data = await axios.post('/casino/softgaming/auth', payload)
+      const data = await $fetch(config.public.BASE_URL + '/casino/softgaming/auth', payload)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -19,7 +19,7 @@ const casinoService = {
   },
   async fetchBananaLiveIframeUrl (payload) {
     try {
-      const data = await axios.post('/casino/banana-live/auth', payload)
+      const data = await $fetch(config.public.BASE_URL + '/casino/banana-live/auth', payload)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -27,7 +27,7 @@ const casinoService = {
   },
   async fetchBananaIframeUrl (payload) {
     try {
-      const data = await axios.post('/casino/banana/auth', payload)
+      const data = await $fetch(config.public.BASE_URL + '/casino/banana/auth', payload)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -35,7 +35,7 @@ const casinoService = {
   },
   async fetchFdsIframeUrl (payload) {
     try {
-      const data = await axios.post('/casino/fds/auth', payload)
+      const data = await $fetch(config.public.BASE_URL + '/casino/fds/auth', payload)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -43,7 +43,7 @@ const casinoService = {
   },
   async only (id) {
     try {
-      const data = await axios.get(`/casino/only/${id}`)
+      const data = await $fetch(config.public.BASE_URL + `/casino/only/${id}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -51,7 +51,7 @@ const casinoService = {
   },
   async getSliders () {
     try {
-      const data = await axios.get('/casino/slides')
+      const data = await $fetch(config.public.BASE_URL + '/casino/slides')
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -59,7 +59,7 @@ const casinoService = {
   },
   async getHeaderGames () {
     try {
-      const data = await axios.get('/casino/header/games')
+      const data = await $fetch(config.public.BASE_URL + '/casino/header/games')
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -67,7 +67,7 @@ const casinoService = {
   },
   async getHeaderCategories () {
     try {
-      const data = await axios.get('/casino/header')
+      const data = await $fetch(config.public.BASE_URL + '/casino/header')
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -88,7 +88,7 @@ const casinoService = {
       }
     }
     try {
-      const data = await axios.get(`/casino/new${filtersString}`)
+      const data = await $fetch(config.public.BASE_URL + `/casino/new${filtersString}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -109,7 +109,7 @@ const casinoService = {
       }
     }
     try {
-      const data = await axios.get(`/casino/most_played${filtersString}`)
+      const data = await $fetch(config.public.BASE_URL + `/casino/most_played${filtersString}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -117,7 +117,7 @@ const casinoService = {
   },
   async search (term) {
     try {
-      const data = await axios.get(`/casino/search/${term}`)
+      const data = await $fetch(config.public.BASE_URL + `/casino/search/${term}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -125,7 +125,7 @@ const casinoService = {
   },
   async getCategories () {
     try {
-      const data = await axios.get('/casino/categories')
+      const data = await $fetch(config.public.BASE_URL + '/casino/categories')
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -133,7 +133,7 @@ const casinoService = {
   },
   async getProviders () {
     try {
-      const data = await axios.get('/casino/providers')
+      const data = await $fetch(config.public.BASE_URL + '/casino/providers')
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -154,7 +154,7 @@ const casinoService = {
       }
     }
     try {
-      const data = await axios.get(`/casino/provider/${slug}${filtersString}`)
+      const data = await $fetch(config.public.BASE_URL + `/casino/provider/${slug}${filtersString}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -175,7 +175,7 @@ const casinoService = {
       }
     }
     try {
-      const data = await axios.get(`/casino/games/${slug}${filtersString}`)
+      const data = await $fetch(config.public.BASE_URL + `/casino/games/${slug}${filtersString}`)
       return [data.data, null]
     } catch (error) {
       return [null, error]

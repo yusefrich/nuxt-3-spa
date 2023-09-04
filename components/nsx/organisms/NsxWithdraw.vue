@@ -1,7 +1,7 @@
 <template>
   <div v-if="(validWithdrawTime && currentSettings.block_wd_midnight === 1) || currentSettings.block_wd_midnight === 0" class="deposit-content">
     <h5 class="text-start pt-3">
-      {{ $tc('i18n_saque', 1) }}
+      {{ $t('i18n_saque', 1) }}
     </h5>
     <div class="p-4 pt-1">
       <div class="row">

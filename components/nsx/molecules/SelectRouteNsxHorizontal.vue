@@ -5,7 +5,7 @@
         <nsx-fut-button block :to="'/sports'" class="w-100 h-100 pt-2">
           <img src="/bet365icons/1.svg" width="30px" height="30px" alt="">
           <p :class="['sport-title mb-0']">
-            <strong>{{ $tc('i18n_esporte', 2) }}</strong>
+            <strong>{{ $t('i18n_esporte', 2) }}</strong>
           </p>
         </nsx-fut-button>
       </li>
@@ -27,7 +27,7 @@
         >
           <img src="/bet365icons/promo.svg" width="30px" height="30px" alt="">
           <p :class="['sport-title mb-0']">
-            <strong>{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $tc('i18n_promocao', 1) }}</strong>
+            <strong>{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $t('i18n_promocao', 1) }}</strong>
           </p>
         </nsx-fut-button>
       </li>

@@ -18,7 +18,7 @@
           gray_darker
         >
           <span class="d-block text-white"><font-awesome-icon :icon="['fas', 'chevron-circle-up']" /></span>
-          <span class="d-block text-white">{{ $tc('i18n_cotacao', 2).toUpperCase() }}</span>
+          <span class="d-block text-white">{{ $t('i18n_cotacao', 2).toUpperCase() }}</span>
           <span style="font-size:25px; line-height: 20px" class="d-block fw-bold text-white">{{ $t('i18n_altas').toUpperCase() }}</span>
         </nsx-fut-button>
         <nsx-fut-button
@@ -28,7 +28,7 @@
           gray_nsx
         >
           <span class="d-block text-secondary"><font-awesome-icon :icon="['fas', 'dollar-sign']" /></span>
-          <span class="d-block text-white">{{ $tc('i18n_saque', 1).toUpperCase() }}</span>
+          <span class="d-block text-white">{{ $t('i18n_saque', 1).toUpperCase() }}</span>
           <span style="font-size:25px; line-height: 20px" class="d-block fw-bold text-secondary">{{ $t('i18n_Rápido').toUpperCase() }}</span>
         </nsx-fut-button>
       </div>

@@ -8,7 +8,7 @@
     <div class="m-body">
       <div class="title" @clicl.stop>
         <h6 class="fw-bold mb-0">
-          {{ $tc('i18n_deposito', 1) }}
+          {{ $t('i18n_deposito', 1) }}
         </h6>
       </div>
 

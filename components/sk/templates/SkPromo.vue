@@ -16,7 +16,7 @@
         <div class="container">
           <div class="d-flex justify-content-between align-items-center">
             <h1>
-              {{ $tc('i18n_promocao', 2) }}
+              {{ $t('i18n_promocao', 2) }}
             </h1>
             <img
               src="/Sk/promo-banner.png"

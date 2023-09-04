@@ -10,7 +10,7 @@ export const useOnboardingAuthStore = defineStore('onboardingAuth', {
     userData: null,
     address: null
   }),
-  action: {
+  actions: {
     sendCancelUserBonus (payload) {
       return new Promise(async (resolve, reject) => {
         this.loading = true

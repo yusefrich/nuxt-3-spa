@@ -18,7 +18,7 @@
           <div class="border-b my-3 w-100" />
           <span class="text-primary mb-3 fs-15 fw-bold">{{ $t('i18n_valor_minimo') }}: <span class="fw-bold fs-15 text-muted">R$ {{ settings.wd_limit_min }}</span></span>
           <span class="text-primary mb-3 fs-15 fw-bold">{{ $t('i18n_valor_maximo') }}: <span class="fw-bold fs-15 text-muted">R$ {{ settings.wd_limit_max }}</span></span>
-          <span class="text-primary fs-15 mb-4 fw-bold">{{ $t('i18n_tempo_de_processamento') }}: <span class="fw-bold fs-15 text-muted">5 {{ $tc('i18n_minuto', 2) }}</span></span>
+          <span class="text-primary fs-15 mb-4 fw-bold">{{ $t('i18n_tempo_de_processamento') }}: <span class="fw-bold fs-15 text-muted">5 {{ $t('i18n_minuto', 2) }}</span></span>
         </div>
         <span class="fs-15 text-muted fw-bolder">{{ $t('i18n_tipo_de_chave_pix') }}</span>
         <div class="mb-4 mt-3 d-flex">
@@ -67,7 +67,7 @@
           :disabled="!payload.type || (getRawPrice(price) < +settings.wd_limit_min || (settings.wd_limit_max ? (getRawPrice(price) > +settings.wd_limit_max) : (getRawPrice(price) > getInfinity)))"
           @click="confirmModal = true"
         >
-          {{ $tc('i18n_saque', 1) }}
+          {{ $t('i18n_saque', 1) }}
         </button>
         <span v-if="!payload.type" class="d-block text-white mt-0 ms-5"><small>Selecione uma chave pix!</small></span>
       </div>

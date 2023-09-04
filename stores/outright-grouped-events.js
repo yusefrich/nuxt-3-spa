@@ -33,7 +33,7 @@ export const mutations = {
     state.group.splice(groupIndex, 1)
   }
 }
-action: {
+actions: {
   fetchOutrightGroupedEvents ({ commit, state }, payload) {
     commit('updateLoading', true)
 

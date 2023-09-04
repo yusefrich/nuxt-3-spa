@@ -5,7 +5,7 @@
         {{ $t('i18n_longo_prazo') }}
       </span>
     </div>
-    <fb-sections-heading v-else class="d-md-none" :title="$tc('i18n_esporte', 2)" route="/">
+    <fb-sections-heading v-else class="d-md-none" :title="$t('i18n_esporte', 2)" route="/">
       <fb-fut-button class="bg-transparent border-0" @click="showClock()">
         <font-awesome-icon class="icon-time-filter text-white" :icon="['far', 'clock']" />
       </fb-fut-button>
