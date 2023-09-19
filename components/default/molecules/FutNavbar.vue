@@ -228,11 +228,10 @@
                 </fut-button>
               </li>
             </ul>
-            <!-- $emit('logUser', $event) -->
             <fut-login
               v-if="!loggedInUser"
               :current-settings="currentSettings"
-              @logUser="testing($event)"
+              @logUser="$emit('logUser', $event)"
             />
             <ul v-if="!loggedInUser" class="navbar-nav forgot-mobile">
               <li class="nav-item">
@@ -594,9 +593,6 @@ export default {
     clearInterval(this.interval)
   },
   methods: {
-    testing (obj) {
-      console.log('log event', obj)
-    },
     changeLanguage (lang) {
       this.$i18n.locale = lang
     },

@@ -39,39 +39,16 @@
           <fut-casino-sidebar v-if="getOptions.casino" :categories="getCasinoCategories" />
           <sidebar
             v-else
-            :all-sports-data="getAllMetadataSports"
-            :loading="getMetadataSportsLoading"
-            :main-leagues="getPreMatchMainLeagues"
-            :current-time="getFilters.hour"
+            :all-sports-data="null"
+            :loading="false"
+            :main-leagues="null"
+            :current-time="null"
             @fetchTimeFilter="time => fetchTimeFilter(time)"
           />
         </div>
         <div class="mx-0" :class="{ content: getOptions.sidebar, 'w-100': !getOptions.sidebar }">
           <div class="mobile-spacing" />
           <slot v-if="hasContent && currentSettings" />
-          <div class="d-flex justify-content-center">
-            <tickets
-              v-if="getOptions.ticket && currentSettings"
-              :submenu-type="currentSettings.bet_dynamic"
-              :bet-max-value="+currentSettings.bet_limit_max"
-              :bet-min-value="+currentSettings.bet_limit_min"
-              :win-max-value="+currentSettings.win_limit_max"
-              :loading="getPreCashInTicketsLoading"
-              :free-bet-value="loggedInUser ? loggedInUser.free_bet : null"
-              :errors="getPreCashInTicketsErrors"
-              :tickets="getPreCashInTickets"
-              :multiple="getMultipleTicket"
-              :current-layout-style="getCurrentLayoutStyle"
-              @submit="callCommitCashIn()"
-              @clearAll="clearAll()"
-              @updateMultipleTicket="payload => updateMultipleTicket(payload)"
-              @acceptAllChanges="acceptTicketChanges()"
-              @toggleTicket="ticket => toggleTicket(ticket)"
-              @updateTicket="ticket => updateTicket(ticket)"
-              @clearAllFreeBet="clearAllFreeBet()"
-              @resetAllBets="resetAllBets()"
-            />
-          </div>
         </div>
       </div>
       <footer-info :current-settings="currentSettings" />
@@ -139,10 +116,6 @@ import { useMetadataCasinoStore } from '@/stores/metadata-casino'
 import { useBaseStore } from '@/stores/base'
 import { useSettingsStore } from '@/stores/settings'
 import { useOnboardingBankStore } from '@/stores/onboarding-bank'
-import { useMetadataSportsStore } from '@/stores/metadata-sports'
-import { usePreMatchMainLeaguesStore } from '@/stores/pre-match-main-leagues'
-import { useTicketsPreCashInStore } from '@/stores/tickets-pre-cash-in'
-import { usePreMatchStore } from '@/stores/pre-match'
 import { useCookiesStore } from '@/stores/cookies'
 import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
 import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
@@ -235,22 +208,6 @@ export default {
       getBankLoading: 'getBankLoading',
       getBankErrors: 'getBankErrors'
     }),
-    ...mapState(useMetadataSportsStore, {
-      getMetadataSportsLoading: 'getMetadataSportsLoading',
-      getAllMetadataSports: 'getAllMetadataSports'
-    }),
-    ...mapState(usePreMatchMainLeaguesStore, {
-      getPreMatchMainLeagues: 'getPreMatchMainLeagues'
-    }),
-    ...mapState(usePreMatchStore, {
-      getFilters: 'getFilters'
-    }),
-    ...mapState(useTicketsPreCashInStore, {
-      getPreCashInTicketsLoading: 'getPreCashInTicketsLoading',
-      getPreCashInTicketsErrors: 'getPreCashInTicketsErrors',
-      getMultipleTicket: 'getMultipleTicket',
-      getPreCashInTickets: 'getPreCashInTickets'
-    }),
     ...mapState(useCookiesStore, {
       getAcceptedCookies: 'getAcceptedCookies'
     }),
@@ -264,9 +221,6 @@ export default {
       return true
     }
   },
-  created () {
-    this.changeFilter({ date: dayjs().format('YYYY-MM-DD'), hour: null, page: null, sport: 6046, team: null })
-  },
   async mounted () {
     await this.fetchSettings()
     if (this.loggedInUser) {
@@ -278,10 +232,6 @@ export default {
       }
     }
     this.fetchAds()
-    if (!this.getCurrentUrl.includes('casino') && !this.getCurrentUrl.includes('user') && !this.getCurrentUrl.includes('promo')) {
-      this.fetchPreMatchMainLeagues(this.$route.params.sportId)
-      this.fetchAllMetadataSports()
-    }
     if (this.getCurrentApplicationType === 'sports' || this.getCurrentApplicationType === 'all') {
       this.fetchCasinoHeaderGames()
       this.fetchCasinoHeaderCategories()
@@ -307,9 +257,6 @@ export default {
   //   this.$root.$off('clearBet')
   // },
   methods: {
-    callCommitCashIn () {
-      this.commitCashIn()
-    },
     redirectProduct () {
       this.fetchProductRedirectUrl().then((result) => {
         if (process.client) {
@@ -379,34 +326,14 @@ export default {
       updateOverlay: 'updateOverlay',
       updatePopupStatus: 'updatePopupStatus'
     }),
-    ...mapActions(usePreMatchStore, {
-      fetchPreMatchEvents: 'fetchPreMatchEvents',
-      changeFilter: 'changeFilter'
-    }),
     ...mapActions(useSettingsStore, {
       commitSettings: 'commitSettings',
       commitAds: 'commitAds',
       fetchSettings: 'fetchSettings',
       fetchAds: 'fetchAds'
     }),
-    ...mapActions(useMetadataSportsStore, {
-      fetchAllMetadataSports: 'fetchAllMetadataSports'
-    }),
-    ...mapActions(usePreMatchMainLeaguesStore, {
-      fetchPreMatchMainLeagues: 'fetchPreMatchMainLeagues'
-    }),
     ...mapActions(useCookiesStore, {
       confirmCookies: 'confirmCookies'
-    }),
-    ...mapActions(useTicketsPreCashInStore, {
-      commitCashIn: 'commitCashIn',
-      clearAll: 'clearAll',
-      updateMultipleTicket: 'updateMultipleTicket',
-      acceptTicketChanges: 'acceptTicketChanges',
-      toggleTicket: 'toggleTicket',
-      clearAllFreeBet: 'clearAllFreeBet',
-      resetAllBets: 'resetAllBets',
-      updateTicket: 'updateTicket'
     }),
     async logUser (event) {
       console.log('log event being called', event)
@@ -430,22 +357,6 @@ export default {
       if (document.getElementById('nav-todos-tab')) {
         document.getElementById('nav-todos-tab').classList.remove('active')
       }
-
-      if (payload === 'all') {
-        this.changeFilter({
-          page: null,
-          hour: null,
-          date: dayjs().format('YYYY-MM-DD')
-        })
-        this.fetchPreMatchEvents()
-        return
-      }
-
-      this.changeFilter({
-        page: null,
-        hour: payload
-      })
-      this.fetchPreMatchEvents()
     },
     submitForgot (payload) {
       this.sendForgottenPasswordEmail(payload).then(() => {

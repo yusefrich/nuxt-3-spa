@@ -220,11 +220,8 @@
 <script>
 /* eslint-disable */
 // import { mapGetters, mapActions } from 'vuex'
-import { mapActions, mapState } from 'pinia'
+import { mapState } from 'pinia'
 import { useLayoutStore } from '@/stores/layout'
-import { useInplaySingleEventStore } from '@/stores/inplay-single-event'
-import { useInplayStore } from '@/stores/inplay'
-import { useTicketsPreCashInStore } from '@/stores/tickets-pre-cash-in'
 import utils from '@/utils/utils.js'
 
 export default {
@@ -306,241 +303,23 @@ export default {
     if (process.env.GEOLOC && process.env.GEOLOC === 'true') {
       this.getLocation()
     }
-    // console.log('this is the path and name of the current route', ('' + this.$nuxt.$route.path).split('/')[('' + this.$nuxt.$route.path).split('/').length - 1])
-    // console.log('this is the path and name of the current route', this.$nuxt.$route.path.split('/')[('' + this.$nuxt.$route.path).split('/').length - 1])
-    // todo - connect the websocket on market update in 
-    if (process.env.WS_HOST && process.env.WS_KEY && process.env.WS_ACTIVE && process.env.WS_ACTIVE === 'true') {
-      if (this.sportsBook && this.getCurrentApplicationType !== 'casino') {
-        this.connectInplayGeneralMarket()
-        if (('' + this.$nuxt.$route.path).slice(-1) === '/') {
-          this.connectInplayEvent(('' + this.$nuxt.$route.path).split('/')[('' + this.$nuxt.$route.path).split('/').length - 2])
-        } else {
-          this.connectInplayEvent(('' + this.$nuxt.$route.path).split('/')[('' + this.$nuxt.$route.path).split('/').length - 1])
-        }
-        this.updateGamesTickets(this.getTicketGamesId)
-      }
-    }
-  },
-  watch: {
-    $route(from) {
-      if (!from.params.id) {
-        return
-      }
-      if (this.sportsBook && this.getCurrentApplicationType !== 'casino') {
-        this.connectInplayEvent(from.params.id)
-      }
-    },
-    getTicketGamesId (newVal) {
-      if (this.sportsBook && this.getCurrentApplicationType !== 'casino') {
-        this.updateGamesTickets(newVal)
-      }
-    },
-    getInplaySingleEventLoading (val) {
-      if (!val && this.stackedOdds.length > 0 && this.sportsBook && this.getCurrentApplicationType !== 'casino') {
-        this.stackedOdds.forEach(e => {
-          switch (e.type) {
-            case 'MARKET_ADD_OR_REPLACE':
-              // console.log('.game.' + id + 'MARKET_ADD_OR_REPLACE', e)
-              this.replaceInplayMarketOdd(e)
-              break
-            case 'GAME_FINISHED':
-              // console.log('.game. single' + val + 'GAME_FINISHED', e)
-              // this.finishCurrentGame(e)
-              break
-            case 'MARKET_UPDATE':
-              // console.log('.game.' + id + 'MARKET_UPDATE', el)
-              this.updateInplayEventOdd(e)
-              break
-            case 'MARKET_FINISHED':
-              // console.log('.game.' + id + 'MARKET_FINISHED', el)
-              this.finishInplayEventOdd(e.message)
-              break
-            case 'MARKET_CLOSED':
-              // console.log('.game.' + id + 'MARKET_CLOSED', el)
-              this.closeInplayEventOdd(e)
-              break
-            case 'METADATA':
-              // console.log('.game.single' + val + 'METADATA', e)
-              this.updateInplayEventMetadata(e)
-              break
-            default:
-              // console.info('INTERNA - No available cases for this type: Object.type: ' + e.type)
-              break
-          }
-        })
-        this.stackedOdds = []
-      }
-    }
   },
   computed: {
     ...mapState(useLayoutStore, {
       getCurrentApplicationType: 'getCurrentApplicationType',
       getCurrentLayoutStyle: 'getCurrentLayoutStyle',
       getCurrentThemeStyle: 'getCurrentThemeStyle'
-    }),
-    ...mapState(useInplaySingleEventStore, {
-      getInplaySingleEventLoading: 'getInplaySingleEventLoading'
-    }),
-    ...mapState(useTicketsPreCashInStore, {
-      getTicketGamesId: 'getTicketGamesId'
-    }),
+    })
   },
   methods: {
-    ...mapActions(useInplayStore, {
-      updateInplayEventsOdds: 'updateInplayEventsOdds',
-      updateInplayEventsMetadata: 'updateInplayEventsMetadata',
-      finishGame: 'finishGame'
-    }),
-    ...mapActions(useTicketsPreCashInStore, {
-      updateTicketOdds: 'updateTicketOdds',
-      finishGameTickets: 'finishGameTickets'
-    }),
-    ...mapActions(useInplaySingleEventStore, {
-      updateInplayEventMetadata: 'updateInplayEventMetadata',
-      updateInplayEventOdd: 'updateInplayEventOdd',
-      addInplayEventOdd: 'addInplayEventOdd',
-      closeInplayEventOdd: 'closeInplayEventOdd',
-      finishInplayEventOdd: 'finishInplayEventOdd',
-      replaceInplayMarketOdd: 'replaceInplayMarketOdd',
-      finishCurrentGame: 'finishCurrentGame'
-    }),
     getCardHighlight (config) {
       if (config && config.color_highlight && config.color_highlight !== 'black' && config.color_highlight !== '#000000') {
         return config.color_highlight
       }
       return '#00000000'
     },
-    connectInplayGeneralMarket () {
-      /* eslint-disable */
-      this.$echo.channel('game')
-        .listen('InplayMarket', (e) => {
-          // console.log('InplayMarket --- ', e)
-          e.message.forEach(el => {
-            // console.debug('InplayMarket ' + el.type + ' --- ', el)
-            switch (el.type) {
-              case 'GAME_FINISHED':
-                // console.log('.game.' + el.game_id + 'GAME_FINISHED', el)
-                // this.finishGame(el)
-                // if (el.game_id === ('' + this.$nuxt.$route.path).split('/')[('' + this.$nuxt.$route.path).split('/').length - 1]) {
-                //   this.finishCurrentGame(el)
-                // }
-                break
-              case 'MARKET_UPDATE':
-                this.updateInplayEventsOdds(el)
-                break
-              case 'MARKET_CLOSED':
-                this.updateInplayEventsOdds(el)
-                break
-              case 'MARKET_FINISHED':
-                this.updateInplayEventsOdds(el)
-                break
-              case 'METADATA':
-                // console.log('.game.' + el.game_id + 'METADATA', el)
-                this.updateInplayEventsMetadata(el)
-                break
-              default:
-                // console.info('RESULTADO FINAL - No available cases for this type: Object.type: ' + el.type)
-                break
-            }
-          })
-        })
-    },
-    connectInplayEvent (id) {
-      this.$echo.channel('game')
-        .listen('.game.' + id, (e) => {
-          if (this.getInplaySingleEventLoading) {
-            this.stackedOdds.push(e)
-            return
-          }
-          e.message.forEach(el => {
-            switch (el.type) {
-              case 'MARKET_ADD_OR_REPLACE':
-                // console.debug('.game.' + id + 'MARKET_ADD_OR_REPLACE', el)
-                this.replaceInplayMarketOdd(el)
-                break
-              case 'GAME_FINISHED':
-                // console.debug('.game.' + id + 'GAME_FINISHED', el)
-                // this.finishCurrentGame(el)
-                break
-              case 'MARKET_UPDATE':
-                // console.debug('.game.' + id + 'MARKET_UPDATE', el)
-                this.updateInplayEventOdd(el)
-                break
-              case 'MARKET_FINISHED':
-                // console.debug('.game.' + id + 'MARKET_FINISHED', el)
-                this.finishInplayEventOdd(el.message)
-                break
-              case 'MARKET_CLOSED':
-                // console.debug('.game.' + id + 'MARKET_CLOSED', el)
-                this.closeInplayEventOdd(el)
-                break
-              case 'METADATA':
-                console.debug('.game.' + id + 'METADATA', el)
-                this.updateInplayEventMetadata(el)
-                break
-              default:
-                console.debug('INTERNA - No available cases for this type: Object.type: ' + el.type)
-                break
-            }
-            // * check if the current game id is present in the current array of ids in the return of all tickets ids
-            if (this.getTicketGamesId.indexOf(id) !== -1) {
-              switch (el.type) {
-                case 'GAME_FINISHED':
-                  // console.debug('.game.' + id + 'GAME_FINISHED', el)
-                  // this.finishGameTickets(el)
-                case 'MARKET_UPDATE':
-                  this.updateTicketOdds(el.message)
-                  console.debug('.game.' + id + 'MARKET_UPDATE - game on ticket', el)
-                  break
-                case 'MARKET_CLOSED':
-                  this.updateTicketOdds(el.message)
-                  console.debug('.game.' + id + 'MARKET_CLOSED - game on ticket', el)
-                  break
-                case 'MARKET_FINISHED':
-                  this.updateTicketOdds(el.message)
-                  console.debug('.game.' + id + 'MARKET_FINISHED - game on ticket', el)
-                  break
-                default:
-                  console.debug('TICKET - No available cases for this type: Object.type: ' + el.type)
-                  break
-              }
-            }
-          })
-      })
-    },
     getHsl (hex) {
       return utils.getHsl(hex)
-    },
-    updateGamesTickets (newVal) {
-      newVal.forEach(e => {
-        if (e !== ('' + ('' + this.$nuxt.$route.path).split('/')[('' + this.$nuxt.$route.path).split('/').length - 1])) {
-          console.debug('new vals', e)
-          this.$echo.channel('game')
-            .listen('.game.' + e, (m) => {
-              m.message.forEach(el => {
-                switch (el.type) {
-                  case 'MARKET_UPDATE':
-                    this.updateTicketOdds(el.message)
-                    break
-                  case 'MARKET_CLOSE':
-                    this.updateTicketOdds(el.message)
-                    break
-                  case 'MARKET_FINISHED':
-                    this.updateTicketOdds(el.message)
-                    break
-                  case 'GAME_FINISHED':
-                    // console.log('.game. new val' + e + 'GAME_FINISHED', el)
-                    // this.finishGameTickets(el)
-                    break
-                  default:
-                    break
-                }
-              })
-              // eslint-disable-next-line
-              // console.log('teste ws inside ok -> ', m)
-            })
-        }
-      })
     },
     getLocation () {
       if (!navigator.geolocation) {

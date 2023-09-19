@@ -11,7 +11,7 @@
         'h-100', 'd-flex',
         (validate && validate[name])?'error':'',
         nsxValidation?'nsx-validation':'',
-        value?'success':'',
+        modelValue?'success':'',
         nsxIcon?'nsx-icon-spacing':''
       ]"
     >
@@ -48,15 +48,15 @@
           :placeholder="placeholder"
           :readonly="readonly"
           :type="type"
-          :value="value"
+          :value="modelValue"
           :required="required"
           :class="['form-control', 'input-transparent', 'border-none', fontSm?'font-smaller':'', 'fut-color-dynamic']"
           @keyup.enter="$emit('enter')"
           @focus="$emit('focus')"
           @blur="$emit('blur', $event.target.value)"
-          @input="$emit('input', $event.target.value)"
-        >
-          <!-- @input="$emit('update:value', $event.target.value)" -->
+          @input="$emit('update:modelValue', $event.target.value)"
+          >
+          <!-- @input="$emit('input', $event.target.value)" -->
       </div>
     </div>
     <template v-if="validate && nsxValidation">
@@ -176,7 +176,7 @@ export default {
     required: {
       type: Boolean
     },
-    value: {
+    modelValue: {
       type: String,
       default: ''
     },
@@ -185,7 +185,6 @@ export default {
       default: false
     }
   },
-  emits: ['input'],
   watch: {
     validate (value) {
       if (value && value[this.name] && !this.disableScroll) {
