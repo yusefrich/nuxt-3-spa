@@ -11,7 +11,10 @@
   </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+import { useThirdPartyProviderStore } from '@/stores/third-party-provider'
+import { useBaseStore } from '@/stores/base'
 import windowWidth from '@/mixins.js/windowWidth.js'
 
 export default {
@@ -39,21 +42,8 @@ export default {
   },
   mixins: [windowWidth],
   computed: {
-    ...mapGetters({
-      // todo refactor this part
-      currentAds: 'settings/currentAds',
-      currentSettings: 'settings/currentSettings',
-      currentSlides: 'settings/currentSlides',
-      currentFeaturedBets: 'bets/currentFeaturedBets',
-      // * refactored
-      getCasinoHeaderGames: 'metadata-casino/getCasinoHeaderGames',
-      getCasinoHeaderCategories: 'metadata-casino/getCasinoHeaderCategories',
-      getPreCashInTickets: 'tickets-pre-cash-in/getPreCashInTickets',
-      getMetadataSports: 'metadata-sports/getMetadataSports',
-      getOdds: 'odds/getOdds',
-      loggedInUser: 'loggedInUser',
-      getPreMatchEvents: 'pre-match/getPreMatchEvents',
-      getPreMatchLoading: 'pre-match/getPreMatchLoading'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
     }),
     getDefaultUrl () {
       if (this.isMobile) {
@@ -106,10 +96,12 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      fetchThirdPartyUrl: 'third-party-provider/fetchThirdPartyUrl',
-      updateOptions: 'layout/updateOptions'
-    })
+    ...mapActions(useThirdPartyProviderStore, {
+      fetchThirdPartyUrl: 'fetchThirdPartyUrl'
+    }),
+    ...mapActions(useLayoutStore, {
+      updateOptions: 'updateOptions'
+    }),
   }
 }
 </script>

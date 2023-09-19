@@ -33,6 +33,7 @@ export default defineNuxtConfig({
         { src: '~/plugins/useBootstrap.client.ts', mode: 'client' }
     ],
     css: [
+        'vue-toast-notification/dist/theme-default.css',
         '@fortawesome/fontawesome-svg-core/styles.css',
         '@/assets/layout/styles.scss',
         '@/assets/icons/css/style.css'

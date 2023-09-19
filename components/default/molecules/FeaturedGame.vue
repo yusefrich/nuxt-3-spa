@@ -100,10 +100,6 @@ export default {
     height: {
       type: String,
       default: '200px'
-    },
-    odds: {
-      type: Array,
-      default: () => ([])
     }
   },
   data () {

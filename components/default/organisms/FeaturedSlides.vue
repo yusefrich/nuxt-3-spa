@@ -11,7 +11,6 @@
               v-for="(featuredBet, index) in currentFeaturedBets"
               :key="'featured_' + index + '_' + tickets.length"
               :bet="featuredBet"
-              :odds="odds"
               :tickets="tickets"
               @selectBet="ticket => $emit('selectBet', ticket)"
             />
@@ -52,7 +51,6 @@
             class="w-100 mx-0 text-center"
             :height="'200px'"
             :bet="featuredBet"
-            :odds="odds"
           />
         </div>
       </swiper-slide>
@@ -63,8 +61,8 @@
   </div>
 </template>
 <script>
-import FeaturedGame from '@/components/default/molecules/FeaturedGame.vue'
-import FeaturedSlide from '@/components/default/molecules/FeaturedSlide.vue'
+import FeaturedGame from '@/components/default/molecules/FeaturedGame'
+import FeaturedSlide from '@/components/default/molecules/FeaturedSlide'
 import FutButton from '@/components/default/atoms/FutButton.vue'
 export default {
   components: { FeaturedGame, FeaturedSlide, FutButton },

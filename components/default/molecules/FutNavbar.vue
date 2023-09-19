@@ -12,10 +12,9 @@
       >
         <img
           class=" img-bg-inside transition"
-          style="object-fit:contain;"
+          style="object-fit:contain; height: 100%;"
           :src="currentSettings.logo?currentSettings.logo:''"
           width="200"
-          height="100%"
           alt=""
         >
       </fut-button>
@@ -229,10 +228,11 @@
                 </fut-button>
               </li>
             </ul>
+            <!-- $emit('logUser', $event) -->
             <fut-login
               v-if="!loggedInUser"
               :current-settings="currentSettings"
-              @logUser="$emit('logUser', $event)"
+              @logUser="testing($event)"
             />
             <ul v-if="!loggedInUser" class="navbar-nav forgot-mobile">
               <li class="nav-item">
@@ -594,6 +594,9 @@ export default {
     clearInterval(this.interval)
   },
   methods: {
+    testing (obj) {
+      console.log('log event', obj)
+    },
     changeLanguage (lang) {
       this.$i18n.locale = lang
     },

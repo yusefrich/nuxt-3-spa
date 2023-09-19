@@ -56,6 +56,7 @@
           @blur="$emit('blur', $event.target.value)"
           @input="$emit('input', $event.target.value)"
         >
+          <!-- @input="$emit('update:value', $event.target.value)" -->
       </div>
     </div>
     <template v-if="validate && nsxValidation">
@@ -184,6 +185,7 @@ export default {
       default: false
     }
   },
+  emits: ['input'],
   watch: {
     validate (value) {
       if (value && value[this.name] && !this.disableScroll) {
@@ -192,10 +194,8 @@ export default {
             top: document.querySelector(`#${this.name}`).offsetTop - 50,
             behavior: 'smooth'
           })
-
           return
         }
-
         window.scrollTo({
           top: document.querySelector(`#${this.name}`).offsetTop,
           behavior: 'smooth'

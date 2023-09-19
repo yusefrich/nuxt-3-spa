@@ -1,7 +1,7 @@
-const config = useRuntimeConfig()
 
 const depositService = {
   async post (payload) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/deposits', payload)
       return [data.data, null]
@@ -10,6 +10,7 @@ const depositService = {
     }
   },
   async get (filters) {
+    const config = useRuntimeConfig()
     let filtersString = ''
     let counter = 0
 
@@ -32,6 +33,7 @@ const depositService = {
     }
   },
   async getCasinoTransactions (filters) {
+    const config = useRuntimeConfig()
     try {
       // search filter string concatenation
       let filtersString = ''

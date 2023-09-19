@@ -1,7 +1,7 @@
-const config = useRuntimeConfig()
 
 const casinoService = {
   async get () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino')
       return [data.data, null]
@@ -10,6 +10,7 @@ const casinoService = {
     }
   },
   async fetchIframeUrl (payload) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/softgaming/auth', payload)
       return [data.data, null]
@@ -18,6 +19,7 @@ const casinoService = {
     }
   },
   async fetchBananaLiveIframeUrl (payload) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/banana-live/auth', payload)
       return [data.data, null]
@@ -26,6 +28,7 @@ const casinoService = {
     }
   },
   async fetchBananaIframeUrl (payload) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/banana/auth', payload)
       return [data.data, null]
@@ -34,6 +37,7 @@ const casinoService = {
     }
   },
   async fetchFdsIframeUrl (payload) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/fds/auth', payload)
       return [data.data, null]
@@ -42,6 +46,7 @@ const casinoService = {
     }
   },
   async only (id) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/casino/only/${id}`)
       return [data.data, null]
@@ -50,6 +55,7 @@ const casinoService = {
     }
   },
   async getSliders () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/slides')
       return [data.data, null]
@@ -58,6 +64,7 @@ const casinoService = {
     }
   },
   async getHeaderGames () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/header/games')
       return [data.data, null]
@@ -66,6 +73,7 @@ const casinoService = {
     }
   },
   async getHeaderCategories () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/header')
       return [data.data, null]
@@ -74,6 +82,7 @@ const casinoService = {
     }
   },
   async new (filters) {
+    const config = useRuntimeConfig()
     // search filter string concatenation
     let filtersString = ''
     let counter = 0
@@ -95,6 +104,7 @@ const casinoService = {
     }
   },
   async mostPlayed (filters) {
+    const config = useRuntimeConfig()
     // search filter string concatenation
     let filtersString = ''
     let counter = 0
@@ -116,6 +126,7 @@ const casinoService = {
     }
   },
   async search (term) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/casino/search/${term}`)
       return [data.data, null]
@@ -124,6 +135,7 @@ const casinoService = {
     }
   },
   async getCategories () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/categories')
       return [data.data, null]
@@ -132,6 +144,7 @@ const casinoService = {
     }
   },
   async getProviders () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/providers')
       return [data.data, null]
@@ -140,6 +153,7 @@ const casinoService = {
     }
   },
   async showProviderGames (slug, filters) {
+    const config = useRuntimeConfig()
     // search filter string concatenation
     let filtersString = ''
     let counter = 0
@@ -161,6 +175,7 @@ const casinoService = {
     }
   },
   async show (slug, filters) {
+    const config = useRuntimeConfig()
     // search filter string concatenation
     let filtersString = ''
     let counter = 0

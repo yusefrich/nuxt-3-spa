@@ -1,15 +1,15 @@
-const config = useRuntimeConfig()
 
 const thirdPartySportsProviders = {
   // async upgamingAuth () {
-  //   try {
+    //   try {
   //     const data = await $fetch(config.public.BASE_URL + 'https://gateway.upgator.io/api/Authentication/Authenticate', { Username: process.env.CRED_USERNAME, SecretKey: process.env.CRED_SECRETKEY })
   //     return [data.data, null]
   //   } catch (error) {
-  //     return [null, error]
-  //   }
-  // },
+    //     return [null, error]
+    //   }
+    // },
   async upgamingLaunchGame (payload) {
+    const config = useRuntimeConfig()
     // const [token] = await this.upgamingAuth()
     const cred = {
       BrandId: '108',

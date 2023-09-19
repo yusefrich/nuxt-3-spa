@@ -32,18 +32,25 @@ export const useMetadataSportsStore = defineStore('metadataSports', {
       })
     },
     async fetchAllMetadataSports () {
-      this.loading = true
+      return new Promise(async (resolve, reject) => {
+        this.loading = true
+        
+        const [data, err] = await sportsService.getNewDynamic()
+        
+        if (err) {
+          // commit('errors/setErrors', err.errors, { root: true })
+          this.loading = false
+          reject(err)
+          return
+        }
 
-      const [data, err] = await sportsService.getNewDynamic()
-
-      if (err) {
-        // commit('errors/setErrors', err.errors, { root: true })
+        // commit('errors/clearErrors', {}, { root: true })
+        const sportsArray = data.map(item => item.sport)
+        
+        this.allSportsData = sportsArray
         this.loading = false
-      }
-
-      // commit('errors/clearErrors', {}, { root: true })
-      this.allSportsData = data
-      this.loading = false
+        resolve(sportsArray)
+      })
     },
     fetchMetadataInplaySports (id) {
       this.loading = true

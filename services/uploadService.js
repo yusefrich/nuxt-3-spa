@@ -1,7 +1,7 @@
-const config = useRuntimeConfig()
 
 const uploadService = {
   async submitAuthFiles (payload) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/auth/files', payload)
 

@@ -1,8 +1,8 @@
-const config = useRuntimeConfig()
 let cancelToken
 
 const betsService = {
   async userBets (filters) {
+    const config = useRuntimeConfig()
     // search filter string concatenation
     let filtersString = ''
     let counter = 0
@@ -33,6 +33,7 @@ const betsService = {
    * @return {Array}
    */
   async events (filters) {
+    const config = useRuntimeConfig()
     // Check if there are any previous pending requests
     // if (typeof cancelToken !== typeof undefined) {
     //   cancelToken.cancel('Operation canceled due to new request.')
@@ -54,12 +55,13 @@ const betsService = {
     try {
       // const data = await $fetch(config.public.BASE_URL + `/events${filtersString}`, { cancelToken: cancelToken.token })
       const data = await $fetch(config.public.BASE_URL + `/events${filtersString}`)
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
   },
   async eventsSearch (team) {
+    const config = useRuntimeConfig()
     // Check if there are any previous pending requests
     if (typeof cancelToken !== typeof undefined) {
       cancelToken.cancel('Operation canceled due to new request.')
@@ -75,6 +77,7 @@ const betsService = {
     }
   },
   async eventsSearchUnprotected (team) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/filter/event?team=${team}`)
       return [data.data.data, null]
@@ -83,6 +86,7 @@ const betsService = {
     }
   },
   async brasilEvents () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/events/country/br')
       return [data.data, null]
@@ -91,6 +95,7 @@ const betsService = {
     }
   },
   async blackList () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `${process.env.BASE_URL_DEV}/inplay/blacklist`, {
         headers: {
@@ -104,6 +109,7 @@ const betsService = {
     }
   },
   async betsByDay (date) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/events?date=${date}`)/* ${url}/events ?date=2021-07-06 */
       return [data.data, null]
@@ -112,6 +118,7 @@ const betsService = {
     }
   },
   async betsByTime (hour) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/events?hour=${hour}`)/* ${url}/events ?hour=3 */
       return [data.data, null]
@@ -120,6 +127,7 @@ const betsService = {
     }
   },
   async event (slug) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/event/${slug}`)/* ${url}/events ?date=2021-07-06 */
       return [data.data, null]
@@ -129,6 +137,7 @@ const betsService = {
     }
   },
   async mainEvents (sport) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/leagues/main${sport ? '?sport=' + sport : ''}`)
       return [data.data.data, null]
@@ -137,6 +146,7 @@ const betsService = {
     }
   },
   async allMainLeagues () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/leagues/main?sport=all')
       return [data.data.data, null]
@@ -145,6 +155,7 @@ const betsService = {
     }
   },
   async allLeagues () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/leagues?sport=all')
       return [data.data.data, null]
@@ -153,6 +164,7 @@ const betsService = {
     }
   },
   async leagues (sport) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/leagues${sport ? '?sport=' + sport : ''}`)
       // console.log('this is the return of leagues service', data.data.data)
@@ -163,6 +175,7 @@ const betsService = {
     }
   },
   async league (id) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/leagues/${id}`)/* ${url}/events ?date=2021-07-06 */
       return [[data.data.data], null]
@@ -172,6 +185,7 @@ const betsService = {
     }
   },
   async cashout (id) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/bets/${id}/cashout`)
       return [data.data, null]
@@ -181,6 +195,7 @@ const betsService = {
     }
   },
   async postBet (payload) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/bets', payload)
       return [data.data, null]
@@ -190,6 +205,7 @@ const betsService = {
     }
   },
   async featuredBets (sportId) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/events/main${sportId ? '?sport=' + sportId : ''}`)
       return [data.data, null]

@@ -2,12 +2,14 @@
 import authService from '@/services/authService'
 import betsService from '@/services/betsService'
 import { defineStore } from 'pinia'
+// const { $toast } = useNuxtApp()
 
 export const useBaseStore = defineStore('base', {
   state: () => ({
     auth: {
       user: null
     },
+    errors: null,
     user_bets: null,
     page: null,
     hasMoreBets: true,

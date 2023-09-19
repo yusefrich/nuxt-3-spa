@@ -7,9 +7,8 @@
           style="padding-top: 0 !important;"
           :class="{'col-12': !currentAds, 'col-12': currentAds && currentAds.length === 0, 'col-lg-10': currentAds && currentAds.length > 0}"
         >
-          <select-sport :default-top-distance="genericStyling" :sports="getMetadataSports" />
+          <select-sport v-if="getMetadataSports" :default-top-distance="genericStyling" :sports="getMetadataSports" />
           <featured-slides
-            :odds="getOdds"
             :current-settings="currentSettings"
             :current-slides="currentSlides"
             :current-featured-bets="currentFeaturedBets"
@@ -66,17 +65,25 @@
 
 <script>
 import dayjs from 'dayjs'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { usePreMatchStore } from '@/stores/pre-match'
+import { useSettingsStore } from '@/stores/settings'
+import { useBetsStore } from '@/stores/bets'
+import { usePreMatchFeaturedEventsStore } from '@/stores/pre-match-featured-events'
+import { useTicketsPreCashInStore } from '@/stores/tickets-pre-cash-in'
 import SelectSport from '@/components/default/molecules/SelectSport'
 import FeaturedSlides from '@/components/default/organisms/FeaturedSlides'
 import GamesList from '@/components/default/organisms/GamesList'
 import AdBanner from '@/components/default/atoms/AdBanner'
 import StoriesMenu from '@/components/default/atoms/StoriesMenu'
-import FutHtmlRender from '@/components/default/atoms/FutHtmlRender.vue'
+import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
 import FutModal from '@/components/default/organisms/FutModal.vue'
+import FutButton from '@/components/default/atoms/FutButton.vue'
+import { useMetadataSportsStore } from '@/stores/metadata-sports'
 
 export default {
-  components: { SelectSport, FeaturedSlides, GamesList, AdBanner, StoriesMenu, FutModal, FutHtmlRender },
+  components: { SelectSport, FeaturedSlides, GamesList, AdBanner, StoriesMenu, FutModal, FutHtmlRender, FutButton },
   props: {
     genericStyling: {
       type: Boolean,
@@ -90,20 +97,33 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      // todo refactor this part
-      loggedInUser: 'loggedInUser',
-      currentAds: 'settings/currentAds',
-      getFilters: 'pre-match/getFilters',
-      currentSlides: 'settings/currentSlides',
-      currentSettings: 'settings/currentSettings',
-      currentFeaturedBets: 'bets/currentFeaturedBets',
-      getPreMatchFeaturedEvents: 'pre-match-featured-events/getPreMatchFeaturedEvents',
-      getPreCashInTickets: 'tickets-pre-cash-in/getPreCashInTickets',
-      getMetadataSports: 'metadata-sports/getMetadataSports',
-      getOdds: 'odds/getOdds',
-      getPreMatchEvents: 'pre-match/getPreMatchEvents',
-      getPreMatchLoading: 'pre-match/getPreMatchLoading'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useSettingsStore, {
+      currentAds: 'currentAds',
+      currentSlides: 'currentSlides',
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(usePreMatchStore, {
+      getFilters: 'getFilters',
+      getPreMatchEvents: 'getPreMatchEvents',
+      getPreMatchLoading: 'getPreMatchLoading'
+    }),
+    ...mapState(useBetsStore, {
+      currentFeaturedBets: 'currentFeaturedBets'
+    }),
+    ...mapState(usePreMatchFeaturedEventsStore, {
+      getPreMatchFeaturedEvents: 'getPreMatchFeaturedEvents'
+    }),
+    ...mapState(usePreMatchFeaturedEventsStore, {
+      getPreMatchFeaturedEvents: 'getPreMatchFeaturedEvents'
+    }),
+    ...mapState(useTicketsPreCashInStore, {
+      getPreCashInTickets: 'getPreCashInTickets'
+    }),
+    ...mapState(useMetadataSportsStore, {
+      getMetadataSports: 'getMetadataSports'
     })
   },
   created () {
@@ -126,22 +146,25 @@ export default {
       this.fixed_modal = true
     }
     // merge incoming pr 66 card 261
-    // await this.fetchPreMatchFeaturedEvents(this.getFilters.sport)
+    this.fetchPreMatchFeaturedEvents(this.getFilters.sport)
     // this.commitFeaturedBets(this.getPreMatchFeaturedEvents)
-    // this.fetchSliders().then(() => {
-    //   this.commitSlides(this.currentSlides)
-    // })
+    this.fetchSliders()
   },
   methods: {
-    ...mapActions({
-      fetchPreMatchFeaturedEvents: 'pre-match-featured-events/fetchPreMatchFeaturedEvents',
-      concatPreMatchEvents: 'pre-match/concatPreMatchEvents',
-      fetchPreMatchEvents: 'pre-match/fetchPreMatchEvents',
-      toggleTicket: 'tickets-pre-cash-in/toggleTicket',
-      commitFeaturedBets: 'bets/commitFeaturedBets',
-      changeFilter: 'pre-match/changeFilter',
-      commitSlides: 'settings/commitSlides',
-      fetchSliders: 'settings/fetchSliders'
+    ...mapActions(usePreMatchFeaturedEventsStore, {
+      fetchPreMatchFeaturedEvents: 'fetchPreMatchFeaturedEvents'
+    }),
+    ...mapActions(usePreMatchStore, {
+      concatPreMatchEvents: 'concatPreMatchEvents',
+      fetchPreMatchEvents: 'fetchPreMatchEvents',
+      changeFilter: 'changeFilter'
+    }),
+    ...mapActions(useTicketsPreCashInStore, {
+      toggleTicket: 'toggleTicket'
+    }),
+    ...mapActions(useSettingsStore, {
+      commitSlides: 'commitSlides',
+      fetchSliders: 'fetchSliders'
     }),
     fetchSearch (payload) {
       this.changeFilter({ team: payload })

@@ -1,4 +1,3 @@
-const config = useRuntimeConfig()
 const sportsService = {
   getInplaySports () {
     return [[
@@ -44,6 +43,7 @@ const sportsService = {
     ], null]
   },
   async getDynamicInplay () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/inplay/sports')
       return [data.data.data, null]
@@ -53,6 +53,7 @@ const sportsService = {
     }
   },
   async getDynamic () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/sports')/* ${url}/settings */
       return [data.data.data, null]
@@ -61,24 +62,31 @@ const sportsService = {
     }
   },
   async getNewDynamic () {
+    const config = useRuntimeConfig()
+    console.log('get new dynamic being called')
     try {
-      const { data: { data } } = await $fetch(config.public.BASE_URL + '/all/data')
-      const sportsArray = data.map(item => item.sport)
-      return [sportsArray, null]
+      // const { data: { data } } = await $fetch(config.public.BASE_URL + '/all/data')
+      // const sportsArray = data.map(item => item.sport)
+      // console.log('inside request', {sportsArray, data})
+      const data = await $fetch(config.public.BASE_URL + '/all/data')
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
   },
   async getOutrightSports () {
+    const config = useRuntimeConfig()
     try {
-      const { data: { data } } = await $fetch(config.public.BASE_URL + '/all/outright')
-      const sportsArray = data.map(item => item.sport)
-      return [sportsArray, null]
+      const data = await $fetch(config.public.BASE_URL + '/all/outright')
+      // const sportsArray = data.map(item => item.sport)
+      // const { data: { data } } = await $fetch(config.public.BASE_URL + '/all/outright')
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
   },
   async getOutrightGameOdds (id) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/all/outright/${id}`)
       return [data, null]

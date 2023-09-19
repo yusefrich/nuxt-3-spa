@@ -1,7 +1,7 @@
-const config = useRuntimeConfig()
 
 const legalService = {
   async rules () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/rules')
       return [data.data.data, null]
@@ -10,6 +10,7 @@ const legalService = {
     }
   },
   async deposits () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/deposits')
       return [data.data.data, null]
@@ -18,6 +19,7 @@ const legalService = {
     }
   },
   async responsible () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/responsible')
       return [data.data.data, null]
@@ -26,6 +28,7 @@ const legalService = {
     }
   },
   async suport () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/support')
       return [data.data.data, null]
@@ -34,6 +37,7 @@ const legalService = {
     }
   },
   async terms () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/terms')
       return [data.data.data, null]
@@ -42,6 +46,7 @@ const legalService = {
     }
   },
   async privacy () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/privacy')
       return [data.data.data, null]
@@ -50,6 +55,7 @@ const legalService = {
     }
   },
   async aml () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/aml')
       return [data.data.data, null]
@@ -58,6 +64,7 @@ const legalService = {
     }
   },
   async cookies () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/cookies')
       return [data.data.data, null]
@@ -66,6 +73,7 @@ const legalService = {
     }
   },
   async faq () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/faq')
       return [data.data.data, null]
@@ -74,6 +82,7 @@ const legalService = {
     }
   },
   async about () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/about')
       return [data.data.data, null]
@@ -82,6 +91,7 @@ const legalService = {
     }
   },
   async affiliates () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/affiliates')
       return [data.data.data, null]
@@ -90,6 +100,7 @@ const legalService = {
     }
   },
   async autoExclusion () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/auto_exclusion')
       return [data.data.data, null]
@@ -98,6 +109,7 @@ const legalService = {
     }
   },
   async disputsResolution () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/disputs_resolution')
       return [data.data.data, null]
@@ -106,6 +118,7 @@ const legalService = {
     }
   },
   async methodImpartiality () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/method_impartiality')
       return [data.data.data, null]
@@ -114,6 +127,7 @@ const legalService = {
     }
   },
   async kycPolitcs () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/kyc_politcs')
       return [data.data.data, null]
@@ -122,6 +136,7 @@ const legalService = {
     }
   },
   async accountsPaymentsBonus () {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/accounts_payments_bonus')
       return [data.data.data, null]

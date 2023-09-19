@@ -16,28 +16,28 @@ export const useSettingsStore = defineStore('settings', {
     }
   },
   actions: {
+    // todo exclude this request
     testFetch () {
       console.log('being called correctly')
     },
     fetchSettings () {
+      const { $toast } = useNuxtApp()
       return new Promise(async (resolve, reject) => {
         this.loading = true
 
         const [data, err] = await settingsService.getPlanData()
-        console.log('data', data)
+        console.log('data settings', data)
         console.log('err', err)
 
         this.loading = false
 
         if (err) {
           const errorMessage = err.response && err.response.data && err.response.data.message ? err.response.data.message : 'Erro ao buscar de configuração da plataforma!'
-
-          // this._vm.$toast.open({ message: errorMessage, type: 'error' })
+          $toast.error(errorMessage);
           this.errors = err.response.data
           reject(err)
           return
         }
-
         this.settings = data
         
         resolve(data)

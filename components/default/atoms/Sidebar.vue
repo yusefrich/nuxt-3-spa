@@ -50,8 +50,8 @@
         <div id="main-collapse" class="collapse show m-0">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li v-for="(item, index) in mainLeagues" :key="`count_main_${item.item}_${index}`" class="section-link">
+              <!-- :to="`/sport/${currentSport ? currentSport : 6046}/league/${item.id}`" -->
               <fut-button
-                :to="`/sport/${currentSport ? currentSport : 6046}/league/${item.id}`"
                 class="link-light btn btn-block text-start rounded text-decoration-none fw-bold country-link"
               >
                 <span class="country-name fut-color-dynamic">{{ item.name }}</span>
@@ -97,10 +97,10 @@
                 class="collapse m-0"
                 data-bs-parent="#countryList"
               >
+              <!-- :to="`/sport/${sport.id}/league/${league.id}`" -->
                 <fut-button
                   v-for="(league, idx3) in item.leagues"
                   :key="idx3"
-                  :to="`/sport/${sport.id}/league/${league.id}`"
                   class="link-light btn btn-block text-start text-decoration-none league-link"
                 >
                   <small>{{ league.name }}</small>

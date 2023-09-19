@@ -135,7 +135,7 @@
                 </td>
               </tr>
             </thead>
-            <tbody :key="game.id" class="header select mobile-darker" :class="[count%2===0 ? 'darker' : 'odds-lighter', stripped ? stripped : '']">
+            <tbody class="header select mobile-darker" :class="[count%2===0 ? 'darker' : 'odds-lighter', stripped ? stripped : '']">
               <tr class="table-values">
                 <td class="text-white d-none d-md-table-cell fut-color-dynamic" colspan="1">
                   {{ formattedDate(game.datetime) }}
@@ -152,8 +152,8 @@
                     {{ game.home_team }} {{ game.away_team ? 'x' : '' }} {{ game.away_team }}
                   </span>
                 </td>
-                <template v-for="(oddsGroup, index) in game.odds" :key="'odd_slug_j_'+j+'__'+index">
-                  <template v-if="(settings && settings.both_score === 0 && index === 0) || (settings && settings.both_score === 1)" :key="'odd_slug_j_'+j+'_'+index">
+                <template v-for="(oddsGroup, index) in game.odds" :key="'odd_slug_j__'+index">
+                  <template v-if="(settings && settings.both_score === 0 && index === 0) || (settings && settings.both_score === 1)">
                     <td
                       v-for="(odd, j) in oddsGroup.odds"
                       :key="'odd_slug_j_'+j+'_'+index"
@@ -309,7 +309,7 @@ export default {
       this.$emit('fetchDate', null)
     },
     navigate (link) {
-      this.$router.push(this.localePath(link))
+      // this.$router.push(this.localePath(link))
     },
     formattedDate (date) {
       return utils.formattedDate(date)

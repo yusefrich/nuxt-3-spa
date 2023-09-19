@@ -1,6 +1,6 @@
 <template>
   <main class="fut-scrollbar">
-    <loader :condition="!currentSettings" />
+    <loader :condition="false" />
     <login-barrier
       v-if="currentSettings && currentSettings.login_barrier"
       :brand="currentSettings.logo"
@@ -50,7 +50,7 @@
           <div class="mobile-spacing" />
           <slot v-if="hasContent && currentSettings" />
           <div class="d-flex justify-content-center">
-            <!-- <tickets
+            <tickets
               v-if="getOptions.ticket && currentSettings"
               :submenu-type="currentSettings.bet_dynamic"
               :bet-max-value="+currentSettings.bet_limit_max"
@@ -70,7 +70,7 @@
               @updateTicket="ticket => updateTicket(ticket)"
               @clearAllFreeBet="clearAllFreeBet()"
               @resetAllBets="resetAllBets()"
-            /> -->
+            />
           </div>
         </div>
       </div>
@@ -420,6 +420,7 @@ export default {
       })
     },
     fetchTimeFilter (payload) {
+      console.log('fetchTimeFilter', payload)
       if (document.getElementById('nav-hoje-tab')) {
         document.getElementById('nav-hoje-tab').classList.add('active')
       }

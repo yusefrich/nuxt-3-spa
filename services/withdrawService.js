@@ -1,7 +1,7 @@
-const config = useRuntimeConfig()
 
 const withdrawService = {
   async post (payload) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/withdrawals', payload)
       return [data.data, null]
@@ -10,6 +10,7 @@ const withdrawService = {
     }
   },
   async get (filters) {
+    const config = useRuntimeConfig()
     let filtersString = ''
     let counter = 0
 
@@ -32,6 +33,7 @@ const withdrawService = {
     }
   },
   async exclude (id) {
+    const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + `/withdrawals/${id}`)
       return [data.data, null]

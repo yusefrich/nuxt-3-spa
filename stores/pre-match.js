@@ -29,6 +29,7 @@ export const usePreMatchStore = defineStore('preMatch', {
         this.events = []
 
         const [data, err] = await betsService.events(this.filters)
+        console.log('fetch prematch events being called', data)
 
         if (err) {
           // commit('errors/setErrors', err.errors, { root: true })

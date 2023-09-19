@@ -1,44 +1,42 @@
 import sportsService from '@/services/sportsService'
+import { defineStore } from 'pinia'
 
-state: () => ({
-  events: null,
-  loading: false
+export const useOutrightStore = defineStore('outrightStore', {
+  state: () => ({
+    events: null,
+    loading: false
+  }),
+  actions: {
+    fetchOutrightEvents () {
+      this.loading = true
+
+      return new Promise(async (resolve, reject) => {
+        this.events = []
+
+        const [data, err] = await sportsService.getOutrightSports()
+
+        if (err) {
+          // commit('errors/setErrors', err.errors, { root: true })
+          this.loading = false
+          reject(err)
+          return
+        }
+
+        // commit('errors/clearErrors', {}, { root: true })
+
+        const sportsArray = data.map(item => item.sport)
+        this.events = sportsArray
+        this.loading = false
+        resolve(sportsArray)
+      })
+    }
+  },
+  getters: {
+    getOutrightEvents (state) {
+      return state.events
+    },
+    getOutrightLoading (state) {
+      return state.loading
+    }
+  }
 })
-export const mutations = {
-  setEvents (state, events) {
-    state.events = events
-  },
-  updateLoading (state, status) {
-    state.loading = status
-  }
-}
-actions: {
-  fetchOutrightEvents () {
-    commit('updateLoading', true)
-
-    return new Promise(async (resolve, reject) => {
-      commit('setEvents', [])
-
-      const [data, err] = await sportsService.getOutrightSports()
-
-      if (err) {
-        // commit('errors/setErrors', err.errors, { root: true })
-        commit('updateLoading', false)
-        reject(err)
-      }
-
-      // commit('errors/clearErrors', {}, { root: true })
-      commit('setEvents', data)
-      commit('updateLoading', false)
-      resolve(data)
-    })
-  }
-}
-getters: {
-  getOutrightEvents (state) {
-    return state.events
-  },
-  getOutrightLoading (state) {
-    return state.loading
-  }
-}

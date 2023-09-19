@@ -258,7 +258,7 @@ const utils = {
     if (!active) {
       return text
     }
-    console.log('testing', { text, home, away })
+    // console.log('testing', { text, home, away })
     const replaceVisitante = 'Visitante'
     const replaceLVisitante = 'visitante'
     const replaceCasa = 'Casa'
