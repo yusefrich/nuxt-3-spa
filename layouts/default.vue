@@ -135,7 +135,7 @@ import FutModal from '@/components/default/organisms/FutModal.vue'
 import Deposit from '@/components/default/organisms/Deposit.vue'
 import Forgot from '@/components/default/organisms/Forgot'
 import LoginBarrier from '@/components/default/organisms/LoginBarrier'
-// import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
+import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 // import Tickets from '@/components/default/organisms/Tickets'
 import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
 // import CookiesManager from '@/components/default/molecules/CookiesManager'
@@ -163,7 +163,7 @@ export default {
     // CookiesManager,
     // IntercomChatBtn
   },
-  // mixins: [sportradarTagManager],
+  mixins: [sportradarTagManager],
   data () {
     return {
       loginAction: false,
@@ -341,9 +341,11 @@ export default {
       this.authUser().then((data) => {
         this.srtmLogin(data.id)
         this.loginAction = true
-        if (this.$nuxt.$route.path.includes('/casino')) {
+        if (this.$route.path.includes('/casino')) {
           location.reload()
         }
+      }).catch((err)=> {
+        console.log('auth user error', err)
       })
     },
     fetchTimeFilter (payload) {
