@@ -1,30 +1,11 @@
 <template>
-    <div v-if="!getCurrentSportsProvider || (getCurrentSportsProvider && getCurrentSportsProvider !== 'upgaming')">
-        <!-- <home-nsx
-        v-if="getCurrentLayoutStyle === 'oldBet365'"
-        />
-        <sg-home
-        v-else-if="getCurrentLayoutStyle === 'SG'"
-        />
-        <fb-home
-        v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'"
-        />
-        <md-home
-        v-else-if="getCurrentLayoutStyle === 'MD'"
-        />
-        <sk-home
-        v-else-if="getCurrentLayoutStyle === 'SK'"
-        /> -->
-        <home
-        />
-    </div>
-    <third-party-provider v-else :layout="getCurrentLayoutStyle" />
+    <third-party-provider :layout="getCurrentLayoutStyle" />
 </template>
 
 <script>
 import { mapState } from 'pinia'
 import { useLayoutStore } from '@/stores/layout'
-import Home from '@/components/default/templates/Home'
+// import Home from '@/components/default/templates/Home'
 // import HomeNsx from '@/components/nsx/templates/HomeNsx'
 // import SgHome from '@/components/sg/templates/SgHome'
 // import FbHome from '@/components/fb/templates/FbHome'
@@ -33,7 +14,7 @@ import ThirdPartyProvider from '@/components/default/templates/ThirdPartyProvide
 
 export default {
     components: {
-        Home,
+        // Home,
         // HomeNsx,
         // FbHome,
         // SgHome,

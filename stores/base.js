@@ -1,12 +1,13 @@
 // import createCache from 'vuex-cache'
 import authService from '@/services/authService'
 import betsService from '@/services/betsService'
+import { useOnboardingAuthStore } from './onboarding-auth'
 import { defineStore } from 'pinia'
-// const { $toast } = useNuxtApp()
 
 export const useBaseStore = defineStore('base', {
   state: () => ({
     auth: {
+      token: null,
       user: null
     },
     errors: null,
@@ -89,12 +90,12 @@ export const useBaseStore = defineStore('base', {
         const [data, err] = await betsService.userBets(formattedPayload)
 
         if (err) {
-          // commit('errors/setErrors', err.errors, { root: true })
+          this.errors = err.errors
           reject(err)
           return
         }
 
-        // commit('errors/clearErrors', { root: true })
+        this.errors = null
         this.setUserBets(data)
         resolve(data)
       })
@@ -114,12 +115,12 @@ export const useBaseStore = defineStore('base', {
         const [data, err] = await betsService.userBets(formattedPayload)
 
         if (err) {
-          // commit('errors/setErrors', err.errors, { root: true })
+          this.errors = err.errors
           reject(err)
           return
         }
 
-        // commit('errors/clearErrors', { root: true })
+        this.errors = null
         this.concatUserBets(data)
 
         if (data.length === 0) {
@@ -144,12 +145,12 @@ export const useBaseStore = defineStore('base', {
         const [data, err] = await betsService.userBets(formattedPayload)
 
         if (err) {
-          // commit('errors/setErrors', err.errors, { root: true })
+          this.errors = err.errors
           reject(err)
           return
         }
 
-        // commit('errors/clearErrors', { root: true })
+        this.errors = null
 
         if (data.length === 0) {
           this.hasMoreBets = false
@@ -169,51 +170,51 @@ export const useBaseStore = defineStore('base', {
         this.loading = false
 
         if (err) {
-          // commit('errors/setErrors', err.errors, { root: true })
+          this.errors = err.errors
           reject(err)
         }
 
-        // commit('errors/clearErrors', {}, { root: true })
+        this.errors = null
         resolve(data)
       })
     },
     async updatePassword (payload) {
+      const { $toast } = useNuxtApp()
       /* eslint-disable-next-line */
       const [dataUp, errUp] = await authService.passwordUpdate(payload)
 
       if (errUp) {
-        const errorMessage = errUp.response && errUp.response.data.message ? errUp.response.data.message : 'Falha ao alterar senha'
-
-        // this._vm.$toast.open({ message: errorMessage, type: 'error' })
-        // commit('errors/setErrors', errUp.errors, { root: true })
+        this.errors = errUp.errors
         return
       }
 
-      // commit('errors/clearErrors', {}, { root: true })
-      // this._vm.$toast.open({ message: 'Senha atualizados com sucesso', type: 'success' })
+      this.errors = null
+      $toast.success('Senha atualizada com sucesso')
     },
     async login (payload) {
+      const { $toast } = useNuxtApp()
       const [data, err] = await authService.login(payload)
 
       if (err) {
-        const errorMessage = err.response && err.response.data.message ? err.response.data.message : 'Usuário ou senha incorretos!'
-
-        // this._vm.$toast.open({ message: errorMessage, type: 'error' })
-        // commit('errors/setErrors', err.errors, { root: true })
+        $toast.error('Usuário ou senha inválidos')
+        this.errors = err.errors
         return
       }
 
-      // dispatch('onboarding-auth/saveAffiliateToken', null)
+      // const onAuth = useOnboardingAuthStore()
+      // onAuth.saveAffiliateToken(null)
+      console.log('login data', data)
+      this.auth.token = data.token
+      this.errors = null
 
-      // commit('errors/clearErrors', {}, { root: true })
-
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('token', 'bearer ' + data.token)
-      }
+      // if (typeof window !== 'undefined') {
+        // localStorage.setItem('token', 'bearer ' + data.token)
+      // }
 
       // this._vm.$toast.open({ message: 'Login realizado com sucesso', type: 'success' })
     },
     authUser () {
+      const { $toast } = useNuxtApp()
       this.loading = true
 
       return new Promise(async (resolve, reject) => {
@@ -222,29 +223,32 @@ export const useBaseStore = defineStore('base', {
         this.loading = false
 
         if (err) {
-          const errorMessage = err.response && err.response.data.message ? err.response.data.message : 'Erro durante a autenticação do usuário!'
-
-          // this._vm.$toast.open({ message: errorMessage, type: 'error' })
-          // commit('errors/setErrors', err.errors, { root: true })
+          this.errors = err.errors
           reject(err)
           return
         }
 
-        // commit('errors/clearErrors', { root: true })
+        $toast.error('Login realizado com sucesso')
+        this.errors = null
         this.auth.user = data
         resolve(data)
       })
     },
     logout () {
       // localStorage.setItem('token', '')
-      localStorage.removeItem('token')
+      // localStorage.removeItem('token')
       this.auth.user = null
+      this.auth.token = null
+
       this.setUserBets([])
     }
   },
   getters: {
     loggedInUser (state) {
       return state.auth.user
+    },
+    authToken (state) {
+      return state.auth.token
     },
     getHasMoreBets (state) {
       return state.hasMoreBets

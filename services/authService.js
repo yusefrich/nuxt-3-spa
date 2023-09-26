@@ -3,12 +3,9 @@ const authService = {
   async auth () {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(
-        config.public.BASE_URL + '/auth/me', 
-        { method: 'POST' }
-      )
+      const data = await $fetch(config.public.BASE_URL + '/auth/me', { method: 'POST', body: {} })
       
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -80,7 +77,7 @@ const authService = {
         { method: 'POST', body: payload }
       )
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }

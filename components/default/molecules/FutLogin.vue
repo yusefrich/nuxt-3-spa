@@ -1,5 +1,5 @@
 <template>
-  <form class="login-form" :class="{'d-block': vertical}" @submit.prevent="testing(data)"><!-- $emit('logUser', data) -->
+  <form class="login-form" :class="{'d-block': vertical}" @submit.prevent="$emit('logUser', data)">
     <fut-input
       v-model="data.email"
       class="me-2 mx-1 mx-md-2 fut-color-dynamic"
@@ -74,11 +74,6 @@ export default {
         email: '',
         password: ''
       }
-    }
-  },
-  methods: {
-    testing (obj) {
-      console.log('log event raw', { obj, data: this.data })
     }
   }
 }
