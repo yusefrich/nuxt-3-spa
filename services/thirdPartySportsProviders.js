@@ -10,6 +10,7 @@ const thirdPartySportsProviders = {
     // },
   async upgamingLaunchGame (payload) {
     const config = useRuntimeConfig()
+
     // const [token] = await this.upgamingAuth()
     const cred = {
       BrandId: '108',
@@ -22,6 +23,7 @@ const thirdPartySportsProviders = {
     // Token: payload.Token
     let filtersString = ''
     let counter = 0
+
     if (cred) {
       for (const [key, value] of Object.entries(cred)) {
         if (value && counter === 0) {
@@ -32,11 +34,13 @@ const thirdPartySportsProviders = {
         }
       }
     }
+
     try {
       /* eslint-disable */
       // const ttoken = typeof window !== 'undefined' ? localStorage.getItem('token') : ''
       // const data = await $fetch(config.public.BASE_URL + `https://gateway.upgator.io/api/gameservice/Game/LaunchGame${filtersString}`, { headers: { Authorization: token && token.token ? token.token : '' } })
       const data = await $fetch(config.public.BASE_URL + `/gameservice/Game/LaunchGame${filtersString}`)
+      
       // const data2 = await $fetch(config.public.BASE_URL + '/settings', { headers: { Authorization: ttoken } })
       console.log('testing NEW auth token', data)
       return [data.data, null]

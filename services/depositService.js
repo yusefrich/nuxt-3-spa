@@ -2,8 +2,13 @@
 const depositService = {
   async post (payload) {
     const config = useRuntimeConfig()
+
     try {
-      const data = await $fetch(config.public.BASE_URL + '/deposits', payload)
+      const data = await $fetch(
+        config.public.BASE_URL + '/deposits',
+        { methods: 'POST', body: payload }
+      )
+
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -11,6 +16,7 @@ const depositService = {
   },
   async get (filters) {
     const config = useRuntimeConfig()
+
     let filtersString = ''
     let counter = 0
 
@@ -27,6 +33,7 @@ const depositService = {
 
     try {
       const data = await $fetch(config.public.BASE_URL + `/deposits${filtersString}`)
+
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -34,10 +41,12 @@ const depositService = {
   },
   async getCasinoTransactions (filters) {
     const config = useRuntimeConfig()
+
     try {
       // search filter string concatenation
       let filtersString = ''
       let counter = 0
+
       if (filters) {
         for (const [key, value] of Object.entries(filters)) {
           if (value && counter === 0) {
@@ -48,7 +57,9 @@ const depositService = {
           }
         }
       }
+
       const data = await $fetch(config.public.BASE_URL + `/casino/transactions${filtersString}`)
+      
       return [data.data.data, null]
     } catch (error) {
       return [null, error]

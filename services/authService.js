@@ -3,7 +3,10 @@ const authService = {
   async auth () {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/auth/me', { method: 'POST' })
+      const data = await $fetch(
+        config.public.BASE_URL + '/auth/me', 
+        { method: 'POST' }
+      )
       
       return [data.data, null]
     } catch (error) {
@@ -14,6 +17,7 @@ const authService = {
     const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/auth/files')
+
       return [data.data.data, null]
     } catch (error) {
       return [null, error]
@@ -22,7 +26,11 @@ const authService = {
   async submitAuthFiles (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/auth/files', { method: 'POST', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/auth/files',
+        { method: 'POST', body: payload }
+      )
+
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -32,6 +40,7 @@ const authService = {
     const config = useRuntimeConfig()
     try {
       const data = await $fetch(config.public.BASE_URL + '/bonus')
+
       return [data, null]
     } catch (error) {
       return [null, error]
@@ -40,7 +49,11 @@ const authService = {
   async bonusCancelation (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/bonusCancel', { method: 'POST', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/bonusCancel',
+        { method: 'POST', body: payload }
+      )
+
       return [data, null]
     } catch (error) {
       return [null, error]
@@ -49,7 +62,10 @@ const authService = {
   async search (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/search', { method: 'POST', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/search',
+        { method: 'POST', body: payload }
+      )
 
       return [data.data, null]
     } catch (error) {
@@ -59,7 +75,10 @@ const authService = {
   async login (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/auth/login', { method: 'POST', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/auth/login',
+        { method: 'POST', body: payload }
+      )
 
       return [data.data, null]
     } catch (error) {
@@ -69,7 +88,10 @@ const authService = {
   async register (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/register', { method: 'POST', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/register',
+        { method: 'POST', body: payload }
+      )
 
       return [data.data, null]
     } catch (error) {
@@ -79,7 +101,10 @@ const authService = {
   async update (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/auth/update', { method: 'PUT', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/auth/update',
+        { method: 'PUT', body: payload }
+      )
 
       return [data.data, null]
     } catch (error) {
@@ -89,7 +114,10 @@ const authService = {
   async passwordUpdate (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/auth/password', { method: 'PUT', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/auth/password',
+        { method: 'PUT', body: payload }
+      )
 
       return [data.data, null]
     } catch (error) {
@@ -99,7 +127,10 @@ const authService = {
   async forgot (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/forgot-password', { method: 'POST', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/forgot-password',
+        { method: 'POST', body: payload }
+      )
 
       return [data.data, null]
     } catch (error) {
@@ -109,7 +140,10 @@ const authService = {
   async reset (payload) {
     const config = useRuntimeConfig()
     try {
-      const data = await $fetch(config.public.BASE_URL + '/reset-password', { method: 'POST', body: payload })
+      const data = await $fetch(
+        config.public.BASE_URL + '/reset-password',
+        { method: 'POST', body: payload }
+      )
 
       return [data.data, null]
     } catch (error) {
