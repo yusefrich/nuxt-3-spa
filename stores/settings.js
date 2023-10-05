@@ -32,7 +32,7 @@ export const useSettingsStore = defineStore('settings', {
         this.loading = false
 
         if (err) {
-          const errorMessage = err.response && err.response.data && err.response.data.message ? err.response.data.message : 'Erro ao buscar de configuração da plataforma!'
+          const errorMessage = err.response && err.response.data && err.response.data.message ? err.response.data.message : 'Erro ao buscar configuração da plataforma!'
           $toast.error(errorMessage);
           this.errors = err.response.data
           reject(err)

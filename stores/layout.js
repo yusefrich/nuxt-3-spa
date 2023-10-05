@@ -57,7 +57,7 @@ export const useLayoutStore = defineStore('layout', {
         ticket: Object.prototype.hasOwnProperty.call(options, 'ticket') ? options.ticket : true,
         raw: Object.prototype.hasOwnProperty.call(options, 'raw') ? options.raw : false // used only for nsx info pages
       }
-      state.options = newOptions
+      this.options = newOptions
     },
     changeTheme (payload) {
       this.theme = payload

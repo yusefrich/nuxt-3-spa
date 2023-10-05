@@ -1,5 +1,7 @@
 <template>
-    <third-party-provider :layout="getCurrentLayoutStyle" />
+    <div>
+        <third-party-provider :layout="getCurrentLayoutStyle" />
+    </div>
 </template>
 
 <script>

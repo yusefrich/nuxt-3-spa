@@ -18,6 +18,15 @@ export const useBaseStore = defineStore('base', {
     loading: false
   }),
   actions: {
+    showToastNotificationError (message) {
+      const { $toast } = useNuxtApp()
+      console.log('error not being called')
+      $toast.error(message)
+    },
+    showToastNotificationSuccess (message) {
+      const { $toast } = useNuxtApp()
+      $toast.success(message)
+    },
     setUserBets (userBets) {
       const pending = []
       const done = []
@@ -203,7 +212,6 @@ export const useBaseStore = defineStore('base', {
 
       // const onAuth = useOnboardingAuthStore()
       // onAuth.saveAffiliateToken(null)
-      console.log('login data', data)
       this.auth.token = data.token
       this.errors = null
 

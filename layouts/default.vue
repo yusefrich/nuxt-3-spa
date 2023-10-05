@@ -1,6 +1,6 @@
 <template>
   <main class="fut-scrollbar">
-    <loader :condition="false" />
+    <loader :condition="!currentSettings" />
     <login-barrier
       v-if="currentSettings && currentSettings.login_barrier"
       :brand="currentSettings.logo"
@@ -12,11 +12,12 @@
     <fut-overlay v-if="getOverlay" />
     <app-config v-if="currentSettings" :config="currentSettings" />
     <fut-navbar
+      :key="loggedInUser ? loggedInUser.id : 0"
       :casino-games="getCasinoHeaderGames"
       :casino-categories="getCasinoHeaderCategories"
       :current-settings="currentSettings"
       :logged-in-user="loggedInUser"
-      :login-action="loginAction"
+      :login-action="cLoguinAction"
       :application-state-type="getCurrentApplicationType"
       @redirectProduct="redirectProduct()"
       @changeLanguage="changeLanguage($event)"
@@ -25,6 +26,7 @@
       @logUser="logUser($event)"
       @authUser="authUser()"
     />
+    <!-- <code>{{ currentSettings }}</code> -->
     <div class="primary bg-dark padding-top-md">
       <fut-button
         v-if="casinoSidebarBtn"
@@ -166,6 +168,7 @@ export default {
   mixins: [sportradarTagManager],
   data () {
     return {
+      count: 0,
       loginAction: false,
       hasContent: true,
       open: false,
@@ -213,6 +216,9 @@ export default {
     }),
     getCurrentUrl () {
       return this.$route.path
+    },
+    cLoguinAction () {
+      return this.loginAction
     },
     casinoSidebarBtn () {
       if (this.$route.path === '/casino' && !this.getOptions.casino) {
@@ -339,7 +345,8 @@ export default {
       console.log('log event being called', event)
       await this.login(event)
       this.authUser().then((data) => {
-        this.srtmLogin(data.id)
+        console.log('return of auth', data)
+        // this.srtmLogin(data.id)
         this.loginAction = true
         if (this.$route.path.includes('/casino')) {
           location.reload()
@@ -366,6 +373,9 @@ export default {
       }).catch((error) => {
         this.$toast.open({ message: error.response.data.errors.email[0], type: 'error' })
       })
+    },
+    increment() {
+      this.count++
     }
   }
 }
