@@ -2,8 +2,13 @@
 const withdrawService = {
   async post (payload) {
     const config = useRuntimeConfig()
+
     try {
-      const data = await $fetch(config.public.BASE_URL + '/withdrawals', payload)
+      const data = await $fetch(
+        config.public.BASE_URL + '/withdrawals',
+        { methods: 'POST', body: payload }
+      )
+
       return [data.data, null]
     } catch (error) {
       return [null, error]
@@ -11,6 +16,7 @@ const withdrawService = {
   },
   async get (filters) {
     const config = useRuntimeConfig()
+
     let filtersString = ''
     let counter = 0
 
@@ -34,8 +40,13 @@ const withdrawService = {
   },
   async exclude (id) {
     const config = useRuntimeConfig()
+
     try {
-      const data = await $fetch(config.public.BASE_URL + `/withdrawals/${id}`)
+      const data = await $fetch(
+        config.public.BASE_URL + `/withdrawals/${id}`,
+        { methods: 'DELETE' }
+      )
+
       return [data.data, null]
     } catch (error) {
       return [null, error]
