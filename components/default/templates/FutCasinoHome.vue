@@ -218,9 +218,11 @@
     </div>
   </div>
 </template>
+
 <script>
 import FutButton from '@/components/default/atoms/FutButton'
 import FutInput from '@/components/default/atoms/FutInput'
+
 export default {
   components: { FutButton, FutInput },
   props: {
@@ -253,6 +255,9 @@ export default {
       default: () => ([])
     }
   },
+  emits: [
+    'search'
+  ],
   data () {
     return {
       iframe: false,
@@ -298,6 +303,7 @@ export default {
   }
 }
 </script>
+
 <style scoped lang="scss">
 @import "@/assets/layout/breakpoints";
 .pointer{

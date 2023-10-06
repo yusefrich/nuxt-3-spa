@@ -24,13 +24,17 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@pinia/nuxt": "^0.4.11",
     "@types/bootstrap": "^5.2.6",
+    "@types/vue-the-mask": "^0.11.2",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
     "dayjs-nuxt": "^1.1.2",
     "js-cookie": "^3.0.5",
+    "nuxt-lazy-load": "^3.0.4",
     "pinia": "^2.1.6",
     "sass": "1.64",
+    "v-money": "^0.8.1",
     "v-money3": "^3.24.0",
+    "vue-the-mask": "^0.11.1",
     "vue-toast-notification": "^3.1.1"
   }
 }

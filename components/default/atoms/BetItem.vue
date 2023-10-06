@@ -105,6 +105,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import dayjs from 'dayjs'
 import FutButton from '@/components/default/atoms/FutButton'
@@ -117,6 +118,9 @@ export default {
       default: () => ({})
     }
   },
+  emits: [
+    'submitCashout'
+  ],
   data () {
     return {
       loading: false
@@ -177,6 +181,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/layout/variables";
 .bg-dark{

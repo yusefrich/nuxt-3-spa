@@ -32,7 +32,7 @@
 export default {
   name: 'FutRegisterSelect',
   props: {
-    value: {
+    modelValue: {
       type: [String, Number],
       default: ''
     },
@@ -53,6 +53,9 @@ export default {
       default: ''
     }
   },
+  emits: [
+    'update:modelValue'
+  ],
   data () {
     return {
       focused: false
@@ -61,10 +64,10 @@ export default {
   computed: {
     selectValue: {
       get () {
-        return this.value
+        return this.modelValue
       },
       set (value) {
-        this.$emit('input', value)
+        this.$emit('update:modelValue', value)
       }
     }
   }

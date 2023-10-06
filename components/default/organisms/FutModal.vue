@@ -13,6 +13,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import FutButton from '@/components/default/atoms/FutButton.vue'
 export default {
@@ -36,9 +37,13 @@ export default {
       type: String,
       default: ''
     }
-  }
+  },
+  emits: [
+    'onClose'
+  ]
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/layout/variables";
 

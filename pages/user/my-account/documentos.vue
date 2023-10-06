@@ -7,10 +7,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import FbDocuments from '@/components/fb/templates/FbDocuments.vue'
-import SgDocuments from '~/components/sg/templates/SgDocuments.vue'
-import Documents from '~/components/default/templates/Documents.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import FbDocuments from '@/components/fb/templates/FbDocuments'
+import SgDocuments from '~/components/sg/templates/SgDocuments'
+import Documents from '~/components/default/templates/Documents'
 
 export default {
   components: {
@@ -18,13 +20,10 @@ export default {
     SgDocuments,
     Documents
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   middleware: ['protected'],
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

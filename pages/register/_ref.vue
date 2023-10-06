@@ -7,10 +7,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Register from '@/components/default/templates/Register.vue'
-import NsxRegister from '@/components/nsx/templates/NsxRegister.vue'
-import FbRegister from '@/components/fb/templates/FbRegister.vue'
+import { mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useLayoutStore } from '@/stores/layout'
+
+import Register from '@/components/default/templates/Register'
+import NsxRegister from '@/components/nsx/templates/NsxRegister'
+import FbRegister from '@/components/fb/templates/FbRegister'
 
 export default {
   components: {
@@ -18,14 +21,13 @@ export default {
     NsxRegister,
     FbRegister
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   // middleware: ['sign-in'],
   computed: {
-    ...mapGetters({
-      loggedInUser: 'loggedInUser',
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

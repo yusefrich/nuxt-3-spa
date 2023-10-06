@@ -8,19 +8,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import FbLogin from '@/components/fb/templates/FbLogin.vue'
-import MdLogin from '@/components/md/templates/MdLogin.vue'
-import Login from '@/components/default/templates/Login.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import FbLogin from '@/components/fb/templates/FbLogin'
+import MdLogin from '@/components/md/templates/MdLogin'
+import Login from '@/components/default/templates/Login'
 
 export default {
   components: {
     FbLogin,
     Login,
     MdLogin
-  },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
   },
   // middleware: ['sign_in'],
   data () {
@@ -29,9 +28,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      currentSettings: 'settings/currentSettings',
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   },
   mounted () {

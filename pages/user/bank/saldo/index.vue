@@ -4,7 +4,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
 import FbBalance from '@/components/fb/templates/FbBalance.vue'
 import SgWallet from '~/components/sg/templates/SgWallet.vue'
 
@@ -13,13 +15,10 @@ export default {
     FbBalance,
     SgWallet
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   middleware: ['protected'],
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

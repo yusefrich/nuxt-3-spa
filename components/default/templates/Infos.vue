@@ -14,7 +14,9 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useLegalStore } from '@/stores/legal'
+
 import FutButton from '@/components/default/atoms/FutButton.vue'
 import FutHtmlRender from '@/components/default/atoms/FutHtmlRender.vue'
 
@@ -35,23 +37,23 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getLegalAffiliates: 'lagal/getLegalAffiliates',
-      getLegalAml: 'legal/getLegalAml',
-      getLegalAutoExclusion: 'legal/getLegalAutoExclusion',
-      getLegalCookies: 'legal/getLegalCookies',
-      getLegalDeposits: 'legal/getLegalDeposits',
-      getLegalFaq: 'legal/getLegalFaq',
-      getLegalMethodImpartiality: 'legal/getLegalMethodImpartiality',
-      getLegalResponsible: 'legal/getLegalResponsible',
-      getLegalKycPolitcs: 'legal/getLegalKycPolitcs',
-      getLegalAccountsPaymentsBonus: 'legal/getLegalAccountsPaymentsBonus',
-      getLegalPrivacy: 'legal/getLegalPrivacy',
-      getLegalRules: 'legal/getLegalRules',
-      getLegalDisputsResolution: 'legal/getLegalDisputsResolution',
-      getLegalAbout: 'legal/getLegalAbout',
-      getLegalSuport: 'legal/getLegalSuport',
-      getLegalTerms: 'legal/getLegalTerms'
+    ...mapState(useLegalStore, {
+      getLegalAffiliates: 'getLegalAffiliates',
+      getLegalAml: 'getLegalAml',
+      getLegalAutoExclusion: 'getLegalAutoExclusion',
+      getLegalCookies: 'getLegalCookies',
+      getLegalDeposits: 'getLegalDeposits',
+      getLegalFaq: 'getLegalFaq',
+      getLegalMethodImpartiality: 'getLegalMethodImpartiality',
+      getLegalResponsible: 'getLegalResponsible',
+      getLegalKycPolitcs: 'getLegalKycPolitcs',
+      getLegalAccountsPaymentsBonus: 'getLegalAccountsPaymentsBonus',
+      getLegalPrivacy: 'getLegalPrivacy',
+      getLegalRules: 'getLegalRules',
+      getLegalDisputsResolution: 'getLegalDisputsResolution',
+      getLegalAbout: 'getLegalAbout',
+      getLegalSuport: 'getLegalSuport',
+      getLegalTerms: 'getLegalTerms'
     }),
     getInfo () {
       switch (this.page) {
@@ -145,23 +147,23 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      fetchLegalAffiliates: 'legal/fetchLegalAffiliates',
-      fetchLegalAml: 'legal/fetchLegalAml',
-      fetchLegalAutoExclusion: 'legal/fetchLegalAutoExclusion',
-      fetchLegalCookies: 'legal/fetchLegalCookies',
-      fetchLegalDeposits: 'legal/fetchLegalDeposits',
-      fetchLegalFaq: 'legal/fetchLegalFaq',
-      fetchLegalMethodImpartiality: 'legal/fetchLegalMethodImpartiality',
-      fetchLegalResponsible: 'legal/fetchLegalResponsible',
-      fetchLegalKycPolitcs: 'legal/fetchLegalKycPolitcs',
-      fetchLegalAccountsPaymentsBonus: 'legal/fetchLegalAccountsPaymentsBonus',
-      fetchLegalPrivacy: 'legal/fetchLegalPrivacy',
-      fetchLegalRules: 'legal/fetchLegalRules',
-      fetchLegalDisputsResolution: 'legal/fetchLegalDisputsResolution',
-      fetchLegalAbout: 'legal/fetchLegalAbout',
-      fetchLegalSuport: 'legal/fetchLegalSuport',
-      fetchLegalTerms: 'legal/fetchLegalTerms'
+    ...mapActions(useLegalStore, {
+      fetchLegalAffiliates: 'fetchLegalAffiliates',
+      fetchLegalAml: 'fetchLegalAml',
+      fetchLegalAutoExclusion: 'fetchLegalAutoExclusion',
+      fetchLegalCookies: 'fetchLegalCookies',
+      fetchLegalDeposits: 'fetchLegalDeposits',
+      fetchLegalFaq: 'fetchLegalFaq',
+      fetchLegalMethodImpartiality: 'fetchLegalMethodImpartiality',
+      fetchLegalResponsible: 'fetchLegalResponsible',
+      fetchLegalKycPolitcs: 'fetchLegalKycPolitcs',
+      fetchLegalAccountsPaymentsBonus: 'fetchLegalAccountsPaymentsBonus',
+      fetchLegalPrivacy: 'fetchLegalPrivacy',
+      fetchLegalRules: 'fetchLegalRules',
+      fetchLegalDisputsResolution: 'fetchLegalDisputsResolution',
+      fetchLegalAbout: 'fetchLegalAbout',
+      fetchLegalSuport: 'fetchLegalSuport',
+      fetchLegalTerms: 'fetchLegalTerms'
     }),
     printPage () {
       window.print()

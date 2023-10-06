@@ -5,18 +5,30 @@
         {{ $t('i18n_nenhuma_aposta_encontrada') }}
       </p>
     </div>
-    <bet-item v-for="(bet) in bets" :key="bet.id" :bet="bet" @submitCashout="payload => $emit('submitCashout', payload)" />
+    <bet-item
+      v-for="(bet) in bets"
+      :key="bet.id"
+      :bet="bet"
+      @submitCashout="payload => $emit('submitCashout', payload)"
+    />
   </div>
 </template>
+
 <script>
-import BetItem from '@/components/default/atoms/BetItem.vue'
+import BetItem from '@/components/default/atoms/BetItem'
+
 export default {
-  components: { BetItem },
+  components: {
+    BetItem
+  },
   props: {
     bets: {
       type: Array,
       default: () => ([])
     }
-  }
+  },
+  emits: [
+    'submitCashout'
+  ]
 }
 </script>

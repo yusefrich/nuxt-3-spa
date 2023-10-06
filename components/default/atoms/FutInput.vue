@@ -185,6 +185,12 @@ export default {
       default: false
     }
   },
+  emits: [
+    'enter',
+    'focus',
+    'blur',
+    'update:modelValue'
+  ],
   watch: {
     validate (value) {
       if (value && value[this.name] && !this.disableScroll) {

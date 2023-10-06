@@ -21,9 +21,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import User from '@/components/default/templates/User.vue'
-import Withdraw from '@/components/default/organisms/Withdraw.vue'
+import { mapActions, mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useSettingsStore } from '@/stores/settings'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+
+import User from '@/components/default/templates/User'
+import Withdraw from '@/components/default/organisms/Withdraw'
 
 export default {
   name: 'FutWithdraw',
@@ -37,16 +41,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getBankLoading: 'onboarding-bank/getBankLoading',
-      getBankErrors: 'onboarding-bank/getBankErrors',
-      currentSettings: 'settings/currentSettings',
+    ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useOnboardingBankStore, {
+      getBankErrors: 'getBankErrors',
+      getBankLoading: 'getBankLoading'
     })
   },
   methods: {
-    ...mapActions({
-      postBankWithdraw: 'onboarding-bank/postBankWithdraw'
+    ...mapActions(useOnboardingBankStore, {
+      postBankWithdraw: 'postBankWithdraw'
     }),
     submitWithdraw (payload) {
       this.postBankWithdraw(payload).then((result) => {

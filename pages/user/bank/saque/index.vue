@@ -5,10 +5,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import FutWithdraw from '@/components/default/templates/FutWithdraw.vue'
-import FbWithdraw from '@/components/fb/templates/FbWithdraw.vue'
-import SgWithdraw from '~/components/sg/templates/SgWithdraw.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import FutWithdraw from '@/components/default/templates/FutWithdraw'
+import FbWithdraw from '@/components/fb/templates/FbWithdraw'
+import SgWithdraw from '~/components/sg/templates/SgWithdraw'
 
 export default {
   components: {
@@ -16,13 +18,10 @@ export default {
     FbWithdraw,
     SgWithdraw
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   middleware: ['protected'],
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

@@ -324,6 +324,11 @@ export default {
       default: () => ({})
     }
   },
+  emits: [
+    'validateCpf',
+    'register',
+    'searchAddress'
+  ],
   data () {
     return {
       cpfFocused: false,

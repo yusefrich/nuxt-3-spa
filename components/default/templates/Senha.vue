@@ -9,9 +9,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import User from '@/components/default/templates/User.vue'
-import FutNewPassword from '@/components/default/molecules/FutNewPassword.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+
+import User from '@/components/default/templates/User'
+import FutNewPassword from '@/components/default/molecules/FutNewPassword'
 
 export default {
   name: 'Senha',
@@ -20,13 +22,13 @@ export default {
     FutNewPassword
   },
   computed: {
-    ...mapGetters({
-      getErrors: 'errors/getErrors'
+    ...mapState(useBaseStore, {
+      getErrors: 'getErrors'
     })
   },
   methods: {
-    ...mapActions({
-      clear: 'errors/clear',
+    ...mapActions(useBaseStore, {
+      cleanErrors: 'cleanErrors',
       updatePassword: 'updatePassword'
     }),
     updateWrapper (payload) {

@@ -1,5 +1,9 @@
 <template>
-  <form class="login-form" :class="{'d-block': vertical}" @submit.prevent="$emit('logUser', data)">
+  <form
+    class="login-form"
+    :class="{'d-block': vertical}"
+    @submit.prevent="$emit('logUser', data)"
+  >
     <fut-input
       v-model="data.email"
       class="me-2 mx-1 mx-md-2 fut-color-dynamic"
@@ -51,8 +55,8 @@
 </template>
 
 <script>
-import FutInput from '@/components/default/atoms/FutInput.vue'
-import FutButton from '@/components/default/atoms/FutButton.vue'
+import FutInput from '@/components/default/atoms/FutInput'
+import FutButton from '@/components/default/atoms/FutButton'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 
 export default {
@@ -67,6 +71,9 @@ export default {
       default: false
     }
   },
+  emits: [
+    'logUser'
+  ],
   mixins: [sportradarTagManager],
   data () {
     return {

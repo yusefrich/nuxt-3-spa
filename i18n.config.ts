@@ -6,5 +6,5 @@ export default defineI18nConfig(() => ({
     legacy: true,
     fallbackLocale: 'en-us',
     locale: 'pt-br',
-    messages: { pt, en, es }
+    messages: { PT: pt, EN: en, ES: es }
 }))

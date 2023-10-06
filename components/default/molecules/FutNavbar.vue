@@ -448,9 +448,9 @@
 import FutLogin from '@/components/default/molecules/FutLogin'
 import FutButton from '@/components/default/atoms/FutButton'
 import FutResponsiveDropdown from '@/components/default/atoms/FutResponsiveDropdown'
+import FutBalanceDropdown from '@/components/default/molecules/FutBalanceDropdown'
 import global from '@/mixins.js/global.js'
-import FutBalanceDropdown from '@/components/default/molecules/FutBalanceDropdown.vue'
-import windowWidth from '~/mixins.js/windowWidth'
+import windowWidth from '@/mixins.js/windowWidth.js'
 
 export default {
   name: 'FutNavbar',
@@ -487,6 +487,14 @@ export default {
       default: false
     }
   },
+  emits: [
+    'deposit',
+    'redirectProduct',
+    'forgot',
+    'logUser',
+    'authUser',
+    'changeLanguage'
+  ],
   data () {
     return {
       loading: false,

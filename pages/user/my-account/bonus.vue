@@ -6,22 +6,21 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import FbBonus from '@/components/fb/templates/FbBonus.vue'
-import Bonus from '@/components/default/templates/Bonus.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import FbBonus from '@/components/fb/templates/FbBonus'
+import Bonus from '@/components/default/templates/Bonus'
 
 export default {
   components: {
     FbBonus,
     Bonus
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   middleware: ['protected'],
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

@@ -113,6 +113,7 @@
     </ul>
   </div>
 </template>
+
 <script>
 // import Spinner from '@/components/default/atoms/Spinner'
 import FutButton from '@/components/default/atoms/FutButton'
@@ -133,6 +134,9 @@ export default {
       default: () => ([])
     }
   },
+  emits: [
+    'fetchTimeFilter'
+  ],
   data () {
     return {
       timeFilter: 0,
@@ -179,6 +183,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/layout/variables";
 @import "@/assets/layout/breakpoints";

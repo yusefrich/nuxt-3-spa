@@ -31,10 +31,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FutButton from '@/components/default/atoms/FutButton.vue'
-import BetsGroup from '@/components/default/molecules/BetsGroup.vue'
-import FutFilterDynamic from '@/components/default/molecules/FutFilterDynamic.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+
+import FutButton from '@/components/default/atoms/FutButton'
+import BetsGroup from '@/components/default/molecules/BetsGroup'
+import FutFilterDynamic from '@/components/default/molecules/FutFilterDynamic'
 
 export default {
   name: 'MyBets',
@@ -49,7 +51,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
+    ...mapState(useBaseStore, {
       userBets: 'userBets',
       getHasMoreBets: 'getHasMoreBets'
     })
@@ -58,11 +60,13 @@ export default {
     this.fetchUserBets()
   },
   methods: {
-    ...mapActions({
+    ...mapActions(useBaseStore, {
       fetchUserBets: 'fetchUserBets',
-      commitCashOut: 'onboarding-tickets/commitCashOut',
       addUserBets: 'addUserBets'
     }),
+    // ...mapActions({
+    //   commitCashOut: 'onboarding-tickets/commitCashOut',
+    // }),
     submitCashout (id) {
       this.commitCashOut(id).then(() => {
         location.reload()

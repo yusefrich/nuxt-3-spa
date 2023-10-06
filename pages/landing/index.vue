@@ -9,22 +9,21 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import FbLandingPage from '@/components/fb/templates/FbLandingPage.vue'
-import NsxLandingPage from '@/components/nsx/templates/NsxLandingPage.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import FbLandingPage from '@/components/fb/templates/FbLandingPage'
+import NsxLandingPage from '@/components/nsx/templates/NsxLandingPage'
 
 export default {
   components: {
     NsxLandingPage,
     FbLandingPage
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle',
-      getCurrentLandingStyle: 'layout/getCurrentLandingStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle',
+      getCurrentLandingStyle: 'getCurrentLandingStyle'
     })
   }
 }

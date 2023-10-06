@@ -11,7 +11,9 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'pinia'
+import { useSettingsStore } from '@/stores/settings'
+
 import FutButton from '@/components/default/atoms/FutButton.vue'
 
 export default {
@@ -19,8 +21,8 @@ export default {
     FutButton
   },
   computed: {
-    ...mapGetters({
-      currentSettings: 'settings/currentSettings'
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
     })
   }
 }

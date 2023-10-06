@@ -47,10 +47,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FutHtmlRender from '@/components/default/atoms/FutHtmlRender.vue'
-import FutButton from '@/components/default/atoms/FutButton.vue'
-import FutModal from '@/components/default/organisms/FutModal.vue'
+import { mapState, mapActions } from 'pinia'
+import { usePromoStore } from '@/stores/promo'
+
+import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
+import FutButton from '@/components/default/atoms/FutButton'
+import FutModal from '@/components/default/organisms/FutModal'
 
 export default {
   name: 'Promo',
@@ -70,8 +72,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getPromos: 'promo/getPromos'
+    ...mapState(usePromoStore, {
+      getPromos: 'getPromos'
     })
   },
   created () {
@@ -82,8 +84,8 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      fetchPromos: 'promo/fetchPromos'
+    ...mapActions(usePromoStore, {
+      fetchPromos: 'fetchPromos'
     }),
     pushQueryToRoute (query) {
       const q = this.complexToQueryString(query)

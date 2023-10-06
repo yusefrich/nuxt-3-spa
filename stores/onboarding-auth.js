@@ -11,6 +11,10 @@ export const useOnboardingAuthStore = defineStore('onboardingAuth', {
     address: null
   }),
   actions: {
+    clearAuthErrors () {
+      this.errors = null
+      this.loading = false
+    },
     sendCancelUserBonus (payload) {
       return new Promise(async (resolve, reject) => {
         this.loading = true
@@ -80,7 +84,6 @@ export const useOnboardingAuthStore = defineStore('onboardingAuth', {
         if (err) {
           const errorMessage = 'Falha ao alterar senha'
 
-          // console.log('uai', err)
           // this._vm.$toast.open({ message: errorMessage, type: 'error' })
           this.errors = err.errors
           reject(err)

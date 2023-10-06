@@ -72,8 +72,13 @@
     </div>
   </div>
 </template>
+
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useLayoutStore } from '@/stores/layout'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
 import FutSidebarUserMenu from '@/components/default/organisms/FutSidebarUserMenu.vue'
 import FutButton from '@/components/default/atoms/FutButton'
 import ProgressBar from '@/components/default/molecules/ProgressBar.vue'
@@ -95,15 +100,19 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      loggedInUser: 'loggedInUser',
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle',
-      getOnboardingAuthLoading: 'onboarding-auth/getOnboardingAuthLoading'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
+    }),
+    ...mapState(useOnboardingAuthStore, {
+      getOnboardingAuthLoading: 'getOnboardingAuthLoading'
     })
   },
   methods: {
-    ...mapActions({
-      sendCancelUserBonus: 'onboarding-auth/sendCancelUserBonus'
+    ...mapActions(useOnboardingAuthStore, {
+      sendCancelUserBonus: 'sendCancelUserBonus'
     }),
     cancelUserBonus () {
       this.sendCancelUserBonus({
