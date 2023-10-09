@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     modules: [
         'dayjs-nuxt',
         '@nuxtjs/i18n',
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        '@pinia-plugin-persistedstate/nuxt'
     ],
     i18n: {
         locales: ['pt', 'en', 'es'],
@@ -27,11 +28,11 @@ export default defineNuxtConfig({
             BASE_URL: process.env.BASE_URL || 'http://localhost:8000'
         }
     },
-    plugins: [
-        { src: '~/plugins/fontawesome.js' },
-        { src: '~/plugins/ofetch.ts' },
-        { src: '~/plugins/useBootstrap.client.ts', mode: 'client' }
-    ],
+    // plugins: [
+    //     { src: '~/plugins/fontawesome.js' },
+    //     { src: '~/plugins/ofetch.ts' },
+    //     { src: '~/plugins/useBootstrap.client.ts', mode: 'client' }
+    // ],
     css: [
         'vue-toast-notification/dist/theme-default.css',
         '@fortawesome/fontawesome-svg-core/styles.css',

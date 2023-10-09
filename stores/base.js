@@ -17,6 +17,7 @@ export const useBaseStore = defineStore('base', {
     user_bets_loading: false,
     loading: false
   }),
+  persist: true,
   actions: {
     showToastNotificationError (message) {
       const { $toast } = useNuxtApp()

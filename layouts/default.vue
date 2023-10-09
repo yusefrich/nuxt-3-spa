@@ -96,11 +96,11 @@
       :license="liveChat()"
       visibility="minimized"
     /> -->
-    <!-- <cookies-manager
+    <cookies-manager
       v-if="!getAcceptedCookies"
       current-layout="default"
       @acceptCookies="confirmCookies($event)"
-    /> -->
+    />
     <div v-if="currentSettings && currentSettings.telegram_float" id="div_telegram" :class="currentSettings.telegram_float.telegram_position">
       <a :href="currentSettings.telegram_float.telegram_link" target="_blank">
         <img height="60px" width="60px" src="/telegram.png">
@@ -140,7 +140,7 @@ import LoginBarrier from '@/components/default/organisms/LoginBarrier'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 // import Tickets from '@/components/default/organisms/Tickets'
 import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
-// import CookiesManager from '@/components/default/molecules/CookiesManager'
+import CookiesManager from '@/components/default/molecules/CookiesManager'
 // import IntercomChatBtn from '@/components/default/atoms/IntercomChatBtn'
 
 export default {
@@ -162,7 +162,7 @@ export default {
     FutButton,
     FutCasinoSidebar,
     // Tickets,
-    // CookiesManager,
+    CookiesManager,
     // IntercomChatBtn
   },
   mixins: [sportradarTagManager],
