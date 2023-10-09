@@ -57,6 +57,7 @@ export const useLayoutStore = defineStore('layout', {
         ticket: Object.prototype.hasOwnProperty.call(options, 'ticket') ? options.ticket : true,
         raw: Object.prototype.hasOwnProperty.call(options, 'raw') ? options.raw : false // used only for nsx info pages
       }
+      
       this.options = newOptions
     },
     changeTheme (payload) {
@@ -196,7 +197,9 @@ export const useLayoutStore = defineStore('layout', {
       return process.env.PRODUCT_CONFIG_PROMO_URL ? process.env.PRODUCT_CONFIG_PROMO_URL + '' : '/promo'
     },
     getCurrentLayoutStyle () {
-      return process.env.LAYOUT ? process.env.LAYOUT : 'default'
+      const config = useRuntimeConfig();
+
+      return config.public.LAYOUT
     },
     getCurrentCasinoLayoutStyle () {
       return process.env.LAYOUT_CASINO
@@ -205,10 +208,14 @@ export const useLayoutStore = defineStore('layout', {
       return process.env.LAYOUT_SPORTS
     },
     getCuracaoToken () {
-      return process.env.CURACAO
+      const config = useRuntimeConfig();
+
+      return config.public.CURACAO
     },
     getCuracaoTokenFunction () {
-      return process.env.CURACAO ? 'apg_' + process.env.CURACAO.replace(/-/g, '_') : null
+      const config = useRuntimeConfig();
+
+      return config.public.CURACAO ? 'apg_' + config.public.CURACAO.replace(/-/g, '_') : null
     },
     getCurrentThemeStyle () {
       return process.env.THEME ? process.env.THEME : false

@@ -444,11 +444,14 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import dayjs from 'dayjs'
-import FutButton from '@/components/default/atoms/FutButton.vue'
-import FutSelect from '@/components/default/atoms/FutSelect.vue'
-import FutModal from '@/components/default/organisms/FutModal.vue'
+
+import { mapState, mapActions } from 'pinia'
+import { useUploadFileStore } from '@/stores/upload-file'
+
+import FutButton from '@/components/default/atoms/FutButton'
+import FutSelect from '@/components/default/atoms/FutSelect'
+import FutModal from '@/components/default/organisms/FutModal'
 
 // todo Add residence file
 export default {
@@ -498,12 +501,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getLoading: 'upload-file/getLoading'
+    ...mapState(useUploadFileStore, {
+      getLoading: 'getLoading'
     })
   },
   methods: {
-    ...mapActions({
+    ...mapActions(useUploadFileStore, {
       sendFile: 'upload-file/sendFile'
     }),
     openFileInput (refValue) {

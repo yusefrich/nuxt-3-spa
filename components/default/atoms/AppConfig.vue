@@ -217,9 +217,9 @@
     </component>
   </div>
 </template>
+
 <script>
 /* eslint-disable */
-// import { mapGetters, mapActions } from 'vuex'
 import { mapState } from 'pinia'
 import { useLayoutStore } from '@/stores/layout'
 import utils from '@/utils/utils.js'
@@ -337,6 +337,7 @@ export default {
 }
 /* eslint-enable */
 </script>
+
 <style lang="scss">
 @import "@/assets/layout/breakpoints";
 @import "@/assets/layout/variables";

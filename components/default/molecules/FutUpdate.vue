@@ -154,6 +154,10 @@ export default {
       default: () => ({})
     }
   },
+  emits: [
+    'updateData',
+    'searchAddress'
+  ],
   data () {
     return {
       data: {

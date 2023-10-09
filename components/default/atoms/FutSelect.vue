@@ -47,6 +47,7 @@
     <small v-if="info" :class="{'nsx-smaller': nsxInput}">{{ info }}</small>
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -114,9 +115,13 @@ export default {
       type: String,
       default: ''
     }
-  }
+  },
+  emits: [
+    'input'
+  ]
 }
 </script>
+
 <style scoped lang="scss">
   @import "@/assets/layout/variables";
   .form-select, .form-control{

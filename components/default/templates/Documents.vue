@@ -5,9 +5,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import User from '@/components/default/templates/User.vue'
-import FutDocuments from '@/components/default/molecules/FutDocuments.vue'
+import { mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+
+import User from '@/components/default/templates/User'
+import FutDocuments from '@/components/default/molecules/FutDocuments'
 
 export default {
   name: 'Documents',
@@ -16,9 +18,9 @@ export default {
     FutDocuments
   },
   computed: {
-    ...mapGetters({
+    ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'
-    })
+    }),
   }
 }
 </script>

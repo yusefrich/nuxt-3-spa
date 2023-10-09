@@ -16,6 +16,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import FutLogin from '@/components/default/molecules/FutLogin'
 import FutButton from '@/components/default/atoms/FutButton.vue'
@@ -42,9 +43,13 @@ export default {
       type: Object,
       default: () => ({})
     }
-  }
+  },
+  emits: [
+    'logUser'
+  ]
 }
 </script>
+
 <style lang="scss" scoped>
 .login-barrier{
   width: 100vw;

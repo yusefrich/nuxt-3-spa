@@ -14,9 +14,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import User from '@/components/default/templates/User.vue'
-import Deposit from '@/components/default/organisms/Deposit.vue'
+import { mapState, mapActions } from 'pinia'
+import { useSettingsStore } from '@/stores/settings'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+
+import User from '@/components/default/templates/User'
+import Deposit from '@/components/default/organisms/Deposit'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 
 export default {
@@ -32,16 +35,18 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getBankLoading: 'onboarding-bank/getBankLoading',
-      getBankErrors: 'onboarding-bank/getBankErrors',
-      currentSettings: 'settings/currentSettings'
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useOnboardingBankStore, {
+      getBankErrors: 'getBankErrors',
+      getBankLoading: 'getBankLoading'
     })
   },
   methods: {
-    ...mapActions({
-      fetchBankDeposits: 'onboarding-bank/fetchBankDeposits',
-      postBankDeposit: 'onboarding-bank/postBankDeposit'
+    ...mapActions(useOnboardingBankStore, {
+      fetchBankDeposits: 'fetchBankDeposits',
+      postBankDeposit: 'postBankDeposit'
     }),
     submitDeposit (payload) {
       this.fetchBankDeposits().then((deposits) => {

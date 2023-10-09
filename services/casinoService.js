@@ -6,7 +6,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino')
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -82,7 +82,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + `/casino/only/${id}`)
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -92,8 +92,8 @@ const casinoService = {
 
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/slides')
-
-      return [data.data, null]
+      
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -141,7 +141,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + `/casino/new${filtersString}`)
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -193,7 +193,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + `/casino/most_played${filtersString}`)
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -230,7 +230,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + `/casino/search/${term}`)
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -252,7 +252,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/categories')
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -274,7 +274,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/casino/providers')
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -300,7 +300,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + `/casino/provider/${slug}${filtersString}`)
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }
@@ -326,7 +326,7 @@ const casinoService = {
     try {
       const data = await $fetch(config.public.BASE_URL + `/casino/games/${slug}${filtersString}`)
       
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
       return [null, error]
     }

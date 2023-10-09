@@ -32,7 +32,7 @@
 export default {
   name: 'FutRegisterInput',
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: ''
     },
@@ -69,6 +69,11 @@ export default {
       default: '15px'
     }
   },
+  emits: [
+    'focus',
+    'blur',
+    'update:modelValue'
+  ],
   data () {
     return {
       focused: false
@@ -77,10 +82,10 @@ export default {
   computed: {
     inputValue: {
       get () {
-        return this.value
+        return this.modelValue
       },
       set (value) {
-        this.$emit('input', value)
+        this.$emit('update:modelValue', value)
       }
     }
   }

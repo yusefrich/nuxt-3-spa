@@ -26,8 +26,6 @@ export const useSettingsStore = defineStore('settings', {
         this.loading = true
 
         const [data, err] = await settingsService.getPlanData()
-        console.log('data settings', data)
-        console.log('err', err)
 
         this.loading = false
 
@@ -61,6 +59,7 @@ export const useSettingsStore = defineStore('settings', {
         }
 
         this.slides = data
+
         resolve(data)
       })
     },

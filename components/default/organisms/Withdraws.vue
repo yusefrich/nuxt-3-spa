@@ -29,13 +29,19 @@
     </template>
   </div>
 </template>
+
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import dayjs from 'dayjs'
-import FutFilter from '@/components/default/molecules/FutFilter.vue'
+
+import { mapState, mapActions } from 'pinia'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+
+import FutFilter from '@/components/default/molecules/FutFilter'
 
 export default {
-  components: { FutFilter },
+  components: {
+    FutFilter
+  },
   data () {
     return {
       rawWithdraws: [],
@@ -43,8 +49,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getBankWithdraws: 'onboarding-bank/getBankWithdraws'
+    ...mapState(useOnboardingBankStore, {
+      getBankWithdraws: 'getBankWithdraws'
     })
   },
   async created () {
@@ -53,8 +59,8 @@ export default {
     this.withdraws = this.getBankWithdraws.data
   },
   methods: {
-    ...mapActions({
-      fetchBankWithdraws: 'onboarding-bank/fetchBankWithdraws'
+    ...mapActions(useOnboardingBankStore, {
+      fetchBankWithdraws: 'fetchBankWithdraws'
     }),
     formmated (date) {
       return dayjs(date).format('DD/MM/YYYY')
@@ -62,5 +68,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>

@@ -5,7 +5,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'pinia'
+import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
+
 export default {
   name: 'Auction',
   mounted () {
@@ -15,8 +17,8 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      logUserFromThirdParty: 'onboarding-third-pt-auth/logUserFromThirdParty'
+    ...mapActions(useOnboardingThirdPtAuthStore, {
+      logUserFromThirdParty: 'logUserFromThirdParty'
     })
   }
 }

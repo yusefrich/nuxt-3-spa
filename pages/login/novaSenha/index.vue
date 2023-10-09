@@ -4,21 +4,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import FbForgotPassword from '@/components/fb/templates/FbForgotPassword.vue'
-import ForgotPassword from '@/components/default/templates/ForgotPassword.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import FbForgotPassword from '@/components/fb/templates/FbForgotPassword'
+import ForgotPassword from '@/components/default/templates/ForgotPassword'
 
 export default {
   components: {
     FbForgotPassword,
     ForgotPassword
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

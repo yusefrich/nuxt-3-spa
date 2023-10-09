@@ -47,10 +47,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FutRegister from '@/components/default/molecules/FutRegister.vue'
-import FutModal from '@/components/default/organisms/FutModal.vue'
-import FutButton from '@/components/default/atoms/FutButton.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useLayoutStore } from '@/stores/layout'
+import { useSettingsStore } from '@/stores/settings'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
+import FutRegister from '@/components/default/molecules/FutRegister'
+import FutModal from '@/components/default/organisms/FutModal'
+import FutButton from '@/components/default/atoms/FutButton'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 
 export default {
@@ -68,25 +73,33 @@ export default {
     }
   },
   computed: {
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useOnboardingAuthStore, {
+      getOnboardingAuthErrors: 'getOnboardingAuthErrors',
+      getOnboardingAuthLoading: 'getOnboardingAuthLoading',
+      getOnboardingAuthUserData: 'getOnboardingAuthUserData',
+      getOnboardingAuthAddress: 'getOnboardingAuthAddress'
+    }),
     ...mapGetters({
-      currentSettings: 'settings/currentSettings',
-      getOnboardingAuthErrors: 'onboarding-auth/getOnboardingAuthErrors',
-      getOnboardingAuthLoading: 'onboarding-auth/getOnboardingAuthLoading',
-      getOnboardingAuthUserData: 'onboarding-auth/getOnboardingAuthUserData',
-      getOnboardingAuthAddress: 'onboarding-auth/getOnboardingAuthAddress'
     })
   },
   created () {
-    this.$store.commit('onboarding-auth/SET_ERRORS', null)
+    this.clearAuthErrors()
   },
   methods: {
-    ...mapActions({
-      authUser: 'authUser',
-      commitUser: 'commitUser',
-      registerUser: 'onboarding-auth/registerUser',
-      validateUserCpf: 'onboarding-auth/validateUserCpf',
-      updatePopupStatus: 'layout/updatePopupStatus',
-      fetchAddressData: 'onboarding-auth/fetchAddressData'
+    ...mapActions(useBaseStore, {
+      authUser: 'authUser'
+    }),
+    ...mapActions(useLayoutStore, {
+      updatePopupStatus: 'updatePopupStatus'
+    }),
+    ...mapActions(useOnboardingAuthStore, {
+      registerUser: 'registerUser',
+      validateUserCpf: 'validateUserCpf',
+      fetchAddressData: 'fetchAddressData',
+      clearAuthErrors: 'clearAuthErrors'
     }),
     validateCpf (cpf) {
       this.validateUserCpf(cpf)

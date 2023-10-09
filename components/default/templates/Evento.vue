@@ -52,10 +52,10 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import GameDetailList from '@/components/default/organisms/GameDetailList.vue'
-import HeadingTitle from '@/components/default/molecules/HeadingTitle.vue'
-import InplayHeadingTitle from '@/components/default/molecules/InplayHeadingTitle.vue'
-import FutInplayField from '@/components/default/atoms/FutInplayField.vue'
+import GameDetailList from '@/components/default/organisms/GameDetailList'
+import HeadingTitle from '@/components/default/molecules/HeadingTitle'
+import InplayHeadingTitle from '@/components/default/molecules/InplayHeadingTitle'
+import FutInplayField from '@/components/default/atoms/FutInplayField'
 import global from '@/mixins.js/global.js'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 

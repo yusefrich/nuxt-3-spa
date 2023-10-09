@@ -32,10 +32,22 @@
       </div>
     </div>
     <div>
-      <fut-button v-if="!confirmBonusCancelation" primary class="text-background" rounded @click="confirmBonusCancelation = true">
+      <fut-button 
+        v-if="!confirmBonusCancelation" 
+        primary 
+        class="text-background" 
+        rounded 
+        @click="confirmBonusCancelation = true"
+      >
         {{ $t('i18n_cancelar_bonus') }}
       </fut-button>
-      <fut-button v-if="confirmBonusCancelation" :disabled="loading" class="btn-danger me-2 transition" rounded @click="$emit('cancelUserBonus')">
+      <fut-button 
+        v-if="confirmBonusCancelation" 
+        :disabled="loading" 
+        class="btn-danger me-2 transition" 
+        rounded 
+        @click="$emit('cancelUserBonus')"
+      >
         {{ loading ? $t('i18n_carregando') : $t('i18n_acao_sem_retorno') }}
       </fut-button>
     </div>
@@ -68,6 +80,9 @@ export default {
       default: false
     }
   },
+  emits: [
+    'cancelUserBonus'
+  ],
   data () {
     return {
       confirmBonusCancelation: false

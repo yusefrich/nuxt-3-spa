@@ -10,7 +10,10 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
 import User from '@/components/default/templates/User.vue'
 import FutUpdate from '@/components/default/molecules/FutUpdate.vue'
 
@@ -21,15 +24,17 @@ export default {
     FutUpdate
   },
   computed: {
-    ...mapGetters({
-      loggedInUser: 'loggedInUser',
-      getOnboardingAuthAddress: 'onboarding-auth/getOnboardingAuthAddress'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapGetters(useOnboardingAuthStore, {
+      getOnboardingAuthAddress: 'getOnboardingAuthAddress'
     })
   },
   methods: {
-    ...mapActions({
-      updateUserData: 'onboarding-auth/updateUserData',
-      fetchAddressData: 'onboarding-auth/fetchAddressData'
+    ...mapActions(useOnboardingAuthStore, {
+      updateUserData: 'updateUserData',
+      fetchAddressData: 'fetchAddressData'
     }),
     updateData (data) {
       this.updateUserData(data)

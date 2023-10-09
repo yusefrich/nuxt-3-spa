@@ -7,12 +7,14 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
 
 export default {
   name: 'Afiliados',
   computed: {
-    ...mapGetters({
+    ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'
     })
   },
@@ -24,8 +26,8 @@ export default {
     window.location.replace(this.localePath('/'))
   },
   methods: {
-    ...mapActions({
-      saveAffiliateToken: 'onboarding-auth/saveAffiliateToken'
+    ...mapActions(useOnboardingAuthStore, {
+      saveAffiliateToken: 'saveAffiliateToken'
     })
   }
 }

@@ -11,8 +11,10 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import FutLogin from '@/components/default/molecules/FutLogin.vue'
+import { mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+
+import FutLogin from '@/components/default/molecules/FutLogin'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 
 export default {
@@ -22,7 +24,7 @@ export default {
   },
   mixins: [sportradarTagManager],
   methods: {
-    ...mapActions({
+    ...mapActions(useBaseStore, {
       login: 'login',
       authUser: 'authUser'
     }),

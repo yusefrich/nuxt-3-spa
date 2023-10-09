@@ -8,6 +8,11 @@ export const useCasinoSearchGamesStore = defineStore('casinoSearchGames', {
     search: ''
   }),
   actions: {
+    cleanSearchGames () {
+      this.loading = false,
+      this.searchGames = null,
+      this.search = ''
+    },
     searchCasinoGames (term) {
       if (!term) {
         this.search = term

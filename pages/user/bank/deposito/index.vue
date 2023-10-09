@@ -9,10 +9,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Deposito from '@/components/default/templates/Deposito.vue'
-import FbDeposit from '@/components/fb/templates/FbDeposit.vue'
-import SgTransactions from '@/components/sg/templates/SgTransactions.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import Deposito from '@/components/default/templates/Deposito'
+import FbDeposit from '@/components/fb/templates/FbDeposit'
+import SgTransactions from '@/components/sg/templates/SgTransactions'
 
 export default {
   components: {
@@ -20,13 +22,10 @@ export default {
     FbDeposit,
     SgTransactions
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   middleware: ['protected'],
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

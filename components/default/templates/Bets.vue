@@ -8,9 +8,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import User from '@/components/default/templates/User.vue'
-import BetsGroup from '@/components/default/molecules/BetsGroup.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+
+import User from '@/components/default/templates/User'
+import BetsGroup from '@/components/default/molecules/BetsGroup'
 
 export default {
   name: 'Bets',
@@ -30,7 +32,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
+    ...mapState(useBaseStore, {
       userBets: 'userBets'
     })
   },
@@ -49,10 +51,12 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      commitCashOut: 'onboarding-tickets/commitCashOut',
+    ...mapActions(useBaseStore, {
       fetchUserBets: 'fetchUserBets'
     }),
+    // ...mapActions({
+    //   commitCashOut: 'onboarding-tickets/commitCashOut',
+    // }),
     submitCashout (id) {
       this.commitCashOut(id).then(() => {
         location.reload()
