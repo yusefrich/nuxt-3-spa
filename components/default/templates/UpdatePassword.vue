@@ -40,7 +40,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
 import FutInput from '@/components/default/atoms/FutInput'
 import FutButton from '@/components/default/atoms/FutButton'
 
@@ -67,13 +69,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getOnboardingAuthErrors: 'onboarding-auth/getOnboardingAuthErrors'
+    ...mapState(useOnboardingAuthStore, {
+      getOnboardingAuthErrors: 'getOnboardingAuthErrors'
     })
   },
   methods: {
-    ...mapActions({
-      sendForgottenPasswordUpdate: 'onboarding-auth/sendForgottenPasswordUpdate'
+    ...mapActions(useOnboardingAuthStore, {
+      sendForgottenPasswordUpdate: 'sendForgottenPasswordUpdate'
     }),
     sendForgotten () {
       this.sendForgottenPasswordUpdate({

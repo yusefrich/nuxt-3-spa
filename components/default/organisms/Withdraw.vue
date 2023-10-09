@@ -226,6 +226,10 @@ export default {
       default: () => ([])
     }
   },
+  emits: [
+    'clearResponse',
+    'submit'
+  ],
   data () {
     return {
       money: {

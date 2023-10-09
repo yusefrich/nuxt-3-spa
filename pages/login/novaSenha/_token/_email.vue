@@ -22,11 +22,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import UpdatePassword from '@/components/default/templates/UpdatePassword.vue'
-import NsxUpdatePassword from '@/components/nsx/templates/NsxUpdatePassword.vue'
-import FbForgotPasswordUpdate from '@/components/fb/templates/FbForgotPasswordUpdate.vue'
-import MdUpdatePassword from '@/components/md/templates/MdUpdatePassword.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import UpdatePassword from '@/components/default/templates/UpdatePassword'
+import NsxUpdatePassword from '@/components/nsx/templates/NsxUpdatePassword'
+import FbForgotPasswordUpdate from '@/components/fb/templates/FbForgotPasswordUpdate'
+import MdUpdatePassword from '@/components/md/templates/MdUpdatePassword'
 
 export default {
   components: {
@@ -35,9 +37,6 @@ export default {
     FbForgotPasswordUpdate,
     MdUpdatePassword
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   data () {
     return {
       token: null,
@@ -45,8 +44,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   },
   mounted () {

@@ -5,7 +5,7 @@
         <div class="infos mb-3">
           <p><strong>{{ $t('i18n_nos_valorizamos_a_sua') }}</strong></p>
           <!-- eslint-disable-next-line -->
-          <p class="desc">{{ $t('i18n_ao_aceitar_todos_os_cookies') }} <n-link :to="localePath(cookiesPolicy)" class="text-black">{{ $t('i18n_consulte_a_nossa_politica') }}</n-link></p>
+          <p class="desc">{{ $t('i18n_ao_aceitar_todos_os_cookies') }} <NuxtLink :to="localePath(cookiesPolicy)" class="text-black">{{ $t('i18n_consulte_a_nossa_politica') }}</NuxtLink></p>
         </div>
         <div class="actions">
           <button
@@ -35,6 +35,9 @@ export default {
       default: 'default'
     }
   },
+  emits: [
+    'acceptCookies'
+  ],
   computed: {
     cookiesPolicy () {
       const redirect = {

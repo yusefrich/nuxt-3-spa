@@ -8,9 +8,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
 import User from '@/components/default/templates/User'
-import FutUpdate from '@/components/default/molecules/FutUpdate.vue'
+import FutUpdate from '@/components/default/molecules/FutUpdate'
 
 export default {
   name: 'Bonus',
@@ -19,13 +22,13 @@ export default {
     FutUpdate
   },
   computed: {
-    ...mapGetters({
+    ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'
     })
   },
   methods: {
-    ...mapActions({
-      updateUserData: 'onboarding-auth/updateUserData'
+    ...mapActions(useOnboardingAuthStore, {
+      updateUserData: 'updateUserData'
     }),
     updateData (data) {
       this.updateUserData(data)

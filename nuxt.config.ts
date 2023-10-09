@@ -1,17 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import en from './locales/en.json'
-import pt from './locales/pt.json' 
-import es from './locales/es.json' 
 
 export default defineNuxtConfig({
     modules: [
         'dayjs-nuxt',
         '@nuxtjs/i18n',
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        'nuxt-lazy-load'
     ],
     i18n: {
-        locales: ['pt', 'en', 'es'],
-        defaultLocale: 'pt',
+        locales: ['PT', 'EN', 'ES'],
+        defaultLocale: 'PT',
         legacy: true,
         vueI18n: './i18n.config.ts',
         detectBrowserLanguage: {
@@ -24,7 +22,10 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     runtimeConfig: {
         public: {
-            BASE_URL: process.env.BASE_URL || 'http://localhost:8000'
+            BASE_URL: process.env.BASE_URL || 'http://localhost:8000',
+            LAYOUT: process.env.LAYOUT || 'default',
+            CURACAO: process.env.CURACAO || '',
+            PRODUCT_CONFIG_AFILIATES_URL: process.env.PRODUCT_CONFIG_AFILIATES_URL || ''
         }
     },
     plugins: [

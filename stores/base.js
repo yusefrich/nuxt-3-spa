@@ -18,6 +18,9 @@ export const useBaseStore = defineStore('base', {
     loading: false
   }),
   actions: {
+    cleanErrors () {
+      this.errors = null
+    },
     showToastNotificationError (message) {
       const { $toast } = useNuxtApp()
       console.log('error not being called')
@@ -272,6 +275,9 @@ export const useBaseStore = defineStore('base', {
     },
     getPage (state) {
       return state.page
+    },
+    getErrors (state) {
+      return state.errors
     }
   }
 })

@@ -9,7 +9,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
 import FbLandingPage from '@/components/fb/templates/FbLandingPage.vue'
 import NsxLandingPage from '@/components/nsx/templates/NsxLandingPage.vue'
 
@@ -18,12 +20,9 @@ export default {
     NsxLandingPage,
     FbLandingPage
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     }),
     ltype () {
       return this.$route.params.ltype

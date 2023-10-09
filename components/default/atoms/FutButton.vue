@@ -108,6 +108,10 @@ export default {
       default: false
     }
   },
+  emits: [
+    'click',
+    'mouseup'
+  ],
   methods: {
     getPathSlash (to) {
       // console.log('this is the to: ', to)

@@ -6,7 +6,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
 import User from '@/components/default/templates/User.vue'
 import FbUser from '@/components/fb/templates/FbUser.vue'
 import MdUser from '@/components/md/templates/MdUser.vue'
@@ -19,13 +21,10 @@ export default {
     MdUser,
     SgUser
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   middleware: ['protected'],
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

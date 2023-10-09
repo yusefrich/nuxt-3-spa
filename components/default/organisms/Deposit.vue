@@ -304,7 +304,10 @@ import FutInput from '@/components/default/atoms/FutInput.vue'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 
 export default {
-  components: { FutInput, FutButton },
+  components: {
+    FutInput,
+    FutButton
+  },
   directives: { money3: Money3Directive },
   mixins: [sportradarTagManager],
   props: {
@@ -337,6 +340,10 @@ export default {
       default: false
     }
   },
+  emits: [
+    'clearResponse',
+    'submit'
+  ],
   data () {
     return {
       money: {

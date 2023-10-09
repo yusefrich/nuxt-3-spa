@@ -40,7 +40,10 @@ export default {
       type: String,
       default: ''
     }
-  }
+  },
+  emits: [
+    'updateData'
+  ]
 }
 </script>
 

@@ -6,7 +6,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/rules')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -17,7 +17,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/deposits')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -28,7 +28,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/responsible')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -39,7 +39,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/support')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -50,7 +50,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/terms')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -61,7 +61,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/privacy')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -72,7 +72,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/aml')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -83,7 +83,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/cookies')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -94,7 +94,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/faq')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -105,7 +105,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/about')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -116,7 +116,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/affiliates')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -127,7 +127,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/auto_exclusion')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -138,7 +138,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/disputs_resolution')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -149,7 +149,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/method_impartiality')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -160,7 +160,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/kyc_politcs')
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -171,7 +171,7 @@ const legalService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/accounts_payments_bonus')
       
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }

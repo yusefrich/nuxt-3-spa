@@ -33,6 +33,9 @@ export default {
     FutButton
   },
   directives: { money3: Money3Directive },
+  emits: [
+    'submitForgot'
+  ],
   data () {
     return {
       payload: {

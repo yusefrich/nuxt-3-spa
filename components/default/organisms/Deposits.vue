@@ -53,14 +53,21 @@
     </fut-modal>
   </div>
 </template>
+
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import dayjs from 'dayjs'
-import FutModal from '@/components/default/organisms/FutModal.vue'
-import FutButton from '@/components/default/atoms/FutButton.vue'
+
+import { mapState, mapActions } from 'pinia'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+
+import FutModal from '@/components/default/organisms/FutModal'
+import FutButton from '@/components/default/atoms/FutButton'
 
 export default {
-  components: { FutButton, FutModal },
+  components: { 
+    FutButton, 
+    FutModal
+  },
   data () {
     return {
       deposits: [],
@@ -71,8 +78,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getBankDeposits: 'onboarding-bank/getBankDeposits'
+    ...mapState(useOnboardingBankStore, {
+      getBankDeposits: 'getBankDeposits'
     })
   },
   async created () {
@@ -81,8 +88,8 @@ export default {
     this.rawDeposits = this.getBankDeposits.data
   },
   methods: {
-    ...mapActions({
-      fetchBankDeposits: 'onboarding-bank/fetchBankDeposits'
+    ...mapActions(useOnboardingBankStore, {
+      fetchBankDeposits: 'fetchBankDeposits'
     }),
     formmated (date) {
       return dayjs(date).format('DD/MM/YYYY')
@@ -90,5 +97,4 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>
+

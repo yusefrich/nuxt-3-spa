@@ -78,8 +78,8 @@
 </template>
 
 <script>
-import FutInput from '@/components/default/atoms/FutInput.vue'
-import FutButton from '@/components/default/atoms/FutButton.vue'
+import FutInput from '@/components/default/atoms/FutInput'
+import FutButton from '@/components/default/atoms/FutButton'
 
 export default {
   name: 'FutNewPassword',
@@ -93,6 +93,10 @@ export default {
       default: () => ({})
     }
   },
+  emits: [
+    'updatePassword',
+    'clear'
+  ],
   data () {
     return {
       data: {

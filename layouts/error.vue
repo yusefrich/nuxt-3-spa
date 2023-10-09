@@ -65,7 +65,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useSettingsStore } from '@/stores/settings'
 
 export default {
   name: 'Error',
@@ -77,16 +78,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      currentSettings: 'settings/currentSettings'
-    })
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
   },
   created () {
     this.fetchSettings()
   },
   methods: {
-    ...mapActions({
-      fetchSettings: 'settings/fetchSettings'
+    ...mapActions(useSettingsStore, {
+      fetchSettings: 'fetchSettings'
     })
   }
 }

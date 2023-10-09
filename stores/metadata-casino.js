@@ -28,6 +28,7 @@ export const useMetadataCasinoStore = defineStore('metadataCasino', {
         }
 
         this.sliders = data
+
         resolve(data)
       })
     },

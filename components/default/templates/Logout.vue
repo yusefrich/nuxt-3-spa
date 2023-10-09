@@ -5,13 +5,15 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useLayoutStore } from '@/stores/layout'
 
 export default {
   computed: {
-    ...mapGetters({
-      getCurrentApplicationType: 'layout/getCurrentApplicationType',
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentApplicationType: 'getCurrentApplicationType',
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   },
   mounted () {
@@ -36,7 +38,7 @@ export default {
     window.location.replace(this.localePath('/'))
   },
   methods: {
-    ...mapActions({
+    ...mapActions(useBaseStore, {
       logout: 'logout'
     })
   }
