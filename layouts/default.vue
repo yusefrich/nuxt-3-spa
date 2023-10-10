@@ -12,7 +12,7 @@
     <fut-overlay v-if="getOverlay" />
     <app-config v-if="currentSettings" :config="currentSettings" />
     <fut-navbar
-      :key="loggedInUser ? loggedInUser.id : 0"
+      :key="loggedInUser ? loggedInUser.player.uuid : randomDatetime"
       :casino-games="getCasinoHeaderGames"
       :casino-categories="getCasinoHeaderCategories"
       :current-settings="currentSettings"
@@ -214,6 +214,9 @@ export default {
     ...mapState(useCookiesStore, {
       getAcceptedCookies: 'getAcceptedCookies'
     }),
+    randomDatetime () {
+      return new Date().getTime() + ''
+    },
     getCurrentUrl () {
       return this.$route.path
     },
