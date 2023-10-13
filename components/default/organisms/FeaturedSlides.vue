@@ -41,8 +41,18 @@
     >
       <swiper-slide v-for="(featuredSlide, index) in currentSlides" :key="'featured_slides_'+index">
         <fut-button :to="featuredSlide.link" external class="w-100">
-          <img class="d-none d-md-block" width="100%" height="auto" style="object-fit: cover" :src="featuredSlide.img">
-          <img class="d-md-none" width="100%" height="auto" style="object-fit: cover" :src="featuredSlide.img_mobile">
+          <img
+            class="d-none d-md-block w-100"
+            height="auto"
+            style="object-fit: cover"
+            :src="featuredSlide.img"
+          >
+          <img
+            class="d-md-none w-100"
+            height="auto"
+            style="object-fit: cover"
+            :src="featuredSlide.img_mobile"
+          >
         </fut-button>
       </swiper-slide>
       <swiper-slide v-for="(featuredBet, index) in currentFeaturedBets" :key="'featured_'+index">

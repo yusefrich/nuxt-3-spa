@@ -10,8 +10,8 @@
         <div class="fut-card-promo">
           <img
             style="object-fit: cover"
-            height="150px"
-            width="100%"
+            height="150"
+            class="w-100"
             :src="content.img"
           >
           <div class="fut-card-body bg-darkest p-3">
@@ -36,7 +36,13 @@
       :title="$t('i18n_promocao', 1)"
       @onClose="()=>{ modal.open = false; pushQueryToRoute({})}"
     >
-      <img style="object-fit: contain" height="200px" width="100%" :src="modal.img" alt="">
+      <img
+        style="object-fit: contain"
+        height="200"
+        class="w-100"
+        :src="modal.img"
+        alt=""
+      >
       <h3 class="fut-color-dynamic">
         {{ modal.name }}
       </h3>

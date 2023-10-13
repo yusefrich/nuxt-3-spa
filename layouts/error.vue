@@ -4,7 +4,7 @@
       <section class="info">
         <img
           :src="currentSettings.logo"
-          width="200px"
+          width="200"
           alt="Logo"
         >
         <p class="subtitle">
@@ -56,7 +56,7 @@
       <section class="img">
         <img
           src="/error-img.png"
-          width="100%"
+          class="w-100"
           alt="Ilustrative image"
         >
       </section>

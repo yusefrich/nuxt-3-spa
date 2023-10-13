@@ -9,34 +9,26 @@
       >
         <swiper-slide>
           <img
-            height="100%"
-            width="100%"
             src="/img/casino.png"
-            class="d-none d-md-block"
+            class="d-none d-md-block w-100 h-100"
             alt=""
           >
           <img
-            height="100%"
-            width="100%"
             src="/img/mob-casino.png"
-            class="d-md-none"
+            class="d-md-none w-100 h-100"
             alt=""
           >
         </swiper-slide>
         <template v-for="(provider, index) in games" :key="'casino_games_slide_holder_' + index">
           <swiper-slide v-if="index < 3" class="game-slider-container">
             <img
-              height="100%"
-              width="100%"
               src="/img/casino.png"
-              class="d-none d-md-block"
+              class="d-none d-md-block w-100 h-100"
               alt=""
             >
             <img
-              height="100%"
-              width="100%"
               src="/img/mob-casino.png"
-              class="d-md-none"
+              class="d-md-none w-100 h-100"
               alt=""
             >
             <div
@@ -130,7 +122,12 @@
                 <div class="play-overlay">
                   <font-awesome-icon class="icon" :icon="['fas', 'play-circle']" />
                 </div>
-                <img class="casino-icon" :src="game.icon ? game.icon : '/img/mob-casino.png'" :class="{bnw: !game.icon}" alt="">
+                <img
+                  class="casino-icon"
+                  :src="game.icon ? game.icon : '/img/mob-casino.png'"
+                  :class="{bnw: !game.icon}"
+                  alt=""
+                >
                 <div class="casino-name">
                   {{ game.name }}
                 </div>
@@ -158,7 +155,12 @@
                 <div class="play-overlay">
                   <font-awesome-icon class="icon" :icon="['fas', 'play-circle']" />
                 </div>
-                <img class="casino-icon" :src="game.icon ? game.icon : '/img/mob-casino.png'" :class="{bnw: !game.icon}" alt="">
+                <img
+                  class="casino-icon"
+                  :src="game.icon ? game.icon : '/img/mob-casino.png'"
+                  :class="{bnw: !game.icon}"
+                  alt=""
+                >
                 <div class="casino-name">
                   {{ game.name }}
                 </div>
@@ -193,7 +195,12 @@
                 <div class="play-overlay">
                   <font-awesome-icon class="icon" :icon="['fas', 'play-circle']" />
                 </div>
-                <img class="casino-icon" :src="game.icon ? game.icon : '/img/mob-casino.png'" :class="{bnw: !game.icon}" alt="">
+                <img
+                  class="casino-icon"
+                  :src="game.icon ? game.icon : '/img/mob-casino.png'"
+                  :class="{bnw: !game.icon}"
+                  alt=""
+                >
                 <div class="casino-name">
                   {{ game.name }}
                 </div>

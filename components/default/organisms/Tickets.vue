@@ -20,7 +20,12 @@
             <p>{{ $t('i18n_nenhuma_aposta_selecionada') }}</p>
             <p>{{ $t('i18n_selecione_uma_cotacao_valida') }}</p>
             <div class="text-center">
-              <img src="/img/soccer.png" class="img-fluid img-gray" width="170px" alt="">
+              <img
+                src="/img/soccer.png"
+                class="img-fluid img-gray"
+                width="170"
+                alt=""
+              >
             </div>
           </div>
           <div v-if="tickets.length > 0 && open" class="current-tickets ">

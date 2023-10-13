@@ -48,11 +48,12 @@ import { useBaseStore } from '@/stores/base'
 import { useOnboardingBankStore } from '@/stores/onboarding-bank'
 import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
 
-import SkSettingsNav from '@/components/sk/organisms/SkSettingsNav.vue'
-import SkDeposits from '@/components/sk/organisms/SkDeposits.vue'
-import SkWithdrawals from '@/components/sk/organisms/SkWithdrawals.vue'
-import SkCasinoHistory from '@/components/sk/organisms/SkCasinoHistory.vue'
-import SkBalance from '@/components/sk/organisms/SkBalance.vue'
+import SkSettingsNav from '@/components/sk/organisms/SkSettingsNav'
+import SkDeposits from '@/components/sk/organisms/SkDeposits'
+import SkWithdrawals from '@/components/sk/organisms/SkWithdrawals'
+import SkCasinoHistory from '@/components/sk/organisms/SkCasinoHistory'
+import SkBalance from '@/components/sk/organisms/SkBalance'
+
 import windowWidth from '@/mixins.js/windowWidth.js'
 
 export default {

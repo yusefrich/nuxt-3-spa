@@ -94,8 +94,8 @@
                 <img
                   class="img-fluid me-3"
                   src="/id.png"
-                  width="60px"
-                  height="60px"
+                  width="60"
+                  height="60"
                   style="object-fit: contain"
                 >
                 <div class="header-title--text">
@@ -184,9 +184,8 @@
                           <img
                             v-if="getFile('id-front') && !getFile('id-front').src.includes('pdf;base64')"
                             style="object-fit: contain"
-                            class="img-sender"
-                            height="200px"
-                            width="100%"
+                            class="img-sender w-100"
+                            height="200"
                             :src="getFile('id-front').src"
                           >
                           <font-awesome-icon
@@ -259,9 +258,8 @@
                           <img
                             v-if="getFile('id-back') && !getFile('id-back').src.includes('pdf;base64')"
                             style="object-fit: contain"
-                            class="img-sender"
-                            height="200px"
-                            width="100%"
+                            class="img-sender w-100"
+                            height="200"
                             :src="getFile('id-back').src"
                           >
                           <font-awesome-icon
@@ -388,9 +386,8 @@
                         <img
                           v-if="getFile('residence') && !getFile('residence').src.includes('pdf;base64')"
                           style="object-fit: contain"
-                          class="img-sender"
-                          height="200px"
-                          width="100%"
+                          class="img-sender w-100"
+                          height="200"
                           :src="getFile('residence').src"
                         >
                         <font-awesome-icon
@@ -440,8 +437,8 @@
                 <img
                   class="img-fluid me-3"
                   src="/doc.png"
-                  width="60px"
-                  height="60px"
+                  width="60"
+                  height="60"
                   style="object-fit: contain"
                 >
                 <div class="header-title--text">
@@ -527,9 +524,8 @@
                         <img
                           v-if="getFile('other') && !getFile('other').src.includes('pdf;base64')"
                           style="object-fit: contain"
-                          class="img-sender"
-                          height="200px"
-                          width="100%"
+                          class="img-sender w-100"
+                          height="200"
                           :src="getFile('other').src"
                         >
                         <font-awesome-icon

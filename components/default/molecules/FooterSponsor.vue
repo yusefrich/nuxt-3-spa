@@ -35,8 +35,7 @@
           v-for="(spon, index) in currentSettings.sponsors"
           :key="'sponsor_img_'+index"
           :src="spon.img"
-          width="100%"
-          class="patreon style-sponsors-2"
+          class="patreon style-sponsors-2 w-100"
         >
       </div>
       <div v-else class="d-flex justify-content-center">
@@ -44,8 +43,8 @@
           v-for="(spon, index) in currentSettings.sponsors"
           :key="'sponsor_img_'+index"
           :src="spon.img"
-          width="70px"
-          height="70px"
+          width="70"
+          height="70"
           style="object-fit:contain"
         >
       </div>

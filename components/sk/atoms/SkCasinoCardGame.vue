@@ -13,7 +13,7 @@
     </div>
     <img
       :src="game.icon"
-      width="100%"
+      class="w-100"
     >
   </div>
 </template>

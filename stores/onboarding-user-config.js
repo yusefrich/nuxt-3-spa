@@ -1,19 +1,15 @@
-state: () => ({
-  tab: 'History'
+import { defineStore } from 'pinia'
+
+export const useOnboardingUserConfigStore = defineStore('onboardingUserConfig', {
+  state: () => ({
+    tab: 'History'
+  }),
+  actions: {
+    changeTab (payload) {
+      this.tab = payload
+    }
+  },
+  getters: {
+    getTab: state => state.tab
+  }
 })
-
-export const mutations = {
-  setTab (state, payload) {
-    state.tab = payload
-  }
-}
-
-actions: {
-  changeTab (payload) {
-    commit('setTab', payload)
-  }
-}
-
-getters: {
-  getTab: ({ tab }) => tab
-}

@@ -74,7 +74,13 @@
     </div>
     <div class="bg-background p-3 doc-info-card">
       <div class="d-flex">
-        <img class="img-fluid me-3" src="/id.png" width="60px" height="60px" style="object-fit: contain">
+        <img
+          class="img-fluid me-3"
+          src="/id.png"
+          width="60"
+          height="60"
+          style="object-fit: contain"
+        >
         <div class="header-title--text">
           <div class="title text-white fut-color-dynamic">
             {{ $t('i18n_processo_de_verificacao') }}
@@ -138,9 +144,8 @@
                   <img
                     v-if="getFile('id-front') && !getFile('id-front').src.includes('pdf;base64')"
                     style="object-fit: contain"
-                    class="img-sender"
-                    height="200px"
-                    width="100%"
+                    class="img-sender w-100"
+                    height="200"
                     :src="getFile('id-front').src"
                   >
                   <font-awesome-icon v-if="getFile('id-front') && getFile('id-front').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
@@ -190,9 +195,8 @@
                   <img
                     v-if="getFile('id-back') && !getFile('id-back').src.includes('pdf;base64')"
                     style="object-fit: contain"
-                    class="img-sender"
-                    height="200px"
-                    width="100%"
+                    class="img-sender w-100"
+                    height="200"
                     :src="getFile('id-back').src"
                   >
                   <font-awesome-icon v-if="getFile('id-back') && getFile('id-back').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
@@ -276,9 +280,8 @@
                 <img
                   v-if="getFile('residence') && !getFile('residence').src.includes('pdf;base64')"
                   style="object-fit: contain"
-                  class="img-sender"
-                  height="200px"
-                  width="100%"
+                  class="img-sender w-100"
+                  height="200"
                   :src="getFile('residence').src"
                 >
                 <font-awesome-icon v-if="getFile('residence') && getFile('residence').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
@@ -311,7 +314,13 @@
     </div>
     <div class="bg-background p-3 doc-info-card">
       <div class="d-flex">
-        <img class="img-fluid me-3" src="/doc.png" width="60px" height="60px" style="object-fit: contain">
+        <img
+          class="img-fluid me-3"
+          src="/doc.png"
+          width="60"
+          height="60"
+          style="object-fit: contain"
+        >
         <div class="header-title--text">
           <div class="title text-white fut-color-dynamic">
             {{ $t('i18n_documentos_adicionais') }}
@@ -367,9 +376,8 @@
                 <img
                   v-if="getFile('other') && !getFile('other').src.includes('pdf;base64')"
                   style="object-fit: contain"
-                  class="img-sender"
-                  height="200px"
-                  width="100%"
+                  class="img-sender w-100"
+                  height="200"
                   :src="getFile('other').src"
                 >
                 <font-awesome-icon v-if="getFile('other') && getFile('other').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />

@@ -103,7 +103,7 @@
     />
     <div v-if="currentSettings && currentSettings.telegram_float" id="div_telegram" :class="currentSettings.telegram_float.telegram_position">
       <a :href="currentSettings.telegram_float.telegram_link" target="_blank">
-        <img height="60px" width="60px" src="/telegram.png">
+        <img height="60" width="60" src="/telegram.png">
       </a>
     </div>
 

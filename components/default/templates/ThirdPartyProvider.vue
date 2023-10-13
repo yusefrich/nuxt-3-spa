@@ -12,9 +12,10 @@
 </template>
 <script>
 import { mapActions, mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
 import { useLayoutStore } from '@/stores/layout'
 import { useThirdPartyProviderStore } from '@/stores/third-party-provider'
-import { useBaseStore } from '@/stores/base'
+
 import windowWidth from '@/mixins.js/windowWidth.js'
 
 export default {
@@ -45,6 +46,9 @@ export default {
     ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'
     }),
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
+    }),
     getDefaultUrl () {
       if (this.isMobile) {
         return this.virtuals ? this.esports ? this.providerDefaultMobileEspotsUrl : this.providerDefaultMobileVirtualUrl : this.providerDefaultMobileUrl
@@ -54,7 +58,7 @@ export default {
     },
     navbarHeight () {
       let pixels = '0px'
-      switch (this.layout) {
+      switch (this.getCurrentLayoutStyle) {
         case 'FB':
           if (this.isMobile) {
             pixels = '60px'

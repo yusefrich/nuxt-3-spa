@@ -255,8 +255,7 @@
               v-for="(spon, index) in currentSettings.sponsors"
               :key="'sponsor_img_' + index"
               :src="spon.img"
-              width="100%"
-              class="ms-3 mr-3 style-sponsors"
+              class="ms-3 mr-3 style-sponsors w-100"
             >
           </div>
         </div>

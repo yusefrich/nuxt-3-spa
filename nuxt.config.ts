@@ -1,6 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+    app: {
+        head: {
+            script: [
+                {
+                    src: 'https://unpkg.com/feather-icons',
+                    type: 'text/javascript'
+                }
+            ]
+        }
+    },
     modules: [
         'dayjs-nuxt',
         '@nuxtjs/i18n',
