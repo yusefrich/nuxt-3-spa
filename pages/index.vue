@@ -24,6 +24,9 @@ export default {
     SkHome,
     ThirdPartyProvider
   },
+  layout (context) {
+    return context.store.getters['layout/getCurrentLayoutComponent']
+  },
   middleware ({ store, redirect }) {
     const config = store.getters['layout/getCurrentApplicationType']
     const layout = store.getters['layout/getCurrentLayoutStyle']

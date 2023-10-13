@@ -243,7 +243,7 @@
                 </fut-button>
               </li>
             </ul>
-            <ul v-if="loggedInUser" class="navbar-nav sign-menu float-md-end">
+            <ul v-else class="navbar-nav sign-menu float-md-end">
               <li class="d-lg-none px-3 px-md-0">
                 <div class="mt-3">
                   <div class="d-flex justify-content-between mb-2">
@@ -616,7 +616,10 @@ export default {
       this.timestamp = dateTime
     },
     menuClick () {
-      this.$refs.menuToggle.$el.click()
+      // this.$refs.menuToggle.$el.click()
+      const el = this.$refs.menuToggle
+      el.click()
+
       this.menuToggleVariable = !this.menuToggleVariable
     },
     currentRoute (route) {
