@@ -4,13 +4,13 @@
       <div
         class="header-profile w-100 p-2 d-none d-md-flex align-items-center text-white"
       >
-        <fa class="mr-10" :icon="['fas', 'user']" />
+        <font-awesome-icon class="mr-10" :icon="['fas', 'user']" />
         <span>{{ $t('i18n_perfil') }}</span>
       </div>
       <div class="d-md-flex d-grid mt-md-1 mt-3">
         <div class="section-details w-100 me-md-1 me-0">
           <div class="container py-1 section-details-header d-none d-md-flex align-items-center">
-            <fa class="mr-10" :icon="['fas', 'address-book']" />
+            <font-awesome-icon class="mr-10" :icon="['fas', 'address-book']" />
             <span>{{ $t('i18n_detalhes_gerais') }}</span>
           </div>
           <div class="d-md-none p-2 section-details-header">
@@ -104,7 +104,7 @@
             </div>
             <div class="mt-2">
               <fb-fut-button class="button-feature d-flex justify-content-center align-items-center width-button p-2">
-                <fa class="mr-10" :icon="['fas', 'redo']" />
+                <font-awesome-icon class="mr-10" :icon="['fas', 'redo']" />
                 <span>{{ $t('i18n_atualizar') }}</span>
               </fb-fut-button>
             </div>
@@ -127,7 +127,7 @@
               </div>
               <div class="mt-2 mb-5">
                 <fb-fut-button class="button-feature d-flex justify-content-center align-items-center width-button p-2">
-                  <fa class="mr-10" :icon="['fas', 'redo']" />
+                  <font-awesome-icon class="mr-10" :icon="['fas', 'redo']" />
                   <span>{{ $t('i18n_atualizar_a_senha') }}</span>
                 </fb-fut-button>
               </div>
@@ -136,7 +136,7 @@
         </div>
         <div class="section-details w-100 ms-md-1 ms-0">
           <div class="section-details-header d-none d-md-flex align-items-center py-1 container">
-            <fa class="mr-10" :icon="['fas', 'address-card']" />
+            <font-awesome-icon class="mr-10" :icon="['fas', 'address-card']" />
             <span>{{ $t('i18n_endereco') }}</span>
           </div>
           <div class="d-md-none p-2 section-details-header">
@@ -206,7 +206,9 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+
 import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
 
 export default {
@@ -214,7 +216,7 @@ export default {
     FbFutButton
   },
   computed: {
-    ...mapGetters({
+    ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'
     })
   }

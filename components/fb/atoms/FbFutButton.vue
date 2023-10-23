@@ -20,7 +20,7 @@
       padding: ${padding};
     `"
   >
-    <slot /> <fa v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
+    <slot /> <font-awesome-icon v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
   </a>
   <button
     v-else
@@ -41,9 +41,10 @@
     `"
     @click="$emit('click')"
   >
-    <slot /> <fa v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
+    <slot /> <font-awesome-icon v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
   </button>
 </template>
+
 <script>
 export default {
   name: 'FbFutButton',
@@ -105,6 +106,9 @@ export default {
       default: ''
     }
   },
+  emits: [
+    'click'
+  ],
   methods: {
     getPathSlash (to) {
       // console.log('this is the to: ', to)
@@ -119,6 +123,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
   @import "@/assets/layout/variables";
   .btn{

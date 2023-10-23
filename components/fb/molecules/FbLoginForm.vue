@@ -47,6 +47,9 @@ export default {
       default: () => (null)
     }
   },
+  emits: [
+    'logUser'
+  ],
   data () {
     return {
       data: {

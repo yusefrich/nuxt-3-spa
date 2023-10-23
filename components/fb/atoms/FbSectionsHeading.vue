@@ -2,7 +2,7 @@
   <div class="header-sidebar-mobile d-flex d-md-none py-1 justify-content-between container">
     <div class="d-flex">
       <fb-fut-button v-if="route" :to="route">
-        <fa class="text-white mr-10 mt-1 icon-filter" :icon="['fas', 'chevron-left']" />
+        <font-awesome-icon class="text-white mr-10 mt-1 icon-filter" :icon="['fas', 'chevron-left']" />
       </fb-fut-button>
       <div>
         <span v-if="title && !subtitle" class="text-white sport-head mt-1 d-block">{{ title }}</span>

@@ -43,7 +43,7 @@
         <label class="text-white fut-color-dynamic text-start"><span class="required" />CPF: </label>
         <fut-input
           v-model="fixed.document"
-          v-inputmask="'999.999.999-99'"
+          v-mask="['###.###.###-##']"
           :validate="errors?errors:{}"
           type="text"
           disabled
@@ -67,7 +67,7 @@
         <label class="text-white fut-color-dynamic text-start"><span class="required" />{{ $t('i18n_numero_de_telefone') }}: </label>
         <fut-input
           v-model="data.phone"
-          v-inputmask="'(99) 99999-9999'"
+          v-mask="['(##) #####-####']"
           :validate="errors?errors:{}"
           type="text"
           name="phone"
@@ -83,7 +83,7 @@
         <label class="text-white fut-color-dynamic text-start"><span class="required" />{{ $t('i18n_codigo_posta') }}/CEP: </label><!-- verificar -->
         <fut-input
           v-model="zipRaw"
-          v-inputmask="'99999-999'"
+          v-mask="['#####-###']"
           :validate="errors?errors:{}"
           type="text"
           name="zip"
@@ -128,9 +128,9 @@
 </template>
 
 <script>
-import FutInput from '@/components/default/atoms/FutInput.vue'
-import FutSelect from '@/components/default/atoms/FutSelect.vue'
-import FutButton from '@/components/default/atoms/FutButton.vue'
+import FutInput from '@/components/default/atoms/FutInput'
+import FutSelect from '@/components/default/atoms/FutSelect'
+import FutButton from '@/components/default/atoms/FutButton'
 import utils from '@/utils/utils'
 
 export default {

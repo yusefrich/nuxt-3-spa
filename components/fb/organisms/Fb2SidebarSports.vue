@@ -23,7 +23,7 @@
                 <div>
                   <span class="mx-20 text-white fut-color-dynamic">{{ item.name }}</span>
                 </div>
-                <fa class="icon" :icon="['fas', 'chevron-down']" />
+                <font-awesome-icon class="icon" :icon="['fas', 'chevron-down']" />
               </a>
               <a
                 class="w-100 button-sport-leagues align-items-center d-none d-md-flex justify-content-between text-decoration-none position-relative py-2 w-100"
@@ -35,7 +35,7 @@
                 <div>
                   <span class="mx-20 text-white fut-color-dynamic">{{ item.name }}</span>
                 </div>
-                <fa class="icon" :icon="['fas', 'chevron-down']" />
+                <font-awesome-icon class="icon" :icon="['fas', 'chevron-down']" />
               </a>
             </template>
             <fb-fut-button
@@ -51,7 +51,7 @@
               <div>
                 <span class="mx-20 text-white fut-color-dynamic">{{ item.name }}</span>
               </div>
-              <fa class="icon" :icon="['fas', 'chevron-down']" />
+              <font-awesome-icon class="icon" :icon="['fas', 'chevron-down']" />
             </fb-fut-button>
             <div
               :id="`country-${item.id}-${sport.id}-collapse-${customId}`"
@@ -75,7 +75,7 @@
                 "
               >
                 <span class="mx-20 text-white fut-color-dynamic">{{ league.name }}</span>
-                <span v-if="selectedGroupIds && checkId(selectedGroupIds, league.id + '')" class="text-success check-group"><fa :icon="['fas', 'check']" /></span>
+                <span v-if="selectedGroupIds && checkId(selectedGroupIds, league.id + '')" class="text-success check-group"><font-awesome-icon :icon="['fas', 'check']" /></span>
               </a>
             </div>
           </li>
@@ -152,7 +152,7 @@ export default {
       window.location.replace(link)
     },
     currentRoute (route) {
-      return route === '' + this.$nuxt.$route.path || route + '/' === '' + this.$nuxt.$route.path
+      return route === '' + this.$route.path || route + '/' === '' + this.$route.path
     },
     checkId (array, id) {
       return array.includes(id)

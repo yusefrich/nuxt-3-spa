@@ -22,6 +22,7 @@
     <div :id="rdid + 'vertical-content'" class="content-dropdown text-start" :class="{ active }" />
   </div>
 </template>
+
 <script>
 import FutButton from '@/components/default/atoms/FutButton'
 
@@ -112,12 +113,17 @@ export default {
     restructureElements (e) {
       const elements = document.getElementById(this.rdid + 'slot-content')
       const container = document.getElementById(this.rdid + 'vertical-content')
+
       if (e.target.innerWidth > this.previousWidth) {
         if (this.checkScrollBar(this.rdid + 'responsive-dropdown', 'horizontal')) {
           this.previousWidth = e.target.innerWidth
           return
         }
-        elements.appendChild(container.children[0])
+        
+        if (container.children.length) {
+          elements.appendChild(container.children[0])
+        }
+
         this.verticalContent = container.children.length
       } else {
         if (!this.checkScrollBar(this.rdid + 'responsive-dropdown', 'horizontal')) {
@@ -135,6 +141,7 @@ export default {
           this.verticalContent = container.children.length
         }
       }
+      
       this.previousWidth = e.target.innerWidth
     },
     checkScrollBar (elementId, dir) {
@@ -154,6 +161,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .dropdown-container {
   white-space: nowrap;

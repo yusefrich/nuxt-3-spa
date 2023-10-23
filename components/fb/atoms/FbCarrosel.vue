@@ -14,20 +14,14 @@
         class="w-100"
       >
         <img
-          v-lazy-load
-          class="image-size"
+          class="image-size w-100 h-100"
           :class="{'d-none d-md-block':featuredSlide.img_mobile}"
-          height="100%"
-          width="100%"
           :src="featuredSlide.img"
           alt="Imagme carrosel"
         >
         <img
           v-if="featuredSlide.img_mobile"
-          v-lazy-load
-          class="image-size d-md-none"
-          height="100%"
-          width="100%"
+          class="image-size d-md-none w-100 h-100"
           :src="featuredSlide.img_mobile"
           alt="Imagme carrosel"
         >

@@ -6,7 +6,7 @@
         class="p-2 float-end d-print-none"
         @click="printPage()"
       >
-        <fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}
+        <font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}
       </fut-button>
     </div>
     <fut-html-render :content="getLegalPrivacy" />

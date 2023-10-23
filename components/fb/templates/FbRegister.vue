@@ -27,7 +27,7 @@
                 :id="currentSettings.search ? 'cpf' : 'document'"
                 ref="document"
                 v-model="documentRaw"
-                v-inputmask="'999.999.999-99'"
+                v-mask="['###.###.###-##']"
                 class="input-control fut-color-dynamic"
                 name="document"
                 placeholder="xxx.xxx.xxx-xx"
@@ -42,11 +42,11 @@
               :disabled="getOnboardingAuthLoading"
               @click="()=>validateCpf(documentRaw)"
             >
-              <span class="fw-bold">{{ $t('i18n_continuar').toUpperCase() }} <fa v-if="getOnboardingAuthLoading" class="spinner-class" :icon="['fas', 'circle-notch']" /></span>
+              <span class="fw-bold">{{ $t('i18n_continuar').toUpperCase() }} <font-awesome-icon v-if="getOnboardingAuthLoading" class="spinner-class" :icon="['fas', 'circle-notch']" /></span>
             </fb-fut-button>
           </div>
           <p v-if="currentSettings && currentSettings.search" class="text-info">
-            <small v-if="documentRaw && documentRaw === data.document" class="text-success fw-bold pb-2"><fa :icon="['fas', 'check']" /> {{ $t('i18n_documento_valido') }}</small>
+            <small v-if="documentRaw && documentRaw === data.document" class="text-success fw-bold pb-2"><font-awesome-icon :icon="['fas', 'check']" /> {{ $t('i18n_documento_valido') }}</small>
             <br v-if="documentRaw && documentRaw === data.document">
             <small class="text-white">{{ $t('i18n_informe_os_dados_corretamente') }}</small>
           </p>
@@ -125,7 +125,7 @@
                 id="zip"
                 ref="zip"
                 v-model="zipRaw"
-                v-inputmask="'99999-999'"
+                v-mask="['#####-###']"
                 :disabled="currentSettings.search"
                 class="input-control fut-color-dynamic"
                 type="text"
@@ -243,7 +243,7 @@
                 v-if="currentSettings"
                 ref="phone"
                 v-model="data.phone"
-                v-inputmask="'(99) 9 9999-9999'"
+                v-mask="['(##) #####-####']"
                 :disabled="currentSettings.search && !validCpf"
                 class="input-control fut-color-dynamic"
                 type="text"
@@ -269,8 +269,8 @@
                 @focus="passwordFocussed = true"
               >
               <fb-fut-button class="border-0 bg-transparent" @click="showPassword()">
-                <fa v-if="passwordType === 'text'" class="text-white" :icon="['fas', 'eye']" />
-                <fa v-else class="text-white" :icon="['fas', 'eye-slash']" />
+                <font-awesome-icon v-if="passwordType === 'text'" class="text-white" :icon="['fas', 'eye']" />
+                <font-awesome-icon v-else class="text-white" :icon="['fas', 'eye-slash']" />
               </fb-fut-button>
             </div>
           </div>
@@ -279,13 +279,13 @@
             <p
               :class="['mb-0', checkPasswordCharacters]"
             >
-              <small><fa :icon="['far', 'check-circle']" /> {{ $t('i18n_letras_e_numeros') }}.</small>
+              <small><font-awesome-icon :icon="['far', 'check-circle']" /> {{ $t('i18n_letras_e_numeros') }}.</small>
             </p>
             <p :class="['mb-0', checkPasswordLength]">
-              <small><fa :icon="['far', 'check-circle']" /> 8 {{ $t('i18n_digitos') }}.</small>
+              <small><font-awesome-icon :icon="['far', 'check-circle']" /> 8 {{ $t('i18n_digitos') }}.</small>
             </p>
             <p v-if="differentPass" class="mb-0 text-danger">
-              <small><fa class="me-1" :icon="['far', 'times-circle']" />{{ $t('i18n_senha_de_confirmacao') }}</small>
+              <small><font-awesome-icon class="me-1" :icon="['far', 'times-circle']" />{{ $t('i18n_senha_de_confirmacao') }}</small>
             </p>
           </div>
           <div class="d-md-flex align-items-center mt-3">
@@ -303,8 +303,8 @@
                 class="input-control-password fut-color-dynamic"
               >
               <fb-fut-button class="border-0 bg-transparent" @click="showPassword()">
-                <fa v-if="passwordType === 'text'" class="text-white" :icon="['fas', 'eye']" />
-                <fa v-else class="text-white" :icon="['fas', 'eye-slash']" />
+                <font-awesome-icon v-if="passwordType === 'text'" class="text-white" :icon="['fas', 'eye']" />
+                <font-awesome-icon v-else class="text-white" :icon="['fas', 'eye-slash']" />
               </fb-fut-button>
             </div>
           </div>
@@ -355,10 +355,10 @@
           </div>
           <div class="d-flex align-items-center">
             <fb-fut-button :disabled="getOnboardingAuthLoading" class="button-prev my-4 me-1 fut-color-dynamic" @click="stepNext(2)">
-              <span class="fw-bold">{{ $t('i18n_voltar').toUpperCase() }} <fa v-if="getOnboardingAuthLoading" class="spinner-class" :icon="['fas', 'circle-notch']" /></span>
+              <span class="fw-bold">{{ $t('i18n_voltar').toUpperCase() }} <font-awesome-icon v-if="getOnboardingAuthLoading" class="spinner-class" :icon="['fas', 'circle-notch']" /></span>
             </fb-fut-button>
             <fb-fut-button :disabled="getOnboardingAuthLoading" class="button-next my-4 ms-1" type="submit">
-              <span class="fw-bold text-white">{{ $t('i18n_registrar').toUpperCase() }} <fa v-if="getOnboardingAuthLoading" class="spinner-class" :icon="['fas', 'circle-notch']" /></span>
+              <span class="fw-bold text-white">{{ $t('i18n_registrar').toUpperCase() }} <font-awesome-icon v-if="getOnboardingAuthLoading" class="spinner-class" :icon="['fas', 'circle-notch']" /></span>
             </fb-fut-button>
           </div>
         </div>
@@ -368,9 +368,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import ErrorBadge from '@/components/default/atoms/ErrorBadge.vue'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
+import { mapActions, mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+import { useSettingsStore } from '@/stores/settings'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
+import ErrorBadge from '@/components/default/atoms/ErrorBadge'
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
 
 export default {
   name: 'FbRegister',
@@ -421,11 +425,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      currentSettings: 'settings/currentSettings',
-      getOnboardingAuthErrors: 'onboarding-auth/getOnboardingAuthErrors',
-      getOnboardingAuthLoading: 'onboarding-auth/getOnboardingAuthLoading',
-      getOnboardingAuthAddress: 'onboarding-auth/getOnboardingAuthAddress'
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useOnboardingAuthStore, {
+      getOnboardingAuthErrors: 'getOnboardingAuthErrors',
+      getOnboardingAuthLoading: 'getOnboardingAuthLoading',
+      getOnboardingAuthAddress: 'getOnboardingAuthAddress'
     }),
     checkPasswordLength () {
       return (this.data.password.length >= 8) ? 'text-success' : 'text-white-50'
@@ -486,11 +492,13 @@ export default {
     clearTimeout(this.verifyTimeout)
   },
   methods: {
-    ...mapActions({
-      registerUser: 'onboarding-auth/registerUser',
-      updatePopupStatus: 'layout/updatePopupStatus',
-      validateUserCpf: 'onboarding-auth/validateUserCpf',
-      fetchAddressData: 'onboarding-auth/fetchAddressData'
+    ...mapActions(useLayoutStore, {
+      updatePopupStatus: 'updatePopupStatus'
+    }),
+    ...mapActions(useOnboardingAuthStore, {
+      registerUser: 'registerUser',
+      validateUserCpf: 'validateUserCpf',
+      fetchAddressData: 'fetchAddressData'
     }),
     sanatizeValue (value, replaceWhat, replaceTo) {
       if (!value) {

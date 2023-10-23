@@ -2,11 +2,11 @@
   <div class="container">
     <div class="section-title-bar d-flex justify-content-between">
       <div class="d-flex">
-        <fa class="icon-size me-2 text-white fut-color-dynamic" :icon="['fas', 'chart-pie']" />
+        <font-awesome-icon class="icon-size me-2 text-white fut-color-dynamic" :icon="['fas', 'chart-pie']" />
         <span class="title text-white fut-color-dynamic">{{ $t('i18n_detalhes') }}</span>
       </div>
       <span class="chevron-icon">
-        <fa class="icon-size mt-1 text-white fut-color-dynamic" :icon="['fas', 'chevron-down']" />
+        <font-awesome-icon class="icon-size mt-1 text-white fut-color-dynamic" :icon="['fas', 'chevron-down']" />
       </span>
     </div>
     <div class="bs_data_grid_holder">
@@ -83,8 +83,10 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
+import { mapActions, mapState } from 'pinia'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
 
 export default {
   components: {
@@ -96,8 +98,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getBankCasinoTransactions: 'onboarding-bank/getBankCasinoTransactions'
+    ...mapState(useOnboardingBankStore, {
+      getBankCasinoTransactions: 'getBankCasinoTransactions'
     }),
     getCurrentPageNumber () {
       return this.$route.query.page ? this.$route.query.page : 1
@@ -112,8 +114,8 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      fetchBankCasinoTransactions: 'onboarding-bank/fetchBankCasinoTransactions'
+    ...mapActions(useOnboardingBankStore, {
+      fetchBankCasinoTransactions: 'fetchBankCasinoTransactions'
     })
   }
 }

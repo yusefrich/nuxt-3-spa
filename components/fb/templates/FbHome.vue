@@ -46,7 +46,7 @@
         />
       </div>
     </template>
-    <fb-sections-heading v-else class="d-md-none" :title="$tc('i18n_esporte', 2)" route="/sports" />
+    <fb-sections-heading v-else class="d-md-none" :title="$t('i18n_esporte', 2)" route="/sports" />
     <div>
       <fb-carrosel
         v-if="currentSlides && !getPreMatchGroupedEvents"
@@ -71,7 +71,7 @@
       >
         <template #title>
           <div class="section-title-padding">
-            <fa :icon="['fas', 'fire']" />
+            <font-awesome-icon :icon="['fas', 'fire']" />
             <span class="title-head">{{ $t('i18n_mais_popular') }}</span>
           </div>
         </template>
@@ -110,7 +110,7 @@
       >
         <template #title>
           <div class="section-title-padding">
-            <fa style="font-size: 14px" :icon="['far', 'clock']" />
+            <font-awesome-icon style="font-size: 14px" :icon="['far', 'clock']" />
             <span class="title-head">{{ $t('i18n_proximos') }}</span>
           </div>
         </template>
@@ -155,7 +155,7 @@
               <div class="d-none d-md-block py-1">
                 <span class="title-head">{{ events.name }}</span>
                 <fb-fut-button class="text-background float-end px-1 py-0" @click="toggleLeagueToStack(getPreMatchGroupedIdsReverse[index])">
-                  <fa :icon="['fas', 'times']" />
+                  <font-awesome-icon :icon="['fas', 'times']" />
                 </fb-fut-button>
               </div>
             </template>
@@ -167,15 +167,18 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import dayjs from 'dayjs'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
-import FbSectionsHeading from '@/components/fb/atoms/FbSectionsHeading.vue'
-import FbCarrosel from '@/components/fb/atoms/FbCarrosel.vue'
-import FbGamesList from '@/components/fb/organisms/FbGamesList.vue'
-import Fb2SidebarSports from '@/components/fb/organisms/Fb2SidebarSports.vue'
-import Fb2SelectPageSlider from '@/components/fb/molecules/Fb2SelectPageSlider.vue'
-import FbSidebarSports from '@/components/fb/organisms/FbSidebarSports.vue'
+import { mapState, mapActions } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+import { useSettingsStore } from '@/stores/settings'
+
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
+import FbSectionsHeading from '@/components/fb/atoms/FbSectionsHeading'
+import FbCarrosel from '@/components/fb/atoms/FbCarrosel'
+import FbGamesList from '@/components/fb/organisms/FbGamesList'
+import Fb2SidebarSports from '@/components/fb/organisms/Fb2SidebarSports'
+import Fb2SelectPageSlider from '@/components/fb/molecules/Fb2SelectPageSlider'
+import FbSidebarSports from '@/components/fb/organisms/FbSidebarSports'
 import windowWidth from '@/mixins.js/windowWidth.js'
 
 export default {
@@ -199,24 +202,28 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getFilters: 'pre-match/getFilters',
-      getCurrentProvider: 'sports/getCurrentProvider',
-      currentSlides: 'settings/currentSlides',
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle',
-      getCurrentApplicationType: 'layout/getCurrentApplicationType',
-      currentSettings: 'settings/currentSettings',
-      getPreCashInTickets: 'tickets-pre-cash-in/getPreCashInTickets',
-      getPreMatchLeaguesLoading: 'pre-match-leagues/getPreMatchLeaguesLoading',
-      getPreMatchLoading: 'pre-match/getPreMatchLoading',
-      getPreMatchEvents: 'pre-match/getPreMatchEvents',
-      getPreMatchFeaturedEvents: 'pre-match-featured-events/getPreMatchFeaturedEvents',
-      getPreMatchGroupedEvents: 'pre-match-grouped-events/getPreMatchGroupedEvents',
-      getPreMatchGroupedIds: 'pre-match-grouped-events/getPreMatchGroupedIds',
-      getPreMatchGroupedIdsReverse: 'pre-match-grouped-events/getPreMatchGroupedIdsReverse',
-      getAllMetadataSports: 'metadata-sports/getAllMetadataSports',
-      getMetadataSports: 'metadata-sports/getMetadataSports'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle',
+      getCurrentApplicationType: 'getCurrentApplicationType'
     }),
+    ...mapState(useSettingsStore, {
+      currentSlides: 'currentSlides',
+      currentSettings: 'currentSettings'
+    }),
+    // ...mapGetters({
+    //   getFilters: 'pre-match/getFilters',
+    //   getCurrentProvider: 'sports/getCurrentProvider',
+    //   getPreCashInTickets: 'tickets-pre-cash-in/getPreCashInTickets',
+    //   getPreMatchLeaguesLoading: 'pre-match-leagues/getPreMatchLeaguesLoading',
+    //   getPreMatchLoading: 'pre-match/getPreMatchLoading',
+    //   getPreMatchEvents: 'pre-match/getPreMatchEvents',
+    //   getPreMatchFeaturedEvents: 'pre-match-featured-events/getPreMatchFeaturedEvents',
+    //   getPreMatchGroupedEvents: 'pre-match-grouped-events/getPreMatchGroupedEvents',
+    //   getPreMatchGroupedIds: 'pre-match-grouped-events/getPreMatchGroupedIds',
+    //   getPreMatchGroupedIdsReverse: 'pre-match-grouped-events/getPreMatchGroupedIdsReverse',
+    //   getAllMetadataSports: 'metadata-sports/getAllMetadataSports',
+    //   getMetadataSports: 'metadata-sports/getMetadataSports'
+    // }),
     isMobile () {
       return this.width <= 821
     },
@@ -288,20 +295,22 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      fetchSliders: 'settings/fetchSliders',
-      commitSlides: 'settings/commitSlides',
-      commitFeaturedBets: 'bets/commitFeaturedBets',
-      fetchPreMatchEvents: 'pre-match/fetchPreMatchEvents',
-      fetchAllMetadataSports: 'metadata-sports/fetchAllMetadataSports',
-      fetchMetadataCountries: 'metadata-countries/fetchMetadataCountries',
-      fetchPreMatchLeaguesByCountry: 'pre-match-leagues/fetchPreMatchLeaguesByCountry',
-      fetchPreMatchFeaturedEvents: 'pre-match-featured-events/fetchPreMatchFeaturedEvents',
-      changeFilter: 'pre-match/changeFilter',
-      fetchPreMatchGroupedEvents: 'pre-match-grouped-events/fetchPreMatchGroupedEvents',
-      setInvalidMultiple: 'tickets-pre-cash-in/setInvalidMultiple',
-      toggleTicket: 'tickets-pre-cash-in/toggleTicket'
+    ...mapActions(useSettingsStore, {
+      commitSlides: 'commitSlides',
+      fetchSliders: 'fetchSliders'
     }),
+    // ...mapActions({
+    //   commitFeaturedBets: 'bets/commitFeaturedBets',
+    //   fetchPreMatchEvents: 'pre-match/fetchPreMatchEvents',
+    //   fetchAllMetadataSports: 'metadata-sports/fetchAllMetadataSports',
+    //   fetchMetadataCountries: 'metadata-countries/fetchMetadataCountries',
+    //   fetchPreMatchLeaguesByCountry: 'pre-match-leagues/fetchPreMatchLeaguesByCountry',
+    //   fetchPreMatchFeaturedEvents: 'pre-match-featured-events/fetchPreMatchFeaturedEvents',
+    //   changeFilter: 'pre-match/changeFilter',
+    //   fetchPreMatchGroupedEvents: 'pre-match-grouped-events/fetchPreMatchGroupedEvents',
+    //   setInvalidMultiple: 'tickets-pre-cash-in/setInvalidMultiple',
+    //   toggleTicket: 'tickets-pre-cash-in/toggleTicket'
+    // }),
     productConfig () {
       return process.env.PRODUCT_CONFIG
     },

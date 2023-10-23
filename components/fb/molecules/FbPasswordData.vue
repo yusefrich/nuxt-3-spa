@@ -15,12 +15,12 @@
             type="button"
             @click="showPassword()"
           >
-            <fa
+            <font-awesome-icon
               v-if="passwordType === 'text'"
               class="text-white fut-color-dynamic"
               :icon="['fas', 'eye']"
             />
-            <fa
+            <font-awesome-icon
               v-else
               class="text-white fut-color-dynamic"
               :icon="['fas', 'eye-slash']"
@@ -45,12 +45,12 @@
             type="button"
             @click="showPassword()"
           >
-            <fa
+            <font-awesome-icon
               v-if="passwordType === 'text'"
               class="text-white fut-color-dynamic"
               :icon="['fas', 'eye']"
             />
-            <fa
+            <font-awesome-icon
               v-else
               class="text-white fut-color-dynamic"
               :icon="['fas', 'eye-slash']"
@@ -64,10 +64,10 @@
               `${(checkIfPasswordHas('uppercase', data.password) || checkIfPasswordHas('lowercase', data.password)) && checkIfPasswordHas('numbers', data.password) ? 'text-success' : 'text-danger'}`
             ]"
           >
-            <small><fa :icon="['far', 'check-circle']" /> {{ $t('i18n_letras_e_numeros') }}.</small>
+            <small><font-awesome-icon :icon="['far', 'check-circle']" /> {{ $t('i18n_letras_e_numeros') }}.</small>
           </p>
           <p :class="['mb-0', `${checkIfPasswordHas('length', data.password) ? 'text-success' : 'text-danger'}`]">
-            <small><fa :icon="['far', 'check-circle']" /> 8 {{ $t('i18n_digitos') }}.</small>
+            <small><font-awesome-icon :icon="['far', 'check-circle']" /> 8 {{ $t('i18n_digitos') }}.</small>
           </p>
         </div>
         <error-badge name="password" :validate="$attrs['error']?$attrs['error']:{}" />
@@ -86,12 +86,12 @@
             type="button"
             @click="showPassword()"
           >
-            <fa
+            <font-awesome-icon
               v-if="passwordType === 'text'"
               class="text-white fut-color-dynamic"
               :icon="['fas', 'eye']"
             />
-            <fa
+            <font-awesome-icon
               v-else
               class="text-white fut-color-dynamic"
               :icon="['fas', 'eye-slash']"
@@ -126,6 +126,9 @@ export default {
     ErrorBadge,
     FbFutButton
   },
+  emits: [
+    'updatePassword'
+  ],
   data () {
     return {
       data: {

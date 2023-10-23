@@ -2,7 +2,7 @@
   <div>
     <fb-sections-heading
       class="d-md-none"
-      :title="$tc('i18n_esporte', 2)"
+      :title="$t('i18n_esporte', 2)"
       route="/sports"
     />
     <template v-for="(group, i) in getPreMatchSeachEvents">

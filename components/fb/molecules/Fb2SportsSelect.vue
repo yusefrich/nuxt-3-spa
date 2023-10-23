@@ -8,7 +8,7 @@
       @click="$emit('changeSport', sport.id)"
     >
       <span class="games-count">{{ sport.games }}</span>
-      <fa
+      <font-awesome-icon
         v-if="sportsIcons[sport.id] && sportsIcons[sport.id].fa"
         class="sport-icon"
         :icon="sportsIcons[sport.id] && sportsIcons[sport.id].value ? sportsIcons[sport.id].value : ['fas', 'star']"
@@ -36,6 +36,9 @@ export default {
       default: null
     }
   },
+  emits: [
+    'changeSport'
+  ],
   data () {
     return {
       sportsIcons: {

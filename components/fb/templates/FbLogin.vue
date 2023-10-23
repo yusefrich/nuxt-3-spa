@@ -35,9 +35,13 @@
     </div>
   </form>
 </template>
+
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
+import { mapActions, mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useSettingsStore } from '@/stores/settings'
+
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
 
 export default {
   components: {
@@ -52,14 +56,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      currentSettings: 'settings/currentSettings'
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
     })
   },
   methods: {
-    ...mapActions({
+    ...mapActions(useBaseStore, {
       login: 'login',
-      authUser: 'authUser'
+      authUser: 'authUser',
     }),
     async logUser () {
       await this.login(this.data)
@@ -77,6 +81,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .input-control {
   background-color: transparent;

@@ -4,13 +4,13 @@
       <div
         class="header-profile w-100 p-2 d-none d-md-flex align-items-center text-white fut-color-dynamic"
       >
-        <fa class="mr-10" :icon="['fas', 'user']" />
+        <font-awesome-icon class="mr-10" :icon="['fas', 'user']" />
         <span>{{ $t('i18n_perfil') }}</span>
       </div>
       <div class="mt-md-1 mt-3">
         <div class="section-details w-100 me-md-1 me-0">
           <div class="container py-1 section-details-header d-none d-md-flex align-items-center fut-color-dynamic">
-            <fa class="mr-10" :icon="['fas', 'address-book']" />
+            <font-awesome-icon class="mr-10" :icon="['fas', 'address-book']" />
             <span>{{ $t('i18n_documentos_de_identificacao') }}</span>
           </div>
           <div class="d-md-none p-2 section-details-header">
@@ -25,7 +25,7 @@
                     data-bs-toggle="collapse"
                     data-bs-target="#sended-collapse"
                   >
-                    <fa class="text-white fut-color-dynamic icon me-2" :icon="['fas', 'file-alt']" />
+                    <font-awesome-icon class="text-white fut-color-dynamic icon me-2" :icon="['fas', 'file-alt']" />
                     <div class="d-flex justify-content-between w-100">
                       <span class="fut-color-dynamic">{{ $t('i18n_documentos_enviados') }}</span>
                       <small class="me-3 badge bg-secondary rounded">
@@ -109,7 +109,7 @@
               </div>
               <div class="bg-background p-3 doc-info-card">
                 <div class="d-flex">
-                  <img class="img-fluid me-3" src="/id.png" width="60px" height="60px" style="object-fit: contain">
+                  <img class="img-fluid me-3" src="/id.png" width="60" height="60" style="object-fit: contain">
                   <div class="header-title--text">
                     <div class="title text-white fut-color-dynamic">
                       {{ $t('i18n_processo_de_verificacao') }}
@@ -123,7 +123,7 @@
               <div class="accordion-item">
                 <h2 id="flush-headingOne" class="accordion-header">
                   <fb-fut-button class="accordion-button collapsed fut-color-dynamic" data-bs-toggle="collapse" data-bs-target="#doc-id">
-                    <fa class="text-white fut-color-dynamic icon me-2" :icon="['far', 'id-card']" /> {{ $t('i18n_documento_de_identificacao') }}
+                    <font-awesome-icon class="text-white fut-color-dynamic icon me-2" :icon="['far', 'id-card']" /> {{ $t('i18n_documento_de_identificacao') }}
                   </fb-fut-button>
                 </h2>
                 <div id="doc-id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#documents-collapse">
@@ -145,14 +145,14 @@
                     <div v-if="form" class="row mx-0">
                       <div class="col-md-6 position-relative p-0">
                         <!-- <div v-if="idFrontSent" class="sended-message text-center">
-                          <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <fa class="ms-1" :icon="['fas', 'check']" /></span>
+                          <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <font-awesome-icon class="ms-1" :icon="['fas', 'check']" /></span>
                           <br>
                           <fb-fut-button class="text-dark" @click="idFrontSent = false">
                             <small>{{ $t('i18n_enviar_um_novo_arquivo') }}</small>
                           </fb-fut-button>
                         </div> -->
                         <div v-if="(idFrontSent || getFilesFiltered(form, 'front')) && !idFrontSent2" class="sended-message text-center">
-                          <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <fa class="ms-1" :icon="['fas', 'check']" /></span>
+                          <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <font-awesome-icon class="ms-1" :icon="['fas', 'check']" /></span>
                           <br>
                           <span class="text-dark"><small>{{formattedData(getFilesFiltered(form, 'front') ? getFilesFiltered(form, 'front').created_at : new Date())}}</small></span>
                           <br>
@@ -188,21 +188,19 @@
                             <img
                               v-if="getFile('id-front') && !getFile('id-front').src.includes('pdf;base64')"
                               style="object-fit: contain"
-                              class="img-sender"
-                              height="200px"
-                              width="100%"
+                              class="img-sender w-100"
+                              height="200"
                               :src="getFile('id-front').src"
                             >
                             <img
                               v-else-if="getFilesFiltered(form, 'front') && !idFrontSent2"
                               style="object-fit: contain"
-                              class="img-sender"
-                              height="200px"
-                              width="100%"
+                              class="img-sender w-100"
+                              height="200"
                               :src="getFilesFiltered(form, 'front').file"
                             >
-                            <fa v-if="getFile('id-front') && getFile('id-front').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
-                            <fa v-if="(!getFile('id-front') && !getFilesFiltered('id-front', 'front')) || (idFrontSent2 && !getFile('id-front'))" class="text-white fut-color-dynamic icon-file me-2" :icon="['far', 'plus-square']" />
+                            <font-awesome-icon v-if="getFile('id-front') && getFile('id-front').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
+                            <font-awesome-icon v-if="(!getFile('id-front') && !getFilesFiltered('id-front', 'front')) || (idFrontSent2 && !getFile('id-front'))" class="text-white fut-color-dynamic icon-file me-2" :icon="['far', 'plus-square']" />
                             <span class="fut-color-dynamic">{{ $t('i18n_escolha_os_documentos_e_clique_em_enviar') }}</span>
                           </fb-fut-button>
                           <div class="row mt-2">
@@ -228,7 +226,7 @@
                       </div>
                       <div class="col-md-6 position-relative p-0">
                         <div v-if="(idBackSent || getFilesFiltered(form, 'back')) && !idBackSent2" class="sended-message text-center">
-                          <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <fa class="ms-1" :icon="['fas', 'check']" /></span>
+                          <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <font-awesome-icon class="ms-1" :icon="['fas', 'check']" /></span>
                           <br>
                           <span class="text-dark"><small>{{formattedData(getFilesFiltered(form, 'back') ? getFilesFiltered(form, 'back').created_at : new Date())}}</small></span>
                           <br>
@@ -264,21 +262,19 @@
                             <img
                               v-if="getFile('id-back') && !getFile('id-back').src.includes('pdf;base64')"
                               style="object-fit: contain"
-                              class="img-sender"
-                              height="200px"
-                              width="100%"
+                              class="img-sender w-100"
+                              height="200"
                               :src="getFile('id-back').src"
                             >
                             <img
                               v-else-if="getFilesFiltered(form, 'back') && !idBackSent2"
                               style="object-fit: contain"
-                              class="img-sender"
-                              height="200px"
-                              width="100%"
+                              class="img-sender w-100"
+                              height="200"
                               :src="getFilesFiltered(form, 'back').file"
                             >
-                            <fa v-if="getFile('id-back') && getFile('id-back').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
-                            <fa v-if="(!getFile('id-back') && !getFilesFiltered(form, 'back')) || (idBackSent2 && !getFile('id-back'))" class="text-white fut-color-dynamic icon-file me-2" :icon="['far', 'plus-square']" />
+                            <font-awesome-icon v-if="getFile('id-back') && getFile('id-back').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
+                            <font-awesome-icon v-if="(!getFile('id-back') && !getFilesFiltered(form, 'back')) || (idBackSent2 && !getFile('id-back'))" class="text-white fut-color-dynamic icon-file me-2" :icon="['far', 'plus-square']" />
                             <span class="fut-color-dynamic">{{ $t('i18n_escolha_os_documentos_e_clique_em_enviar') }}</span>
                           </fb-fut-button>
                           <div class="row mt-2">
@@ -309,7 +305,7 @@
               <div class="accordion-item mb-2">
                 <h2 id="flush-headingOne" class="accordion-header">
                   <fb-fut-button class="accordion-button collapsed fut-color-dynamic" data-bs-toggle="collapse" data-bs-target="#residence">
-                    <fa class="text-white fut-color-dynamic icon me-2" :icon="['fas', 'house-user']" /> {{ $t('i18n_comprovante_de_residencia') }}
+                    <font-awesome-icon class="text-white fut-color-dynamic icon me-2" :icon="['fas', 'house-user']" /> {{ $t('i18n_comprovante_de_residencia') }}
                   </fb-fut-button>
                 </h2>
                 <div id="residence" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#documents-collapse">
@@ -325,7 +321,7 @@
                     </p>
                     <div class="position-relative p-0">
                       <div v-if="(residenceSent || getFilesFiltered('residence', 'front')) && !residenceSent2" class="sended-message text-center">
-                        <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <fa class="ms-1" :icon="['fas', 'check']" /></span>
+                        <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <font-awesome-icon class="ms-1" :icon="['fas', 'check']" /></span>
                         <br>
                         <span class="text-dark"><small>{{formattedData(getFilesFiltered('residence', 'front') ? getFilesFiltered('residence', 'front').created_at : new Date())}}</small></span>
                         <br>
@@ -364,21 +360,19 @@
                           <img
                             v-if="getFile('residence') && !getFile('residence').src.includes('pdf;base64')"
                             style="object-fit: contain"
-                            class="img-sender"
-                            height="200px"
-                            width="100%"
+                            class="img-sender w-100"
+                            height="200"
                             :src="getFile('residence').src"
                           >
                           <img
                             v-else-if="getFilesFiltered('residence', 'front') && !residenceSent2"
                             style="object-fit: contain"
-                            class="img-sender"
-                            height="200px"
-                            width="100%"
+                            class="img-sender w-100"
+                            height="200"
                             :src="getFilesFiltered('residence', 'front').file"
                           >
-                          <fa v-if="getFile('residence') && getFile('residence').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
-                          <fa v-if="(!getFile('residence') && !getFilesFiltered('residence', 'front')) || (residenceSent2 && !getFile('residence'))" class="text-white fut-color-dynamic icon-file me-2" :icon="['far', 'plus-square']" />
+                          <font-awesome-icon v-if="getFile('residence') && getFile('residence').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
+                          <font-awesome-icon v-if="(!getFile('residence') && !getFilesFiltered('residence', 'front')) || (residenceSent2 && !getFile('residence'))" class="text-white fut-color-dynamic icon-file me-2" :icon="['far', 'plus-square']" />
                           <span class="fut-color-dynamic">{{ $t('i18n_escolha_os_documentos_e_clique_em_enviar') }}</span>
                         </fb-fut-button>
                         <div class="row mt-2">
@@ -407,7 +401,7 @@
               </div>
               <div class="bg-background p-3 doc-info-card">
                 <div class="d-flex">
-                  <img class="img-fluid me-3" src="/doc.png" width="60px" height="60px" style="object-fit: contain">
+                  <img class="img-fluid me-3" src="/doc.png" width="60" height="60" style="object-fit: contain">
                   <div class="header-title--text">
                     <div class="title text-white fut-color-dynamic">
                       {{ $t('i18n_documentos_adicionais') }}
@@ -421,7 +415,7 @@
               <div class="accordion-item">
                 <h2 id="flush-headingOne" class="accordion-header">
                   <fb-fut-button class="accordion-button collapsed fut-color-dynamic" data-bs-toggle="collapse" data-bs-target="#others">
-                    <fa class="text-white fut-color-dynamic icon me-2" :icon="['fas', 'file-upload']" /> {{ $t('i18n_outro_documento') }}
+                    <font-awesome-icon class="text-white fut-color-dynamic icon me-2" :icon="['fas', 'file-upload']" /> {{ $t('i18n_outro_documento') }}
                   </fb-fut-button>
                 </h2>
                 <div id="others" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#documents-collapse">
@@ -437,7 +431,7 @@
                     </p>
                     <div class="position-relative p-0">
                       <div v-if="(otherSent || getFilesFiltered('other', 'front')) && !otherSent2" class="sended-message text-center">
-                        <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <fa class="ms-1" :icon="['fas', 'check']" /></span>
+                        <span class="text-dark fw-bold">{{ $t('i18n_enviado_com_sucesso') }} <font-awesome-icon class="ms-1" :icon="['fas', 'check']" /></span>
                         <br>
                         <span class="text-dark"><small>{{formattedData(getFilesFiltered('other', 'front').created_at)}}</small></span>
                         <span class="text-dark"><small>{{formattedData(getFilesFiltered('other', 'front') ? getFilesFiltered('other', 'front').created_at : new Date())}}</small></span>
@@ -475,21 +469,19 @@
                           <img
                             v-if="getFile('other') && !getFile('other').src.includes('pdf;base64')"
                             style="object-fit: contain"
-                            class="img-sender"
-                            height="200px"
-                            width="100%"
+                            class="img-sender w-100"
+                            height="200"
                             :src="getFile('other').src"
                           >
                           <img
                             v-else-if="getFilesFiltered('other', 'front') && !otherSent2"
                             style="object-fit: contain"
-                            class="img-sender"
-                            height="200px"
-                            width="100%"
+                            class="img-sender w-100"
+                            height="200"
                             :src="getFilesFiltered('other', 'front').file"
                           >
-                          <fa v-if="getFile('other') && getFile('other').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
-                          <fa v-if="(!getFile('other') && !getFilesFiltered('other', 'front')) || (otherSent2 && !getFile('other'))" class="text-white fut-color-dynamic icon-file me-2" :icon="['far', 'plus-square']" />
+                          <font-awesome-icon v-if="getFile('other') && getFile('other').src.includes('pdf;base64')" class="text-white fut-color-dynamic icon-file me-2" :icon="['fas', 'file-pdf']" />
+                          <font-awesome-icon v-if="(!getFile('other') && !getFilesFiltered('other', 'front')) || (otherSent2 && !getFile('other'))" class="text-white fut-color-dynamic icon-file me-2" :icon="['far', 'plus-square']" />
                           <span class="fut-color-dynamic">{{ $t('i18n_escolha_os_documentos_e_clique_em_enviar') }}</span>
                         </fb-fut-button>
                         <div class="row mt-2">
@@ -553,8 +545,8 @@
                     {{ $t('i18n_documentos_sugeridos_para_confirmacao') }}:
                   </p>
                   <ol>
-                    <li>{{ $t('i18n_faturas_domesticas_recenter') }} ({{ $tc('i18n_emitidas_nos_ultimos_seis_meses', 2) }}) {{ $t('i18n_cuja_data_de_emissao_seja_visivel') }}</li>
-                    <li>{{ $t('i18n_extrato_bancario') }} ({{ $tc('i18n_emitidas_nos_ultimos_seis_meses', 1) }})</li>
+                    <li>{{ $t('i18n_faturas_domesticas_recenter') }} ({{ $t('i18n_emitidas_nos_ultimos_seis_meses', 2) }}) {{ $t('i18n_cuja_data_de_emissao_seja_visivel') }}</li>
+                    <li>{{ $t('i18n_extrato_bancario') }} ({{ $t('i18n_emitidas_nos_ultimos_seis_meses', 1) }})</li>
                     <li>{{ $t('i18n_autorizacao_de_residencia_valida') }}</li>
                     <li>{{ $t('i18n_certificado_de_resistencia_emitido') }}</li>
                   </ol>
@@ -570,10 +562,14 @@
 
 <script>
 import dayjs from 'dayjs'
-import { mapGetters, mapActions } from 'vuex'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
-import FutSelect from '@/components/default/atoms/FutSelect.vue'
-import FutModal from '@/components/default/organisms/FutModal.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useSettingsStore } from '@/stores/settings'
+import { useUploadFileStore } from '@/stores/upload-file'
+
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
+import FutSelect from '@/components/default/atoms/FutSelect'
+import FutModal from '@/components/default/organisms/FutModal'
 
 // todo Add residence file
 export default {
@@ -629,30 +625,37 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      loggedInUser: 'loggedInUser',
-      currentSettings: 'settings/currentSettings',
-      getLoading: 'upload-file/getLoading',
-      getFiles: 'upload-file/getFiles'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useUploadFileStore, {
+      getFiles: 'getFiles',
+      getLoading: 'getLoading'
     })
   },
   mounted () {
     this.fetchFiles()
   },
   methods: {
-    ...mapActions({
-      sendFile: 'upload-file/sendFile',
-      fetchFiles: 'upload-file/fetchFiles'
+    ...mapActions(useUploadFileStore, {
+      sendFile: 'sendFile',
+      fetchFiles: 'fetchFiles'
     }),
     getFilesFiltered (desc, type) {
       if (!this.getFiles) {
         return
       }
+
       const files = this.getFiles.filter(el => el.desc === desc && el.type === type)
+
       return files[files.length - 1]
     },
     openFileInput (refValue) {
       const el = this.$refs[refValue]
+
       el.click()
     },
     getFormName (doc) {
@@ -688,7 +691,9 @@ export default {
       if (this.documents.find(element => element.fileId === fileId)) {
         this.documents.splice(this.documents.find(element => element.fileId === fileId).index, 1)
       }
+
       const base64 = await this.convertBase64(event.target.files[0])
+
       this.documents.push({ fileId, src: base64, file: event.target.files[0] })
     },
     getFile (fileId) {
@@ -717,8 +722,10 @@ export default {
     },
     convertBase64 (file) {
       if (!file) { return }
+
       return new Promise((resolve, reject) => {
         const fileReader = new FileReader()
+        
         fileReader.readAsDataURL(file)
 
         fileReader.onload = () => {

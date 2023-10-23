@@ -57,10 +57,15 @@
                   @click="openGame(game)"
                 >
                   <div class="play-overlay transition">
-                    <fa class="icon transition" :icon="['fas', 'play']" />
+                    <font-awesome-icon class="icon transition" :icon="['fas', 'play']" />
                     <div class="circle-icon" />
                   </div>
-                  <img v-lazy-load class="casino-icon" :data-src="game.icon ? game.icon : '/img/mob-casino.png'" :class="{bnw: !game.icon}" alt="">
+                  <img
+                    class="casino-icon"
+                    :src="game.icon ? game.icon : '/img/mob-casino.png'"
+                    :class="{bnw: !game.icon}"
+                    alt=""
+                  >
                   <div class="casino-name text-white">
                     {{ game.name }}
                   </div>
@@ -87,7 +92,7 @@
       <div :class="{'cm-evolution': provider === 'Evolution', 'content-modal': provider !== 'Evolution'}">
         <div class="exit-buttons">
           <fb-fut-button class="text-white btn-close-modal" @click="iframe = false">
-            <fa :icon="['fas', 'times']" />
+            <font-awesome-icon :icon="['fas', 'times']" />
           </fb-fut-button>
           <fb-fut-button
             v-if="agregator !== 'softgaming'"
@@ -98,10 +103,10 @@
             external
             @click="iframe = false"
           >
-            <fa :icon="['fas', 'external-link-alt']" />
+            <font-awesome-icon :icon="['fas', 'external-link-alt']" />
           </fb-fut-button>
         </div>
-        <fa class="iframe-modal-icon fut-spin text-white fut-color-dynamic" :icon="['fas', 'circle-notch']" />
+        <font-awesome-icon class="iframe-modal-icon fut-spin text-white fut-color-dynamic" :icon="['fas', 'circle-notch']" />
         <iframe
           v-if="!agregator || agregator === '' || agregator === 'wac' || agregator === 'br4bet' || agregator === 'banana-live' || agregator === 'banana' || agregator === 'fds'"
           id="game_iframe_default"
@@ -153,20 +158,43 @@
       @onClose="()=>{ loginIframe = false; }"
     >
       <p>Realize seu login para acessar esse jogo!</p>
-      <fb-login-form v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" :current-settings="currentSettings" @logUser="logUser($event)" />
-      <fut-login v-else :vertical="true" @logUser="logUser($event)" />
+      <fb-login-form
+        v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'"
+        :current-settings="currentSettings"
+        @logUser="logUser($event)"
+      />
+      <fut-login
+        v-else
+        :vertical="true"
+        @logUser="logUser($event)"
+      />
     </fut-modal>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useCasinoStore } from '@/stores/casino'
+import { useLayoutStore } from '@/stores/layout'
+import { useSettingsStore } from '@/stores/settings'
+import { useLiveCasinoStore } from '@/stores/live-casino'
+import { useCasinoFeaturedStore } from '@/stores/casino-featured'
+import { useMetadataCasinoStore } from '@/stores/metadata-casino'
+import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
+import { useLiveMetadataCasinoStore } from '@/stores/live-metadata-casino'
+import { useLiveCasinoFeaturedStore } from '@/stores/live-casino-featured'
+import { useCasinoProviderGamesStore } from '@/stores/casino-provider-games'
+import { useCasinoCategoryGamesStore } from '@/stores/casino-category-games'
+import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
+import { useLiveCasinoSearchGamesStore } from '@/stores/live-casino-search-games'
+
 import FbFutButton from '@/components/fb/atoms/FbFutButton'
 import FbCasinoStickyBar from '@/components/fb/organisms/FbCasinoStickyBar'
 import FbCarrosel from '@/components/fb/atoms/FbCarrosel'
-import FutModal from '@/components/default/organisms/FutModal.vue'
-import FutLogin from '@/components/default/molecules/FutLogin.vue'
-import FbLoginForm from '@/components/fb/molecules/FbLoginForm.vue'
+import FutModal from '@/components/default/organisms/FutModal'
+import FutLogin from '@/components/default/molecules/FutLogin'
+import FbLoginForm from '@/components/fb/molecules/FbLoginForm'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 
 export default {
@@ -251,28 +279,52 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle',
-      loggedInUser: 'loggedInUser',
-      currentSettings: 'settings/currentSettings',
-      getCasinoGames: 'casino/getCasinoGames',
-      getLiveCasinoGames: 'live-casino/getLiveCasinoGames',
-      getCasinoProviderGames: 'casino-provider-games/getCasinoProviderGames',
-      getCasinoGameIframeUrl: 'casino/getCasinoGameIframeUrl',
-      getCasinoProviders: 'metadata-casino/getCasinoProviders',
-      getCasinoCategories: 'metadata-casino/getCasinoCategories',
-      getLiveCasinoCategories: 'live-metadata-casino/getLiveCasinoCategories',
-      getCasinoSliders: 'metadata-casino/getCasinoSliders',
-      getCasinoLoading: 'casino-provider-games/getCasinoLoading',
-      getCasinoCategoryGames: 'casino-category-games/getCasinoCategoryGames',
-      getCasinoMostPlayedGames: 'casino-featured/getCasinoMostPlayedGames',
-      getLiveCasinoMostPlayedGames: 'live-casino-featured/getLiveCasinoMostPlayedGames',
-      getCasinoNew: 'casino-featured/getCasinoNew',
-      getLiveCasinoNew: 'live-casino-featured/getLiveCasinoNew',
-      getCasinoSearchGames: 'casino-search-games/getCasinoSearchGames',
-      getLiveCasinoSearchGames: 'live-casino-search-games/getLiveCasinoSearchGames',
-      getCasinoSearchLoading: 'casino-search-games/getCasinoSearchLoading',
-      getLiveCasinoSearchLoading: 'live-casino-search-games/getLiveCasinoSearchLoading'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useCasinoStore, {
+      getCasinoGames: 'getCasinoGames',
+      getCasinoGameIframeUrl: 'getCasinoGameIframeUrl'
+    }),
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
+    }),
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useLiveCasinoStore, {
+      getLiveCasinoGames: 'getLiveCasinoGames'
+    }),
+    ...mapState(useMetadataCasinoStore, {
+      getCasinoSliders: 'getCasinoSliders',
+      getCasinoProviders: 'getCasinoProviders',
+      getCasinoCategories: 'getCasinoCategories'
+    }),
+    ...mapState(useCasinoFeaturedStore, {
+      getCasinoNew: 'getCasinoNew',
+      getCasinoMostPlayedGames: 'getCasinoMostPlayedGames'
+    }),
+    ...mapState(useCasinoSearchGamesStore, {
+      getCasinoSearchGames: 'getCasinoSearchGames',
+      getCasinoSearchLoading: 'getCasinoSearchLoading'
+    }),
+    ...mapState(useLiveCasinoFeaturedStore, {
+      getLiveCasinoNew: 'getLiveCasinoNew',
+      getLiveCasinoMostPlayedGames: 'getLiveCasinoMostPlayedGames'
+    }),
+    ...mapState(useLiveMetadataCasinoStore, {
+      getLiveCasinoCategories: 'getLiveCasinoCategories'
+    }),
+    ...mapState(useCasinoProviderGamesStore, {
+      getCasinoLoading: 'getCasinoLoading',
+      getCasinoProviderGames: 'getCasinoProviderGames'
+    }),
+    ...mapState(useCasinoCategoryGamesStore, {
+      getCasinoCategoryGames: 'getCasinoCategoryGames'
+    }),
+    ...mapState(useLiveCasinoSearchGamesStore, {
+      getLiveCasinoSearchGames: 'getLiveCasinoSearchGames',
+      getLiveCasinoSearchLoading: 'getLiveCasinoSearchLoading'
     }),
     productRedirect () {
       if (!process.env.PRODUCT_REDIRECT_URL && !process.env.PRODUCT_REDIRECT_TITLE) {
@@ -391,36 +443,58 @@ export default {
     clearTimeout(this.hideAddress)
   },
   methods: {
-    ...mapActions({
+    ...mapActions(useBaseStore, {
       login: 'login',
-      authUser: 'authUser',
-      fetchCasinoProviders: 'metadata-casino/fetchCasinoProviders',
-      fetchCasinoCategories: 'metadata-casino/fetchCasinoCategories',
-      fetchLiveCasinoCategories: 'live-metadata-casino/fetchLiveCasinoCategories',
-      fetchCasinoHeaderGames: 'metadata-casino/fetchCasinoHeaderGames',
-      fetchCasinoSliders: 'metadata-casino/fetchCasinoSliders',
-      searchCasinoGames: 'casino-search-games/searchCasinoGames',
-      searchLiveCasinoGames: 'live-casino-search-games/searchLiveCasinoGames',
-      fetchCasinoGames: 'casino/fetchCasinoGames',
-      fetchLiveCasinoGames: 'live-casino/fetchLiveCasinoGames',
-      fetchCasinoGameIframeUrl: 'casino/fetchCasinoGameIframeUrl',
-      fetchCasinoBananaLiveIframeUrl: 'casino/fetchCasinoBananaLiveIframeUrl',
-      fetchCasinoBananaIframeUrl: 'casino/fetchCasinoBananaIframeUrl',
-      fetchCasinoFdsIframeUrl: 'casino/fetchCasinoFdsIframeUrl',
-      fetchCasinoGamesByProvider: 'casino-provider-games/fetchCasinoGamesByProvider',
-      concatCasinoGamesByProvider: 'casino-provider-games/concatCasinoGamesByProvider',
-      fetchCasinoMostPlayedGames: 'casino-featured/fetchCasinoMostPlayedGames',
-      fetchLiveCasinoMostPlayedGames: 'live-casino-featured/fetchLiveCasinoMostPlayedGames',
-      concatCasinoMostPlayedGames: 'casino-featured/concatCasinoMostPlayedGames',
-      concatLiveCasinoMostPlayedGames: 'live-casino-featured/concatLiveCasinoMostPlayedGames',
-      fetchCasinoNewGames: 'casino-featured/fetchCasinoNewGames',
-      fetchLiveCasinoNewGames: 'live-casino-featured/fetchLiveCasinoNewGames',
-      concatCasinoNewGames: 'casino-featured/concatCasinoNewGames',
-      concatLiveCasinoNewGames: 'live-casino-featured/concatLiveCasinoNewGames',
-      fetchCasinoGamesByCategory: 'casino-category-games/fetchCasinoGamesByCategory',
-      concatCasinoGamesByCategory: 'casino-category-games/concatCasinoGamesByCategory',
-      fetchCasinoSingleGame: 'casino/fetchCasinoSingleGame',
-      fetchProductRedirectUrl: 'onboarding-third-pt-auth/fetchProductRedirectUrl'
+      authUser: 'authUser'
+    }),
+    ...mapActions(useCasinoStore, {
+      fetchCasinoGames: 'fetchCasinoGames',
+      fetchCasinoSingleGame: 'fetchCasinoSingleGame',
+      fetchCasinoFdsIframeUrl: 'fetchCasinoFdsIframeUrl',
+      fetchCasinoGameIframeUrl: 'fetchCasinoGameIframeUrl',
+      fetchCasinoBananaIframeUrl: 'fetchCasinoBananaIframeUrl',
+      fetchCasinoBananaLiveIframeUrl: 'fetchCasinoBananaLiveIframeUrl'
+    }),
+    ...mapActions(useLiveCasinoStore, {
+      fetchLiveCasinoGames: 'fetchLiveCasinoGames'
+    }),
+    ...mapActions(useCasinoFeaturedStore, {
+      fetchCasinoNewGames: 'fetchCasinoNewGames',
+      concatCasinoNewGames: 'concatCasinoNewGames',
+      fetchCasinoMostPlayedGames: 'fetchCasinoMostPlayedGames',
+      concatCasinoMostPlayedGames: 'concatCasinoMostPlayedGames'
+    }),
+    ...mapActions(useMetadataCasinoStore, {
+      fetchCasinoSliders: 'fetchCasinoSliders',
+      fetchCasinoProviders: 'fetchCasinoProviders',
+      fetchCasinoCategories: 'fetchCasinoCategories',
+      fetchCasinoHeaderGames: 'fetchCasinoHeaderGames'
+    }),
+    ...mapActions(useCasinoSearchGamesStore, {
+      searchCasinoGames: 'searchCasinoGames'
+    }),
+    ...mapActions(useLiveCasinoFeaturedStore, {
+      fetchLiveCasinoNewGames: 'fetchLiveCasinoNewGames',
+      concatLiveCasinoNewGames: 'concatLiveCasinoNewGames',
+      fetchLiveCasinoMostPlayedGames: 'fetchLiveCasinoMostPlayedGames',
+      concatLiveCasinoMostPlayedGames: 'concatLiveCasinoMostPlayedGames'
+    }),
+    ...mapActions(useCasinoProviderGamesStore, {
+      fetchCasinoGamesByProvider: 'fetchCasinoGamesByProvider',
+      concatCasinoGamesByProvider: 'concatCasinoGamesByProvider'
+    }),
+    ...mapActions(useCasinoCategoryGamesStore, {
+      fetchCasinoGamesByCategory: 'fetchCasinoGamesByCategory',
+      concatCasinoGamesByCategory: 'concatCasinoGamesByCategory'
+    }),
+    ...mapActions(useOnboardingThirdPtAuthStore, {
+      fetchProductRedirectUrl: 'fetchProductRedirectUrl'
+    }),
+    ...mapActions(useLiveMetadataCasinoStore, {
+      fetchLiveCasinoCategories: 'fetchLiveCasinoCategories'
+    }),
+    ...mapActions(useLiveCasinoSearchGamesStore, {
+      searchLiveCasinoGames: 'searchLiveCasinoGames'
     }),
     async logUser (event) {
       await this.login(event)

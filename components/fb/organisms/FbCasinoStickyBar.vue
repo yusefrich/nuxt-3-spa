@@ -9,12 +9,12 @@
       <div class="section">
         <div class="search-input-wrapper mt-2">
           <input v-model="search" class="search-input fut-color-dynamic" type="search" :placeholder="$t('i18n_buscar')">
-          <fa class="text-white pt-1 fut-color-dynamic" :icon="['fas', 'search']" />
+          <font-awesome-icon class="text-white pt-1 fut-color-dynamic" :icon="['fas', 'search']" />
         </div>
       </div>
       <div class="section-menu d-flex">
         <fb-fut-button class="btn-scroll d-none d-lg-block fut-color-dynamic" @click="scrollLeft">
-          <fa :icon="['fas', 'chevron-left']" />
+          <font-awesome-icon :icon="['fas', 'chevron-left']" />
         </fb-fut-button>
         <div id="scroller-sticky-bar-container" class="menu-container">
           <div class="menu-group">
@@ -46,7 +46,7 @@
           </div>
         </div>
         <fb-fut-button class="btn-scroll d-none d-lg-block fut-color-dynamic" @click="scrollRight">
-          <fa :icon="['fas', 'chevron-right']" />
+          <font-awesome-icon :icon="['fas', 'chevron-right']" />
         </fb-fut-button>
       </div>
       <div class="section">
@@ -104,6 +104,9 @@ export default {
       default: false
     }
   },
+  emits: [
+    'search'
+  ],
   data () {
     return {
       search: ''

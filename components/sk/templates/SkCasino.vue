@@ -117,9 +117,12 @@
 <script>
 import { mapActions, mapState } from 'pinia'
 import { useCasinoStore } from '@/stores/casino'
+import { useLiveCasinoStore } from '@/stores/live-casino'
 import { useCasinoFeaturedStore } from '@/stores/casino-featured'
 import { useMetadataCasinoStore } from '@/stores/metadata-casino'
 import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
+import { useLiveCasinoFeaturedStore } from '@/stores/live-casino-featured'
+import { useLiveCasinoSearchGamesStore } from '@/stores/live-casino-search-games'
 
 import SkCarousel from '@/components/sk/molecules/SkCarousel'
 import SkModalSearch from '@/components/sk/molecules/SkModalSearch'
@@ -149,6 +152,9 @@ export default {
     ...mapState(useCasinoStore, {
       getCasinoGames: 'getCasinoGames'
     }),
+    ...mapState(useLiveCasinoStore, {
+      getLiveCasinoGames: 'getLiveCasinoGames'
+    }),
     ...mapState(useCasinoFeaturedStore, {
       getCasinoNew: 'getCasinoNew',
       getCasinoMostPlayedGames: 'getCasinoMostPlayedGames'
@@ -160,13 +166,13 @@ export default {
     ...mapState(useCasinoSearchGamesStore, {
       getCasinoSearchGames: 'getCasinoSearchGames'
     }),
-    // ...mapGetters({
-    //   getLiveCasinoGames: 'live-casino/getLiveCasinoGames',
-    //   getLiveCasinoNew: 'live-casino-featured/getLiveCasinoNew',
-    //   getCasinoCategoryGames: 'casino-category-games/getCasinoCategoryGames',
-    //   getLiveCasinoSearchGames: 'live-casino-search-games/getLiveCasinoSearchGames',
-    //   getLiveCasinoMostPlayedGames: 'live-casino-featured/getLiveCasinoMostPlayedGames'
-    // }),
+    ...mapState(useLiveCasinoFeaturedStore, {
+      getLiveCasinoNew: 'getLiveCasinoNew',
+      getLiveCasinoMostPlayedGames: 'getLiveCasinoMostPlayedGames'
+    }),
+    ...mapState(useLiveCasinoSearchGamesStore, {
+      getLiveCasinoSearchGames: 'getLiveCasinoSearchGames'
+    }),
     slides () {
       const emptyArr = []
 
@@ -264,6 +270,9 @@ export default {
     ...mapActions(useCasinoStore, {
       fetchCasinoGames: 'fetchCasinoGames'
     }),
+    ...mapActions(useLiveCasinoStore, {
+      fetchLiveCasinoGames: 'fetchLiveCasinoGames'
+    }),
     ...mapActions(useCasinoFeaturedStore, {
       fetchCasinoNewGames: 'fetchCasinoNewGames',
       fetchCasinoMostPlayedGames: 'fetchCasinoMostPlayedGames'
@@ -276,12 +285,9 @@ export default {
       cleanSearchGames: 'cleanSearchGames',
       searchCasinoGames: 'searchCasinoGames'
     }),
-    // ...mapActions({
-    //   fetchLiveCasinoGames: 'live-casino/fetchLiveCasinoGames',
-    //   fetchLiveCasinoNewGames: 'live-casino-featured/fetchLiveCasinoNewGames',
-    //   searchLiveCasinoGames: 'live-casino-search-games/searchLiveCasinoGames',
-    //   fetchCasinoGamesByCategory: 'casino-category-games/fetchCasinoGamesByCategory'
-    // }),
+    ...mapActions(useLiveCasinoSearchGamesStore, {
+      searchLiveCasinoGames: 'searchLiveCasinoGames'
+    }),
     search (value) {
       this.notFound = false
 

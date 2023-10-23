@@ -4,7 +4,7 @@
       class="btn-fb-close px-0 d-none d-md-inline-block"
       @click="$router.back()"
     >
-      <fa :icon="['fas', 'times']" />
+      <font-awesome-icon :icon="['fas', 'times']" />
     </fb-fut-button>
     <div class="position-relative d-none d-md-block bg-title">
       <div v-if="live" class="d-flex justify-content-center league-title">
@@ -68,7 +68,7 @@
         <div class="header-link">
           <fb-fut-button class="a text-white" @click="$router.back()">
             <span>
-              <fa class="ms-2 me-2" :icon="['fas', 'chevron-left']" />
+              <font-awesome-icon class="ms-2 me-2" :icon="['fas', 'chevron-left']" />
             </span>
           </fb-fut-button>
         </div>
@@ -110,7 +110,7 @@
         </div>
         <div class="header-filter">
           <fb-fut-button class="text-white" @click="$emit('toggle')">
-            <fa :icon="['fas', 'filter']" />
+            <font-awesome-icon :icon="['fas', 'filter']" />
           </fb-fut-button>
         </div>
       </div>
@@ -133,8 +133,8 @@
 
 <script>
 import dayjs from 'dayjs'
-import FutInplayField from '@/components/default/atoms/FutInplayField.vue'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
+import FutInplayField from '@/components/default/atoms/FutInplayField'
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
 
 export default {
   name: 'FbHeadingTitle',
@@ -156,6 +156,9 @@ export default {
       default: () => ({})
     }
   },
+  emits: [
+    'toggle'
+  ],
   computed: {
     gamePeriod () {
       if (

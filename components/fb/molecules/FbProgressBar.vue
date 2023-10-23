@@ -67,6 +67,9 @@ export default {
       })
     }
   },
+  emits: [
+    'cancelUserBonus'
+  ],
   data () {
     return {
       confirmBonusCancelation: false

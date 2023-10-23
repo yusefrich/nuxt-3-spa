@@ -6,7 +6,7 @@
       to="#page-top"
     >
       <span class="d-none d-md-inline-block">{{ $t('i18n_voltar_para_cima') }}</span>
-      <fa class="d-md-none" :icon="['fas', 'long-arrow-alt-up']" />
+      <font-awesome-icon class="d-md-none" :icon="['fas', 'long-arrow-alt-up']" />
     </fb-fut-button>
     <div class="container pt-5">
       <div class="links-footer-content pt-3 pt-md-0">
@@ -126,7 +126,7 @@
             class="a py-md-2 fut-color-dynamic d-block text-md-start"
             to="/sports"
           >
-            <span>{{ $tc('i18n_esporte', 2) }}</span>
+            <span>{{ $t('i18n_esporte', 2) }}</span>
           </fb-fut-button>
           <fb-fut-button
             v-if="!applicationType('casino') || applicationType('sports')"
@@ -155,7 +155,7 @@
             :target="productConfigPromoUrl.status ? '_blank' : '_self'"
             :to="productConfigPromoUrl.url"
           >
-            <span>{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $tc('i18n_promocao', 2) }}</span>
+            <span>{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $t('i18n_promocao', 2) }}</span>
           </fb-fut-button>
         </div>
         <div class="border-green d-md-none" />
@@ -176,7 +176,7 @@
               external
               :to="config.fb"
             >
-              <fa :icon="['fab', 'facebook-f']" />
+              <font-awesome-icon :icon="['fab', 'facebook-f']" />
             </fb-fut-button>
             <fb-fut-button
               v-if="config && config.insta"
@@ -185,7 +185,7 @@
               external
               :to="config.insta"
             >
-              <fa :icon="['fab', 'instagram']" />
+              <font-awesome-icon :icon="['fab', 'instagram']" />
             </fb-fut-button>
             <fb-fut-button
               v-if="config && config.tiktok"
@@ -194,7 +194,7 @@
               external
               :to="config.tiktok"
             >
-              <fa :icon="['fab', 'tiktok']" />
+              <font-awesome-icon :icon="['fab', 'tiktok']" />
             </fb-fut-button>
             <fb-fut-button
               v-if="config && config.tt"
@@ -203,7 +203,7 @@
               external
               :to="config.tt"
             >
-              <fa :icon="['fab', 'twitter']" />
+              <font-awesome-icon :icon="['fab', 'twitter']" />
             </fb-fut-button>
             <fb-fut-button
               v-if="config && config.yt"
@@ -212,7 +212,7 @@
               external
               :to="config.yt"
             >
-              <fa :icon="['fab', 'youtube']" />
+              <font-awesome-icon :icon="['fab', 'youtube']" />
             </fb-fut-button>
             <fb-fut-button
               v-if="config && config.phone"
@@ -221,7 +221,7 @@
               external
               :to="'tel:'+config.phone"
             >
-              <fa :icon="['fab', 'telegram-plane']" />
+              <font-awesome-icon :icon="['fab', 'telegram-plane']" />
             </fb-fut-button>
             <fb-fut-button
               v-if="config && config.whats"
@@ -230,7 +230,7 @@
               external
               :to="'https://wa.me/'+config.whats"
             >
-              <fa :icon="['fab', 'whatsapp']" />
+              <font-awesome-icon :icon="['fab', 'whatsapp']" />
             </fb-fut-button>
           </div>
           <div class="mt-2">
@@ -292,8 +292,7 @@
             v-for="(spon, index) in config.sponsors"
             :key="'sponsor_img_' + index"
             :src="spon.img"
-            width="100%"
-            class="ms-3 mr-3 patreon style-sponsors"
+            class="ms-3 mr-3 patreon style-sponsors w-100"
           >
         </div>
       </div>

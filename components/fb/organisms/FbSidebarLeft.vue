@@ -5,17 +5,17 @@
     </div>
     <div class="header-sidebar-mobile bg-background d-flex d-md-none py-1 justify-content-between container">
       <div>
-        <fa class="text-white mr-10" :icon="['fas', 'caret-left']" />
-        <span class="text-white sport-head">{{ $tc('i18n_esporte', 2) }}</span>
+        <font-awesome-icon class="text-white mr-10" :icon="['fas', 'caret-left']" />
+        <span class="text-white sport-head">{{ $t('i18n_esporte', 2) }}</span>
       </div>
       <fb-fut-button class="bg-transparent border-0" @click="showClock()">
-        <fa class="text-white" :icon="['fas', 'clock']" />
+        <font-awesome-icon class="text-white" :icon="['fas', 'clock']" />
       </fb-fut-button>
     </div>
     <div class="container">
       <div class="search-content d-md-flex d-none bg-white rounded my-1 px-2 align-items-center">
         <input class="w-100 my-1 search" :placeholder="$t('i18n_buscar')" type="text">
-        <fa :icon="['fas', 'search']" />
+        <font-awesome-icon :icon="['fas', 'search']" />
       </div>
     </div>
     <div class="container">
@@ -51,7 +51,7 @@
     <div>
       <div class="w-100 text-white d-none d-md-flex align-items-center">
         <fb-fut-button class="w-100 week-times" @click="showHours()">
-          <fa :icon="['fas', 'clock']" />
+          <font-awesome-icon :icon="['fas', 'clock']" />
         </fb-fut-button>
         <fb-fut-button class="w-100 week-times">
           <span>6ª</span>
@@ -78,7 +78,7 @@
       <transition name="fade" appear>
         <div v-if="clock === true" class="w-100 text-white d-flex d-md-none align-items-center container-fluid">
           <fb-fut-button class="w-100 week-times" @click="showHours()">
-            <fa :icon="['fas', 'clock']" />
+            <font-awesome-icon :icon="['fas', 'clock']" />
           </fb-fut-button>
           <fb-fut-button class="w-100 week-times">
             <span>6ª</span>

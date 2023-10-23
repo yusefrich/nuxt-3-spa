@@ -16,7 +16,7 @@
               <span class="mr-10 text-white">
                 {{ $t('i18n_padrao') }}
               </span>
-              <fa class="text-white" :icon="['fas', 'angle-down']" />
+              <font-awesome-icon class="text-white" :icon="['fas', 'angle-down']" />
             </div>
             <div class="dropdown-content w-100">
               <input
@@ -32,7 +32,7 @@
             </div>
           </div>
           <fb-fut-button class="border-0 bg-transparent mr-10">
-            <fa class="text-white" :icon="['fas', 'caret-down']" />
+            <font-awesome-icon class="text-white" :icon="['fas', 'caret-down']" />
           </fb-fut-button>
         </div>
       </div>

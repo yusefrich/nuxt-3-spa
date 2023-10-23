@@ -47,6 +47,7 @@ import { mapState, mapActions } from 'pinia'
 import { useCasinoStore } from '@/stores/casino'
 import { useCasinoFeaturedStore } from '@/stores/casino-featured'
 import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
+import { useLiveCasinoFeaturedStore } from '@/stores/live-casino-featured'
 import { useCasinoCategoryGamesStore } from '@/stores/casino-category-games'
 
 import SkModalSearch from '@/components/sk/molecules/SkModalSearch.vue'
@@ -81,13 +82,13 @@ export default {
     ...mapState(useCasinoSearchGamesStore, {
       getCasinoSearchGames: 'getCasinoSearchGames'
     }),
+    ...mapState(useLiveCasinoFeaturedStore, {
+      getLiveCasinoNew: 'getLiveCasinoNew',
+      getLiveCasinoMostPlayedGames: 'getLiveCasinoMostPlayedGames'
+    }),
     ...mapState(useCasinoCategoryGamesStore, {
       getCasinoCategoryGames: 'getCasinoCategoryGames'
     }),
-    // ...mapGetters({
-    //   getLiveCasinoNew: 'live-casino-featured/getLiveCasinoNew',
-    //   getLiveCasinoMostPlayedGames: 'live-casino-featured/getLiveCasinoMostPlayedGames'
-    // }),
     getCasinoFilteredGame () {
       if (this.slug === 'mocked-most') {
         return this.live ? this.getLiveCasinoMostPlayedGames : this.getCasinoMostPlayedGames
@@ -152,10 +153,10 @@ export default {
     ...mapActions(useCasinoCategoryGamesStore, {
       fetchCasinoGamesByCategory: 'fetchCasinoGamesByCategory'
     }),
-    // ...mapActions({
-    //   fetchLiveCasinoNewGames: 'live-casino-featured/fetchLiveCasinoNewGames',
-    //   fetchLiveCasinoMostPlayedGames: 'live-casino-featured/fetchLiveCasinoMostPlayedGames'
-    // }),
+    ...mapActions(useLiveCasinoFeaturedStore, {
+      fetchLiveCasinoNewGames: 'fetchLiveCasinoNewGames',
+      fetchLiveCasinoMostPlayedGames: 'fetchLiveCasinoMostPlayedGames'
+    }),
     search (value) {
       this.notFound = false
 

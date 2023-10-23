@@ -10,7 +10,7 @@
             @click="()=>{ShowProfileMenu = false, ShowSideMenu = !ShowSideMenu}"
           >
             <template v-if="!ShowSideMenu">
-              <fa :icon="['fas', 'bars']" />
+              <font-awesome-icon :icon="['fas', 'bars']" />
               <div class="bars-block" />
             </template>
           </fb-fut-button>
@@ -57,9 +57,9 @@
         </div>
       </div>
       <div class="d-flex">
-        <div v-if="loggedInUser" class="d-md-flex align-items-center d-none">
+        <div v-if="loggedInUser && currentSettings" class="d-md-flex align-items-center d-none">
           <fb-fut-button class="me-5 button-deposit fut-color-dynamic" to="/user/bank/deposito" :class="{'btn-fb-rounded-secondary': currentSettings.font === 'dark'}">
-            {{ $tc('i18n_deposito', 1) }}
+            {{ $t('i18n_deposito', 1) }}
           </fb-fut-button>
           <fb-balance-dropdown
             :balance="loggedInUser.balance"
@@ -148,8 +148,8 @@
               class="btn show-password fut-color-dynamic"
               @click="showPassword = !showPassword"
             >
-              <fa v-if="!showPassword" class="eye-icon" :icon="['fas', 'eye-slash']" />
-              <fa v-else class="eye-icon" :icon="['fas', 'eye']" />
+              <font-awesome-icon v-if="!showPassword" class="eye-icon" :icon="['fas', 'eye-slash']" />
+              <font-awesome-icon v-else class="eye-icon" :icon="['fas', 'eye']" />
             </div>
           </div>
           <div :class="fb2 ? 'fb2-submit-area' : 'd-flex justify-content-between mt-3'">
@@ -183,7 +183,7 @@
       <h5 class="text-center fut-color-dynamic">
         {{ $t('i18n_confirmacao') }}
       </h5>
-      <fa class="text-center icon-question fut-color-dynamic" :icon="['far', 'question-circle']" />
+      <font-awesome-icon class="text-center icon-question fut-color-dynamic" :icon="['far', 'question-circle']" />
       <div class="text-center mt-4 fut-color-dynamic">
         <span class="text-center">{{ $t('i18n_deseja_realmente_sair') }}</span>
       </div>
@@ -200,7 +200,7 @@
     <transition name="fade" appear>
       <div v-if="ShowSideMenu" class="side-menu-overlay side-menu-content-mobile">
         <fb-fut-button class="btn-close-2" @click="()=>{ShowProfileMenu = false; ShowSideMenu = !ShowSideMenu}">
-          <fa class="text-white fut-color-dynamic" :icon="['fas', 'times']" />
+          <font-awesome-icon class="text-white fut-color-dynamic" :icon="['fas', 'times']" />
         </fb-fut-button>
         <fb-fut-button class="button-exit-menu" @click="()=>{ShowProfileMenu = false; ShowSideMenu = !ShowSideMenu}" />
         <div class="w-75 h-100 side-menu-content">
@@ -214,14 +214,14 @@
             class="sports-btns"
             @click="ShowSideMenu = false"
           >
-            <n-link
+            <NuxtLink
               v-for="(sport, idx) in allSports"
               :key="idx"
               :to="localePath(`/sports?currentSport=${sport.id}`)"
               class="link"
             >
               <div class="icon-wrapper">
-                <fa
+                <font-awesome-icon
                   v-if="sportsIcons[sport.id] && sportsIcons[sport.id].fa"
                   class="sport-icon"
                   :icon="sportsIcons[sport.id] && sportsIcons[sport.id].value ? sportsIcons[sport.id].value : ['fas', 'star']"
@@ -233,7 +233,7 @@
                 />
               </div>
               <span>{{ sport.name }}</span>
-            </n-link>
+            </NuxtLink>
           </div>
           <div class="w-100 d-grid">
             <template v-if="mobileNavItems.dynamic && mobileNavItems.dynamic.length">
@@ -261,7 +261,7 @@
               :target="productConfigPromoUrl.status ? '_blank' : '_self'"
               :to="productConfigPromoUrl.url"
             >
-              <span class="container fut-color-dynamic">{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $tc('i18n_promocao', 2) }}</span>
+              <span class="container fut-color-dynamic">{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $t('i18n_promocao', 2) }}</span>
             </fb-fut-button>
             <div class="locale-container">
               <button class="btn d-flex justify-content-between btn-locale" @click="toggleLocaleMobile = !toggleLocaleMobile">
@@ -273,8 +273,8 @@
                   </span>
                   <span class="text-white fut-color-dynamic">{{ $i18n.locale.toUpperCase() }}</span>
                 </div>
-                <fa v-if="toggleLocaleMobile" class="text-white fut-color-dynamic pt-1" :icon="['fas', 'sort-up']" />
-                <fa v-else class="text-white fut-color-dynamic" :icon="['fas', 'sort-down']" />
+                <font-awesome-icon v-if="toggleLocaleMobile" class="text-white fut-color-dynamic pt-1" :icon="['fas', 'sort-up']" />
+                <font-awesome-icon v-else class="text-white fut-color-dynamic" :icon="['fas', 'sort-down']" />
               </button>
               <transition name="fade">
                 <div v-if="toggleLocaleMobile" class="d-flex flex-column locale-options-container">
@@ -299,7 +299,7 @@
           </div>
         </div>
       </div>
-      <div v-if="ShowProfileMenu" class="side-menu-overlay-profile">
+      <div v-else-if="ShowProfileMenu" class="side-menu-overlay-profile">
         <div class="w-100 h-100 side-menu-content-2">
           <div class="profile-header-menu d-flex justify-content-between align-items-center">
             <span v-if="loggedInUser" class="text-white fut-color-dynamic">{{ loggedInUser.username }}</span>
@@ -323,7 +323,7 @@
               </div>
               <div class="d-grid">
                 <span class="bal-value" />
-                <span class="text-white indice-text fut-color-dynamic">{{ $tc('i18n_aposta', 2) }}</span>
+                <span class="text-white indice-text fut-color-dynamic">{{ $t('i18n_aposta', 2) }}</span>
               </div>
             </fb-fut-button>
           </div>
@@ -332,23 +332,23 @@
           </div>
           <div class="subtitle-content">
             <fb-fut-button class="a w-100 p-2 fut-color-dynamic" to="/user/my-account/dados">
-              <fa :icon="['fas', 'user']" />
+              <font-awesome-icon :icon="['fas', 'user']" />
               <span>{{ $t('i18n_perfil') }}</span>
             </fb-fut-button>
             <fb-fut-button class="a w-100 p-2 fut-color-dynamic" to="/user/my-account/documentos">
-              <fa :icon="['fas', 'user']" />
+              <font-awesome-icon :icon="['fas', 'user']" />
               <span>{{ $t('i18n_documentos') }}</span>
             </fb-fut-button>
             <fb-fut-button class="a w-100 p-2 fut-color-dynamic" to="/user/bank/saldo">
-              <fa :icon="['fas', 'money-bill']" />
+              <font-awesome-icon :icon="['fas', 'money-bill']" />
               <span>{{ $t('i18n_saldo') }}</span>
             </fb-fut-button>
             <fb-fut-button class="a w-100 p-2 fut-color-dynamic" to="/user/my-account/bonus">
-              <fa :icon="['fas', 'gift']" />
+              <font-awesome-icon :icon="['fas', 'gift']" />
               <span>{{ $t('i18n_bonus') }}</span>
             </fb-fut-button>
             <fb-fut-button class="a w-100 p-2 fut-color-dynamic" to="/user/bank/saque">
-              <fa :icon="['fas', 'ring']" />
+              <font-awesome-icon :icon="['fas', 'ring']" />
               <span>{{ $t('i18n_solicitar_saque') }}</span>
             </fb-fut-button>
           </div>
@@ -357,19 +357,19 @@
           </div>
           <div class="subtitle-content">
             <fb-fut-button v-if="!applicationType('casino') || applicationType('sports')" class="a w-100 p-2 fut-color-dynamic" to="/my-bets">
-              <fa :icon="['fas', 'chart-area']" />
+              <font-awesome-icon :icon="['fas', 'chart-area']" />
               <span>{{ $t('i18n_relatorios_de_apostas') }}</span>
             </fb-fut-button>
             <!-- <a v-if="!applicationType('casino') || applicationType('sports')" class="w-100 p-2" href="#">
-              <fa :icon="['fas', 'chart-line']" />
+              <font-awesome-icon :icon="['fas', 'chart-line']" />
               <span>{{ $t('i18n_relatorios_de_transacoes') }}</span>
             </a> -->
             <fb-fut-button class="w-100 p-2 fut-color-dynamic" to="/user/bank/saque/historico">
-              <fa :icon="['fas', 'chart-line']" />
+              <font-awesome-icon :icon="['fas', 'chart-line']" />
               <span>{{ $t('i18n_pedidos_de_saques') }}</span>
             </fb-fut-button>
             <fb-fut-button v-if="!applicationType('sports') || applicationType('casino')" class="a w-100 p-2 fut-color-dynamic" to="/user/bank/transactions">
-              <fa :icon="['fas', 'chart-line']" />
+              <font-awesome-icon :icon="['fas', 'chart-line']" />
               <span>{{ $t('i18n_transacoes_cassino') }}</span>
             </fb-fut-button>
           </div>
@@ -378,15 +378,15 @@
           </div>
           <div class="subtitle-content">
             <fb-fut-button class="a w-100 p-2 fut-color-dynamic" to="/help?slug=about">
-              <fa :icon="['fas', 'question']" />
+              <font-awesome-icon :icon="['fas', 'question']" />
               <span>{{ $t('i18n_quem_somos') }}</span>
             </fb-fut-button>
             <fb-fut-button class="a w-100 p-2 fut-color-dynamic" to="/help?slug=terms">
-              <fa :icon="['fas', 'info-circle']" />
+              <font-awesome-icon :icon="['fas', 'info-circle']" />
               <span>{{ $t('i18n_termos_e_condicoes') }}</span>
             </fb-fut-button>
             <fb-fut-button class="a w-100 p-2 fut-color-dynamic" to="/help?slug=suport">
-              <fa :icon="['fas', 'phone']" />
+              <font-awesome-icon :icon="['fas', 'phone']" />
               <span>{{ $t('i18n_entre_em_contato') }}</span>
             </fb-fut-button>
           </div>
@@ -402,37 +402,37 @@
       <ul class="list-unstyled d-flex mb-0">
         <li v-if="currentSettings && currentSettings.fb" class="social-midia-content">
           <fb-fut-button target="_blank" :to="currentSettings.fb" external>
-            <fa class="icon text-dark" :icon="['fab', 'facebook-f']" />
+            <font-awesome-icon class="icon text-dark" :icon="['fab', 'facebook-f']" />
           </fb-fut-button>
         </li>
         <li v-if="currentSettings && currentSettings.insta" class="social-midia-content">
           <fb-fut-button target="_blank" :to="currentSettings.insta" external>
-            <fa class="icon text-dark" :icon="['fab', 'instagram']" />
+            <font-awesome-icon class="icon text-dark" :icon="['fab', 'instagram']" />
           </fb-fut-button>
         </li>
         <li v-if="currentSettings && currentSettings.tiktok" class="social-midia-content">
           <fb-fut-button target="_blank" :to="currentSettings.tiktok" external>
-            <fa class="icon text-dark" :icon="['fab', 'tiktok']" />
+            <font-awesome-icon class="icon text-dark" :icon="['fab', 'tiktok']" />
           </fb-fut-button>
         </li>
         <li v-if="currentSettings && currentSettings.tt" class="social-midia-content">
           <fb-fut-button target="_blank" :to="currentSettings.tt" external>
-            <fa class="icon text-dark" :icon="['fab', 'twitter']" />
+            <font-awesome-icon class="icon text-dark" :icon="['fab', 'twitter']" />
           </fb-fut-button>
         </li>
         <li v-if="currentSettings && currentSettings.yt" class="social-midia-content">
           <fb-fut-button target="_blank" :to="currentSettings.yt" external>
-            <fa class="icon text-dark" :icon="['fab', 'youtube']" />
+            <font-awesome-icon class="icon text-dark" :icon="['fab', 'youtube']" />
           </fb-fut-button>
         </li>
         <li v-if="currentSettings && currentSettings.phone" class="social-midia-content">
           <fb-fut-button target="_blank" :to="'tel:'+currentSettings.phone" external>
-            <fa class="icon text-dark" :icon="['fab', 'telegram-plane']" />
+            <font-awesome-icon class="icon text-dark" :icon="['fab', 'telegram-plane']" />
           </fb-fut-button>
         </li>
         <li v-if="currentSettings && currentSettings.whats" class="social-midia-content">
           <fb-fut-button target="_blank" :to="'https://wa.me/'+currentSettings.whats" external>
-            <fa class="icon text-dark" :icon="['fab', 'whatsapp']" />
+            <font-awesome-icon class="icon text-dark" :icon="['fab', 'whatsapp']" />
           </fb-fut-button>
         </li>
       </ul>
@@ -445,7 +445,7 @@
             <span class="mr-10 text-white">
               {{ $t('i18n_minha_conta') }}
             </span>
-            <fa class="text-white" :icon="['fas', 'angle-down']" />
+            <font-awesome-icon class="text-white" :icon="['fas', 'angle-down']" />
           </div>
           <div v-if="loggedInUser" class="dropdown-content">
             <fb-fut-button class="text-start fut-color-dynamic" to="/user/my-account/dados">
@@ -461,7 +461,7 @@
               {{ $t('i18n_bonus') }}
             </fb-fut-button>
             <fb-fut-button class="text-start fut-color-dynamic" to="/user/bank/deposito">
-              {{ $tc('i18n_deposito', 1) }}
+              {{ $t('i18n_deposito', 1) }}
             </fb-fut-button>
             <fb-fut-button class="text-start fut-color-dynamic" to="/user/bank/saque">
               {{ $t('i18n_solicitar_saque') }}
@@ -479,7 +479,7 @@
             <span class="mr-10 text-white">
               {{ $t('i18n_relatorios') }}
             </span>
-            <fa class="text-white" :icon="['fas', 'angle-down']" />
+            <font-awesome-icon class="text-white" :icon="['fas', 'angle-down']" />
           </div>
           <div style="right: -20px" class="dropdown-content">
             <fb-fut-button v-if="!applicationType('casino') || applicationType('sports')" class="fut-color-dynamic" to="/my-bets">
@@ -500,7 +500,7 @@
             <span class="mr-10 text-white">
               {{ $i18n.locale.toUpperCase() }}
             </span>
-            <fa class="text-white" :icon="['fas', 'angle-down']" />
+            <font-awesome-icon class="text-white" :icon="['fas', 'angle-down']" />
           </div>
           <div style="right: -20px" class="dropdown-content">
             <a
@@ -531,10 +531,10 @@ import FbMobileMenuTop from '@/components/fb/organisms/FbMobileMenuTop.vue'
 import FbBalanceDropdown from '@/components/fb/molecules/FbBalanceDropdown.vue'
 import FutResponsiveDropdown from '@/components/default/atoms/FutResponsiveDropdown.vue'
 import windowWidth from '~/mixins.js/windowWidth'
-const isToday = require('dayjs/plugin/isToday')
-const isTomorrow = require('dayjs/plugin/isTomorrow')
-dayjs.extend(isToday)
-dayjs.extend(isTomorrow)
+// const isToday = require('dayjs/plugin/isToday')
+// const isTomorrow = require('dayjs/plugin/isTomorrow')
+// dayjs.extend(isToday)
+// dayjs.extend(isTomorrow)
 
 export default {
   name: 'FbNavbar',
@@ -563,7 +563,7 @@ export default {
       type: Object,
       default: () => ({})
     },
-    login: {
+    modelValue: {
       type: Boolean,
       default: false
     },
@@ -580,6 +580,12 @@ export default {
       default: () => ([])
     }
   },
+  emits: [
+    'redirectProduct',
+    'logUser',
+    'changeLanguage',
+    'update:modelValue'
+  ],
   data () {
     return {
       toggleLocaleMobile: false,
@@ -622,7 +628,7 @@ export default {
 
       if (!this.applicationType('casino') || this.applicationType('sports')) {
         items.push(
-          { link: '/', text: this.$tc('i18n_esporte', 2), icon: '/FbIcons/sports.svg' }
+          { link: '/', text: this.$t('i18n_esporte', 2), icon: '/FbIcons/sports.svg' }
         )
         if (process.env.SPORTS_PROVIDER === 'upgaming') {
           items.push(
@@ -649,10 +655,11 @@ export default {
         target: this.productConfigPromoUrl.status ? '_blank' : '_self',
         text: this.productConfigPromoUrl.status
           ? this.$t('i18n_ranking')
-          : this.$tc('i18n_promocao', 2)
+          : this.$t('i18n_promocao', 2)
       })
 
-      if (this.currentSettings && this.currentSettings.nav_bar && this.currentSettings.nav_bar.length) {
+      if (this.currentSettings && this.currentSettings.nav_bar && this.currentSettings.nav_bar.length && process.client) {
+        console.log('uai man:', process.client)
         this.currentSettings.nav_bar.forEach((nav) => {
           if (!nav.nav_link) {
             return
@@ -701,7 +708,7 @@ export default {
       )
       navItemsWithSports.unshift({
         link: '/sports',
-        text: this.$tc('i18n_esporte', 2),
+        text: this.$t('i18n_esporte', 2),
         img: '/FbIcons/sports.svg',
         external: false
       })
@@ -719,7 +726,7 @@ export default {
         )
       )
 
-      if (this.currentSettings.nav_bar && this.currentSettings.nav_bar.length) {
+      if (this.currentSettings.nav_bar && this.currentSettings.nav_bar.length && process.client) {
         const regex = new RegExp(window.location.origin, 'g')
 
         // Filtro que retorna somente itens de navegação que não forem os principais
@@ -746,10 +753,11 @@ export default {
     },
     modalLogin: {
       get () {
-        return this.login
+        return this.modelValue
       },
       set (value) {
-        this.$emit('update:login', value)
+        console.log('uai:', value)
+        this.$emit('update:modelValue', value)
       }
     },
     onDesktop () {
@@ -775,7 +783,11 @@ export default {
       this.timestamp = time
     },
     currentRoute (route) {
-      return route === this.$route.fullPath || route === `${window.location.origin}${this.$route.fullPath}`
+      if (process.client) {
+        return route === this.$route.fullPath || route === `${window.location.origin}${this.$route.fullPath}`
+      }
+
+      return false
     },
     formattedDateDay () {
       const today = new Date()

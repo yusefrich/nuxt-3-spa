@@ -6,12 +6,12 @@
     <div class="container">
       <div class="d-flex bg-white rounded my-1 px-2 align-items-center">
         <input class="w-100 my-1 search" :placeholder="$t('i18n_buscar')" type="text">
-        <fa :icon="['fas', 'search']" />
+        <font-awesome-icon :icon="['fas', 'search']" />
       </div>
     </div>
     <div class="w-100 text-white d-flex week-times align-items-center">
       <fb-fut-button class="w-100">
-        <fa :icon="['fas', 'clock']" />
+        <font-awesome-icon :icon="['fas', 'clock']" />
       </fb-fut-button>
       <fb-fut-button class="w-100">
         <span>6ª</span>

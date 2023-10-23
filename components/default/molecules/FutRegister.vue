@@ -4,7 +4,7 @@
       <div class="position-relative input-margin">
         <fut-register-input
           v-model="documentRaw"
-          v-inputmask="'999.999.999-99'"
+          v-mask="['###.###.###-##']"
           :name="currentSettings.search ? 'cpf' : 'document'"
           label="CPF"
           required
@@ -127,7 +127,7 @@
         <div class="position-relative">
           <fut-register-input
             v-model="data.phone"
-            v-inputmask="'(99) 99999-9999'"
+            v-mask="['(##) #####-####']"
             :label="$t('i18n_numero_de_telefone')"
             padding="0 12px 0 50px"
             label-left-position="48px"
@@ -154,7 +154,7 @@
         <div class="position-relative">
           <fut-register-input
             v-model="zipRaw"
-            v-inputmask="'99999-999'"
+            v-mask="['#####-###']"
             :label="$t('i18n_codigo_posta')"
             name="zip"
             @input="value=>data.zip = sanatizeValue(value, ['-', '_'], '')"
@@ -284,9 +284,9 @@
 </template>
 
 <script>
-import FutRegisterInput from '@/components/default/atoms/FutRegisterInput.vue'
-import FutRegisterSelect from '@/components/default/atoms/FutRegisterSelect.vue'
-import ErrorBadge from '@/components/default/atoms/ErrorBadge.vue'
+import FutRegisterInput from '@/components/default/atoms/FutRegisterInput'
+import FutRegisterSelect from '@/components/default/atoms/FutRegisterSelect'
+import ErrorBadge from '@/components/default/atoms/ErrorBadge'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 import utils from '@/utils/utils'
 

@@ -233,11 +233,11 @@ export default {
   async mounted () {
     await this.fetchSettings()
     if (this.loggedInUser) {
-      if (this.$nuxt.$route.path.includes('login') || this.$nuxt.$route.path.includes('register')) {
+      if (this.$route.path.includes('login') || this.$route.path.includes('register')) {
         this.hasContent = false
         window.location.replace('/')
         // this.$forceUpdate()
-        // this.$nuxt.$loading.finish()
+        // this.$loading.finish()
       }
     }
     this.fetchAds()

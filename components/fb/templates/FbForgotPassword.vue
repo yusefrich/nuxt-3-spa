@@ -27,11 +27,14 @@
     </div>
   </div>
 </template>
+
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
 import ErrorBadge from '@/components/default/atoms/ErrorBadge'
 import SuccessBadge from '@/components/default/atoms/SuccessBadge'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
 
 export default {
   components: {
@@ -48,18 +51,18 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getOnboardingAuthLoading: 'onboarding-auth/getOnboardingAuthLoading',
-      getOnboardingAuthErrors: 'onboarding-auth/getOnboardingAuthErrors'
+    ...mapState(useOnboardingAuthStore, {
+      getOnboardingAuthLoading: 'getOnboardingAuthLoading',
+      getOnboardingAuthErrors: 'getOnboardingAuthErrors'
     })
   },
   mounted () {
-    this.clearErrors()
+    this.clearAuthErrors()
   },
   methods: {
-    ...mapActions({
-      clearErrors: 'onboarding-auth/clearErrors',
-      sendForgottenPasswordEmail: 'onboarding-auth/sendForgottenPasswordEmail'
+    ...mapActions(useOnboardingAuthStore, {
+      clearAuthErrors: 'clearAuthErrors',
+      sendForgottenPasswordEmail: 'sendForgottenPasswordEmail'
     }),
     submitForgottenRequest () {
       if (this.response.length) {
@@ -74,6 +77,7 @@ export default {
   }
 }
 </script>
+
 <style scoped lang="scss">
 @import "@/assets/layout/breakpoints";
 .container-fluid{

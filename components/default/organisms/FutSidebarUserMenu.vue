@@ -144,10 +144,10 @@ export default {
       return config.includes(term)
     },
     currentRoute (route) {
-      return route === '' + this.$nuxt.$route.path
+      return route === '' + this.$route.path
     },
     actualRoute () {
-      return this.$nuxt.$route.path
+      return this.$route.path
     },
     onMobile () {
       if (!window.innerWidth < 992) {

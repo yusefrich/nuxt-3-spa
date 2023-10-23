@@ -150,6 +150,7 @@ import { useMetadataCasinoStore } from '@/stores/metadata-casino'
 import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
 import { useOnboardingUserConfigStore } from '@/stores/onboarding-user-config'
 import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
+import { useLiveCasinoSearchGamesStore } from '@/stores/live-casino-search-games'
 
 // import { LiveChatWidget } from '@livechat/widget-vue/v2'
 import AppConfig from '@/components/default/atoms/AppConfig'
@@ -275,7 +276,7 @@ export default {
         this.hasContent = false
         window.location.replace('/')
         // this.$forceUpdate()
-        // this.$nuxt.$loading.finish()
+        // this.$loading.finish()
       }
     }
     // eslint-disable-next-line
@@ -308,6 +309,9 @@ export default {
     ...mapActions(useOnboardingThirdPtAuthStore, {
       fetchProductRedirectUrl: 'fetchProductRedirectUrl'
     }),
+    ...mapActions(useLiveCasinoSearchGamesStore, {
+      searchLiveCasinoGames: 'searchLiveCasinoGames'
+    }),
     // ...mapActions({
     //   clearTicketLoading: 'tickets-pre-cash-in/clearTicketLoading',
     //   clearAll: 'tickets-pre-cash-in/clearAll',
@@ -319,7 +323,6 @@ export default {
     //   updateMultipleTicket: 'tickets-pre-cash-in/updateMultipleTicket',
     //   clearMultipleTicket: 'tickets-pre-cash-in/clearMultipleTicket',
     //   acceptTicketChanges: 'tickets-pre-cash-in/acceptTicketChanges',
-    //   searchLiveCasinoGames: 'live-casino-search-games/searchLiveCasinoGames',
     // }),
     liveChat () {
       return process.env.LIVECHAT + ''

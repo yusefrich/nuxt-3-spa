@@ -4,7 +4,7 @@
       <div
         class="header-profile w-100 p-2 d-none d-md-flex align-items-center text-white fut-color-dynamic"
       >
-        <fa class="mr-10" :icon="['fas', 'user']" />
+        <font-awesome-icon class="mr-10" :icon="['fas', 'user']" />
         <span>{{ $t('i18n_perfil') }}</span>
       </div>
       <div class="d-md-flex d-grid mt-md-1 mt-3">
@@ -33,9 +33,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FbProfileDesk from '@/components/fb/organisms/FbProfileDesk.vue'
-import FbProfileMobile from '@/components/fb/organisms/FbProfileMobile.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
+import FbProfileDesk from '@/components/fb/organisms/FbProfileDesk'
+import FbProfileMobile from '@/components/fb/organisms/FbProfileMobile'
 
 export default {
   components: {
@@ -51,17 +54,19 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      loggedInUser: 'loggedInUser',
-      getOnboardingAuthLoading: 'onboarding-auth/getOnboardingAuthLoading',
-      getOnboardingAuthErrors: 'onboarding-auth/getOnboardingAuthErrors'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useOnboardingAuthStore, {
+      getOnboardingAuthErrors: 'getOnboardingAuthErrors',
+      getOnboardingAuthLoading: 'getOnboardingAuthLoading'
     })
   },
   methods: {
-    ...mapActions({
-      updateUserPassword: 'onboarding-auth/updateUserPassword',
-      updateUserData: 'onboarding-auth/updateUserData',
-      fetchAddressData: 'onboarding-auth/fetchAddressData'
+    ...mapActions(useOnboardingAuthStore, {
+      updateUserPassword: 'updateUserPassword',
+      updateUserData: 'updateUserData',
+      fetchAddressData: 'fetchAddressData'
     }),
     searchAddress (cep) {
       if (!cep) {

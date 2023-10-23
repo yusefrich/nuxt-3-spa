@@ -1,5 +1,6 @@
 <template>
   <sk-home v-if="getCurrentLayoutStyle === 'SK'" />
+  <sg-home v-if="getCurrentLayoutStyle === 'SG'" />
   <third-party-provider v-else :layout="getCurrentLayoutStyle" />
 </template>
 
@@ -8,7 +9,7 @@ import { mapState } from 'pinia'
 import { useLayoutStore } from '@/stores/layout'
 // import Home from '@/components/default/templates/Home'
 // import HomeNsx from '@/components/nsx/templates/HomeNsx'
-// import SgHome from '@/components/sg/templates/SgHome'
+import SgHome from '@/components/sg/templates/SgHome'
 // import FbHome from '@/components/fb/templates/FbHome'
 // import MdHome from '@/components/md/templates/MdHome'
 import SkHome from '@/components/sk/templates/SkHome'
@@ -19,7 +20,7 @@ export default {
     // Home,
     // HomeNsx,
     // FbHome,
-    // SgHome,
+    SgHome,
     // MdHome,
     SkHome,
     ThirdPartyProvider
@@ -62,12 +63,6 @@ export default {
       getCurrentSportsProvider: 'getCurrentSportsProvider',
       getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     }),
-  },
-  mounted () {
-    // this.$nextTick(() => {
-    //   this.$nuxt.$loading.start()
-    //   setTimeout(() => this.$nuxt.$loading.finish(), 500)
-    // })
   }
 }
 </script>

@@ -2,7 +2,7 @@
   <div class="mx-1 mt-5">
     <div class="last-minutes-content py-2">
       <div class="container-fluid text-white">
-        <fa :icon="['fas', 'clock']" />
+        <font-awesome-icon :icon="['fas', 'clock']" />
         <span class="title-head">{{ $t('i18n_proximos') }}</span>
       </div>
     </div>

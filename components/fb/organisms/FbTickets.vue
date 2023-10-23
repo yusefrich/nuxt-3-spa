@@ -9,22 +9,22 @@
     <div class="mobile-content d-md-none">
       <div class="betslip-bar">
         <fb-fut-button class="search-icon p-0" @click="$emit('toggleSearchOverlay')">
-          <fa class="text-dark search-icon-icon" :icon="['fas', 'search']" />
+          <font-awesome-icon class="text-dark search-icon-icon" :icon="['fas', 'search']" />
         </fb-fut-button>
         <fb-fut-button class="betslip-icon p-0" @click="open = !open">
           <div v-if="tickets.length > 0" class="counter">
             {{ tickets.length }}
           </div>
-          <fa class="text-dark betslip-icon-icon" :icon="['fas', 'file-alt']" />
+          <font-awesome-icon class="text-dark betslip-icon-icon" :icon="['fas', 'file-alt']" />
         </fb-fut-button>
       </div>
     </div>
     <div class="content-ticket d-none d-md-block d-print-block" :class="{'ticket-mobile-open': open}">
       <div class="bg-games-list">
-        <fa class="d-none d-md-inline fut-color-dynamic" :icon="['fas', 'tag']" />
+        <font-awesome-icon class="d-none d-md-inline fut-color-dynamic" :icon="['fas', 'tag']" />
         <span class="ticket-container-text fut-color-dynamic ps-2">{{ $t('i18n_boletim_de_aposta').toUpperCase() }}</span>
         <fb-fut-button class="float-end d-md-none fut-color-dynamic pe-2 pt-2" @click="open = !open">
-          <fa class="text-primary" :icon="['fas', 'times']" />
+          <font-awesome-icon class="text-primary" :icon="['fas', 'times']" />
         </fb-fut-button>
       </div>
       <div class="d-md-none new-bet-container text-end">
@@ -53,10 +53,10 @@
                 <span class="text-white teams w-100 ticket-container-text-sm"><small>{{ currentTicket.market }}</small></span>
                 <span class="teams text-white ticket-container-text-sm">{{ currentTicket.odd.odds }}</span>
                 <fb-fut-button v-if="betSlipStyle === 2" class="border-0 bg-transparent close-button-2 p-1 fut-color-dynamic" @click="()=>{$emit('toggleTicket', currentTicket); submenuType && tickets.length <= 1 ? betType = 'simple' : ()=>{}}">
-                  <fa class="close-icon" :icon="['fas', 'times']" />
+                  <font-awesome-icon class="close-icon" :icon="['fas', 'times']" />
                 </fb-fut-button>
                 <fb-fut-button v-else class="border-0 bg-transparent close-button p-1 fut-color-dynamic" @click="()=>{$emit('toggleTicket', currentTicket); submenuType && tickets.length <= 1 ? betType = 'simple' : ()=>{}}">
-                  <fa class="close-icon" :icon="['fas', 'times']" />
+                  <font-awesome-icon class="close-icon" :icon="['fas', 'times']" />
                 </fb-fut-button>
               </div>
               <div class="d-flex d-md-none align-items-center odd-content-2 justify-content-between mt-1">
@@ -79,7 +79,7 @@
                   <td />
                   <td>
                     <fb-fut-button class="button-reset-sm w-100 d-none d-md-block fut-color-dynamic me-2 me-md-0" @click="()=>{$emit('clearAll'); open = false}">
-                      <fa class="mr-1" :icon="['fas', 'redo']" />
+                      <font-awesome-icon class="mr-1" :icon="['fas', 'redo']" />
                       <span v-if="betSlipStyle === 2">{{ $t('i18n_limpar_boletim').toUpperCase() }}</span>
                       <span v-else>{{ $t('i18n_nova_aposta').toUpperCase() }}</span>
                     </fb-fut-button>
@@ -103,7 +103,7 @@
                 </tr>
                 <tr>
                   <td class="td-left" colspan="2">
-                    <span class="text-white teams ms-1 fut-color-dynamic teams-mobile">{{ $tc('i18n_aposta', 1) }}:</span>
+                    <span class="text-white teams ms-1 fut-color-dynamic teams-mobile">{{ $t('i18n_aposta', 1) }}:</span>
                   </td>
                   <td class="td-right text-end text-md-start" colspan="2">
                     <fb-bet-input
@@ -155,8 +155,8 @@
                     <label for="oddsChangeInput" class="text-white teams ms-1 fut-color-dynamic form-check-label pointer teams-mobile" @click="awaysAccept = !awaysAccept">{{ $t('i18n_sempre_aceitar') }}: </label>
                   </td>
                   <td class="td-right text-end text-md-start text-white" colspan="1">
-                    <fa v-if="awaysAccept" class="pointer me-2 me-md-0" :icon="['far', 'check-circle']" @click="awaysAccept = !awaysAccept" />
-                    <fa v-else class="pointer me-2 me-md-0" :icon="['far', 'circle']" @click="awaysAccept = !awaysAccept" />
+                    <font-awesome-icon v-if="awaysAccept" class="pointer me-2 me-md-0" :icon="['far', 'check-circle']" @click="awaysAccept = !awaysAccept" />
+                    <font-awesome-icon v-else class="pointer me-2 me-md-0" :icon="['far', 'circle']" @click="awaysAccept = !awaysAccept" />
                   </td>
                 </tr>
                 <tr v-if="+freeBetValue > 0">
@@ -216,7 +216,7 @@
             @click="$emit('clearAll'), open = false"
           >
             <span class="teams-mobile">{{ $t('i18n_limpar_boletim') }}</span>
-            <fa v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
+            <font-awesome-icon v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
           </fb-fut-button>
           <fb-fut-button
             v-else-if="loggedInUser && tickets.length > 0 && !oddChange(tickets)"
@@ -226,7 +226,7 @@
             @click="()=>{$emit('submit')}"
           >
             <span class="teams-mobile">{{ $t('i18n_coloque_aposta') }}</span>
-            <fa v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
+            <font-awesome-icon v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
           </fb-fut-button>
           <fb-fut-button
             v-else-if="loggedInUser && tickets.length > 0"
@@ -235,7 +235,7 @@
             @click="$emit('acceptAllChanges')"
           >
             <span>{{ $t('i18n_aceito_as_mudancas_de_odds') }}</span>
-            <fa v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
+            <font-awesome-icon v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
           </fb-fut-button>
           <!-- <fb-fut-button
             v-if="!loggedInUser && tickets.length > 0"
@@ -245,7 +245,7 @@
             {{ $t('i18n_entrar_e_apostar') }}
           </fb-fut-button> -->
           <fb-fut-button class="button-reset py-1 w-100 mt-2 mb-4 d-none d-md-block fut-color-dynamic" :class="{'border-none': betSlipStyle === 2}" @click="()=>{$emit('clearAll'); open = false}">
-            <fa class="mr-10" :icon="['fas', 'redo']" />
+            <font-awesome-icon class="mr-10" :icon="['fas', 'redo']" />
             <span v-if="betSlipStyle === 2">{{ $t('i18n_limpar_boletim').toUpperCase() }}</span>
             <span v-else>{{ $t('i18n_nova_aposta').toUpperCase() }}</span>
           </fb-fut-button>

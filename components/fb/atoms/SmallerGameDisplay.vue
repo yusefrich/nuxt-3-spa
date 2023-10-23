@@ -26,7 +26,7 @@
         <span class="fut-color-dynamic">{{ game.away_team }}</span>
       </div>
       <div class="py-1">
-        <span class="me-1 fut-color-dynamic"><fa :icon="['fas', 'clock']" /></span>
+        <span class="me-1 fut-color-dynamic"><font-awesome-icon :icon="['fas', 'clock']" /></span>
         <span class="fut-color-dynamic">{{ game.time }} min</span>
       </div>
     </div>

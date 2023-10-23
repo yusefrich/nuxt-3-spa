@@ -6,7 +6,7 @@
         <div class="d-flex bg-darker">
           <input v-model="search" class="w-100 search-input px-2" type="text" :placeholder="$t('i18n_buscar')">
           <fb-fut-button id="seach_router" :to="localePath('/search/'+search)" class="btn p-1">
-            <fa class="text-white p-2 text-primary" :icon="['fas', 'search']" />
+            <font-awesome-icon class="text-white p-2 text-primary" :icon="['fas', 'search']" />
           </fb-fut-button>
         </div>
       </form>

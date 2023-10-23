@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div class="promo_btn d-none text-white">
-                <fa :icon="['fas', 'caret-square-right']" />
+                <font-awesome-icon :icon="['fas', 'caret-square-right']" />
               </div>
             </div>
           </div>
@@ -33,21 +33,22 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { usePromoStore } from '@/stores/promo'
 
 export default {
   name: 'FbPromo',
   computed: {
-    ...mapGetters({
-      getPromos: 'promo/getPromos'
+    ...mapState(usePromoStore, {
+      getPromos: 'getPromos'
     })
   },
   created () {
     this.fetchPromos()
   },
   methods: {
-    ...mapActions({
-      fetchPromos: 'promo/fetchPromos'
+    ...mapActions(usePromoStore, {
+      fetchPromos: 'fetchPromos'
     }),
     shortText (str) {
       const stripped = str.replace(/<\/?[^>]+(>|$)/g, '')

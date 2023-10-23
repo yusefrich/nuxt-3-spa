@@ -2,7 +2,7 @@
   <div class="fb2-date-time-filter">
     <div v-if="!hoursType" class="days">
       <fb-fut-button class="w-100 week-times text-center text-decoration-none" @click="hoursType = true">
-        <fa :icon="['fas', 'clock']" />
+        <font-awesome-icon :icon="['fas', 'clock']" />
       </fb-fut-button>
       <fb-fut-button
         v-for="day in days"
@@ -16,7 +16,7 @@
     </div>
     <div v-else class="hours">
       <fb-fut-button class="week-times text-center text-decoration-none" @click="hoursType = false">
-        <fa class="ms-1" :icon="['far', 'calendar-alt']" />
+        <font-awesome-icon class="ms-1" :icon="['far', 'calendar-alt']" />
       </fb-fut-button>
       <fb-fut-button
         v-for="hour in hours"

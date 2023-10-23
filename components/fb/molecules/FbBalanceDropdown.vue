@@ -2,7 +2,7 @@
   <div class="profile-content mr-20 balance-dropdown">
     <span class="text-white op-6 text-user-dashboard fw-lighter fut-color-dynamic">{{ $t('i18n_saldo') }}</span>
     <span class="text-white text-user-dashboard fut-color-dynamic">BRL {{ balance }}</span>
-    <fa class="text-white fut-color-dynamic" :icon="['fas', 'angle-down']" />
+    <font-awesome-icon class="text-white fut-color-dynamic" :icon="['fas', 'angle-down']" />
 
     <ul class="balance-dropdown-content fut-color-dynamic">
       <li>
@@ -79,7 +79,7 @@ export default {
     div:first-child {
       width: 60px;
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       margin-right: 6px;
     }
     margin-bottom: 5px;

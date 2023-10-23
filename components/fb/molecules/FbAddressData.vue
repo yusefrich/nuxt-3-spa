@@ -6,7 +6,7 @@
         <input
           id="cep"
           v-model="data.zipRaw"
-          v-inputmask="'99999-999'"
+          v-mask="['#####-###']"
           type="text"
           class="fut-color-dynamic"
           @input="data.zip = sanatizeValue($event.target.value, '-', '')"
@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import ErrorBadge from '@/components/default/atoms/ErrorBadge.vue'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
+import ErrorBadge from '@/components/default/atoms/ErrorBadge'
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
 
 export default {
   name: 'FbAddressData',
@@ -79,6 +79,10 @@ export default {
     ErrorBadge,
     FbFutButton
   },
+  emits: [
+    'searchAddress',
+    'updateData'
+  ],
   data () {
     return {
       data: {

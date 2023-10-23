@@ -38,7 +38,7 @@
             :dark="index === 0"
             :secondary="index === 1"
           >
-            <img height="60px" :src="btns.img">
+            <img height="60" :src="btns.img">
           </fb-fut-button>
         </template>
         <template v-else>
@@ -48,8 +48,8 @@
             :to="layout === 'inplay' ? 'aovivo' : 'sports'"
             dark
           >
-            <span class="d-block text-primary"><fa :icon="['fas', 'chevron-circle-up']" /></span>
-            <span class="d-block">{{ $tc('i18n_cotacao', 2).toUpperCase() }}</span>
+            <span class="d-block text-primary"><font-awesome-icon :icon="['fas', 'chevron-circle-up']" /></span>
+            <span class="d-block">{{ $t('i18n_cotacao', 2).toUpperCase() }}</span>
             <span style="font-size:25px; line-height: 20px" class="d-block fw-bold text-primary">{{ $t('i18n_altas').toUpperCase() }}</span>
           </fb-fut-button>
           <fb-fut-button
@@ -57,8 +57,8 @@
             to="/depositos-e-saques"
             secondary
           >
-            <span class="d-block text-white"><fa :icon="['fas', 'dollar-sign']" /></span>
-            <span class="d-block">{{ $tc('i18n_saque', 1).toUpperCase() }}</span>
+            <span class="d-block text-white"><font-awesome-icon :icon="['fas', 'dollar-sign']" /></span>
+            <span class="d-block">{{ $t('i18n_saque', 1).toUpperCase() }}</span>
             <span style="font-size:25px; line-height: 20px" class="d-block fw-bold text-white">{{ $t('i18n_Rápido').toUpperCase() }}</span>
           </fb-fut-button>
         </template>
@@ -68,10 +68,14 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
-import FbSelectPageLanding from '@/components/fb/molecules/FbSelectPageLanding.vue'
-import FbCarrosel from '@/components/fb/atoms/FbCarrosel.vue'
+import { mapState, mapActions } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+import { useSettingsStore } from '@/stores/settings'
+import { useMetadataCasinoStore } from '@/stores/metadata-casino'
+
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
+import FbSelectPageLanding from '@/components/fb/molecules/FbSelectPageLanding'
+import FbCarrosel from '@/components/fb/atoms/FbCarrosel'
 
 export default {
   name: 'FbLandingPage',
@@ -87,11 +91,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getCasinoSliders: 'metadata-casino/getCasinoSliders',
-      currentSettings: 'settings/currentSettings',
-      getSlides: 'layout/getSlides'
-    })
+    ...mapState(useLayoutStore, {
+      getSlides: 'getSlides'
+    }),
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useMetadataCasinoStore, {
+      getCasinoSliders: 'getCasinoSliders'
+    }),
   },
   beforeMount () {
     this.updateOptions({
@@ -103,10 +111,12 @@ export default {
     this.fetchCurrentSlides()
   },
   methods: {
-    ...mapActions({
-      fetchCasinoSliders: 'metadata-casino/fetchCasinoSliders',
-      fetchCurrentSlides: 'layout/fetchCurrentSlides',
-      updateOptions: 'layout/updateOptions'
+    ...mapActions(useLayoutStore, {
+      updateOptions: 'updateOptions',
+      fetchCurrentSlides: 'fetchCurrentSlides'
+    }),
+    ...mapActions(useMetadataCasinoStore, {
+      fetchCasinoSliders: 'fetchCasinoSliders',
     })
   }
 }

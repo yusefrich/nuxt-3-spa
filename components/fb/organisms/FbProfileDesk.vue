@@ -9,7 +9,7 @@
           @click="currentComp = item.comp"
         >
           <div :class="{active: item.comp == currentComp}">
-            <fa :class="item.margin" :icon="['fas', item.icon]" />
+            <font-awesome-icon :class="item.margin" :icon="['fas', item.icon]" />
             <span>{{ item.text }}</span>
           </div>
         </div>
@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import PersonalData from '@/components/fb/molecules/FbPersonalData.vue'
-import AddressData from '@/components/fb/molecules/FbAddressData.vue'
-import PreferencesData from '@/components/fb/molecules/FbPreferencesData.vue'
-import PasswordData from '@/components/fb/molecules/FbPasswordData.vue'
+import PersonalData from '@/components/fb/molecules/FbPersonalData'
+import AddressData from '@/components/fb/molecules/FbAddressData'
+import PreferencesData from '@/components/fb/molecules/FbPreferencesData'
+import PasswordData from '@/components/fb/molecules/FbPasswordData'
 
 export default {
   name: 'FbPerfilDesk',
@@ -65,6 +65,11 @@ export default {
       default: () => ({})
     }
   },
+  emits: [
+    'updateData',
+    'searchAddress',
+    'updatePassword'
+  ],
   data () {
     return {
       currentComp: 'PersonalData'

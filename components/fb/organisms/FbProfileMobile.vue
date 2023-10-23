@@ -10,11 +10,11 @@
         class="row mx-0 fut-color-dynamic"
       >
         <div class="mx-3 my-3 col-9 fut-color-dynamic">
-          <fa :class="item.margin" :icon="['fas', item.icon]" />
+          <font-awesome-icon :class="item.margin" :icon="['fas', item.icon]" />
           <span>{{ item.text }}</span>
         </div>
         <div class="col d-flex justify-content-center align-items-center fut-color-dynamic">
-          <fa :icon="['fas', 'chevron-down']" />
+          <font-awesome-icon :icon="['fas', 'chevron-down']" />
         </div>
       </div>
       <div
@@ -46,15 +46,15 @@
               @input="checkPassword(info.value)"
             >
             <button class="border-0 bg-transparent password-eye-button" type="button" @click="showPassword()">
-              <fa v-if="passwordType === 'text'" class="text-white fut-color-dynamic" :icon="['fas', 'eye']" />
-              <fa v-else class="text-white fut-color-dynamic" :icon="['fas', 'eye-slash']" />
+              <font-awesome-icon v-if="passwordType === 'text'" class="text-white fut-color-dynamic" :icon="['fas', 'eye']" />
+              <font-awesome-icon v-else class="text-white fut-color-dynamic" :icon="['fas', 'eye-slash']" />
             </button>
           </div>
           <input
             v-else
             :id="info.id"
             v-model="info.value"
-            v-inputmask="info.mask"
+            v-mask="info.mask"
             class="fut-color-dynamic"
             :placeholder="info.placeholder"
             :type="info.type"
@@ -70,10 +70,10 @@
                 `${checkedChar ? 'text-success' : 'text-danger'}`
               ]"
             >
-              <small><fa :icon="['far', 'check-circle']" /> {{ $t('i18n_letras_e_numeros') }}.</small>
+              <small><font-awesome-icon :icon="['far', 'check-circle']" /> {{ $t('i18n_letras_e_numeros') }}.</small>
             </p>
             <p :class="['mb-0', `${checkedLength ? 'text-success' : 'text-danger'}`]">
-              <small><fa :icon="['far', 'check-circle']" /> 8 {{ $t('i18n_digitos') }}.</small>
+              <small><font-awesome-icon :icon="['far', 'check-circle']" /> 8 {{ $t('i18n_digitos') }}.</small>
             </p>
           </div>
         </div>
@@ -109,6 +109,10 @@ export default {
       default: false
     }
   },
+  emits: [
+    'updateData',
+    'updatePassword'
+  ],
   data () {
     return {
       passwordType: 'password',

@@ -9,11 +9,11 @@
         <span>Pix Flash!</span>
       </button>
       <button v-if="availableMethods && availableMethods.includes('picpay')" class="text-start logo-deposit mx-md-0" :class="{active: ctype === 'picpay'}" @click="ctype = 'picpay'">
-        <img class="pix-image  p-1" src="/payments/picpay.png" width="70px" height="30px">
+        <img class="pix-image  p-1" src="/payments/picpay.png" width="70" height="30">
         <span>Picpay!</span>
       </button>
       <button v-if="availableMethods && availableMethods.includes('credito')" class="logo-deposit mx-md-0 text-start" :class="{active: ctype === 'credito'}" @click="ctype = 'credito'">
-        <img class="pix-image  p-1" src="/payments/credito.png" width="70px" height="30px">
+        <img class="pix-image  p-1" src="/payments/credito.png" width="70" height="30">
         <span>Cartão!</span>
       </button>
     </div>
@@ -47,7 +47,7 @@
             <span v-if="currentSettings">
               {{ $t('i18n_minimo') }}: {{ currentSettings.dp_limit_min }} BRL
               <br>
-              {{ $t('i18n_tempo_de_processamento') }} 5 {{ $tc('i18n_minuto', 2) }}
+              {{ $t('i18n_tempo_de_processamento') }} 5 {{ $t('i18n_minuto', 2) }}
               <br>
             </span>
           </div>
@@ -69,8 +69,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FbDepositInput from '@/components/fb/organisms/FbDepositInput.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useSettingsStore } from '@/stores/settings'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+
+import FbDepositInput from '@/components/fb/organisms/FbDepositInput'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 
 export default {
@@ -92,14 +96,22 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getBankErrors: 'onboarding-bank/getBankErrors',
-      currentSettings: 'settings/currentSettings',
-      getBankLoading: 'onboarding-bank/getBankLoading',
+    ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useOnboardingBankStore, {
+      getBankErrors: 'getBankErrors',
+      getBankLoading: 'getBankLoading'
     })
   },
   methods: {
+    ...mapActions(useOnboardingBankStore, {
+      postBankDeposit: 'postBankDeposit',
+      fetchBankDeposits: 'fetchBankDeposits'
+    }),
     submitDeposit (payload) {
       const rawPayload = { ...payload }
       rawPayload.method = this.ctype
@@ -114,11 +126,7 @@ export default {
           }
         })
       })
-    },
-    ...mapActions({
-      postBankDeposit: 'onboarding-bank/postBankDeposit',
-      fetchBankDeposits: 'onboarding-bank/fetchBankDeposits'
-    })
+    }
   }
 }
 </script>

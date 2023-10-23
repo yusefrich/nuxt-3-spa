@@ -61,21 +61,21 @@
       </fb-fut-button>
     </form>
     <div v-if="withdrawResponse" class="container-section-input mx-auto mt-4 response-container">
-      <fa class="text-success me-2" :icon="['fas', 'check']" />
+      <font-awesome-icon class="text-success me-2" :icon="['fas', 'check']" />
       <small v-if="canWithdraw" class="fut-color-dynamic">{{ $t('i18n_transacao_enviada_para') }}</small>
       <small v-else class="fut-color-dynamic">{{ $t('i18n_transacao_criada_e_pendente') }}</small>
     </div>
   </div>
   <div v-else class="section-input text-white px-2 text-center fut-color-dynamic">
-    <fa class="icon text-warning fut-color-dynamic me-1 py-3" style="font-size: 40px" :icon="['fas', 'info-circle']" />
+    <font-awesome-icon class="icon text-warning fut-color-dynamic me-1 py-3" style="font-size: 40px" :icon="['fas', 'info-circle']" />
     <h5><small>{{ $t('i18n_saque_indisponivel_durante') }}</small></h5>
   </div>
 </template>
 
 <script>
 import { VMoney } from 'v-money'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
-import FbInput from '@/components/fb/atoms/FbInput.vue'
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
+import FbInput from '@/components/fb/atoms/FbInput'
 
 export default {
   name: 'FbWithdrawInput',
@@ -134,6 +134,9 @@ export default {
       default: () => ([])
     }
   },
+  emits: [
+    'submit'
+  ],
   data () {
     return {
       money: {

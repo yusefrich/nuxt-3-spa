@@ -141,9 +141,12 @@ import { useBaseStore } from '@/stores/base'
 import { useCasinoStore } from '@/stores/casino'
 import { useLayoutStore } from '@/stores/layout'
 import { useSettingsStore } from '@/stores/settings'
+import { useLiveCasinoStore } from '@/stores/live-casino'
 import { useCasinoFeaturedStore } from '@/stores/casino-featured'
 import { useMetadataCasinoStore } from '@/stores/metadata-casino'
 import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
+import { useLiveCasinoFeaturedStore } from '@/stores/live-casino-featured'
+import { useLiveCasinoSearchGamesStore } from '@/stores/live-casino-search-games'
 
 import MdCustomCarousel from '@/components/md/organisms/MdCustomCarousel'
 import MdCasinoGamesCarousel from '@/components/md/molecules/MdCasinoGamesCarousel'
@@ -194,6 +197,9 @@ export default {
     ...mapState(useSettingsStore, {
       currentSettings: 'currentSettings'
     }),
+    ...mapState(useLiveCasinoStore, {
+      getLiveCasinoGames: 'getLiveCasinoGames'
+    }),
     ...mapState(useCasinoFeaturedStore, {
       getCasinoNew: 'getCasinoNew',
       getCasinoMostPlayedGames: 'getCasinoMostPlayedGames'
@@ -205,13 +211,14 @@ export default {
       getSearch: 'getSearch',
       getCasinoSearchGames: 'getCasinoSearchGames'
     }),
-    // ...mapGetters({
-    //   getLiveCasinoSearchGames: 'live-casino-search-games/getLiveCasinoSearchGames',
-    //   getLiveSearch: 'live-casino-search-games/getLiveSearch',
-    //   getLiveCasinoMostPlayedGames: 'live-casino-featured/getLiveCasinoMostPlayedGames',
-    //   getLiveCasinoNew: 'live-casino-featured/getLiveCasinoNew',
-    //   getLiveCasinoGames: 'live-casino/getLiveCasinoGames'
-    // }),
+    ...mapState(useLiveCasinoFeaturedStore, {
+      getLiveCasinoNew: 'getLiveCasinoNew',
+      getLiveCasinoMostPlayedGames: 'getLiveCasinoMostPlayedGames'
+    }),
+    ...mapState(useLiveCasinoSearchGamesStore, {
+      getLiveCasinoSearchGames: 'getLiveCasinoSearchGames',
+      getLiveCasinoSearchLoading: 'getLiveCasinoSearchLoading'
+    }),
     slides () {
       const emptyArr = []
 
@@ -329,6 +336,9 @@ export default {
       fetchCasinoBananaIframeUrl: 'fetchCasinoBananaIframeUrl',
       fetchCasinoBananaLiveIframeUrl: 'fetchCasinoBananaLiveIframeUrl'
     }),
+    ...mapActions(useLiveCasinoStore, {
+      fetchLiveCasinoGames: 'fetchLiveCasinoGames'
+    }),
     ...mapActions(useCasinoFeaturedStore, {
       fetchCasinoNewGames: 'fetchCasinoNewGames',
       fetchCasinoMostPlayedGames: 'fetchCasinoMostPlayedGames'
@@ -337,11 +347,10 @@ export default {
       fetchCasinoSliders: 'fetchCasinoSliders',
       fetchCasinoProviders: 'fetchCasinoProviders'
     }),
-    // ...mapActions({
-    //   fetchLiveCasinoMostPlayedGames: 'live-casino-featured/fetchLiveCasinoMostPlayedGames',
-    //   fetchLiveCasinoNewGames: 'live-casino-featured/fetchLiveCasinoNewGames',
-    //   fetchLiveCasinoGames: 'live-casino/fetchLiveCasinoGames',
-    // }),
+    ...mapActions(useLiveCasinoFeaturedStore, {
+      fetchLiveCasinoNewGames: 'fetchLiveCasinoNewGames',
+      fetchLiveCasinoMostPlayedGames: 'fetchLiveCasinoMostPlayedGames'
+    }),
     async logUser () {
       await this.login(this.infos)
 

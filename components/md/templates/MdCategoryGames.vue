@@ -97,6 +97,7 @@ import { useCasinoStore } from '@/stores/casino'
 import { useLayoutStore } from '@/stores/layout'
 import { useSettingsStore } from '@/stores/settings'
 import { useCasinoFeaturedStore } from '@/stores/casino-featured'
+import { useLiveCasinoFeaturedStore } from '@/stores/live-casino-featured'
 import { useCasinoCategoryGamesStore } from '@/stores/casino-category-games'
 
 import MdCasinoHeader from '@/components/md/atoms/MdCasinoHeader'
@@ -154,10 +155,10 @@ export default {
     ...mapState(useCasinoCategoryGamesStore, {
       getCasinoCategoryGames: 'getCasinoCategoryGames'
     }),
-    // ...mapGetters({
-    //   getLiveCasinoMostPlayedGames: 'live-casino-featured/getLiveCasinoMostPlayedGames',
-    //   getLiveCasinoNew: 'live-casino-featured/getLiveCasinoNew',
-    // }),
+    ...mapState(useLiveCasinoFeaturedStore, {
+      getLiveCasinoNew: 'getLiveCasinoNew',
+      getLiveCasinoMostPlayedGames: 'getLiveCasinoMostPlayedGames'
+    }),
     getCasinoFilteredGame () {
       if (this.slug === 'mocked-most') {
         return this.live ? this.getLiveCasinoMostPlayedGames : this.getCasinoMostPlayedGames
@@ -225,12 +226,12 @@ export default {
       fetchCasinoGamesByCategory: 'fetchCasinoGamesByCategory',
       concatCasinoGamesByCategory: 'concatCasinoGamesByCategory'
     }),
-    // ...mapActions({
-    //   fetchLiveCasinoMostPlayedGames: 'live-casino-featured/fetchLiveCasinoMostPlayedGames',
-    //   concatLiveCasinoMostPlayedGames: 'live-casino-featured/concatLiveCasinoMostPlayedGames',
-    //   fetchLiveCasinoNewGames: 'live-casino-featured/fetchLiveCasinoNewGames',
-    //   concatLiveCasinoNewGames: 'live-casino-featured/concatLiveCasinoNewGames',
-    // }),
+    ...mapActions(useLiveCasinoFeaturedStore, {
+      fetchLiveCasinoNewGames: 'fetchLiveCasinoNewGames',
+      concatLiveCasinoNewGames: 'concatLiveCasinoNewGames',
+      fetchLiveCasinoMostPlayedGames: 'fetchLiveCasinoMostPlayedGames',
+      concatLiveCasinoMostPlayedGames: 'concatLiveCasinoMostPlayedGames'
+    }),
     async logUser () {
       await this.login(this.infos)
       this.authUser().then(() => {

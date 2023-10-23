@@ -28,7 +28,7 @@
     <slot />
     <span class="sport-name mr-10">{{ sportsName }}</span>
     <span class="count-sport text-white">{{ sportNumber }}</span>
-    <fa v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
+    <font-awesome-icon v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
   </a>
   <button
     v-else
@@ -37,9 +37,10 @@
     :type="type"
     @click="$emit('click')"
   >
-    <slot /> <fa v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
+    <slot /> <font-awesome-icon v-if="loading" class="icon spinner-class" :icon="['fas', 'circle-notch']" />
   </button>
 </template>
+
 <script>
 export default {
   props: {
@@ -139,9 +140,13 @@ export default {
       type: Boolean,
       default: false
     }
-  }
+  },
+  emits: [
+    'click'
+  ]
 }
 </script>
+
 <style lang="scss" scoped>
 .button-style {
   text-decoration: none;

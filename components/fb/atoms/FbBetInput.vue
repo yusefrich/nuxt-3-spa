@@ -20,6 +20,7 @@
     >
   </label>
 </template>
+
 <script>
 export default {
   props: {
@@ -56,6 +57,9 @@ export default {
       default: ''
     }
   },
+  emits: [
+    'change'
+  ],
   data () {
     return {
       maskedValue: '',
@@ -189,6 +193,7 @@ export default {
   }
 }
 </script>
+
 <style scoped lang="scss">
   @import "@/assets/layout/variables";
   @import "@/assets/layout/breakpoints";

@@ -64,12 +64,18 @@
     </div>
   </div>
 </template>
+
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
 import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
 
 export default {
-  components: { FbFutButton },
+  components: {
+    FbFutButton
+  },
   data () {
     return {
       current: 0,
@@ -77,22 +83,24 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      loggedInUser: 'loggedInUser',
-      getOnboardingAuthBonus: 'onboarding-auth/getOnboardingAuthBonus'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useOnboardingAuthStore, {
+      getOnboardingAuthBonus: 'getOnboardingAuthBonus'
     })
   },
   mounted () {
-    console.log('component being mounted')
     this.fetchUserBonus()
   },
   methods: {
-    ...mapActions({
+    ...mapActions(useOnboardingAuthStore, {
       sendCancelUserBonus: 'onboarding-auth/sendCancelUserBonus',
       fetchUserBonus: 'onboarding-auth/fetchUserBonus'
     }),
     cancelUserBonus () {
       this.loading = true
+      
       this.sendCancelUserBonus({
         bonus: true
       }).then(() => {
@@ -104,6 +112,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/layout/breakpoints";
 .container-bonus-section {

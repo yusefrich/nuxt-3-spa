@@ -7,7 +7,7 @@
       <div class="search-content d-md-flex d-none rounded my-1 mt-2 px-2 align-items-center">
         <input v-model="term" class="w-100 my-1 search" :placeholder="$t('i18n_buscar')" type="text" @keyup.enter="searchGames()">
         <fb-fut-button ref="searchBtn" class="search-icon-btn" :to="localePath(term ? '/search/' + term : '#')">
-          <fa :icon="['fas', 'search']" />
+          <font-awesome-icon :icon="['fas', 'search']" />
         </fb-fut-button>
       </div>
     </div>

@@ -2,11 +2,11 @@
   <div class="container">
     <div class="section-title-bar d-none d-md-flex justify-content-between">
       <div class="d-flex">
-        <fa class="icon-size me-2 text-white fut-color-dynamic" :icon="['fas', 'chart-pie']" />
+        <font-awesome-icon class="icon-size me-2 text-white fut-color-dynamic" :icon="['fas', 'chart-pie']" />
         <span class="title text-white fut-color-dynamic">{{ $t('i18n_detalhes') }}</span>
       </div>
       <span class="chevron-icon">
-        <fa class="icon-size mt-1 text-white fut-color-dynamic" :icon="['fas', 'chevron-down']" />
+        <font-awesome-icon class="icon-size mt-1 text-white fut-color-dynamic" :icon="['fas', 'chevron-down']" />
       </span>
     </div>
     <div class="mobile-section-title-bar d-md-none">
@@ -70,13 +70,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+
 import dayjs from 'dayjs'
 
 export default {
   computed: {
-    ...mapGetters({
-      getBankWithdraws: 'onboarding-bank/getBankWithdraws'
+    ...mapState(useOnboardingBankStore, {
+      getBankWithdraws: 'getBankWithdraws'
     }),
     withdraws () {
       if (this.getBankWithdraws !== null) {
@@ -90,8 +92,8 @@ export default {
     this.fetchBankWithdraws()
   },
   methods: {
-    ...mapActions({
-      fetchBankWithdraws: 'onboarding-bank/fetchBankWithdraws'
+    ...mapActions(useOnboardingBankStore, {
+      fetchBankWithdraws: 'fetchBankWithdraws'
     }),
     formmated (date) {
       return dayjs(date).format('DD/MM/YYYY')

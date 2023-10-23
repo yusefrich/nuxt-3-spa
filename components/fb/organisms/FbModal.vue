@@ -10,13 +10,14 @@
           :class="fb2 && isMobile ? 'fb2-button-close-modal' : 'button-close-modal border-0 bg-transparent'"
           @click="$emit('onClose')"
         >
-          <fa class="close-icon fut-color-dynamic" :icon="['fas', 'times']" />
+          <font-awesome-icon class="close-icon fut-color-dynamic" :icon="['fas', 'times']" />
         </fb-fut-button>
         <slot />
       </div>
     </div>
   </transition>
 </template>
+
 <script>
 import FbFutButton from '@/components/fb/atoms/FbFutButton'
 export default {
@@ -48,9 +49,13 @@ export default {
       type: Boolean,
       default: false
     }
-  }
+  },
+  emits: [
+    'onClose'
+  ]
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/layout/variables";
 .modal-overlay {

@@ -39,7 +39,7 @@
               <br>
               {{ $t('i18n_maximo') }}: {{ currentSettings.wd_limit_max }} BRL
               <br>
-              {{ $t('i18n_tempo_de_processamento') }} 5 {{ $tc('i18n_minuto', 2) }}
+              {{ $t('i18n_tempo_de_processamento') }} 5 {{ $t('i18n_minuto', 2) }}
               <br>
             </span>
           </div>
@@ -67,8 +67,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import FbWithdrawInput from '@/components/fb/organisms/FbWithdrawInput.vue'
+import { mapActions, mapState } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useSettingsStore } from '@/stores/settings'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+
+import FbWithdrawInput from '@/components/fb/organisms/FbWithdrawInput'
 
 export default {
   name: 'FbWithdraw',
@@ -81,16 +85,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getBankLoading: 'onboarding-bank/getBankLoading',
-      getBankErrors: 'onboarding-bank/getBankErrors',
-      currentSettings: 'settings/currentSettings',
+    ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useOnboardingBankStore, {
+      getBankErrors: 'getBankErrors',
+      getBankLoading: 'getBankLoading'
     })
   },
   methods: {
-    ...mapActions({
-      postBankWithdraw: 'onboarding-bank/postBankWithdraw'
+    ...mapActions(useOnboardingBankStore, {
+      postBankWithdraw: 'postBankWithdraw'
     }),
     localString (value) {
       const number = +value

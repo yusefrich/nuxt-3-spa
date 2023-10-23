@@ -27,7 +27,7 @@
           id="phone"
           class="fut-color-dynamic"
           v-model="data.phone"
-          v-inputmask="'(99) 9 9999-9999'"
+          v-mask="['(##) #####-####']"
           placeholder="(xx) x xxxx-xxxx"
           type="text"
         >
@@ -62,6 +62,9 @@ export default {
   components: {
     FbFutButton
   },
+  emits: [
+    'updateData'
+  ],
   data () {
     return {
       data: {

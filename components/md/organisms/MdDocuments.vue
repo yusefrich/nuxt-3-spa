@@ -506,7 +506,7 @@ export default {
   },
   methods: {
     ...mapActions(useUploadFileStore, {
-      sendFile: 'upload-file/sendFile'
+      sendFile: 'sendFile'
     }),
     openFileInput (refValue) {
       const el = this.$refs[refValue]

@@ -40,7 +40,10 @@ export default {
       type: Object,
       default: () => ({})
     }
-  }
+  },
+  emits: [
+    'logUser'
+  ]
 }
 </script>
 <style lang="scss" scoped>

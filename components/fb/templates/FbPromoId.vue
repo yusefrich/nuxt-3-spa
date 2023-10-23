@@ -1,9 +1,8 @@
 <template>
   <fut-html-render v-if="getPromos">
     <img
-      style="object-fit: contain"
-      height="200px"
-      width="100%"
+      style="object-fit: contain w-100"
+      height="200"
       :src="promo.img"
     >
     <h1 class="text-center py-3 fw-bold">
@@ -15,8 +14,10 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FutHtmlRender from '@/components/default/atoms/FutHtmlRender.vue'
+import { mapState, mapActions } from 'pinia'
+import { usePromoStore } from '@/stores/promo'
+
+import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
 
 export default {
   name: 'FbPromoId',
@@ -34,8 +35,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getPromos: 'promo/getPromos'
+    ...mapState(usePromoStore, {
+      getPromos: 'getPromos'
     })
   },
   created () {
@@ -46,8 +47,8 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      fetchPromos: 'promo/fetchPromos'
+    ...mapActions(usePromoStore, {
+      fetchPromos: 'fetchPromos'
     }),
     findPromo (promoId) {
       const obj = this.getPromos.find(element => element.id === promoId)

@@ -630,8 +630,8 @@ import { mapState, mapActions } from 'pinia'
 import { useBaseStore } from '@/stores/base'
 import { useUploadFileStore } from '@/stores/upload-file'
 
-import SkCard from '@/components/sk/atoms/SkCard.vue'
-import SkModal from '@/components/sk/atoms/SkModal.vue'
+import SkCard from '@/components/sk/atoms/SkCard'
+import SkModal from '@/components/sk/atoms/SkModal'
 
 export default {
   name: 'SkDocuments',

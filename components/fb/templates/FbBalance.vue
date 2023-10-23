@@ -4,13 +4,13 @@
       <div
         class="header-profile w-100 mt-3 p-2 align-items-center text-white fut-color-dynamic"
       >
-        <fa class="mr-10" :icon="['fas', 'money-bill']" />
+        <font-awesome-icon class="mr-10" :icon="['fas', 'money-bill']" />
         <span>{{ $t('i18n_saldo_do_usuario') }}</span>
       </div>
       <div class="d-md-flex d-grid">
         <div class="section-details w-100 me-0 mt-2">
           <div class="container py-1 section-details-header align-items-center fut-color-dynamic">
-            <fa class="mr-10" :icon="['fas', 'coins']" />
+            <font-awesome-icon class="mr-10" :icon="['fas', 'coins']" />
             <span> {{ $t('i18n_saldo') }} </span>
           </div>
           <div class="d-grid px-40 py-3">
@@ -20,7 +20,7 @@
         </div>
         <div class="section-details w-100 ms-md-1 ms-0 mt-2">
           <div class="section-details-header align-items-center py-1 container fut-color-dynamic">
-            <fa class="mr-10" :icon="['fas', 'money-bill']" />
+            <font-awesome-icon class="mr-10" :icon="['fas', 'money-bill']" />
             <span>{{ $t('i18n_saldo_de_bonus') }}</span>
           </div>
           <div class="d-grid px-40 py-3">
@@ -32,7 +32,7 @@
       <div class="d-md-flex d-grid">
         <div class="section-details w-100 me-0 mt-2">
           <div class="container py-1 section-details-header align-items-center fut-color-dynamic">
-            <fa class="mr-10" :icon="['fas', 'coins']" />
+            <font-awesome-icon class="mr-10" :icon="['fas', 'coins']" />
             <span> {{ $t('i18n_aposta_gratis') }} </span>
           </div>
           <div class="d-grid px-40 py-3">
@@ -42,7 +42,7 @@
         </div>
         <div class="section-details w-100 ms-md-1 ms-0 mt-2">
           <div class="section-details-header align-items-center py-1 container fut-color-dynamic">
-            <fa class="mr-10" :icon="['fas', 'money-bill']" />
+            <font-awesome-icon class="mr-10" :icon="['fas', 'money-bill']" />
             <span>{{ $t('i18n_saldo_bloqueado') }}</span>
           </div>
           <div class="d-grid px-40 py-3">
@@ -55,7 +55,7 @@
       <div
         class="header-profile w-100 mt-1 p-2 align-items-center text-white fut-color-dynamic"
       >
-        <fa class="mr-10" :icon="['fas', 'money-bill']" />
+        <font-awesome-icon class="mr-10" :icon="['fas', 'money-bill']" />
         <span>{{ $t('i18n_bonus_e_rollover') }}</span>
       </div>
 
@@ -71,23 +71,29 @@
     </div>
   </div>
 </template>
+
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FbProgressBar from '@/components/fb/molecules/FbProgressBar.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+
+import FbProgressBar from '@/components/fb/molecules/FbProgressBar'
 
 export default {
   components: {
     FbProgressBar
   },
   computed: {
-    ...mapGetters({
-      loggedInUser: 'loggedInUser',
-      getOnboardingAuthLoading: 'onboarding-auth/getOnboardingAuthLoading'
+    ...mapState(useBaseStore, {
+      loggedInUser: 'loggedInUser'
+    }),
+    ...mapState(useOnboardingAuthStore, {
+      getOnboardingAuthLoading: 'getOnboardingAuthLoading'
     })
   },
   methods: {
-    ...mapActions({
-      sendCancelUserBonus: 'onboarding-auth/sendCancelUserBonus'
+    ...mapActions(useOnboardingAuthStore, {
+      sendCancelUserBonus: 'sendCancelUserBonus'
     }),
     cancelUserBonus () {
       this.sendCancelUserBonus({
@@ -106,6 +112,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/layout/breakpoints";
 

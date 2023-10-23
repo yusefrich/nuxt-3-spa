@@ -13,6 +13,7 @@
     @input="$emit('input', $event.target.value)"
   >
 </template>
+
 <script>
 export default {
   props: {
@@ -104,9 +105,16 @@ export default {
       type: String,
       default: ''
     }
-  }
+  },
+  emits: [
+    'enter',
+    'focus',
+    'blur',
+    'input'
+  ]
 }
 </script>
+
 <style scoped lang="scss">
 @import "@/assets/layout/breakpoints";
 

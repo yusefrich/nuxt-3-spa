@@ -5,9 +5,9 @@
         {{ $t('i18n_longo_prazo') }}
       </span>
     </div>
-    <fb-sections-heading v-else class="d-md-none" :title="$tc('i18n_esporte', 2)" route="/">
+    <fb-sections-heading v-else class="d-md-none" :title="$t('i18n_esporte', 2)" route="/">
       <fb-fut-button class="bg-transparent border-0" @click="showClock()">
-        <fa class="icon-time-filter text-white" :icon="['far', 'clock']" />
+        <font-awesome-icon class="icon-time-filter text-white" :icon="['far', 'clock']" />
       </fb-fut-button>
     </fb-sections-heading>
     <div>
@@ -22,9 +22,9 @@
           to="/sports"
           class="w-100 week-times text-center text-decoration-none active"
         >
-          <fa :icon="['fas', 'clock']" />
+          <font-awesome-icon :icon="['fas', 'clock']" />
           <div class="close-btn">
-            <fa :icon="['fas', 'times']" />
+            <font-awesome-icon :icon="['fas', 'times']" />
           </div>
         </fb-fut-button>
         <fb-fut-button
@@ -32,7 +32,7 @@
           class="w-100 week-times text-center text-decoration-none"
           @click="showHours()"
         >
-          <fa :icon="['fas', 'clock']" />
+          <font-awesome-icon :icon="['fas', 'clock']" />
         </fb-fut-button>
         <fb-fut-button
           v-for="day in days"
@@ -43,20 +43,20 @@
         >
           <span class="the-day">{{ day }}</span>
           <div class="close-btn">
-            <fa :icon="['fas', 'times']" />
+            <font-awesome-icon :icon="['fas', 'times']" />
           </div>
         </fb-fut-button>
       </div>
       <transition name="fade" appear>
         <div v-if="clock === true" class="text-white d-flex d-md-none align-items-center m-1">
           <fb-fut-button v-if="currentHour" to="/sports" class="w-100 week-times text-center text-decoration-none active">
-            <fa :icon="['fas', 'clock']" />
+            <font-awesome-icon :icon="['fas', 'clock']" />
             <div class="close-btn">
-              <fa :icon="['fas', 'times']" />
+              <font-awesome-icon :icon="['fas', 'times']" />
             </div>
           </fb-fut-button>
           <fb-fut-button v-else class="w-100 week-times text-center text-decoration-none" @click="showHours()">
-            <fa :icon="['fas', 'clock']" />
+            <font-awesome-icon :icon="['fas', 'clock']" />
           </fb-fut-button>
           <fb-fut-button
             v-for="day in days"
@@ -166,7 +166,7 @@
                   <div>
                     <span class="mx-20 text-white fut-color-dynamic">{{ item.name }}</span>
                   </div>
-                  <span v-if="selectedGroupIds && checkId(selectedGroupIds, item.cc + '+' + sport.id)" class="text-success check-group"><fa :icon="['fas', 'check']" /></span>
+                  <span v-if="selectedGroupIds && checkId(selectedGroupIds, item.cc + '+' + sport.id)" class="text-success check-group"><font-awesome-icon :icon="['fas', 'check']" /></span>
                   <span v-else class="event-count text-center fut-color-dynamic">{{ item.games }}</span>
                 </a>
               </template>
@@ -206,7 +206,7 @@
                   "
                 >
                   <span class="mx-20 text-white fut-color-dynamic">{{ league.name }}</span>
-                  <span v-if="selectedGroupIds && checkId(selectedGroupIds, league.id + '+' + sport.id)" class="text-success check-group"><fa :icon="['fas', 'check']" /></span>
+                  <span v-if="selectedGroupIds && checkId(selectedGroupIds, league.id + '+' + sport.id)" class="text-success check-group"><font-awesome-icon :icon="['fas', 'check']" /></span>
                 </a>
               </div>
             </li>
@@ -289,7 +289,7 @@ export default {
       window.location.replace(link)
     },
     currentRoute (route) {
-      return route === '' + this.$nuxt.$route.path || route + '/' === '' + this.$nuxt.$route.path
+      return route === '' + this.$route.path || route + '/' === '' + this.$route.path
     },
     checkId (array, id) {
       return array.includes(id)

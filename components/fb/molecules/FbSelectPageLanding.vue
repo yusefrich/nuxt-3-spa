@@ -13,7 +13,7 @@
         <div class="d-grid justify-content-center">
           <img class="icon-size" src="/FbIcons/sports.svg">
         </div>
-        <span class="mb-0 w-100 text-center d-inline-block">{{ $tc('i18n_esporte', 2) }}</span>
+        <span class="mb-0 w-100 text-center d-inline-block">{{ $t('i18n_esporte', 2) }}</span>
       </fb-fut-button>
     </div>
     <template v-if="sportsProvider === 'upgaming'">
@@ -83,7 +83,7 @@
         <div class="d-grid justify-content-center">
           <img class="icon-size" src="/FbIcons/promotions.svg" height="30px">
         </div>
-        <span class="mb-0 w-100 text-center d-inline-block">{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $tc('i18n_promocao', 2) }}</span>
+        <span class="mb-0 w-100 text-center d-inline-block">{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $t('i18n_promocao', 2) }}</span>
       </fb-fut-button>
     </div>
   </div>

@@ -2,11 +2,11 @@
   <div class="container px-0">
     <div class="section-title-bar d-flex justify-content-between">
       <div class="d-flex">
-        <fa class="icon-size me-2 text-white fut-color-dynamic" :icon="['fas', 'chart-pie']" />
+        <font-awesome-icon class="icon-size me-2 text-white fut-color-dynamic" :icon="['fas', 'chart-pie']" />
         <span class="title text-white fut-color-dynamic">{{ $t('i18n_detalhes') }}</span>
       </div>
       <span class="chevron-icon">
-        <fa class="icon-size mt-1 text-white fut-color-dynamic" :icon="['fas', 'chevron-down']" />
+        <font-awesome-icon class="icon-size mt-1 text-white fut-color-dynamic" :icon="['fas', 'chevron-down']" />
       </span>
     </div>
     <div class="bs_data_grid_holder">
@@ -61,7 +61,7 @@
               </td>
               <td class="text-white fut-color-dynamic pointer" @click="currentBet = bet">
                 <span>
-                  {{ bet.games.length > 1 ? $tc('i18n_multipla', 1) : $t('i18n_simples') }}
+                  {{ bet.games.length > 1 ? $t('i18n_multipla', 1) : $t('i18n_simples') }}
                 </span>
               </td>
               <td class="text-end text-white fut-color-dynamic pointer" @click="currentBet = bet">
@@ -97,10 +97,10 @@
     <div v-if="currentBet" class="bet-detail-modal">
       <div class="bet-detail-content">
         <fb-fut-button class="bet-detail-toggle text-white fut-color-dynamic" @click="currentBet = null">
-          <fa :icon="['fas', 'times']" />
+          <font-awesome-icon :icon="['fas', 'times']" />
         </fb-fut-button>
         <div class="header d-none d-md-block">
-          <span class="text-white fut-color-dynamic"><fa class="me-2" :icon="['fas', 'chart-bar']" /> {{ $t('i18n_relatorios_de_apostas') }}</span>
+          <span class="text-white fut-color-dynamic"><font-awesome-icon class="me-2" :icon="['fas', 'chart-bar']" /> {{ $t('i18n_relatorios_de_apostas') }}</span>
         </div>
         <div class="bet-modal-content">
           <div class="d-flex content-heading justify-content-between">

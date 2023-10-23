@@ -44,7 +44,7 @@
                         <div class="game-time">
                           <span class="mobile-text-secondary">{{ game.time }}'</span>
                         </div>
-                        <fa :icon="['far', 'clock']" class="d-none d-md-table-cell" />
+                        <font-awesome-icon :icon="['far', 'clock']" class="d-none d-md-table-cell" />
                       </div>
                     </div>
                   </div>
@@ -86,10 +86,10 @@
                       @click="()=>odd.odds<=0||invalidMultiple(game.id, odd.type, tickets)?{}:$emit('selectBet', { gameId: game.id, odd: odd, market: oddsMarket.name, event: `${game.home_team} x ${game.away_team}`, validate: game.datetime, live: live })"
                     >
                       <span v-if="odd.leverage && odd.leverage === 'up'" class="leverage-up-arrow" style="vertical-align: middle">
-                        <fa class="text-white flash" style="font-size: 17px" :icon="['fas', 'caret-up']" />
+                        <font-awesome-icon class="text-white flash" style="font-size: 17px" :icon="['fas', 'caret-up']" />
                       </span>
                       <span v-if="odd.leverage && odd.leverage === 'down'" class="leverage-down-arrow" style="vertical-align: middle">
-                        <fa class="text-white flash-2" style="font-size: 17px" :icon="['fas', 'caret-down']" />
+                        <font-awesome-icon class="text-white flash-2" style="font-size: 17px" :icon="['fas', 'caret-down']" />
                       </span>
                       <span>
                         {{ odd.odds && odd.odds != 0 && odd.odds != 1 ? odd.odds : '-' }}

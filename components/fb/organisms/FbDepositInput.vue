@@ -37,14 +37,14 @@
           :disabled="depositLimitMin ? +getRawPrice(price) < depositLimitMin : +getRawPrice(price) < 1"
           @click="deposit"
         >
-          {{ $tc('i18n_deposito', 1) }}
+          {{ $t('i18n_deposito', 1) }}
         </fb-fut-button>
       </div>
     </div>
     <div v-if="depositResponse">
       <div class="px-3 mt-3">
         <div class="sucess-container py-1">
-          <fa class="text-primary ms-2" :icon="['fas', 'check']" />
+          <font-awesome-icon class="text-primary ms-2" :icon="['fas', 'check']" />
           <span>{{ $t('i18n_transacao_bem_sucedida') }}</span>
         </div>
         <div class="section-qr">
@@ -65,19 +65,25 @@
           <p v-if="ctype === 'pix'" class="mb-1 label-control">
             QR code
           </p>
-          <img v-if="ctype === 'pix'" class="img-fluid" style="width: 250px;" :src="depositResponse.payment.pix_url" alt="">
+          <img
+            v-if="ctype === 'pix'"
+            class="img-fluid"
+            style="width: 250px;"
+            :src="depositResponse.payment.pix_url"
+            alt=""
+          >
           <span style="font-size: 13px;" class="text-white fut-color-dynamic">
             {{ $t('i18n_continuidade_pagamento') }}
           </span>
           <div class="text-center mt-4">
             <fb-fut-button v-if="ctype === 'picpay'" class="a-deposit text-uppercase w-100" target="_blank" :to="depositResponse.payment.pix_picpay" external>
               <span class="text-center">
-                {{ $t('i18n_abrir_qrcode') }} <fa class="icon" :icon="['fas', 'sign-in-alt']" />
+                {{ $t('i18n_abrir_qrcode') }} <font-awesome-icon class="icon" :icon="['fas', 'sign-in-alt']" />
               </span>
             </fb-fut-button>
             <fb-fut-button v-if="ctype === 'credito'" class="button-deposit text-uppercase w-100" @click="redirectUser(depositResponse.payment.form_url)">
               <span class="text-center">
-                {{ $t('i18n_abrir_qrcode') }} <fa class="icon" :icon="['fas', 'sign-in-alt']" />
+                {{ $t('i18n_abrir_qrcode') }} <font-awesome-icon class="icon" :icon="['fas', 'sign-in-alt']" />
               </span>
             </fb-fut-button>
             <fb-fut-button class="a-deposit text-uppercase w-100"  to="/user/bank/deposito">
@@ -123,6 +129,9 @@ export default {
       default: false
     }
   },
+  emits: [
+    'submit'
+  ],
   data () {
     return {
       money: {

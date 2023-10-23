@@ -22,7 +22,7 @@
               :class="{ selected: currentRoute('/sports') || currentRoute('/aovivo') || currentRoute('/') }"
             />
           </div>
-          <span class="mb-0 w-100 text-center d-inline-block">{{ $tc('i18n_esporte', 2) }}</span>
+          <span class="mb-0 w-100 text-center d-inline-block">{{ $t('i18n_esporte', 2) }}</span>
         </fb-fut-button>
       </div>
       <div
@@ -73,7 +73,7 @@
           <div class="d-grid justify-content-center">
             <img class="icon-size" src="/FbIcons/promotions.svg" height="30px">
           </div>
-          <span class="mb-0 w-100 text-center d-inline-block">{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $tc('i18n_promocao', 2) }}</span>
+          <span class="mb-0 w-100 text-center d-inline-block">{{ productConfigPromoUrl.status ? $t('i18n_ranking') : $t('i18n_promocao', 2) }}</span>
         </fb-fut-button>
       </div>
     </div>
@@ -82,15 +82,15 @@
       v-if="currentRoute('/sports') || currentRoute('/aovivo') || currentRoute('/')"
       class="sports-modules"
     >
-      <n-link class="module" :to="localePath('/sports')" :class="{ selected: selectedTab === 'pre-match' }">
+      <NuxtLink class="module" :to="localePath('/sports')" :class="{ selected: selectedTab === 'pre-match' }">
         <span>{{ $t('i18n_pre_jogo') }}</span>
-      </n-link>
-      <n-link class="module" :to="localePath('/aovivo')" :class="{ selected: selectedTab === 'live' }">
+      </NuxtLink>
+      <NuxtLink class="module" :to="localePath('/aovivo')" :class="{ selected: selectedTab === 'live' }">
         <span>{{ $t('i18n_ao_vivo') }}</span>
-      </n-link>
-      <n-link class="module" to="/sports?longTerm=true" :class="{ selected: selectedTab === 'long-term' }">
+      </NuxtLink>
+      <NuxtLink class="module" to="/sports?longTerm=true" :class="{ selected: selectedTab === 'long-term' }">
         <span>{{ $t('i18n_longo_prazo') }}</span>
-      </n-link>
+      </NuxtLink>
     </div>
   </div>
 </template>

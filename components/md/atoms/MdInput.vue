@@ -5,7 +5,7 @@
       :id="name"
       :ref="name"
       v-model="inputValue"
-      v-inputmask="mask"
+      v-mask="mask"
       :type="type"
       class="form-control"
       :class="{ disable: disabled }"
@@ -78,7 +78,7 @@ export default {
 .md-input {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
 label {
   font-size: 13px;

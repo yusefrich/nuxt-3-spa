@@ -14,7 +14,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_regras_gerais') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalRules" />
     </div>
     <fb-fut-button
@@ -31,7 +31,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_depositos_e_saques') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalDeposits" />
     </div>
     <fb-fut-button
@@ -48,7 +48,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_jogo_responsavel') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalResponsible" />
     </div>
     <fb-fut-button
@@ -65,7 +65,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_suporte') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalSuport" />
     </div>
     <fb-fut-button
@@ -82,7 +82,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_termos_e_condicoes') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalTerms" />
     </div>
     <fb-fut-button
@@ -99,7 +99,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_politica_de_privacidade') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalPrivacy" />
     </div>
     <fb-fut-button
@@ -116,7 +116,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">aml</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalAml" />
     </div>
     <fb-fut-button
@@ -133,7 +133,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_politica_de_cookies') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalCookies" />
     </div>
     <fb-fut-button
@@ -150,7 +150,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">faq</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalFaq" />
     </div>
     <fb-fut-button
@@ -167,7 +167,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_quem_somos') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalAbout" />
     </div>
     <fb-fut-button
@@ -184,7 +184,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_afiliados') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalAffiliates" />
     </div>
     <!-- new -->
@@ -202,7 +202,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_auto_exclusion') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalAutoExclusion" />
     </div>
     <!-- new -->
@@ -220,7 +220,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_disputs_resolution') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalDisputsResolution" />
     </div>
     <!-- new -->
@@ -238,7 +238,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_method_impartiality') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalMethodImpartiality" />
     </div>
     <!-- new -->
@@ -256,7 +256,7 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_kyc_politcs') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalKycPolitcs" />
     </div>
     <!-- new -->
@@ -274,19 +274,27 @@
         <spinner v-if="getLegalLoading" />
       </div>
       <h5 class="text-dark d-none d-print-block text-center fw-bold">{{ $t('i18n_accounts_payments_bonus') }}</h5>
-      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><fa class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
+      <fb-fut-button class="p-2 float-end d-print-none mt-3" primary @click="printPage()"><font-awesome-icon class="me-1" :icon="['fas', 'print']" />{{ $t('i18n_imprimir') }}</fb-fut-button>
       <fut-html-render :content="getLegalAccountsPaymentsBonus" />
     </div>
   </div>
 </template>
+
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useLegalStore } from '@/stores/legal'
+import { useSettingsStore } from '@/stores/settings'
+
 import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
 import FbFutButton from '@/components/fb/atoms/FbFutButton'
 import Spinner from '@/components/default/atoms/Spinner'
 
 export default {
-  components: { FutHtmlRender, FbFutButton, Spinner },
+  components: {
+    FutHtmlRender,
+    FbFutButton,
+    Spinner
+  },
   data () {
     return {
       currentSlug: null,
@@ -294,25 +302,27 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      currentSettings: 'settings/currentSettings',
-      getLegalLoading: 'legal/getLegalLoading',
-      getLegalRules: 'legal/getLegalRules',
-      getLegalDeposits: 'legal/getLegalDeposits',
-      getLegalResponsible: 'legal/getLegalResponsible',
-      getLegalSuport: 'legal/getLegalSuport',
-      getLegalTerms: 'legal/getLegalTerms',
-      getLegalPrivacy: 'legal/getLegalPrivacy',
-      getLegalAml: 'legal/getLegalAml',
-      getLegalCookies: 'legal/getLegalCookies',
-      getLegalFaq: 'legal/getLegalFaq',
-      getLegalAbout: 'legal/getLegalAbout',
-      getLegalAffiliates: 'legal/getLegalAffiliates',
-      getLegalAutoExclusion: 'legal/getLegalAutoExclusion',
-      getLegalDisputsResolution: 'legal/getLegalDisputsResolution',
-      getLegalMethodImpartiality: 'legal/getLegalMethodImpartiality',
-      getLegalKycPolitcs: 'legal/getLegalKycPolitcs',
-      getLegalAccountsPaymentsBonus: 'legal/getLegalAccountsPaymentsBonus'
+    ...mapState(useSettingsStore, {
+      currentSettings: 'currentSettings'
+    }),
+    ...mapState(useLegalStore, {
+      getLegalLoading: 'getLegalLoading',
+      getLegalRules: 'getLegalRules',
+      getLegalDeposits: 'getLegalDeposits',
+      getLegalResponsible: 'getLegalResponsible',
+      getLegalSuport: 'getLegalSuport',
+      getLegalTerms: 'getLegalTerms',
+      getLegalPrivacy: 'getLegalPrivacy',
+      getLegalAml: 'getLegalAml',
+      getLegalCookies: 'getLegalCookies',
+      getLegalFaq: 'getLegalFaq',
+      getLegalAbout: 'getLegalAbout',
+      getLegalAffiliates: 'getLegalAffiliates',
+      getLegalAutoExclusion: 'getLegalAutoExclusion',
+      getLegalDisputsResolution: 'getLegalDisputsResolution',
+      getLegalMethodImpartiality: 'getLegalMethodImpartiality',
+      getLegalKycPolitcs: 'getLegalKycPolitcs',
+      getLegalAccountsPaymentsBonus: 'getLegalAccountsPaymentsBonus'
     })
   },
   mounted () {
@@ -373,23 +383,23 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      fetchLegalRules: 'legal/fetchLegalRules',
-      fetchLegalDeposits: 'legal/fetchLegalDeposits',
-      fetchLegalResponsible: 'legal/fetchLegalResponsible',
-      fetchLegalSuport: 'legal/fetchLegalSuport',
-      fetchLegalTerms: 'legal/fetchLegalTerms',
-      fetchLegalPrivacy: 'legal/fetchLegalPrivacy',
-      fetchLegalAml: 'legal/fetchLegalAml',
-      fetchLegalCookies: 'legal/fetchLegalCookies',
-      fetchLegalFaq: 'legal/fetchLegalFaq',
-      fetchLegalAbout: 'legal/fetchLegalAbout',
-      fetchLegalAffiliates: 'legal/fetchLegalAffiliates',
-      fetchLegalAutoExclusion: 'legal/fetchLegalAutoExclusion',
-      fetchLegalDisputsResolution: 'legal/fetchLegalDisputsResolution',
-      fetchLegalMethodImpartiality: 'legal/fetchLegalMethodImpartiality',
-      fetchLegalKycPolitcs: 'legal/fetchLegalKycPolitcs',
-      fetchLegalAccountsPaymentsBonus: 'legal/fetchLegalAccountsPaymentsBonus'
+    ...mapActions(useLegalStore, {
+      fetchLegalRules: 'fetchLegalRules',
+      fetchLegalDeposits: 'fetchLegalDeposits',
+      fetchLegalResponsible: 'fetchLegalResponsible',
+      fetchLegalSuport: 'fetchLegalSuport',
+      fetchLegalTerms: 'fetchLegalTerms',
+      fetchLegalPrivacy: 'fetchLegalPrivacy',
+      fetchLegalAml: 'fetchLegalAml',
+      fetchLegalCookies: 'fetchLegalCookies',
+      fetchLegalFaq: 'fetchLegalFaq',
+      fetchLegalAbout: 'fetchLegalAbout',
+      fetchLegalAffiliates: 'fetchLegalAffiliates',
+      fetchLegalAutoExclusion: 'fetchLegalAutoExclusion',
+      fetchLegalDisputsResolution: 'fetchLegalDisputsResolution',
+      fetchLegalMethodImpartiality: 'fetchLegalMethodImpartiality',
+      fetchLegalKycPolitcs: 'fetchLegalKycPolitcs',
+      fetchLegalAccountsPaymentsBonus: 'fetchLegalAccountsPaymentsBonus'
     }),
     printPage () {
       window.print()
@@ -439,6 +449,7 @@ export default {
   }
 }
 </script>
+
 <style scoped lang="scss">
 .btn-fb-help{
   background: var(--fut-background);

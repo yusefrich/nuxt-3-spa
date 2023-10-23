@@ -73,6 +73,9 @@ export default {
       default: () => ({})
     }
   },
+  emits: [
+    'logUser'
+  ],
   data () {
     return {
       data: {

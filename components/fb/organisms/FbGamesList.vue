@@ -66,7 +66,7 @@
                       <span style="opacity: .3" class="text-white">|</span>
                       <span class="text-white fw-bold mobile-text-secondary" style="opacity: .9">{{ formattedHour(game.datetime) }}</span>
                     </div>
-                    <span class="text-white me-1">+{{ game.odds_total }} <fa class="text-primary" :icon="['fas', 'caret-right']" /></span>
+                    <span class="text-white me-1">+{{ game.odds_total }} <font-awesome-icon class="text-primary" :icon="['fas', 'caret-right']" /></span>
                   </div>
                 </fb-fut-button>
               </td>
