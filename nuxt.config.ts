@@ -7,6 +7,10 @@ export default defineNuxtConfig({
                 {
                     src: 'https://unpkg.com/feather-icons',
                     type: 'text/javascript'
+                },
+                {
+                    src: process.env.JIVOCHAT ? `//code.jivosite.com/widget/${process.env.JIVOCHAT}` : '',
+                    async: true
                 }
             ]
         }
@@ -36,7 +40,12 @@ export default defineNuxtConfig({
             BASE_URL: process.env.BASE_URL || 'http://localhost:8000',
             LAYOUT: process.env.LAYOUT || 'default',
             CURACAO: process.env.CURACAO || '',
-            PRODUCT_CONFIG_AFILIATES_URL: process.env.PRODUCT_CONFIG_AFILIATES_URL || ''
+            PRODUCT_CONFIG_AFILIATES_URL: process.env.PRODUCT_CONFIG_AFILIATES_URL || '',
+            INTERCOMCHAT: process.env.INTERCOMCHAT,
+            LIVECHAT: process.env.LIVECHAT || '',
+            intercom: {
+                appId: process.env.INTERCOMCHAT
+            }
         }
     },
     // plugins: [

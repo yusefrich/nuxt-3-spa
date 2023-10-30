@@ -92,10 +92,10 @@
         </fut-button>
       </div>
     </fut-modal>
-    <!-- <LiveChatWidget
+    <LiveChatWidget
       :license="liveChat()"
       visibility="minimized"
-    /> -->
+    />
     <cookies-manager
       v-if="!getAcceptedCookies"
       current-layout="default"
@@ -107,7 +107,7 @@
       </a>
     </div>
 
-    <!-- <intercom-chat-btn /> -->
+    <intercom-chat-btn />
   </main>
 </template>
 
@@ -123,7 +123,7 @@ import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
 import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
 
 import dayjs from 'dayjs'
-// import { LiveChatWidget } from '@livechat/widget-vue/v2'
+import { LiveChatWidget } from '@livechat/widget-vue'
 import FutNavbar from '@/components/default/molecules/FutNavbar'
 import FutButton from '@/components/default/atoms/FutButton'
 import FooterInfo from '@/components/default/molecules/FooterInfo'
@@ -141,12 +141,12 @@ import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 // import Tickets from '@/components/default/organisms/Tickets'
 import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
 import CookiesManager from '@/components/default/molecules/CookiesManager'
-// import IntercomChatBtn from '@/components/default/atoms/IntercomChatBtn'
+import IntercomChatBtn from '@/components/default/atoms/IntercomChatBtn'
 
 export default {
   name: 'Default',
   components: {
-    // LiveChatWidget,
+    LiveChatWidget,
     Sidebar,
     FooterInfo,
     FooterSponsor,
@@ -163,7 +163,7 @@ export default {
     FutCasinoSidebar,
     // Tickets,
     CookiesManager,
-    // IntercomChatBtn
+    IntercomChatBtn
   },
   mixins: [sportradarTagManager],
   data () {
@@ -301,7 +301,9 @@ export default {
       })
     },
     liveChat () {
-      return process.env.LIVECHAT + ''
+      const config = useRuntimeConfig()
+      
+      return config.public.LIVECHAT
     },
     openDepositModal () {
       this.clearBankErrors()

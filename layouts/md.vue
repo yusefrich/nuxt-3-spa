@@ -121,7 +121,7 @@
       </div>
     </md-modal>
 
-    <div
+    <!-- <div
       v-if="currentSettings && currentSettings.telegram_float"
       id="div_telegram"
       :class="currentSettings.telegram_float.telegram_position"
@@ -129,15 +129,15 @@
       <a :href="currentSettings.telegram_float.telegram_link" target="_blank">
         <img height="60" width="60" src="/telegram.png">
       </a>
-    </div>
-    <!-- <LiveChatWidget
+    </div> -->
+    <LiveChatWidget
       :license="liveChat()"
       visibility="minimized"
-    /> -->
+    />
 
-    <!-- <intercom-chat-btn
+    <intercom-chat-btn
       :bottom-position="isMobile ? '90px' : '20px'"
-    /> -->
+    />
   </main>
 </template>
 
@@ -152,7 +152,7 @@ import { useOnboardingUserConfigStore } from '@/stores/onboarding-user-config'
 import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
 import { useLiveCasinoSearchGamesStore } from '@/stores/live-casino-search-games'
 
-// import { LiveChatWidget } from '@livechat/widget-vue/v2'
+import { LiveChatWidget } from '@livechat/widget-vue'
 import AppConfig from '@/components/default/atoms/AppConfig'
 import MdThemeConfig from '@/components/md/atoms/MdThemeConfig'
 import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
@@ -163,14 +163,14 @@ import MdFooter from '@/components/md/organisms/MdFooter'
 import MdSidebar from '@/components/md/organisms/MdSidebar'
 import MdMobileThemeSwitcher from '@/components/md/organisms/MdMobileThemeSwitcher'
 import MdThemeSwitcher from '@/components/md/atoms/MdThemeSwitcher'
-// import IntercomChatBtn from '@/components/default/atoms/IntercomChatBtn'
+import IntercomChatBtn from '@/components/default/atoms/IntercomChatBtn'
 import LoginBarrier from '@/components/default/organisms/LoginBarrier'
 import windowWidth from '~/mixins.js/windowWidth'
 
 export default {
   name: 'Md',
   components: {
-    // LiveChatWidget,
+    LiveChatWidget,
     AppConfig,
     MdThemeConfig,
     FutHtmlRender,
@@ -181,7 +181,7 @@ export default {
     MdSidebar,
     MdThemeSwitcher,
     MdMobileThemeSwitcher,
-    // IntercomChatBtn,
+    IntercomChatBtn,
     LoginBarrier
   },
   mixins: [windowWidth],
@@ -325,7 +325,9 @@ export default {
     //   acceptTicketChanges: 'tickets-pre-cash-in/acceptTicketChanges',
     // }),
     liveChat () {
-      return process.env.LIVECHAT + ''
+      const config = useRuntimeConfig()
+      
+      return config.public.LIVECHAT
     },
     changeLanguage (lang) {
       this.$i18n.setLocale(lang)

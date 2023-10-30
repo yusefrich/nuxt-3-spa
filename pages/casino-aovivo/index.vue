@@ -20,11 +20,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import FbCasinoHome from '@/components/fb/templates/FbCasinoHome.vue'
-import SgHome from '@/components/sg/templates/SgHome.vue'
-import MdCasino from '@/components/md/templates/MdCasino.vue'
-import SkCasino from '@/components/sk/templates/SkCasino.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import FbCasinoHome from '@/components/fb/templates/FbCasinoHome'
+import SgHome from '@/components/sg/templates/SgHome'
+import MdCasino from '@/components/md/templates/MdCasino'
+import SkCasino from '@/components/sk/templates/SkCasino'
 
 export default {
   components: {
@@ -33,17 +35,12 @@ export default {
     MdCasino,
     SkCasino
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentCasinoLayoutComponent']
-      ? context.store.getters['layout/getCurrentCasinoLayoutComponent']
-      : context.store.getters['layout/getCurrentLayoutComponent']
-  },
   middleware: ['application_type_casino'],
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle',
-      getCurrentCasinoLayoutStyle: 'layout/getCurrentCasinoLayoutStyle',
-      getCurrentCasinoLayoutComponent: 'layout/getCurrentCasinoLayoutComponent'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle',
+      getCurrentCasinoLayoutStyle: 'getCurrentCasinoLayoutStyle',
+      getCurrentCasinoLayoutComponent: 'getCurrentCasinoLayoutComponent'
     })
   },
   methods: {

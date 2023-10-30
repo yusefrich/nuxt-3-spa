@@ -214,10 +214,10 @@
       </div>
     </fb-modal>
 
-    <!-- <LiveChatWidget
+    <LiveChatWidget
       :license="liveChat()"
       visibility="minimized"
-    /> -->
+    />
     <!-- <cookies-manager
       v-if="!getAcceptedCookies"
       current-layout="fb"
@@ -243,7 +243,7 @@ import { useMetadataCasinoStore } from '@/stores/metadata-casino'
 import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
 import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
 
-// import { LiveChatWidget } from '@livechat/widget-vue/v2'
+import { LiveChatWidget } from '@livechat/widget-vue'
 import AppConfig from '@/components/default/atoms/AppConfig'
 import Loader from '@/components/default/atoms/Loader'
 import FbLoginBarrier from '@/components/fb/organisms/FbLoginBarrier'
@@ -274,7 +274,7 @@ export default {
     FbNavbar,
     FbFooter,
     // FbTickets,
-    // LiveChatWidget,
+    LiveChatWidget,
     FbSidebarSports,
     FbPreMatchSidebarWrapper,
     FutHtmlRender,
@@ -524,7 +524,9 @@ export default {
       return config.includes(term)
     },
     liveChat () {
-      return process.env.LIVECHAT + ''
+      const config = useRuntimeConfig()
+      
+      return config.public.LIVECHAT
     },
     openDepositModal () {
       this.modals.deposit = true
