@@ -191,14 +191,14 @@
       </a>
     </div> -->
 
-    <!-- <intercom-chat-btn
+    <intercom-chat-btn
       :bottom-position="isMobile ? '80px' : '20px'"
-    /> -->
+    />
 
-    <!-- <LiveChatWidget
+    <LiveChatWidget
       :license="liveChat()"
       visibility="minimized"
-    /> -->
+    />
   </section>
 </template>
 
@@ -214,7 +214,7 @@ import { useOnboardingBankStore } from '@/stores/onboarding-bank'
 import { useCasinoFeaturedStore } from '@/stores/casino-featured'
 import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
 
-// import { LiveChatWidget } from '@livechat/widget-vue/v2'
+import { LiveChatWidget } from '@livechat/widget-vue'
 import AppConfig from '@/components/default/atoms/AppConfig'
 import SkSidebar from '@/components/sk/organisms/SkSidebar'
 import SkNavbar from '@/components/sk/organisms/SkNavbar'
@@ -250,7 +250,7 @@ export default {
     SkMobileNavbar,
     FutHtmlRender,
     IntercomChatBtn,
-    // LiveChatWidget,
+    LiveChatWidget,
     LoginBarrier
   },
   mixins: [sportradarTagManager, windowWidth],
@@ -576,7 +576,9 @@ export default {
       this.clearBankErrors()
     },
     liveChat () {
-      return process.env.LIVECHAT + ''
+      const config = useRuntimeConfig()
+      
+      return config.public.LIVECHAT
     }
   }
 }

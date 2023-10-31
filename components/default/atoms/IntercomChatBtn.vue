@@ -5,13 +5,15 @@
     :style="`
       bottom: ${bottomPosition};
     `"
-    @click="toggleIntercom()"
+    @click="openIntercom()"
   >
     <img src="/intercom-icon.svg">
   </button>
 </template>
 
 <script>
+const config = useRuntimeConfig()
+
 export default {
   name: 'IntercomChatBtn',
   props: {
@@ -20,14 +22,9 @@ export default {
       default: '20px'
     }
   },
-  data () {
-    return {
-      intercom: false
-    }
-  },
   computed: {
     hasIntercom () {
-      return !!process.env.INTERCOMCHAT
+      return !!config.public.INTERCOMCHAT
     }
   },
   mounted () {
@@ -35,23 +32,17 @@ export default {
       return
     }
 
-    this.$intercom('boot', {
-      app_id: process.env.INTERCOMCHAT
-    })
+    window.intercomSettings = { 
+      hide_default_launcher: true
+    }
 
-    this.$intercom('onHide', () => {
-      this.intercom = false
-    })
+    window.Intercom('boot', {
+      app_id: config.public.INTERCOMCHAT,
+    });
   },
   methods: {
-    toggleIntercom () {
-      this.intercom = !this.intercom
-
-      if (this.intercom) {
-        this.$intercom('show')
-      } else {
-        this.$intercom('hide')
-      }
+    openIntercom () {
+      window.Intercom('show')
     }
   }
 }

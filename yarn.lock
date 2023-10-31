@@ -844,6 +844,20 @@
   resolved "https://registry.npmjs.org/@kwsites/promise-deferred/-/promise-deferred-1.1.1.tgz"
   integrity sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==
 
+"@livechat/widget-core@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@livechat/widget-core/-/widget-core-1.3.1.tgz#5e2011d2c9571570fd42d24696cf6df8a30d5534"
+  integrity sha512-PQPiWvtCg5IzKF5CTEQP19UYnR+WEyIg/cVitkxVkzZ7xvCpswJqQUDv8HIu/Jhlp5x0oqAWaqGjVrLFDem+dg==
+  dependencies:
+    mitt "3.0.0"
+
+"@livechat/widget-vue@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@livechat/widget-vue/-/widget-vue-1.3.1.tgz#06e0603443ddcbd89c66f49e02608e1370b58e95"
+  integrity sha512-vgZZ0BmqGXIAl/ZHtZxKc/MOLzjSwqsdrTYc+Sjwkv+fSIl2iKyV1bAwmtxrNmF1gUkAgLcaDw4C35mmyH1p0A==
+  dependencies:
+    "@livechat/widget-core" "^1.3.1"
+
 "@mapbox/node-pre-gyp@^1.0.5":
   version "1.0.11"
   resolved "https://registry.npmjs.org/@mapbox/node-pre-gyp/-/node-pre-gyp-1.0.11.tgz"
@@ -4509,6 +4523,11 @@ minizlib@^2.1.1, minizlib@^2.1.2:
   dependencies:
     minipass "^3.0.0"
     yallist "^4.0.0"
+
+mitt@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.0.tgz#69ef9bd5c80ff6f57473e8d89326d01c414be0bd"
+  integrity sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==
 
 mkdirp@^1.0.3:
   version "1.0.4"

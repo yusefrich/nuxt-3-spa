@@ -104,10 +104,10 @@
       </div>
     </sg-modal>
 
-    <!-- <LiveChatWidget
+    <LiveChatWidget
       :license="liveChat()"
       visibility="minimized"
-    /> -->
+    />
     <div
       v-if="currentSettings && currentSettings.telegram_float"
       id="div_telegram"
@@ -131,7 +131,7 @@ import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
 import { useCasinoFeaturedStore } from '@/stores/casino-featured'
 import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
 
-// import { LiveChatWidget } from '@livechat/widget-vue/v2'
+import { LiveChatWidget } from '@livechat/widget-vue'
 import dayjs from 'dayjs'
 import AppConfig from '@/components/default/atoms/AppConfig'
 import MdButton from '@/components/md/atoms/MdButton'
@@ -160,7 +160,7 @@ export default {
     SgSidebarMenu,
     SgFooter,
     SidebarSplitScreen,
-    // LiveChatWidget,
+    LiveChatWidget,
     SgModal,
     FutHtmlRender,
     IntercomChatBtn
@@ -339,7 +339,9 @@ export default {
       })
     },
     liveChat () {
-      return process.env.LIVECHAT + ''
+      const config = useRuntimeConfig()
+      
+      return config.public.LIVECHAT
     },
     openDepositModal () {
       this.modals.deposit = true
