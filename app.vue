@@ -1,20 +1,25 @@
 <template>
   <div>
-    <NuxtLayout :name="getCurrentLayoutStyle.toLowerCase()">
+    <NuxtLayout :name="layout.getCurrentLayoutStyle.toLowerCase()">
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+
 import { useLayoutStore } from '@/stores/layout'
 
-export default {
-  computed: {
-    ...mapState(useLayoutStore, {
-      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
-    })
-  }
-}
+const layout = useLayoutStore()
+
+const { $tiktok, $config } = useNuxtApp()
+
+// Setting here the tiktok pixels options
+onMounted(() => {
+  $tiktok({
+    pixel: $config.public.TIKTOK_PIXEL_ID ? $config.public.TIKTOK_PIXEL_ID : 'xxx',
+    disabled: !!!$config.public.TIKTOK_PIXEL_ID
+  })
+})
+
 </script>
