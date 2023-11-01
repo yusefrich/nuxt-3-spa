@@ -20,7 +20,9 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
-        'nuxt-lazy-load'
+        'nuxt-lazy-load',
+        '@zadigetvoltaire/nuxt-gtm',
+        'nuxt3-meta-pixel'
     ],
     i18n: {
         locales: ['PT', 'EN', 'ES'],
@@ -34,6 +36,16 @@ export default defineNuxtConfig({
         }
         // locale: 'pt',
     },
+    gtm: {
+        id: process.env.GTM_KEY ? process.env.GTM_KEY : 'GTM-XXX',
+        enabled: !!process.env.GTM_KEY
+    },
+    facebook: {
+        /* module options */
+        pixelId: process.env.FB_PIXEL_ID,
+        autoPageView: true,
+        disabled: !!!process.env.FB_PIXEL_ID
+    },
     devtools: { enabled: true },
     runtimeConfig: {
         public: {
@@ -43,9 +55,7 @@ export default defineNuxtConfig({
             PRODUCT_CONFIG_AFILIATES_URL: process.env.PRODUCT_CONFIG_AFILIATES_URL || '',
             INTERCOMCHAT: process.env.INTERCOMCHAT,
             LIVECHAT: process.env.LIVECHAT || '',
-            intercom: {
-                appId: process.env.INTERCOMCHAT
-            }
+            TIKTOK_PIXEL_ID: process.env.TIKTOK_PIXEL_ID
         }
     },
     // plugins: [

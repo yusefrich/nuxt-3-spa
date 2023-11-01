@@ -14,6 +14,7 @@
     "@pinia-plugin-persistedstate/nuxt": "^1.1.2",
     "@popperjs/core": "^2.11.8",
     "@types/node": "^18",
+    "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
     "nuxt": "^3.5.2",
     "sass-loader": "^13.3.2"
   },
@@ -33,6 +34,7 @@
     "dayjs-nuxt": "^1.1.2",
     "js-cookie": "^3.0.5",
     "nuxt-lazy-load": "^3.0.4",
+    "nuxt3-meta-pixel": "^1.0.9",
     "pinia": "^2.1.6",
     "sass": "1.64",
     "v-money": "^0.8.1",
