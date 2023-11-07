@@ -1,8 +1,7 @@
 <template>
   <div>
-    <!-- <nsx-register v-if="getCurrentLayoutStyle === 'oldBet365'" /> -->
-    <!-- <fb-register v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" /> -->
-    <register />
+    <fb-register v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+    <register v-else />
   </div>
 </template>
 
@@ -12,14 +11,12 @@ import { useBaseStore } from '@/stores/base'
 import { useLayoutStore } from '@/stores/layout'
 
 import Register from '@/components/default/templates/Register'
-// import NsxRegister from '@/components/nsx/templates/NsxRegister'
-// import FbRegister from '@/components/fb/templates/FbRegister'
+import FbRegister from '@/components/fb/templates/FbRegister'
 
 export default {
   components: {
     Register,
-    // NsxRegister,
-    // FbRegister
+    FbRegister
   },
   // middleware: ['sign-in'],
   computed: {

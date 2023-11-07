@@ -252,16 +252,6 @@
                 <span class="text-white fut-color-dynamic">{{ currentBet.return }}</span>
               </div>
             </div>
-            <div v-if="currentBet.cashout" class="bet-values">
-              <div class="cashout-container">
-                <p class="text-white fw-bold fut-color-dynamic">
-                  R$ {{ currentBet.cashout.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }}
-                </p>
-                <fb-fut-button class="btn btn-fb-primary px-4 fw-bold" @click="$emit('submitCashout', currentBet.id)">
-                  CASHOUT
-                </fb-fut-button>
-              </div>
-            </div>
           </div>
         </div>
       </div>

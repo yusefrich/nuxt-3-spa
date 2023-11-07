@@ -6,14 +6,15 @@
       :pagination="getHasMoreBets"
       :page="getPage"
       @next="nextUserBets(filters)"
-      @submitCashout="payload => submitCashout(payload)"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FbBetsGroup from '@/components/fb/organisms/FbBetsGroup.vue'
+import { mapState, mapActions } from 'pinia'
+import { useBaseStore } from '@/stores/base'
+
+import FbBetsGroup from '@/components/fb/organisms/FbBetsGroup'
 
 export default {
   name: 'FbMyBets',
@@ -26,7 +27,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
+    ...mapState(useBaseStore, {
       userBets: 'userBets',
       getHasMoreBets: 'getHasMoreBets',
       getPage: 'getPage'
@@ -36,16 +37,10 @@ export default {
     this.fetchUserBets()
   },
   methods: {
-    ...mapActions({
+    ...mapActions(useBaseStore, {
       fetchUserBets: 'fetchUserBets',
-      commitCashOut: 'onboarding-tickets/commitCashOut',
       nextUserBets: 'nextUserBets'
-    }),
-    submitCashout (id) {
-      this.commitCashOut(id).then(() => {
-        location.reload()
-      })
-    }
+    })
   }
 }
 </script>

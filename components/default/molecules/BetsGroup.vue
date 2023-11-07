@@ -9,7 +9,6 @@
       v-for="(bet) in bets"
       :key="bet.id"
       :bet="bet"
-      @submitCashout="payload => $emit('submitCashout', payload)"
     />
   </div>
 </template>
@@ -26,9 +25,6 @@ export default {
       type: Array,
       default: () => ([])
     }
-  },
-  emits: [
-    'submitCashout'
-  ]
+  }
 }
 </script>

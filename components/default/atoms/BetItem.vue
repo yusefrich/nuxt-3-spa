@@ -38,7 +38,6 @@
           :loading="loading"
           class="ms-2 text-white fut-color-dynamic"
           primary
-          @click="$emit('submitCashout', bet.id)"
         >
           {{ $t('i18n_encerrar_aposta') }} {{ bet.cashout.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }}
         </fut-button>
@@ -118,9 +117,6 @@ export default {
       default: () => ({})
     }
   },
-  emits: [
-    'submitCashout'
-  ],
   data () {
     return {
       loading: false

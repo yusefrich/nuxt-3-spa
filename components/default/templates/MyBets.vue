@@ -16,7 +16,6 @@
     <bets-group
       v-if="userBets"
       :bets="userBets.all"
-      @submitCashout="payload => submitCashout(payload)"
     />
     <div class="text-center mb-2">
       <fut-button
@@ -63,15 +62,7 @@ export default {
     ...mapActions(useBaseStore, {
       fetchUserBets: 'fetchUserBets',
       addUserBets: 'addUserBets'
-    }),
-    // ...mapActions({
-    //   commitCashOut: 'onboarding-tickets/commitCashOut',
-    // }),
-    submitCashout (id) {
-      this.commitCashOut(id).then(() => {
-        location.reload()
-      })
-    }
+    })
   }
 }
 </script>

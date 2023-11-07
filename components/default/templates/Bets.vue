@@ -2,7 +2,6 @@
   <user>
     <bets-group
       :bets="bets"
-      @submitCashout="payload => submitCashout(payload)"
     />
   </user>
 </template>
@@ -53,15 +52,7 @@ export default {
   methods: {
     ...mapActions(useBaseStore, {
       fetchUserBets: 'fetchUserBets'
-    }),
-    // ...mapActions({
-    //   commitCashOut: 'onboarding-tickets/commitCashOut',
-    // }),
-    submitCashout (id) {
-      this.commitCashOut(id).then(() => {
-        location.reload()
-      })
-    }
+    })
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <sk-home v-if="getCurrentLayoutStyle === 'SK'" />
-  <sg-home v-if="getCurrentLayoutStyle === 'SG'" />
+  <sg-home v-else-if="getCurrentLayoutStyle === 'SG'" />
   <third-party-provider v-else :layout="getCurrentLayoutStyle" />
 </template>
 
@@ -24,9 +24,6 @@ export default {
     // MdHome,
     SkHome,
     ThirdPartyProvider
-  },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
   },
   middleware ({ store, redirect }) {
     const config = store.getters['layout/getCurrentApplicationType']

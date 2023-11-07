@@ -25,13 +25,6 @@
                 :src="item.img"
               >
             </a>
-            <!-- <md-featured-game-card
-              v-if="item.slug"
-              :game="item"
-              :tickets="tickets"
-              border-radius="8px"
-              @selectBet="$emit('selectBet', $event)"
-            /> -->
           </div>
         </div>
       </div>
