@@ -7,7 +7,7 @@
 
 <script setup>
 
-import Infos from '@/components/default/templates/Infos.vue'
+import Infos from '@/components/default/templates/Infos'
 
 const route = useRoute()
 

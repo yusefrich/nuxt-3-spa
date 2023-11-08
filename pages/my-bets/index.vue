@@ -6,11 +6,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import MyBets from '@/components/default/templates/MyBets.vue'
-import NsxMyBets from '@/components/nsx/templates/NsxMyBets.vue'
-import FbMyBets from '@/components/fb/templates/FbMyBets.vue'
-import SkMyBets from '@/components/sk/templates/SkMyBets.vue'
+import { mapState } from 'pinia'
+import { useLayoutStore } from '@/stores/layout'
+
+import MyBets from '@/components/default/templates/MyBets'
+import NsxMyBets from '@/components/nsx/templates/NsxMyBets'
+import FbMyBets from '@/components/fb/templates/FbMyBets'
+import SkMyBets from '@/components/sk/templates/SkMyBets'
 
 export default {
   components: {
@@ -19,13 +21,10 @@ export default {
     FbMyBets,
     SkMyBets
   },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
-  },
   middleware: ['protected', 'application_type_sports'],
   computed: {
-    ...mapGetters({
-      getCurrentLayoutStyle: 'layout/getCurrentLayoutStyle'
+    ...mapState(useLayoutStore, {
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle'
     })
   }
 }

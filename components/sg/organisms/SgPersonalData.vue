@@ -74,8 +74,6 @@
 </template>
 
 <script>
-// import SgInput from '@/components/sg/atoms/SgInput.vue'
-
 export default {
   name: 'SgPersonalData',
   props: {

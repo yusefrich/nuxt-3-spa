@@ -3,14 +3,11 @@
 </template>
 
 <script>
-import Auction from '@/components/default/templates/Auction.vue'
+import Auction from '@/components/default/templates/Auction'
 
 export default {
   components: {
     Auction
-  },
-  layout (context) {
-    return context.store.getters['layout/getCurrentLayoutComponent']
   }
 }
 </script>

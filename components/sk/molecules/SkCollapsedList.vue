@@ -69,6 +69,8 @@
 </template>
 
 <script>
+// sem chamada, somente no sidebar
+
 export default {
   name: 'SkCollapsedList',
   props: {

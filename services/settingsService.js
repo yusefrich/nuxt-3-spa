@@ -28,7 +28,7 @@ const settingsService = {
     try {
       const data = await $fetch(config.public.BASE_URL + '/settings/ads')/* ${url}/settings */
       
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }

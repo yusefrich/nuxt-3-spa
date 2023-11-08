@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import MdDesktopCarousel from '@/components/md/molecules/MdDesktopCarousel.vue'
-import MdMobileCarousel from '@/components/md/molecules/MdMobileCarousel.vue'
+import MdDesktopCarousel from '@/components/md/molecules/MdDesktopCarousel'
+import MdMobileCarousel from '@/components/md/molecules/MdMobileCarousel'
 
 export default {
   name: 'MdCustomCarousel',
