@@ -29,60 +29,6 @@
           class="mx-0 d-flex content-filter-container"
           :class="{ 'content-full': getCurrentLayoutStyle !== 'FB2' }"
         >
-          <!-- <div v-if="getOptions.sidebar && !getOptions.inplaySidebar" class="sidebar-left d-print-none">
-            <fb-pre-match-sidebar-wrapper
-              :sport="sportId || +$route.params.sportId"
-              :main-leagues="preMatchIntern ? [] : getPreMatchMainLeagues"
-              :settings="currentSettings"
-            >
-              <div :class="{ 'fb-scroll max-height-sidebar': preMatchIntern }">
-                <fb-sidebar-sports
-                  v-if="currentSettings"
-                  custom-id="normal"
-                  :font="currentSettings.font"
-                  :all-sports-data="[]"
-                  :loading-leagues="getPreMatchLeaguesLoading"
-                  :selected-group-ids="getPreMatchGroupedIds"
-                  :gamelist-id="'sidebarList'"
-                  @selectedGroupEvents="payload => updateEventsGroup(payload)"
-                  @updateLeagues="updateMainLeague($event)"
-                />
-                <fb-sidebar-sports
-                  v-if="currentSettings"
-                  custom-id="outright"
-                  :outright="true"
-                  :font="currentSettings.font"
-                  :all-sports-data="[]"
-                  :loading-leagues="getPreMatchLeaguesLoading"
-                  :selected-group-ids="getPreMatchGroupedIds"
-                  :gamelist-id="'sidebarList'"
-                  @selectedGroupEvents="payload => updateEventsGroup(payload)"
-                  @updateLeagues="updateMainLeague($event)"
-                />
-              </div>
-            </fb-pre-match-sidebar-wrapper>
-          </div>
-          <div
-            v-else-if="getOptions.inplaySidebar && getCurrentLayoutStyle !== 'FB2'"
-            class="inplay-sidebar transition d-print-none"
-            :class="{open: openInplaySidebar}"
-          >
-            <div class="mobile-inplay-sidebar transition">
-              <fb-fut-button class="inplay-sidebar-toggle" @click="openInplaySidebar=!openInplaySidebar">
-                <font-awesome-icon class="fut-color-dynamic" :icon="['fas', 'sliders-h']" />
-              </fb-fut-button>
-              <span class="text-white inplay-sidebar-title fut-color-dynamic">{{ $t('i18n_ao_vivo') }}</span>
-            </div>
-            <div class="inplay-sidebar-content transition">
-              <fb-inplay-sidebar-sports
-                v-if="currentSettings"
-                :font="currentSettings.font"
-                :sports="getInplayEventsGroupedBySportAndCountry"
-                :inplay-sports="getMetadataInplaySports"
-                :gamelist-id="'sidebarListInplay'"
-              />
-            </div>
-          </div> -->
           <div
             class="mt-md-0 content-fb"
             :class="{
@@ -93,82 +39,7 @@
           >
             <fb-search-overlay v-if="searchOverlay" />
             <slot v-if="hasContent" />
-            <!-- <fb-tickets
-              v-if="getOptions.ticket && currentSettings"
-              :font="currentSettings.font"
-              :reduced-naming-style="currentSettings.name_team === 0"
-              :bet-slip-style="currentSettings.bet_sleep"
-              :submenu-type="currentSettings.bet_dynamic"
-              :bet-max-value="+currentSettings.bet_limit_max"
-              :odds-max-value="+currentSettings.odd_limit_max"
-              :bet-min-value="+currentSettings.bet_limit_min"
-              :win-max-value="+currentSettings.win_limit_max"
-              :loading="getPreCashInTicketsLoading"
-              :free-bet-value="loggedInUser ? loggedInUser.free_bet : null"
-              :logged-in-user="loggedInUser"
-              :errors="getPreCashInTicketsErrors"
-              :tickets="getPreCashInTickets"
-              :multiple="getMultipleTicket"
-              :invalid-multiple="getInvalidMultiple"
-              class="d-md-none"
-              @toggleSearchOverlay="searchOverlay = !searchOverlay"
-              @acceptAllChanges="acceptTicketChanges()"
-              @submit="callCommitCashIn()"
-              @clearAll="clearAll()"
-              @updateMultipleTicket="payload => updateMultipleTicket(payload)"
-              @accepptAllChanges="acceptTicketChanges()"
-              @toggleTicket="ticket => toggleTicket(ticket)"
-              @updateTicket="ticket => updateTicket(ticket)"
-              @clearAllFreeBet="clearAllFreeBet()"
-              @resetAllBets="resetAllBets()"
-              @openLogin="modals.login = true"
-            /> -->
           </div>
-          <!-- <client-only>
-            <div
-              v-if="getOptions.ticket && currentSettings"
-              class="d-md-block d-none sidebar-right fb-scroll text-white"
-              :class="{ scroll: inplayIntern || preMatchIntern }"
-            >
-              <fb-tickets
-                :bet-slip-style="currentSettings.bet_sleep"
-                :font="currentSettings.font"
-                :reduced-naming-style="currentSettings.name_team === 0"
-                :statscore-config="getStatscoreConfig"
-                :inplay-event="getInplaySingleEvent"
-                :showing-field="getOptions.field"
-                :submenu-type="currentSettings.bet_dynamic"
-                :bet-max-value="+currentSettings.bet_limit_max"
-                :bet-min-value="+currentSettings.bet_limit_min"
-                :odds-max-value="+currentSettings.odd_limit_max"
-                :win-max-value="+currentSettings.win_limit_max"
-                :loading="getPreCashInTicketsLoading"
-                :free-bet-value="loggedInUser ? loggedInUser.free_bet : null"
-                :logged-in-user="loggedInUser"
-                :errors="getPreCashInTicketsErrors"
-                :tickets="getPreCashInTickets"
-                :multiple="getMultipleTicket"
-                :invalid-multiple="getInvalidMultiple"
-                @submit="callCommitCashIn()"
-                @acceptAllChanges="acceptTicketChanges()"
-                @clearAll="clearAll()"
-                @updateMultipleTicket="payload => updateMultipleTicket(payload)"
-                @accepptAllChanges="acceptTicketChanges()"
-                @toggleTicket="ticket => toggleTicket(ticket)"
-                @updateTicket="ticket => updateTicket(ticket)"
-                @clearAllFreeBet="clearAllFreeBet()"
-                @resetAllBets="resetAllBets()"
-                @openLogin="modals.login = true"
-              />
-              <div v-if="currentAds" class="mt-2 px-1">
-                <div v-for="(ad, i) in currentAds" :key="'currentAdd_' + i">
-                  <a :href="ad.link">
-                    <img class="img-fluid" :src="ad.img">
-                  </a>
-                </div>
-              </div>
-            </div>
-          </client-only> -->
         </div>
       </div>
       <fb-footer
@@ -250,10 +121,6 @@ import FbLoginBarrier from '@/components/fb/organisms/FbLoginBarrier'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
 import FbNavbar from '@/components/fb/organisms/FbNavbar'
 import FbFooter from '@/components/fb/organisms/FbFooter'
-// import FbTickets from '@/components/fb/organisms/FbTickets'
-import FbSidebarSports from '@/components/fb/organisms/FbSidebarSports'
-import FbInplaySidebarSports from '@/components/fb/organisms/FbInplaySidebarSports'
-import FbPreMatchSidebarWrapper from '@/components/fb/organisms/FbPreMatchSidebarWrapper'
 import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
 import FbModal from '@/components/fb/organisms/FbModal'
 import FbFutButton from '@/components/fb/atoms/FbFutButton'
@@ -275,12 +142,9 @@ export default {
     FbFooter,
     // FbTickets,
     LiveChatWidget,
-    FbSidebarSports,
-    FbPreMatchSidebarWrapper,
     FutHtmlRender,
     FbModal,
     FbFutButton,
-    FbInplaySidebarSports,
     FbSearchOverlay,
     // CookiesManager,
     IntercomChatBtn

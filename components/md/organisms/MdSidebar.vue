@@ -90,14 +90,6 @@
           <li v-if="allSportsData && allSportsData.length > 0" class="title pt-2">
             <span>{{ $t('i18n_esporte', 2).toUpperCase() }}</span>
           </li>
-          <li
-            v-for="(sport, sIdx) in allSportsData"
-            :key="`sport-${sIdx}`"
-          >
-            <MdListDropdown
-              :sport="sport"
-            />
-          </li>
         </ul>
 
         <md-lang-switcher
@@ -113,7 +105,6 @@
 <script>
 import MdBurger from '@/components/md/atoms/MdBurger'
 import MdProvidersCasino from '@/components/md/molecules/MdProvidersCasino'
-import MdListDropdown from '@/components/md/molecules/MdListDropdown'
 import MdLangSwitcher from '@/components/md/atoms/MdLangSwitcher'
 
 export default {
@@ -121,7 +112,6 @@ export default {
   components: {
     MdBurger,
     MdProvidersCasino,
-    MdListDropdown,
     MdLangSwitcher
   },
   props: {

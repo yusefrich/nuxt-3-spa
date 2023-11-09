@@ -25,13 +25,6 @@
                 :src="item.img"
               >
             </a>
-            <md-featured-game-card
-              v-if="item.slug"
-              :game="item"
-              :tickets="tickets"
-              border-radius="8px"
-              @selectBet="$emit('selectBet', $event)"
-            />
           </div>
         </div>
       </div>
@@ -58,13 +51,8 @@
 </template>
 
 <script>
-import MdFeaturedGameCard from '@/components/md/molecules/MdFeaturedGameCard'
-
 export default {
   name: 'MdDesktopCarousel',
-  components: {
-    MdFeaturedGameCard
-  },
   props: {
     items: {
       type: Array,
