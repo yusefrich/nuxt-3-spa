@@ -133,7 +133,7 @@
       font-family: Helvetica
       }
     </component>
-    <component :is="'style'" v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'">
+    <component :is="'style'" v-else-if="getCurrentLayoutStyle === 'FB'">
       *{
       font-family: Roboto, sans-serif
       }

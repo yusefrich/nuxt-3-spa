@@ -57,6 +57,30 @@
         <div id="main-content">
           <slot />
 
+          <div class="d-flex justify-content-center">
+            <tickets
+              v-if="getOptions.ticket && currentSettings"
+              :submenu-type="currentSettings.bet_dynamic"
+              :bet-max-value="+currentSettings.bet_limit_max"
+              :bet-min-value="+currentSettings.bet_limit_min"
+              :win-max-value="+currentSettings.win_limit_max"
+              :loading="getPreCashInTicketsLoading"
+              :free-bet-value="loggedInUser ? loggedInUser.free_bet : null"
+              :errors="getPreCashInTicketsErrors"
+              :tickets="getPreCashInTickets"
+              :multiple="getMultipleTicket"
+              :current-layout-style="getCurrentLayoutStyle"
+              @submit="callCommitCashIn()"
+              @clearAll="clearAll()"
+              @updateMultipleTicket="payload => updateMultipleTicket(payload)"
+              @acceptAllChanges="acceptTicketChanges()"
+              @toggleTicket="ticket => toggleTicket(ticket)"
+              @updateTicket="ticket => updateTicket(ticket)"
+              @clearAllFreeBet="clearAllFreeBet()"
+              @resetAllBets="resetAllBets()"
+            />
+          </div>
+
           <sk-footer
             :current-settings="currentSettings"
             :curacao-iframe-src="currentSettings.seal"
@@ -212,6 +236,7 @@ import { useSettingsStore } from '@/stores/settings'
 import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
 import { useOnboardingBankStore } from '@/stores/onboarding-bank'
 import { useCasinoFeaturedStore } from '@/stores/casino-featured'
+import { useTicketsPreCashInStore } from '@/stores/tickets-pre-cash-in'
 import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
 
 import { LiveChatWidget } from '@livechat/widget-vue'
@@ -219,6 +244,7 @@ import AppConfig from '@/components/default/atoms/AppConfig'
 import SkSidebar from '@/components/sk/organisms/SkSidebar'
 import SkNavbar from '@/components/sk/organisms/SkNavbar'
 // import SkTicket from '@/components/sk/organisms/SkTicket'
+import Tickets from '@/components/default/organisms/Tickets'
 import SkModal from '@/components/sk/atoms/SkModal'
 import SkModalLogin from '@/components/sk/molecules/SkModalLogin'
 import SkModalLogout from '@/components/sk/molecules/SkModalLogout'
@@ -240,6 +266,7 @@ export default {
     SkSidebar,
     SkNavbar,
     // SkTicket,
+    Tickets,
     SkModal,
     SkModalLogin,
     SkModalLogout,
@@ -286,8 +313,10 @@ export default {
       loggedInUser: 'loggedInUser'
     }),
     ...mapState(useLayoutStore, {
+      getOptions: 'getOptions',
       getPopupStatus: 'getPopupStatus',
       getCuracaoToken: 'getCuracaoToken',
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle',
       getCuracaoTokenFunction: 'getCuracaoTokenFunction'
     }),
     ...mapState(useSettingsStore, {
@@ -314,6 +343,12 @@ export default {
     }),
     ...mapState(useCasinoSearchGamesStore, {
       getCasinoSearchGames: 'getCasinoSearchGames',
+    }),
+    ...mapState(useTicketsPreCashInStore, {
+      getMultipleTicket: 'getMultipleTicket',
+      getPreCashInTickets: 'getPreCashInTickets',
+      getPreCashInTicketsErrors: 'getPreCashInTicketsErrors',
+      getPreCashInTicketsLoading: 'getPreCashInTicketsLoading',
     }),
     // ...mapGetters({
     //   userBets: 'userBets',
@@ -457,6 +492,17 @@ export default {
     }),
     ...mapActions(useCasinoSearchGamesStore, {
       searchCasinoGames: 'searchCasinoGames',
+    }),
+    ...mapActions(useTicketsPreCashInStore, {
+      clearAll: 'clearAll',
+      commitCashIn: 'commitCashIn',
+      toggleTicket: 'toggleTicket',
+      resetAllBets: 'resetAllBets',
+      updateTicket: 'updateTicket',
+      clearAllFreeBet: 'clearAllFreeBet',
+      acceptTicketChanges: 'acceptTicketChanges',
+      updateMultipleTicket: 'updateMultipleTicket',
+      clearTicketLoading: 'clearTicketLoading'
     }),
     // ...mapActions({
     //   fetchUserBets: 'fetchUserBets',

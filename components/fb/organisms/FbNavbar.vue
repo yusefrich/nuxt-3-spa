@@ -87,28 +87,22 @@
         </div>
         <div v-if="!loggedInUser && currentSettings" class="d-flex">
           <fb-fut-button class="button-login d-none d-md-inline me-2 fut-color-dynamic" @click="modalLogin = true">
-            {{ fb2 ? $t('i18n_entrar') : $t('i18n_entrar').toUpperCase() }}
+            {{ $t('i18n_entrar').toUpperCase() }}
           </fb-fut-button>
-          <fb-fut-button v-if="fb2" class="button-login-fb2 d-md-none fut-color-dynamic" @click="modalLogin = true">
-            <span class="fw-bold">{{ $t('i18n_entrar') }}</span>
-          </fb-fut-button>
-          <fb-fut-button v-else class="button-login d-md-none me-2 fut-color-dynamic" to="/login">
+          <fb-fut-button class="button-login d-md-none me-2 fut-color-dynamic" to="/login">
             <span class="fw-bold text-uppercase">{{ $t('i18n_entrar').toUpperCase() }}</span>
           </fb-fut-button>
-          <fb-fut-button v-if="fb2" class="button-register-fb2 transition" to="/register">
-            <span class="fw-bold text-dark">{{ $t('i18n_registro') }}</span>
-          </fb-fut-button>
-          <fb-fut-button v-else class="button-register transition" to="/register">
+          <fb-fut-button class="button-register transition" to="/register">
             <span class="fw-bold text-dark">{{ $t('i18n_registro') }}</span>
           </fb-fut-button>
         </div>
       </div>
     </div>
+
     <!-- Login Modal -->
     <fb-modal
       v-if="!loggedInUser"
       :open="modalLogin"
-      :fb2="fb2"
       :is-mobile="isMobile"
       @onClose="modalLogin = false"
     >
@@ -123,11 +117,10 @@
         >
       </div>
       <div class="text-center justify-content-center">
-        <span v-if="!fb2" class="fw-bold my-2 mb-1 d-block fut-color-dynamic">{{ $t('i18n_entrar') }}</span>
-        <span v-if="!fb2" class="my-2 fut-color-dynamic"><small>{{ $t('i18n_insira_seus_dados_para') }}</small></span>
+        <span class="fw-bold my-2 mb-1 d-block fut-color-dynamic">{{ $t('i18n_entrar') }}</span>
+        <span class="my-2 fut-color-dynamic"><small>{{ $t('i18n_insira_seus_dados_para') }}</small></span>
         <form
-          class="container mt-3"
-          :class="fb2 ? 'fb2-form' : 'px-4'"
+          class="container mt-3 px-4"
           @submit.prevent="$emit('logUser', data)"
         >
           <input
@@ -140,8 +133,7 @@
             <input
               v-model="data.password"
               :type="showPassword ? 'text' : 'password'"
-              class="w-100 py-2 px-4 login-input"
-              :class="fb2 ? 'mt-3' : 'mt-2'"
+              class="w-100 py-2 px-4 login-input mt-2"
               :placeholder="$t('i18n_senha')"
             >
             <div
@@ -152,7 +144,7 @@
               <font-awesome-icon v-else class="eye-icon" :icon="['fas', 'eye']" />
             </div>
           </div>
-          <div :class="fb2 ? 'fb2-submit-area' : 'd-flex justify-content-between mt-3'">
+          <div class="d-flex justify-content-between mt-3">
             <fb-fut-button
               class="button-login-modal text-dark fut-color-dynamic"
               type="submit"
@@ -164,8 +156,7 @@
             </fb-fut-button>
             <div>
               <fb-fut-button
-                class="w-100 fut-color-dynamic"
-                :class="fb2 ? 'text-center fb2-forgot-pass-link' : 'forgot-pass-link text-end'"
+                class="w-100 fut-color-dynamic forgot-pass-link text-end"
                 to="/login/novaSenha"
               >
                 {{ $t('i18n_esqueceu_a_sua_senha') }}
@@ -209,32 +200,6 @@
             :font="currentSettings.font"
             :items="mobileNavItems.main"
           />
-          <div
-            v-if="fb2"
-            class="sports-btns"
-            @click="ShowSideMenu = false"
-          >
-            <NuxtLink
-              v-for="(sport, idx) in allSports"
-              :key="idx"
-              :to="localePath(`/sports?currentSport=${sport.id}`)"
-              class="link"
-            >
-              <div class="icon-wrapper">
-                <font-awesome-icon
-                  v-if="sportsIcons[sport.id] && sportsIcons[sport.id].fa"
-                  class="sport-icon"
-                  :icon="sportsIcons[sport.id] && sportsIcons[sport.id].value ? sportsIcons[sport.id].value : ['fas', 'star']"
-                />
-                <i
-                  v-else
-                  class="sport-icon"
-                  :class="sportsIcons[sport.id] && sportsIcons[sport.id].value ? sportsIcons[sport.id].value : ['icon', 'icon-soccer']"
-                />
-              </div>
-              <span>{{ sport.name }}</span>
-            </NuxtLink>
-          </div>
           <div class="w-100 d-grid">
             <template v-if="mobileNavItems.dynamic && mobileNavItems.dynamic.length">
               <fb-fut-button
@@ -277,7 +242,7 @@
                 <font-awesome-icon v-else class="text-white fut-color-dynamic" :icon="['fas', 'sort-down']" />
               </button>
               <transition name="fade">
-                <div v-if="toggleLocaleMobile" class="d-flex flex-column locale-options-container">
+                <div v-if="toggleLocaleMobile" class="d-flex flex-column">
                   <a
                     v-for="(locale, localeIdx) in $i18n.locales"
                     :key="'casino_header_locale_mobile_'+localeIdx"
@@ -525,11 +490,11 @@
 
 <script>
 import dayjs from 'dayjs'
-import FbFutButton from '@/components/fb/atoms/FbFutButton.vue'
-import FbModal from '@/components/fb/organisms/FbModal.vue'
-import FbMobileMenuTop from '@/components/fb/organisms/FbMobileMenuTop.vue'
-import FbBalanceDropdown from '@/components/fb/molecules/FbBalanceDropdown.vue'
-import FutResponsiveDropdown from '@/components/default/atoms/FutResponsiveDropdown.vue'
+import FbFutButton from '@/components/fb/atoms/FbFutButton'
+import FbModal from '@/components/fb/organisms/FbModal'
+import FbMobileMenuTop from '@/components/fb/organisms/FbMobileMenuTop'
+import FbBalanceDropdown from '@/components/fb/molecules/FbBalanceDropdown'
+import FutResponsiveDropdown from '@/components/default/atoms/FutResponsiveDropdown'
 import windowWidth from '~/mixins.js/windowWidth'
 // const isToday = require('dayjs/plugin/isToday')
 // const isTomorrow = require('dayjs/plugin/isTomorrow')
@@ -564,10 +529,6 @@ export default {
       default: () => ({})
     },
     modelValue: {
-      type: Boolean,
-      default: false
-    },
-    fb2: {
       type: Boolean,
       default: false
     },
@@ -659,7 +620,6 @@ export default {
       })
 
       if (this.currentSettings && this.currentSettings.nav_bar && this.currentSettings.nav_bar.length && process.client) {
-        console.log('uai man:', process.client)
         this.currentSettings.nav_bar.forEach((nav) => {
           if (!nav.nav_link) {
             return
@@ -756,7 +716,6 @@ export default {
         return this.modelValue
       },
       set (value) {
-        console.log('uai:', value)
         this.$emit('update:modelValue', value)
       }
     },
@@ -895,8 +854,6 @@ export default {
   font-size: 20px
 }
 .button-login {
-  // border: 1px solid var(--fut-primary);
-  // background: transparent;
   color: white;
   width: 100px;
   border-radius: 7px;
@@ -904,59 +861,6 @@ export default {
   font-size: 15px;
   padding: 10px 10px;
   background-color: var(--fut-background-header-white);
-  // &:hover {
-  //   background-color: var(--fut-background-white);
-  // }
-}
-.button-login-fb2, .button-register-fb2 {
-  color: white;
-  width: 100%;
-  padding: 0 10px;
-  border-radius: 5px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 40px;
-  font-size: 15px;
-}
-.button-login-fb2 {
-  background: var(--fut-background-header-white);
-  margin-right: 8px;
-}
-.button-register-fb2 {
-  background: var(--fut-primary);
-}
-.fb2-form {
-  padding: 0 !important;
-
-  .login-input {
-    border: none;
-    border-radius: 5px;
-    height: 33px;
-    background: var(--fut-background);
-    color: var(--fut-color-dynamic);
-    outline: 0;
-  }
-  .show-password {
-    top: 16px !important;
-
-    .eye-icon {
-      color: var(--fut-primary) !important;
-    }
-  }
-  .fb2-submit-area {
-    padding-top: 27px;
-
-    .button-login-modal {
-      height: 43px;
-      font-size: 15px;
-    }
-    .fb2-forgot-pass-link {
-      color: var(--fut-color-dynamic);
-      margin: 25px 0 0 0;
-    }
-  }
 }
 .bg-green {
   color: black;
@@ -965,7 +869,6 @@ export default {
 }
 .button-register {
   background: var(--fut-primary);
-  // color: white;
   text-decoration: none;
   border-radius: 7px;
   font-size: 15px;
@@ -978,7 +881,6 @@ export default {
     text-transform: none;
     padding: 10px 20px;
     border-radius: 7px;
-    // padding-top: 15px;
   }
   &:hover {
     background-image: linear-gradient(
@@ -1069,8 +971,6 @@ export default {
   }
 }
 .side-menu-content-mobile{
-  // margin-top: 55px;
-  // height: calc(100vh - 55px) !important;
   height: 100vh;
 }
 .font-size-time {
@@ -1178,7 +1078,6 @@ export default {
 }
 .button-deposit {
   background: var(--fut-primary);
-  // background-image: linear-gradient(to right, var(--fut-primary-black), var(--fut-primary));
   color: rgb(0, 0, 0);
   text-decoration: none;
   border-radius: 5px;
@@ -1399,7 +1298,6 @@ export default {
 }
 .locale-container{
   position: relative;
-  // justify-content: end;
   text-align: end;
   top: 10px;
   right: 10px;
@@ -1415,16 +1313,12 @@ export default {
   margin-left: auto;
   text-decoration: none;
   color: white;
-  // margin-right: 10px;
 }
 .hover-bg-primary{
   &:hover{
     background: var(--fut-primary);
     color: #333333 !important;
   }
-}
-.locale-options-container {
-  // background: var(--fut-background-lighter);
 }
 .btn-close-2{
   position: absolute;

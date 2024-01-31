@@ -98,7 +98,6 @@ export default {
   },
   created () {
     this.fetchCasinoSingleGame(this.$route.params.gameId).then((res) => {
-      console.log('uai:', res)
       this.openGame(res)
     })
   },

@@ -1,6 +1,6 @@
 <template>
   <user v-if="getCurrentLayoutStyle === 'default'" />
-  <fb-user v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+  <fb-user v-else-if="getCurrentLayoutStyle === 'FB'" />
   <md-user v-else-if="getCurrentLayoutStyle === 'MD'" />
   <sg-user v-else-if="getCurrentLayoutStyle === 'SG'" />
 </template>

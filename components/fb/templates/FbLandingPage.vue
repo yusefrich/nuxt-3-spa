@@ -63,31 +63,88 @@
           </fb-fut-button>
         </template>
       </div>
+      <div class="events-lists">
+        <fb-games-list
+          v-if="currentSettings"
+          :events="getPreMatchEvents"
+          :events-sport="currentSport"
+          :loading="getPreMatchLoading"
+          :stripped="currentSettings.stripped"
+          :font="currentSettings.font"
+          :tickets="getPreCashInTickets"
+          :settings="currentSettings"
+          landing-style
+          :is-mobile="isMobile"
+          @invalidMultiple="val => setInvalidMultiple(val)"
+          @selectBet="ticket => toggleTicket(ticket)"
+        >
+          <template #title>
+            <div class="section-title-padding">
+              <font-awesome-icon style="font-size: 14px" :icon="['far', 'clock']" />
+              <span class="title-head">{{ $t('i18n_proximos') }}</span>
+            </div>
+          </template>
+          <template #options>
+            <div class="options-container w-100 my-1">
+              <template v-for="(sport, index) in getMetadataSports">
+                <fb-fut-button
+                  v-if="index < 5 && currentSettings"
+                  :key="'home_sport_select_'+index"
+                  :fixed-width="200"
+                  :primary="sport.id === currentSport"
+                  style="width: 20%"
+                  block
+                  class="m-0 px-2 py-1 btn-select-sport fut-color-dynamic"
+                  :class="{'select-active': currentSport === sport.id}"
+                  @click="()=>{changeFilter({sport: sport.id}); fetchPreMatchEvents(); currentSport=sport.id}"
+                >
+                  {{ sport.name }}
+                </fb-fut-button>
+              </template>
+            </div>
+          </template>
+        </fb-games-list>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
+
 import { mapState, mapActions } from 'pinia'
 import { useLayoutStore } from '@/stores/layout'
 import { useSettingsStore } from '@/stores/settings'
+import { usePreMatchStore } from '@/stores/pre-match'
 import { useMetadataCasinoStore } from '@/stores/metadata-casino'
+import { useMetadataSportsStore } from '@/stores/metadata-sports'
+import { useTicketsPreCashInStore } from '@/stores/tickets-pre-cash-in'
 
 import FbFutButton from '@/components/fb/atoms/FbFutButton'
 import FbSelectPageLanding from '@/components/fb/molecules/FbSelectPageLanding'
 import FbCarrosel from '@/components/fb/atoms/FbCarrosel'
+import FbGamesList from '@/components/fb/organisms/FbGamesList'
+
+import windowWidth from '@/mixins.js/windowWidth.js'
 
 export default {
   name: 'FbLandingPage',
   components: {
     FbSelectPageLanding,
     FbFutButton,
-    FbCarrosel
+    FbCarrosel,
+    FbGamesList
   },
+  mixins: [windowWidth],
   props: {
     layout: {
       type: String,
       default: ''
+    }
+  },
+  data () {
+    return {
+      currentSport: 6046
     }
   },
   computed: {
@@ -100,13 +157,37 @@ export default {
     ...mapState(useMetadataCasinoStore, {
       getCasinoSliders: 'getCasinoSliders'
     }),
+    ...mapState(useMetadataSportsStore, {
+      getMetadataSports: 'getMetadataSports'
+    }),
+    ...mapState(usePreMatchStore, {
+      getPreMatchEvents: 'getPreMatchEvents',
+      getPreMatchLoading: 'getPreMatchLoading'
+    }),
+    ...mapState(useTicketsPreCashInStore, {
+      getPreCashInTickets: 'getPreCashInTickets'
+    }),
+    isMobile () {
+      return this.width <= 821
+    }
   },
   beforeMount () {
     this.updateOptions({
-      ticket: false
+      ticket: true
     })
   },
-  mounted () {
+  async mounted () {
+    await this.fetchMetadataSports().then((resp) => {
+      if (resp && resp.length > 0) {
+        this.changeFilter({ sport: resp[0].id })
+        this.currentSport = resp[0].id
+      }
+    })
+
+    this.changeFilter({ date: dayjs().format('YYYY-MM-DD') })
+    this.changeFilter({ hour: null })
+    this.fetchPreMatchEvents()
+
     this.fetchCasinoSliders()
     this.fetchCurrentSlides()
   },
@@ -117,6 +198,17 @@ export default {
     }),
     ...mapActions(useMetadataCasinoStore, {
       fetchCasinoSliders: 'fetchCasinoSliders',
+    }),
+    ...mapActions(useMetadataSportsStore, {
+      fetchMetadataSports: 'fetchMetadataSports'
+    }),
+    ...mapActions(usePreMatchStore, {
+      changeFilter: 'changeFilter',
+      fetchPreMatchEvents: 'fetchPreMatchEvents'
+    }),
+    ...mapActions(useTicketsPreCashInStore, {
+      toggleTicket: 'toggleTicket',
+      setInvalidMultiple: 'setInvalidMultiple'
     })
   }
 }

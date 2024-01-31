@@ -1,7 +1,7 @@
 <template>
   <div class="page-full">
     <fb-promo
-      v-if="layout.getCurrentLayoutStyle === 'FB' || layout.getCurrentLayoutStyle === 'FB2'"
+      v-if="layout.getCurrentLayoutStyle === 'FB'"
     />
     <md-promo
       v-else-if="layout.getCurrentLayoutStyle === 'MD'"

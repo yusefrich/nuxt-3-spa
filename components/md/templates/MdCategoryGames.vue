@@ -190,7 +190,6 @@ export default {
     } else if (this.slug === 'mocked-new') {
       this.live ? this.fetchLiveCasinoNewGames() : this.fetchCasinoNewGames()
     } else {
-      console.log('uai')
       this.fetchCasinoGamesByCategory(this.slug)
     }
 

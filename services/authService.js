@@ -151,6 +151,20 @@ const authService = {
     if (typeof window !== 'undefined') {
       localStorage.setItem('token', '')
     }
+  },
+  async deleteAuthFile (payload) {
+    const config = useRuntimeConfig()
+
+    try {
+      const data = await $fetch(
+        `${config.public.BASE_URL}/auth/files/delete`,
+        { method: 'POST', body: { data: payload } }
+      )
+
+      return [data.data, null]
+    } catch (error) {
+      return [null, error]
+    }
   }
 }
 

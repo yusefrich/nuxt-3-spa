@@ -62,7 +62,7 @@ export default {
       background: linear-gradient(90deg, rgba(0, 0, 0, 0.65) 7.89%, rgba(0, 0, 0, 0.272135) 51.7%, rgba(0, 0, 0, 0) 100%);
       .hover-icon {
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
       }
     }

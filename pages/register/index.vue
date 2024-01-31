@@ -1,8 +1,7 @@
 <template>
   <div>
-    <!-- <nsx-register v-if="getCurrentLayoutStyle === 'oldBet365'" /> -->
     <md-register v-if="getCurrentLayoutStyle === 'MD'" />
-    <!-- <fb-register v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" /> -->
+    <fb-register v-else-if="getCurrentLayoutStyle === 'FB'" />
     <register v-else />
   </div>
 </template>
@@ -12,24 +11,22 @@ import { mapState } from 'pinia'
 import { useBaseStore } from '@/stores/base'
 import { useLayoutStore } from '@/stores/layout'
 
-import Register from '@/components/default/templates/Register.vue'
-// import NsxRegister from '@/components/nsx/templates/NsxRegister.vue'
-// import FbRegister from '@/components/fb/templates/FbRegister.vue'
-import MdRegister from '@/components/md/templates/MdRegister.vue'
+import Register from '@/components/default/templates/Register'
+import FbRegister from '@/components/fb/templates/FbRegister'
+import MdRegister from '@/components/md/templates/MdRegister'
 
 export default {
   components: {
     Register,
-    // NsxRegister,
-    // FbRegister,
+    FbRegister,
     MdRegister
   },
   // middleware: ['sign_in'],
-  // created () {
-  //   if (this.loggedInUser) {
-  //     this.$router.push(this.localePath('/'))
-  //   }
-  // },
+  created () {
+    if (this.loggedInUser) {
+      this.$router.push(this.localePath('/'))
+    }
+  },
   computed: {
     ...mapState(useBaseStore, {
       loggedInUser: 'loggedInUser'

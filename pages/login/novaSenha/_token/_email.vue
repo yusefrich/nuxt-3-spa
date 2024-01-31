@@ -1,12 +1,7 @@
 <template>
   <div>
-    <nsx-update-password
-      v-if="getCurrentLayoutStyle === 'oldBet365'"
-      :token="token"
-      :email="email"
-    />
     <fb-forgot-password-update
-      v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'"
+      v-if="getCurrentLayoutStyle === 'FB'"
       :token="token"
       :email="email"
     />
@@ -26,14 +21,12 @@ import { mapState } from 'pinia'
 import { useLayoutStore } from '@/stores/layout'
 
 import UpdatePassword from '@/components/default/templates/UpdatePassword'
-import NsxUpdatePassword from '@/components/nsx/templates/NsxUpdatePassword'
 import FbForgotPasswordUpdate from '@/components/fb/templates/FbForgotPasswordUpdate'
 import MdUpdatePassword from '@/components/md/templates/MdUpdatePassword'
 
 export default {
   components: {
     UpdatePassword,
-    NsxUpdatePassword,
     FbForgotPasswordUpdate,
     MdUpdatePassword
   },

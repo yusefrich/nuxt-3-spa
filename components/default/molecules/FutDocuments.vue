@@ -6,7 +6,7 @@
           <font-awesome-icon class="text-white fut-color-dynamic icon me-2" :icon="['fas', 'file-alt']" />
           <div class="d-flex justify-content-between w-100">
             <span>{{ $t('i18n_documentos_enviados') }}</span>
-            <small class="me-3 badge bg-secondary rounded">{{ +loggedInUser.player.files.length + +uploadedFiles.length }}</small>
+            <small class="me-3 badge bg-secondary rounded">{{ +loggedInUser.player.files.length }}</small>
           </div>
         </fut-button>
       </h2>
@@ -34,36 +34,25 @@
                   </th>
                   <td>{{ formattedData(file.created_at) }}</td>
                   <td>
-                    <span
-                      class="badge"
-                      :class="[
-                        file.status_br === 'Reprovado' ? 'bg-danger' : '',
-                        file.status_br === 'Aprovado' ? 'bg-success' : '',
-                        file.status_br === 'Aguardando Aprovação' ? 'bg-secondary' : ''
-                      ]"
-                    >
-                      {{ file.status_br }}
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-              <tbody v-if="uploadedFiles">
-                <tr v-for="file in uploadedFiles" :key="'file_key_'+file.id">
-                  <th scope="row">
-                    {{ getDocumentName(file.desc ? file.desc : 'Outro') }} / {{ getFormName(file.type ? file.type : 'Outro') }}
-                  </th>
-                  <td>{{ formattedData(file.created_at) }}</td>
-                  <td>
-                    <span
-                      class="badge"
-                      :class="[
-                        file.status_br === 'Reprovado' ? 'bg-danger' : '',
-                        file.status_br === 'Aprovado' ? 'bg-success' : '',
-                        file.status_br === 'Aguardando Aprovação' ? 'bg-secondary' : ''
-                      ]"
-                    >
-                      {{ file.status_br }}
-                    </span>
+                    <div class="d-flex flex-wrap d-md-block">
+                      <span
+                        class="badge"
+                        :class="[
+                          file.status_br === 'Reprovado' ? 'bg-danger' : '',
+                          file.status_br === 'Aprovado' ? 'bg-success' : '',
+                          file.status_br === 'Aguardando Aprovação' ? 'bg-secondary' : ''
+                        ]"
+                      >
+                        {{ file.status_br }}
+                      </span>
+                      <button
+                        v-if="file.status_br === 'Aguardando Aprovação' || file.status_br === 'Enviado, Aguardando aprovação'"
+                        class="delete-document mx-auto"
+                        @click="deleteDocument(file.id)"
+                      >
+                        <font-awesome-icon class="text-danger" :icon="['fas', 'times']" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -515,7 +504,8 @@ export default {
   },
   methods: {
     ...mapActions(useUploadFileStore, {
-      sendFile: 'upload-file/sendFile'
+      sendFile: 'sendFile',
+      deleteFile: 'deleteFile'
     }),
     openFileInput (refValue) {
       const el = this.$refs[refValue]
@@ -595,6 +585,9 @@ export default {
           reject(error)
         }
       })
+    },
+    deleteDocument (id) {
+      this.deleteFile({ id })
     }
     /* legacy */
     // async submitFiles () {
@@ -704,7 +697,6 @@ export default {
   background-color: var(--fut-background);
   font-size: 20px;
   font-weight: 700;
-  // box-shadow: 0 1px 3px rgb(0, 0, 0/25);
   box-shadow: 0 1px 3px rgb(0, 0, math.div(0, 25));
   border: 1px solid var(--fut-background-lighter);
 }
@@ -753,5 +745,10 @@ export default {
   height: 100%;
   background: white;
   opacity: .3;
+}
+
+.delete-document {
+  border: none;
+  background: transparent;
 }
 </style>
