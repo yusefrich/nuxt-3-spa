@@ -4,9 +4,9 @@ const countriesService = {
     const config = useRuntimeConfig()
 
     try {
-      const data = await $fetch(config.public.BASE_URL + `/countries${sport ? '?sport=' + sport : ''}`)
+      const data = await $fetch(`${config.public.BASE_URL}/countries${sport ? '?sport=' + sport : ''}`)
 
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -15,12 +15,13 @@ const countriesService = {
     const config = useRuntimeConfig()
 
     try {
-      const data = await $fetch(config.public.BASE_URL + `/countries/${country}${sport ? '?sport=' + sport : ''}`)
+      const data = await $fetch(`${config.public.BASE_URL}/countries/${country}${sport ? '?sport=' + sport : ''}`)
       
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
   }
 }
+
 export default countriesService

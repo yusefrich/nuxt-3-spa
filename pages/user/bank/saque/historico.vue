@@ -1,6 +1,6 @@
 <template>
   <fb-withdraws
-    v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'"
+    v-if="getCurrentLayoutStyle === 'FB'"
     class="text-white"
   />
   <user v-else>

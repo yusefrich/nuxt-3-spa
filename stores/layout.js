@@ -91,10 +91,6 @@ export const useLayoutStore = defineStore('layout', {
           return 'fb'
         case 'Fb':
           return 'fb'
-        case 'FB2':
-          return 'fb'
-        case 'Fb2':
-          return 'fb'
         case 'XBet':
           return 'xb'
         case 'nsx':
@@ -125,10 +121,6 @@ export const useLayoutStore = defineStore('layout', {
           return 'fb'
         case 'Fb':
           return 'fb'
-        case 'FB2':
-          return 'fb'
-        case 'Fb2':
-          return 'fb'
         case 'XBet':
           return 'xb'
         case 'nsx':
@@ -158,10 +150,6 @@ export const useLayoutStore = defineStore('layout', {
         case 'FB':
           return 'fb'
         case 'Fb':
-          return 'fb'
-        case 'FB2':
-          return 'fb'
-        case 'Fb2':
           return 'fb'
         case 'XBet':
           return 'xb'

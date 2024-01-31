@@ -1,5 +1,5 @@
 <template>
-  <fb-forgot-password v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+  <fb-forgot-password v-if="getCurrentLayoutStyle === 'FB'" />
   <forgot-password v-else />
 </template>
 

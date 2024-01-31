@@ -26,7 +26,6 @@
       @logUser="logUser($event)"
       @authUser="authUser()"
     />
-    <!-- <code>{{ currentSettings }}</code> -->
     <div class="primary bg-dark padding-top-md">
       <fut-button
         v-if="casinoSidebarBtn"
@@ -51,6 +50,29 @@
         <div class="mx-0" :class="{ content: getOptions.sidebar, 'w-100': !getOptions.sidebar }">
           <div class="mobile-spacing" />
           <slot v-if="hasContent && currentSettings" />
+          <div class="d-flex justify-content-center">
+            <tickets
+              v-if="getOptions.ticket && currentSettings"
+              :submenu-type="currentSettings.bet_dynamic"
+              :bet-max-value="+currentSettings.bet_limit_max"
+              :bet-min-value="+currentSettings.bet_limit_min"
+              :win-max-value="+currentSettings.win_limit_max"
+              :loading="getPreCashInTicketsLoading"
+              :free-bet-value="loggedInUser ? loggedInUser.free_bet : null"
+              :errors="getPreCashInTicketsErrors"
+              :tickets="getPreCashInTickets"
+              :multiple="getMultipleTicket"
+              :current-layout-style="getCurrentLayoutStyle"
+              @submit="callCommitCashIn()"
+              @clearAll="clearAll()"
+              @updateMultipleTicket="payload => updateMultipleTicket(payload)"
+              @acceptAllChanges="acceptTicketChanges()"
+              @toggleTicket="ticket => toggleTicket(ticket)"
+              @updateTicket="ticket => updateTicket(ticket)"
+              @clearAllFreeBet="clearAllFreeBet()"
+              @resetAllBets="resetAllBets()"
+            />
+          </div>
         </div>
       </div>
       <footer-info :current-settings="currentSettings" />
@@ -62,6 +84,7 @@
         :current-settings="currentSettings"
       />
     </div>
+
     <fut-modal :open="modals.deposit" :title="$t('i18n_deposito', 1)" @onClose="()=>modals.deposit = false">
       <deposit
         v-if="currentSettings"
@@ -113,13 +136,15 @@
 
 <script>
 import { mapActions, mapState } from 'pinia'
-import { useLayoutStore } from '@/stores/layout'
-import { useMetadataCasinoStore } from '@/stores/metadata-casino'
+
 import { useBaseStore } from '@/stores/base'
-import { useSettingsStore } from '@/stores/settings'
-import { useOnboardingBankStore } from '@/stores/onboarding-bank'
+import { useLayoutStore } from '@/stores/layout'
 import { useCookiesStore } from '@/stores/cookies'
+import { useSettingsStore } from '@/stores/settings'
+import { useMetadataCasinoStore } from '@/stores/metadata-casino'
+import { useOnboardingBankStore } from '@/stores/onboarding-bank'
 import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+import { useTicketsPreCashInStore } from '@/stores/tickets-pre-cash-in'
 import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
 
 import dayjs from 'dayjs'
@@ -138,7 +163,7 @@ import Deposit from '@/components/default/organisms/Deposit'
 import Forgot from '@/components/default/organisms/Forgot'
 import LoginBarrier from '@/components/default/organisms/LoginBarrier'
 import sportradarTagManager from '@/mixins.js/sportradarTagManager.js'
-// import Tickets from '@/components/default/organisms/Tickets'
+import Tickets from '@/components/default/organisms/Tickets'
 import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
 import CookiesManager from '@/components/default/molecules/CookiesManager'
 import IntercomChatBtn from '@/components/default/atoms/IntercomChatBtn'
@@ -161,7 +186,7 @@ export default {
     FutHtmlRender,
     FutButton,
     FutCasinoSidebar,
-    // Tickets,
+    Tickets,
     CookiesManager,
     IntercomChatBtn
   },
@@ -214,6 +239,12 @@ export default {
     ...mapState(useCookiesStore, {
       getAcceptedCookies: 'getAcceptedCookies'
     }),
+    ...mapState(useTicketsPreCashInStore, {
+      getMultipleTicket: 'getMultipleTicket',
+      getPreCashInTickets: 'getPreCashInTickets',
+      getPreCashInTicketsErrors: 'getPreCashInTicketsErrors',
+      getPreCashInTicketsLoading: 'getPreCashInTicketsLoading',
+    }),
     randomDatetime () {
       return new Date().getTime() + ''
     },
@@ -261,10 +292,6 @@ export default {
       this.modals.popup = true
     }
   },
-  // beforeDestroy () {
-  //   this.$root.$off('toggleNav')
-  //   this.$root.$off('clearBet')
-  // },
   methods: {
     redirectProduct () {
       this.fetchProductRedirectUrl().then((result) => {
@@ -346,6 +373,16 @@ export default {
     ...mapActions(useCookiesStore, {
       confirmCookies: 'confirmCookies'
     }),
+    ...mapActions(useTicketsPreCashInStore, {
+      clearAll: 'clearAll',
+      commitCashIn: 'commitCashIn',
+      toggleTicket: 'toggleTicket',
+      resetAllBets: 'resetAllBets',
+      updateTicket: 'updateTicket',
+      clearAllFreeBet: 'clearAllFreeBet',
+      acceptTicketChanges: 'acceptTicketChanges',
+      updateMultipleTicket: 'updateMultipleTicket',
+    }),
     async logUser (event) {
       console.log('log event being called', event)
       await this.login(event)
@@ -381,6 +418,9 @@ export default {
     },
     increment() {
       this.count++
+    },
+    callCommitCashIn () {
+      this.commitCashIn()
     }
   }
 }

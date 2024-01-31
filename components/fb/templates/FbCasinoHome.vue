@@ -159,7 +159,7 @@
     >
       <p>Realize seu login para acessar esse jogo!</p>
       <fb-login-form
-        v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'"
+        v-if="getCurrentLayoutStyle === 'FB'"
         :current-settings="currentSettings"
         @logUser="logUser($event)"
       />

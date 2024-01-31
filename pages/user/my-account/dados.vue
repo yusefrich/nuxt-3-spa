@@ -1,7 +1,7 @@
 <template>
   <div>
     <sk-settings v-if="layout.getCurrentLayoutStyle === 'SK'" />
-    <fb-user-update v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+    <fb-user-update v-else-if="getCurrentLayoutStyle === 'FB'" />
     <dados v-else />
   </div>
 </template>

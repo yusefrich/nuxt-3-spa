@@ -1,5 +1,5 @@
 <template>
-  <fb-balance v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+  <fb-balance v-if="getCurrentLayoutStyle === 'FB'" />
   <sg-wallet v-else-if="getCurrentLayoutStyle === 'SG'" />
 </template>
 
@@ -7,8 +7,8 @@
 import { mapState } from 'pinia'
 import { useLayoutStore } from '@/stores/layout'
 
-import FbBalance from '@/components/fb/templates/FbBalance.vue'
-import SgWallet from '~/components/sg/templates/SgWallet.vue'
+import FbBalance from '@/components/fb/templates/FbBalance'
+import SgWallet from '~/components/sg/templates/SgWallet'
 
 export default {
   components: {

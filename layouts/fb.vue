@@ -10,35 +10,94 @@
     />
     <app-config v-if="currentSettings" :config="currentSettings" />
     <loader :condition="!currentSettings" />
+
     <fb-navbar
       v-model="modals.login"
       :casino-games="getCasinoHeaderGames"
       :casino-categories="getCasinoHeaderCategories"
       :current-settings="currentSettings"
       :logged-in-user="loggedInUser"
-      :fb2="getCurrentLayoutStyle === 'FB2'"
       :is-mobile="isMobile"
       :all-sports="[]"
       @redirectProduct="redirectProduct()"
       @changeLanguage="changeLanguage($event)"
       @logUser="logUser($event)"
     />
+
     <div class="primary bg-custom-black">
       <div class="main-content">
         <div
-          class="mx-0 d-flex content-filter-container"
-          :class="{ 'content-full': getCurrentLayoutStyle !== 'FB2' }"
+          class="mx-0 d-flex content-filter-container content-full"
         >
+          <div
+            v-if="getOptions.sidebar && !getOptions.inplaySidebar"
+            class="sidebar-left d-print-none"
+          >
+            <fb-pre-match-sidebar-wrapper
+              :sport="sportId || +$route.params.sportId"
+              :main-leagues="preMatchIntern ? [] : getPreMatchMainLeagues"
+              :settings="currentSettings"
+            >
+              <div :class="{ 'fb-scroll max-height-sidebar': preMatchIntern }">
+                <fb-sidebar-sports
+                  v-if="currentSettings"
+                  custom-id="normal"
+                  :font="currentSettings.font"
+                  :all-sports-data="getAllMetadataSports"
+                  :loading-leagues="getPreMatchLeaguesLoading"
+                  :selected-group-ids="getPreMatchGroupedIds"
+                  :gamelist-id="'sidebarList'"
+                  @selectedGroupEvents="payload => updateEventsGroup(payload)"
+                  @updateLeagues="updateMainLeague($event)"
+                />
+                <fb-sidebar-sports
+                  v-if="currentSettings"
+                  custom-id="outright"
+                  :outright="true"
+                  :font="currentSettings.font"
+                  :all-sports-data="getAllMetadataSports"
+                  :loading-leagues="getPreMatchLeaguesLoading"
+                  :selected-group-ids="getPreMatchGroupedIds"
+                  :gamelist-id="'sidebarList'"
+                  @selectedGroupEvents="payload => updateEventsGroup(payload)"
+                  @updateLeagues="updateMainLeague($event)"
+                />
+              </div>
+            </fb-pre-match-sidebar-wrapper>
+          </div>
           <div
             class="mt-md-0 content-fb"
             :class="{
-              'mt-60': getCurrentLayoutStyle !== 'FB2' && !getOptions.inplaySidebar,
-              'mt-95': getCurrentLayoutStyle !== 'FB2' && getOptions.inplaySidebar,
-              'mt-56': getCurrentLayoutStyle === 'FB2' && isMobile
+              'mt-60': !getOptions.inplaySidebar,
+              'mt-95': getOptions.inplaySidebar
             }"
           >
             <fb-search-overlay v-if="searchOverlay" />
-            <slot v-if="hasContent" />
+            <slot v-if="hasContent" /> <!-- substitute to Nuxt tag -->
+            <div class="d-flex justify-content-center">
+              <tickets
+                v-if="getOptions.ticket && currentSettings"
+                :submenu-type="currentSettings.bet_dynamic"
+                :bet-max-value="+currentSettings.bet_limit_max"
+                :bet-min-value="+currentSettings.bet_limit_min"
+                :win-max-value="+currentSettings.win_limit_max"
+                :loading="getPreCashInTicketsLoading"
+                :free-bet-value="loggedInUser ? loggedInUser.free_bet : null"
+                :errors="getPreCashInTicketsErrors"
+                :tickets="getPreCashInTickets"
+                :multiple="getMultipleTicket"
+                :current-layout-style="getCurrentLayoutStyle"
+                @submit="callCommitCashIn()"
+                @clearAll="clearAll()"
+                @clearErrors="clearErrors()"
+                @updateMultipleTicket="payload => updateMultipleTicket(payload)"
+                @acceptAllChanges="acceptTicketChanges()"
+                @toggleTicket="ticket => toggleTicket(ticket)"
+                @updateTicket="ticket => updateTicket(ticket)"
+                @clearAllFreeBet="clearAllFreeBet()"
+                @resetAllBets="resetAllBets()"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -51,6 +110,7 @@
         :is-mobile="isMobile"
       />
     </div>
+
     <fb-modal
       v-if="currentSettings && currentSettings.popup"
       :open="getPopupStatus"
@@ -94,7 +154,10 @@
       current-layout="fb"
       @acceptCookies="confirmCookies($event)"
     /> -->
-    <div v-if="currentSettings && currentSettings.telegram_float" id="div_telegram" :class="currentSettings.telegram_float.telegram_position">
+    <div
+      v-if="currentSettings && currentSettings.telegram_float" id="div_telegram"
+      :class="currentSettings.telegram_float.telegram_position"
+    >
       <a :href="currentSettings.telegram_float.telegram_link" target="_blank">
         <img height="60px" width="60px" src="/telegram.png">
       </a>
@@ -112,7 +175,11 @@ import { useCookiesStore } from '@/stores/cookies'
 import { useSettingsStore } from '@/stores/settings'
 import { useMetadataCasinoStore } from '@/stores/metadata-casino'
 import { useOnboardingAuthStore } from '@/stores/onboarding-auth'
+import { useMetadataSportsStore } from '@/stores/metadata-sports'
+import { useTicketsPreCashInStore } from '@/stores/tickets-pre-cash-in'
+import { usePreMatchMainLeagues } from '@/stores/pre-match-main-leagues'
 import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
+import { usePreMatchGroupedEventsStore } from '@/stores/pre-match-grouped-events'
 
 import { LiveChatWidget } from '@livechat/widget-vue'
 import AppConfig from '@/components/default/atoms/AppConfig'
@@ -125,8 +192,11 @@ import FutHtmlRender from '@/components/default/atoms/FutHtmlRender'
 import FbModal from '@/components/fb/organisms/FbModal'
 import FbFutButton from '@/components/fb/atoms/FbFutButton'
 import FbSearchOverlay from '@/components/fb/molecules/FbSearchOverlay'
+import FbSidebarSports from '@/components/fb/organisms/FbSidebarSports'
+import FbPreMatchSidebarWrapper from '@/components/fb/organisms/FbPreMatchSidebarWrapper'
 // import CookiesManager from '@/components/default/molecules/CookiesManager'
 import IntercomChatBtn from '@/components/default/atoms/IntercomChatBtn'
+import Tickets from '@/components/default/organisms/Tickets'
 import windowWidth from '~/mixins.js/windowWidth'
 
 export default {
@@ -140,14 +210,16 @@ export default {
     FbLoginBarrier,
     FbNavbar,
     FbFooter,
-    // FbTickets,
+    Tickets,  
     LiveChatWidget,
     FutHtmlRender,
     FbModal,
     FbFutButton,
     FbSearchOverlay,
     // CookiesManager,
-    IntercomChatBtn
+    IntercomChatBtn,
+    FbSidebarSports,
+    FbPreMatchSidebarWrapper
   },
   mixins: [sportradarTagManager, windowWidth],
   data () {
@@ -198,21 +270,29 @@ export default {
       getCasinoHeaderGames: 'getCasinoHeaderGames',
       getCasinoHeaderCategories: 'getCasinoHeaderCategories'
     }),
+    ...mapState(usePreMatchMainLeagues, {
+      getPreMatchMainLeagues: 'getPreMatchMainLeagues',
+      getPreMatchLeaguesLoading: 'getPreMatchLeaguesLoading'
+    }),
+    ...mapState(useMetadataSportsStore, {
+      getAllMetadataSports: 'getAllMetadataSports'
+    }),
+    ...mapState(usePreMatchGroupedEventsStore, {
+      getPreMatchGroupedIds: 'getPreMatchGroupedIds'
+    }),
+    ...mapState(useTicketsPreCashInStore, {
+      getMultipleTicket: 'getMultipleTicket',
+      getInvalidMultiple: 'getInvalidMultiple',
+      getPreCashInTickets: 'getPreCashInTickets',
+      getPreCashInTicketsErrors: 'getPreCashInTicketsErrors',
+      getPreCashInTicketsLoading: 'getPreCashInTicketsLoading',
+    }),
     // ...mapGetters({
     //   // todo refactor these methods
     //   getInplaySingleEvent: 'inplay-single-event/getInplaySingleEvent',
     //   // * refactored
     //   getInplayEventsGroupedBySportAndCountry: 'inplay/getInplayEventsGroupedBySportAndCountry',
     //   getMetadataInplaySports: 'metadata-sports/getMetadataInplaySports',
-    //   getAllMetadataSports: 'metadata-sports/getAllMetadataSports',
-    //   getPreMatchLeaguesLoading: 'pre-match-leagues/getPreMatchLeaguesLoading',
-    //   getPreMatchMainLeagues: 'pre-match-main-leagues/getPreMatchMainLeagues',
-    //   getPreCashInTicketsLoading: 'tickets-pre-cash-in/getPreCashInTicketsLoading',
-    //   getPreCashInTicketsErrors: 'tickets-pre-cash-in/getPreCashInTicketsErrors',
-    //   getMultipleTicket: 'tickets-pre-cash-in/getMultipleTicket',
-    //   getPreMatchGroupedIds: 'pre-match-grouped-events/getPreMatchGroupedIds',
-    //   getPreCashInTickets: 'tickets-pre-cash-in/getPreCashInTickets',
-    //   getInvalidMultiple: 'tickets-pre-cash-in/getInvalidMultiple',
     // }),
     onRegister () {
       return this.$route.path === '/register'
@@ -231,7 +311,7 @@ export default {
     }
   },
   async mounted () {
-    // this.clearTicketLoading()
+    this.clearTicketLoading()
     await this.fetchSettings()
 
     if (this.$route.query.btag) {
@@ -254,40 +334,40 @@ export default {
       if (this.$route.path.includes('login') || this.$route.path.includes('register')) {
         this.hasContent = false
         window.location.replace('/')
-        // this.$forceUpdate()
-        // this.$loading.finish()
       }
     }
+
     this.setInvalidMultiple(false)
     this.fetchAds()
     this.reopenSportSelection()
-    if (!this.getCurrentUrl.includes('casino') && !this.getCurrentUrl.includes('user') && !this.getCurrentUrl.includes('promo')) {
-      // console.log('mounted being called', this.isMobile)
-      if (this.getCurrentLayoutStyle !== 'FB2') {
-        this.fetchAllMetadataSports().then(() => {
-          this.reopenSportSelection()
-        })
-      }
+
+    if (
+      !this.getCurrentUrl.includes('casino') &&
+      !this.getCurrentUrl.includes('user') &&
+      !this.getCurrentUrl.includes('promo')
+    ) {
+      this.fetchAllMetadataSports().then(() => {
+        this.reopenSportSelection()
+      })
 
       this.fetchPreMatchMainLeagues(this.$route.params.sportId)
     }
+
     if (this.getCurrentApplicationType === 'sports' || this.getCurrentApplicationType === 'all') {
       this.fetchCasinoHeaderGames()
       this.fetchCasinoHeaderCategories()
     }
+
     this.updateOverlay(false)
-    this.$root.$on('toggleNav', () => {
-      this.open = !this.open
-    })
+    
     if (process.env.MANUAL_POPUP === 'true' && !sessionStorage.getItem('popupopen')) {
       sessionStorage.setItem('popupopen', true)
       this.modals.popup = true
     }
+
     const currentParams = new URL(location.href).searchParams.get('games')
+
     this.updateEventsGroup(currentParams)
-  },
-  beforeDestroy () {
-    this.$root.$off('toggleNav')
   },
   methods: {
     ...mapActions(useBaseStore, {
@@ -318,23 +398,28 @@ export default {
     ...mapActions(useOnboardingThirdPtAuthStore, {
       fetchProductRedirectUrl: 'fetchProductRedirectUrl'
     }),
-    // ...mapActions({
-    //   // todo refactor this actions
-    //   setInvalidMultiple: 'tickets-pre-cash-in/setInvalidMultiple',
-    //   // * refactored
-    //   clearTicketLoading: 'tickets-pre-cash-in/clearTicketLoading',
-    //   fetchAllMetadataSports: 'metadata-sports/fetchAllMetadataSports',
-    //   fetchPreMatchMainLeagues: 'pre-match-main-leagues/fetchPreMatchMainLeagues',
-    //   fetchPreMatchGroupedEvents: 'pre-match-grouped-events/fetchPreMatchGroupedEvents',
-    //   commitCashIn: 'tickets-pre-cash-in/commitCashIn',
-    //   clearAll: 'tickets-pre-cash-in/clearAll',
-    //   updateMultipleTicket: 'tickets-pre-cash-in/updateMultipleTicket',
-    //   acceptTicketChanges: 'tickets-pre-cash-in/acceptTicketChanges',
-    //   toggleTicket: 'tickets-pre-cash-in/toggleTicket',
-    //   clearAllFreeBet: 'tickets-pre-cash-in/clearAllFreeBet',
-    //   resetAllBets: 'tickets-pre-cash-in/resetAllBets',
-    //   updateTicket: 'tickets-pre-cash-in/updateTicket',
-    // }),
+    ...mapActions(usePreMatchGroupedEventsStore, {
+      fetchPreMatchGroupedEvents: 'fetchPreMatchGroupedEvents'
+    }),
+    ...mapActions(usePreMatchMainLeagues, {
+      fetchPreMatchMainLeagues: 'fetchPreMatchMainLeagues'
+    }),
+    ...mapActions(useMetadataSportsStore, {
+      fetchAllMetadataSports: 'fetchAllMetadataSports'
+    }),
+    ...mapActions(useTicketsPreCashInStore, {
+      clearAll: 'clearAll',
+      clearErrors: 'clearErrors',
+      commitCashIn: 'commitCashIn',
+      toggleTicket: 'toggleTicket',
+      resetAllBets: 'resetAllBets',
+      updateTicket: 'updateTicket',
+      clearAllFreeBet: 'clearAllFreeBet',
+      clearTicketLoading: 'clearTicketLoading',
+      setInvalidMultiple: 'setInvalidMultiple',
+      acceptTicketChanges: 'acceptTicketChanges',
+      updateMultipleTicket: 'updateMultipleTicket',
+    }),
     reopenSportSelection () {
       if (this.sportSelectionOpen) {
         return
@@ -363,6 +448,7 @@ export default {
     },
     updateMainLeague (sportId) {
       this.sportId = sportId
+
       this.fetchPreMatchMainLeagues(sportId)
     },
     updateEventsGroup (group) {
@@ -370,6 +456,7 @@ export default {
         this.fetchPreMatchGroupedEvents([])
         return
       }
+
       this.fetchPreMatchGroupedEvents(('' + group).split('_'))
     },
     register (payload) {
@@ -408,10 +495,10 @@ export default {
           location.reload()
         }
         if (this.getCurrentSportsProvider === 'upgaming') {
-          location.reload()
+          // location.reload()
         }
 
-        location.reload()
+        // location.reload()
       })
     }
   }

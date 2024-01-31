@@ -1,5 +1,5 @@
 <template>
-  <fb-withdraw v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+  <fb-withdraw v-if="getCurrentLayoutStyle === 'FB'" />
   <sg-withdraw v-else-if="getCurrentLayoutStyle === 'SG'" />
   <fut-withdraw v-else />
 </template>

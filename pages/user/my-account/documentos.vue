@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fb-documents v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+    <fb-documents v-if="getCurrentLayoutStyle === 'FB'" />
     <sg-documents v-else-if="getCurrentLayoutStyle === 'SG'" />
     <documents v-else />
   </div>

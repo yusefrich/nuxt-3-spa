@@ -1,7 +1,7 @@
 <template>
   <div>
     <deposito v-if="getCurrentLayoutStyle === 'default'" />
-    <div v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'">
+    <div v-else-if="getCurrentLayoutStyle === 'FB'">
       <fb-deposit />
     </div>
     <sg-transactions v-else-if="getCurrentLayoutStyle === 'SG'" />

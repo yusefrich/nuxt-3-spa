@@ -1,6 +1,5 @@
 <template>
-  <nsx-my-bets v-if="getCurrentLayoutStyle === 'oldBet365'" />
-  <fb-my-bets v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+  <fb-my-bets v-if="getCurrentLayoutStyle === 'FB'" />
   <sk-my-bets v-else-if="getCurrentLayoutStyle === 'SK'" />
   <my-bets v-else />
 </template>
@@ -10,14 +9,12 @@ import { mapState } from 'pinia'
 import { useLayoutStore } from '@/stores/layout'
 
 import MyBets from '@/components/default/templates/MyBets'
-import NsxMyBets from '@/components/nsx/templates/NsxMyBets'
 import FbMyBets from '@/components/fb/templates/FbMyBets'
 import SkMyBets from '@/components/sk/templates/SkMyBets'
 
 export default {
   components: {
     MyBets,
-    NsxMyBets,
     FbMyBets,
     SkMyBets
   },

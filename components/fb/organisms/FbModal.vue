@@ -3,11 +3,10 @@
     <div class="modal-overlay">
       <div
         class="modal-content py-3 fut-color-dynamic fut-bg-dynamic"
-        :class="{ fb2: fb2 && isMobile }"
         :style="maxWidth ? 'max-width: ' + maxWidth + 'px' : ''"
       >
         <fb-fut-button
-          :class="fb2 && isMobile ? 'fb2-button-close-modal' : 'button-close-modal border-0 bg-transparent'"
+          class="button-close-modal border-0 bg-transparent"
           @click="$emit('onClose')"
         >
           <font-awesome-icon class="close-icon fut-color-dynamic" :icon="['fas', 'times']" />
@@ -40,10 +39,6 @@ export default {
     title: {
       type: String,
       default: ''
-    },
-    fb2: {
-      type: Boolean,
-      default: false
     },
     isMobile: {
       type: Boolean,
@@ -81,41 +76,11 @@ export default {
   border: 5px solid gray;
   border-radius: 2px;
 }
-.fb2 {
-  color: white;
-  background: #232429;
-  position: fixed;
-  z-index: 2030;
-  top: 25% !important;
-  left: 50%;
-  right: 50%;
-  max-width: 90% !important;
-  padding: 10px 20px 15px 20px !important;
-  transform: translate(-50%);
-  border: 1px solid var(--fut-primary) !important;
-  border-radius: 10px !important;
-}
 .button-close-modal {
   position: absolute;
   top: 0;
   right: 0;
   color: #FFF;
-}
-.fb2-button-close-modal {
-  position: absolute;
-  top: -10px;
-  right: -8px;
-  color: #FFF;
-  background: var(--fut-background-header);
-  border: 1px solid var(--fut-primary);
-  border-radius: 5px !important;
-  display: flex;
-
-  .close-icon {
-    width: 11px;
-    height: 11px;
-    padding: 6px;
-  }
 }
 .close-icon {
   padding: 9px 12px;

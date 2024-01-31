@@ -137,7 +137,7 @@
 </template>
 
 <script>
-import MdCard from '@/components/md/atoms/MdCard.vue'
+import MdCard from '@/components/md/atoms/MdCard'
 import windowWidth from '@/mixins.js/windowWidth.js'
 
 export default {
@@ -185,7 +185,6 @@ export default {
   mounted () {
     // eslint-disable-next-line
     feather.replace()
-    console.log('uai:', this.currentTab)
   }
 }
 </script>
@@ -207,7 +206,7 @@ export default {
 
     @media(max-width: 768px) {
       &:first-child {
-        justify-content: start;
+        justify-content: flex-start;
         padding-left: 10px;
       }
     }

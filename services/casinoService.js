@@ -30,6 +30,7 @@ const casinoService = {
         config.public.BASE_URL + '/casino/softgaming/auth',
         { methods: 'POST', body: payload }
       )
+      
       return [data.data, null]
     } catch (error) {
       return [null, error]

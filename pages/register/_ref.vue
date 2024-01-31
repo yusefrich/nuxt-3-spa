@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fb-register v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+    <fb-register v-if="getCurrentLayoutStyle === 'FB'" />
     <register v-else />
   </div>
 </template>

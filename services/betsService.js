@@ -45,6 +45,7 @@ const betsService = {
     // search filter string concatenation
     let filtersString = ''
     let counter = 0
+
     for (const [key, value] of Object.entries(filters)) {
       if (value && counter === 0) {
         filtersString = filtersString + '?' + key + '=' + value
@@ -53,9 +54,10 @@ const betsService = {
         filtersString = filtersString + '&' + key + '=' + value
       }
     }
+    
     try {
       // const data = await $fetch(config.public.BASE_URL + `/events${filtersString}`, { cancelToken: cancelToken.token })
-      const data = await $fetch(config.public.BASE_URL + `/events${filtersString}`)
+      const data = await $fetch(`${config.public.BASE_URL}/events${filtersString}`)
 
       return [data, null]
     } catch (error) {
@@ -143,11 +145,10 @@ const betsService = {
     const config = useRuntimeConfig()
 
     try {
-      const data = await $fetch(config.public.BASE_URL + `/event/${slug}`)/* ${url}/events ?date=2021-07-06 */
+      const data = await $fetch(`${config.public.BASE_URL}/event/${slug}`)/* ${url}/events ?date=2021-07-06 */
 
-      return [data.data, null]
+      return [data, null]
     } catch (error) {
-      /* console.error(error) */
       return [null, error]
     }
   },
@@ -155,9 +156,9 @@ const betsService = {
     const config = useRuntimeConfig()
 
     try {
-      const data = await $fetch(config.public.BASE_URL + `/leagues/main${sport ? '?sport=' + sport : ''}`)
+      const data = await $fetch(`${config.public.BASE_URL}/leagues/main${sport ? '?sport=' + sport : ''}`)
     
-      return [data.data.data, null]
+      return [data.data, null]
     } catch (error) {
       return [null, error]
     }
@@ -229,8 +230,8 @@ const betsService = {
 
     try {
       const data = await $fetch(
-        config.public.BASE_URL + '/bets', payload,
-        { methods: 'POST', body: payload }
+        `${config.public.BASE_URL}/bets`,
+        { method: 'POST', body: payload }
       )
 
       return [data.data, null]
@@ -252,4 +253,5 @@ const betsService = {
     }
   }
 }
+
 export default betsService

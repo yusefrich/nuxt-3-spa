@@ -1,8 +1,17 @@
 <template>
   <div>
-    <md-login v-if="getCurrentLayoutStyle === 'MD'" :key="key" />
-    <fb-login v-else-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" :key="key" />
-    <login v-else :key="key" />
+    <md-login
+      v-if="getCurrentLayoutStyle === 'MD'"
+      :key="key"
+    />
+    <fb-login
+      v-else-if="getCurrentLayoutStyle === 'FB'"
+      :key="key"
+    />
+    <login
+      v-else
+      :key="key"
+    />
   </div>
 </template>
 

@@ -77,6 +77,29 @@
       <div class="scrollable-content">
         <div class="transition article-sec" :class="classPadding">
           <slot v-if="hasContent && currentSettings" />
+          <div class="d-flex justify-content-center">
+            <tickets
+              v-if="getOptions.ticket && currentSettings"
+              :submenu-type="currentSettings.bet_dynamic"
+              :bet-max-value="+currentSettings.bet_limit_max"
+              :bet-min-value="+currentSettings.bet_limit_min"
+              :win-max-value="+currentSettings.win_limit_max"
+              :loading="getPreCashInTicketsLoading"
+              :free-bet-value="loggedInUser ? loggedInUser.free_bet : null"
+              :errors="getPreCashInTicketsErrors"
+              :tickets="getPreCashInTickets"
+              :multiple="getMultipleTicket"
+              :current-layout-style="getCurrentLayoutStyle"
+              @submit="callCommitCashIn()"
+              @clearAll="clearAll()"
+              @updateMultipleTicket="payload => updateMultipleTicket(payload)"
+              @acceptAllChanges="acceptTicketChanges()"
+              @toggleTicket="ticket => toggleTicket(ticket)"
+              @updateTicket="ticket => updateTicket(ticket)"
+              @clearAllFreeBet="clearAllFreeBet()"
+              @resetAllBets="resetAllBets()"
+            />
+          </div>
         </div>
 
         <MdFooter
@@ -146,11 +169,14 @@ import { mapActions, mapState } from 'pinia'
 import { useBaseStore } from '@/stores/base'
 import { useLayoutStore } from '@/stores/layout'
 import { useSettingsStore } from '@/stores/settings'
+import { useMetadataSportsStore } from '@/stores/metadata-sports'
 import { useMetadataCasinoStore } from '@/stores/metadata-casino'
+import { useTicketsPreCashInStore } from '@/stores/tickets-pre-cash-in'
 import { useCasinoSearchGamesStore } from '@/stores/casino-search-games'
 import { useOnboardingUserConfigStore } from '@/stores/onboarding-user-config'
 import { useOnboardingThirdPtAuthStore } from '@/stores/onboarding-third-pt-auth'
 import { useLiveCasinoSearchGamesStore } from '@/stores/live-casino-search-games'
+import { usePreMatchMainLeagues } from '@/stores/pre-match-main-leagues'
 
 import { LiveChatWidget } from '@livechat/widget-vue'
 import AppConfig from '@/components/default/atoms/AppConfig'
@@ -165,6 +191,7 @@ import MdMobileThemeSwitcher from '@/components/md/organisms/MdMobileThemeSwitch
 import MdThemeSwitcher from '@/components/md/atoms/MdThemeSwitcher'
 import IntercomChatBtn from '@/components/default/atoms/IntercomChatBtn'
 import LoginBarrier from '@/components/default/organisms/LoginBarrier'
+import Tickets from '@/components/default/organisms/Tickets'
 import windowWidth from '~/mixins.js/windowWidth'
 
 export default {
@@ -182,7 +209,8 @@ export default {
     MdThemeSwitcher,
     MdMobileThemeSwitcher,
     IntercomChatBtn,
-    LoginBarrier
+    LoginBarrier,
+    Tickets
   },
   mixins: [windowWidth],
   data () {
@@ -202,8 +230,9 @@ export default {
       getOptions: 'getOptions',
       getPopupStatus: 'getPopupStatus',
       getCuracaoToken: 'getCuracaoToken',
+      getCurrentLayoutStyle: 'getCurrentLayoutStyle',
       getCuracaoTokenFunction: 'getCuracaoTokenFunction',
-      getCurrentApplicationType: 'getCurrentApplicationType'
+      getCurrentApplicationType: 'getCurrentApplicationType',
     }),
     ...mapState(useSettingsStore, {
       currentSettings: 'currentSettings'
@@ -211,14 +240,14 @@ export default {
     ...mapState(useMetadataCasinoStore, {
       getCasinoProviders: 'getCasinoProviders'
     }),
+    ...mapState(useTicketsPreCashInStore, {
+      getMultipleTicket: 'getMultipleTicket',
+      getPreCashInTickets: 'getPreCashInTickets',
+      getPreCashInTicketsErrors: 'getPreCashInTicketsErrors',
+      getPreCashInTicketsLoading: 'getPreCashInTicketsLoading',
+    }),
     // ...mapGetters({
-    //   getPreCashInTickets: 'tickets-pre-cash-in/getPreCashInTickets',
-    //   getMultipleTicket: 'tickets-pre-cash-in/getMultipleTicket',
-    //   getPreCashInTicketsLoading: 'tickets-pre-cash-in/getPreCashInTicketsLoading',
-    //   getPreCashInTicketsErrors: 'tickets-pre-cash-in/getPreCashInTicketsErrors',
     //   userBets: 'userBets',
-    //   getPreMatchMainLeagues: 'pre-match-main-leagues/getPreMatchMainLeagues',
-    //   getAllMetadataSports: 'metadata-sports/getAllMetadataSports',
     // }),
     getCurrentUrl () {
       return this.$route.path
@@ -249,11 +278,11 @@ export default {
     }
   },
   created () {
-    // this.clearTicketLoading()
-    // if (!this.getCurrentUrl.includes('casino')) {
-    //   this.fetchAllMetadataSports()
-    //   this.fetchPreMatchMainLeagues()
-    // }
+    this.clearTicketLoading()
+    if (!this.getCurrentUrl.includes('casino')) {
+      this.fetchMetadataSports()
+      this.fetchPreMatchMainLeagues()
+    }
     this.fetchSettings()
   },
   mounted () {
@@ -312,17 +341,26 @@ export default {
     ...mapActions(useLiveCasinoSearchGamesStore, {
       searchLiveCasinoGames: 'searchLiveCasinoGames'
     }),
+    ...mapActions(useTicketsPreCashInStore, {
+      clearAll: 'clearAll',
+      commitCashIn: 'commitCashIn',
+      toggleTicket: 'toggleTicket',
+      resetAllBets: 'resetAllBets',
+      updateTicket: 'updateTicket',
+      clearAllFreeBet: 'clearAllFreeBet',
+      acceptTicketChanges: 'acceptTicketChanges',
+      updateMultipleTicket: 'updateMultipleTicket',
+      clearTicketLoading: 'clearTicketLoading'
+    }),
+    ...mapActions(useMetadataSportsStore, {
+      fetchMetadataSports: 'fetchMetadataSports'
+    }),
+    ...mapActions(usePreMatchMainLeagues, {
+      fetchPreMatchMainLeagues: 'fetchPreMatchMainLeagues'
+    }),
     // ...mapActions({
-    //   clearTicketLoading: 'tickets-pre-cash-in/clearTicketLoading',
-    //   clearAll: 'tickets-pre-cash-in/clearAll',
-    //   fetchPreMatchMainLeagues: 'pre-match-main-leagues/fetchPreMatchMainLeagues',
-    //   fetchAllMetadataSports: 'metadata-sports/fetchAllMetadataSports',
     //   commitCashInMD: 'tickets-pre-cash-in/commitCashInMD',
-    //   toggleTicket: 'tickets-pre-cash-in/toggleTicket',
-    //   updateTicket: 'tickets-pre-cash-in/updateTicket',
-    //   updateMultipleTicket: 'tickets-pre-cash-in/updateMultipleTicket',
     //   clearMultipleTicket: 'tickets-pre-cash-in/clearMultipleTicket',
-    //   acceptTicketChanges: 'tickets-pre-cash-in/acceptTicketChanges',
     // }),
     liveChat () {
       const config = useRuntimeConfig()
@@ -368,6 +406,9 @@ export default {
       }
 
       this.searchCasinoGames(game)
+    },
+    callCommitCashIn () {
+      this.commitCashIn()
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fb-bonus v-if="getCurrentLayoutStyle === 'FB' || getCurrentLayoutStyle === 'FB2'" />
+    <fb-bonus v-if="getCurrentLayoutStyle === 'FB'" />
     <bonus v-else />
   </div>
 </template>
